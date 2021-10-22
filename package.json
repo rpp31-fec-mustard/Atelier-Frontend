@@ -16,7 +16,7 @@
   "scripts": {
     "server-dev": "npx nodemon <server here> --watch",
     "react-dev": "webpack --mode-development --watch",
-    "test": "test"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.23.0",
