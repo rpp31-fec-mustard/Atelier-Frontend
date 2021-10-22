@@ -1,6 +1,22 @@
 {
+  "name": "17-fec",
+  "description": "Front End Capstone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp31-fec-mustard/fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp31-fec-mustard/fec/issues"
+  },
+  "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "test": "jest"
+    "server-dev": "npx nodemon <server here> --watch",
+    "react-dev": "webpack --mode-development --watch",
+    "test": "test"
   },
   "dependencies": {
     "axios": "^0.23.0",
