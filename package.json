@@ -15,14 +15,15 @@
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
     "test": "mocha",
-    "server-dev": "npx nodemon <!server here> --watch",
-    "react-dev": "webpack --mode-development --watch"
+    "start": "nodemon server/server.js --watch",
+    "react-dev": "webpack --mode development --watch"
   },
   "dependencies": {
     "axios": "^0.23.0",
     "express": "^4.17.1",
     "jest": "^27.3.1",
     "jquery": "^3.6.0",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3"
