@@ -2,3 +2,4 @@ node_modules
 dist
 
 ## API Keys ##
+config.js
