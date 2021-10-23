@@ -16,7 +16,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/server.js --watch",
-    "react-dev": "webpack --mode development --watch"
+    "build": "webpack --mode development --watch"
   },
   "dependencies": {
     "axios": "^0.23.0",
