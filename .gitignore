@@ -1,5 +1,7 @@
 node_modules
 dist
+public
+
 
 ## API Keys ##
-# API_paths.txt
+API_paths.txt
