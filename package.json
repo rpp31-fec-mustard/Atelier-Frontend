@@ -14,15 +14,16 @@
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "server-dev": "npx nodemon <server here> --watch",
-    "react-dev": "webpack --mode-development --watch",
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon server/server.js --watch",
+    "react-dev": "webpack --mode development --watch"
   },
   "dependencies": {
     "axios": "^0.23.0",
     "express": "^4.17.1",
     "jest": "^27.3.1",
     "jquery": "^3.6.0",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3"
@@ -33,6 +34,7 @@
     "@babel/preset-react": "^7.14.5",
     "babel": "^6.23.0",
     "babel-loader": "^8.2.3",
+    "body-parser": "^1.19.0",
     "css-loader": "^6.4.0",
     "eslint": "^8.0.1",
     "mocha": "^9.1.3",
