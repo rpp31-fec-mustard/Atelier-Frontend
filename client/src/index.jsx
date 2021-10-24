@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ProductOverview from './ProductOverview/ProductOverview.jsx'
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import QA from './Q&A/QA.jsx';
 
 const App = () => {
   return (
@@ -13,14 +14,14 @@ const App = () => {
         <h1>RELATED ITEMS AND OUTFIT CREATION WIDGET</h1>
       </div>
       <div className='module_container'>
-        <h1>QUESTIONS AND ANSWERS WIDGET</h1>
+        <QA />
       </div>
       <div className='module_container'>
         <h1>RATINGS AND REVIEWS WIDGET</h1>
       </div>
       <div> Goodbye World! </div>
     </div>
-  )
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('app'));
