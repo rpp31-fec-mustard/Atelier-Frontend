@@ -5,7 +5,7 @@ import Related from './Related/Related.jsx';
 const App = () => {
   return (
     <div id="index">
-      <div className='module_container_po'>
+      <div className='module_container'>
         <ProductOverview />
       </div>
       <div className='module_container'>

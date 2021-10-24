@@ -1,48 +1,34 @@
-import React from 'react';
+// RESOURCES USED
+// https://reactjs.org/docs/test-utils.html#isdomcomponent
+// https://reactjs.org/docs/testing-recipes.html
 
-// import API mocking utilities from Mock Service Worker
-import {rest} from 'msw';
-import {setupServer} from 'msw/node';
+import React, { useState } from 'react';
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
 
-// import react-testing methods
-import {render, fireEvent, waitFor, screen} from '@testing-library/react';
-
-// add custom jest matchers from jest-dom
-import '@testing-library/jest-dom';
-
-// import Regenerator to allow for async functions
-import "regenerator-runtime/runtime";
-
-// the component to test
 import App from '../client/components/app.jsx';
 
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+});
 
-const server = setupServer(
-  rest.get('/', (req, res, ctx) => {
-    return res(ctx.json({greeting: 'hello world'}));
-  })
-);
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-
-
-test('loads and displays 4 module components', async () => {
-  // Arrange
-  render(<App />);
-  // Act
-
-  // Assert
-})
-
-test('handles server error', async () => {
-  server.use(
-    rest.get('/', (req, res, ctx) => {
-      return res(ctx.status(500));
-    })
-  )
-})
+test('Four module_containers should be rendering', () => {
+  act(() => {
+    render(<App />, container);
+  });
+  const modules = document.getElementsByClassName('module_container');
+  expect(modules.length).toBe(4);
+});
 
 test('adds 1 + 2 to equal 3', () => {
   expect(1 + 2).toBe(3);
