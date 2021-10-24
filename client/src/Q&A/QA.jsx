@@ -8,7 +8,11 @@ class QA extends React.Component {
 
   render () {
     return (
-      <div> Testing QA Compoonent</div>
+      <div>
+        <div>Testing QA Compoonent</div>
+        <button>More Questions</button>
+        <button>Add Questions</button>
+      </div>
     );
   }
 }
