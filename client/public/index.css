@@ -27,6 +27,32 @@ div {
   height: 500px;
 }
 
+
+
+/* *** TEMP TOP BANNER *** */
+
+#top_banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+#top_bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  width: 100%;
+  color: white;
+  background-color: #555555;
+}
+
+#announcements {
+  margin: 5px;
+}
+
+
+
 /* *** PRODUCT OVERVIEW *** */
 
 #product_overview_main {
