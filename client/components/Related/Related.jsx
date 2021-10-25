@@ -6,7 +6,7 @@ import YourOutfit from './YourOutfit.jsx';
 const Related = () => {
 
   return (
-    <div id="related_main" className="module_container_po">
+    <div id="related_main" className="module_container">
       <RelatedProducts />
       <YourOutfit />
     </div>
