@@ -1,4 +1,5 @@
 import React from 'react';
+import TempTopBanner from './TempTopBanner.jsx'
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import Related from './Related/Related.jsx';
 import Reviews from './Reviews/Reviews.jsx';
@@ -6,6 +7,7 @@ import Reviews from './Reviews/Reviews.jsx';
 const App = () => {
   return (
     <div id="index">
+      <TempTopBanner />
       <ProductOverview />
       <Related />
       <div className='module_container'>
