@@ -5,12 +5,8 @@ import Related from './Related/Related.jsx';
 const App = () => {
   return (
     <div id="index">
-      <div className='module_container'>
-        <ProductOverview />
-      </div>
-      <div className='module_container'>
-        <Related />
-      </div>
+      <ProductOverview />
+      <Related />
       <div className='module_container'>
         <h1>QUESTIONS AND ANSWERS WIDGET</h1>
       </div>
