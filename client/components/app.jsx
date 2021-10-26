@@ -12,7 +12,7 @@ const App = () => {
       <ProductOverview />
       <Related />
       <QA/>
-     <Reviews />
+      <Reviews />
     </div>
   );
 };
