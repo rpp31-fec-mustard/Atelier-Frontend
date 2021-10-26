@@ -3,6 +3,7 @@ import TempTopBanner from './TempTopBanner.jsx'
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import Related from './Related/Related.jsx';
 import Reviews from './Reviews/Reviews.jsx';
+import QA from './QA/QA.jsx';
 
 const App = () => {
   return (
@@ -10,10 +11,8 @@ const App = () => {
       <TempTopBanner />
       <ProductOverview />
       <Related />
-      <div className='module_container'>
-        <h1>QUESTIONS AND ANSWERS WIDGET</h1>
-      </div>
-     <Reviews />
+      <QA/>
+      <Reviews />
     </div>
   );
 };
