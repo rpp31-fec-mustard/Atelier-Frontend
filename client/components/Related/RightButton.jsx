@@ -2,9 +2,9 @@ import React from 'react';
 
 const RightButton = (props) => {
   return (
-    <div id="rbutton-container">
-      <button id="rbutton">
-        <i class="fas fa-caret-right"></i>
+    <div className="rbutton-container">
+      <button className="rbutton">
+        <i className="fas fa-caret-right"></i>
       </button>
     </div>
   );

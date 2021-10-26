@@ -13,6 +13,11 @@ div {
   border: 1px solid black;
 }
 
+button {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
 
@@ -182,8 +187,18 @@ div {
 }
 
 .prod-card {
+  display: flex;
+  flex-direction: column;
   width: 20%;
   height: 100%;
+}
+
+.action_button_wrapper {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  align-self: flex-end;
+  z-index: 1;
 }
 
 /* *** QUESTIONS/ANSWER *** */

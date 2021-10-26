@@ -10,10 +10,10 @@ const YourOutfit = (props) => {
       <h1>YOUR OUTFIT LIST</h1>
       <div className="prod_card_container">
         <LeftButton />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard action={'x'}/>
+        <ProductCard action={'x'}/>
+        <ProductCard action={'x'}/>
+        <ProductCard action={'x'}/>
         <RightButton />
       </div>
     </div>

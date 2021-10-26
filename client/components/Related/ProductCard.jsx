@@ -1,4 +1,5 @@
 import React from 'react';
+import ActionButton from './ActionButton.jsx';
 
 const ProductCard = (props) => {
   return (
@@ -8,6 +9,7 @@ const ProductCard = (props) => {
       <div>Product Name</div>
       <div>Price</div>
       <div>Stars</div>
+      <ActionButton action={props.action}/>
     </div>
   );
 };

@@ -10,10 +10,10 @@ const RelatedProducts = (props) => {
       <h1>RELATED PRODUCTS LIST</h1>
       <div className="prod_card_container">
         <LeftButton />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard action={'star'}/>
+        <ProductCard action={'star'}/>
+        <ProductCard action={'star'}/>
+        <ProductCard action={'star'}/>
         <RightButton />
       </div>
     </div>
