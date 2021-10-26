@@ -7,8 +7,8 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sorted: '',
-      id: '',
+      sorted: 'relevant',
+      id: '59553',
       reviews: []
     };
   }
@@ -38,46 +38,12 @@ class Reviews extends React.Component {
         console.log('err');
       } else {
         this.setState({
-          reviews: result
+          reviews: result.reviewsArr
         });
       }
     });
-  }
 
-  sortList(e, callback) {
-    if (e.target.value === 'newest') {
-      this.setState({
-        sorted: 'newest',
-      }, callback);
-    } else if (e.target.value === 'relevance') {
-      this.setState({
-        sorted: 'relevant'
-      }, callback);
-    } else if (e.target.value === 'most helpful') {
-      this.setState({
-        sorted: 'helpful'
-      }, callback);
-    }
   }
-
-  sortedList(e) {
-    this.sortList(e, () => {
-      let options = {
-        id: this.state.id,
-        sort: this.state.sorted,
-      };
-      this.get(options, (err, result) => {
-        if (err) {
-          console.log('err');
-        } else {
-          this.setState({
-            reviews: result
-          });
-        }
-      });
-    });
-  }
-
 
   render() {
     return (
@@ -87,7 +53,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings />
-          <ReviewsList onChange={this.sortedList.bind(this)} list={this.state.reviews} />
+          <ReviewsList list={this.state.reviews} />
         </div>
       </div>
     );
