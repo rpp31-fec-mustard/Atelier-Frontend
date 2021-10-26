@@ -195,7 +195,6 @@ button {
   height: 30px;
   position: absolute;
   align-self: flex-end;
-  z-index: 1;
 }
 
 /* *** QUESTIONS/ANSWER *** */
