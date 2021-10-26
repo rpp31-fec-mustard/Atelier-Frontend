@@ -188,6 +188,17 @@ div {
 
 /* *** QUESTIONS/ANSWER *** */
 
+.questionsAndAnswers {
+  width: 100%;
+}
+
+/* .singleAnswer {
+  list-style: none;
+} */
+
+
+
+
 /* *** RATINGS/REVIEWS *** */
 
 .reviews {
