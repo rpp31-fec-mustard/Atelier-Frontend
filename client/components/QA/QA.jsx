@@ -154,8 +154,8 @@ class QA extends React.Component {
 
   render () {
     return (
-      <div className="questionsAndAnswers">
-        <div>QUESTIONS & ANSWERS</div>
+      <div className="module_container">
+        <h1>QUESTIONS & ANSWERS</h1>
         <Search/>
         <Q_A product={this.state.product_id} questions={this.state.questions}/>
         <button>More Questions</button>
