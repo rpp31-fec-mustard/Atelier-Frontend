@@ -27,6 +27,40 @@ class Reviews extends React.Component {
     })
   }
 
+  sortListOnChange(e, callback) {
+    if (e.target.value === 'newest') {
+      this.setState({
+        sorted: 'newest',
+      }, callback);
+    } else if (e.target.value === 'relevance') {
+      this.setState({
+        sorted: 'relevant'
+      }, callback);
+    } else if (e.target.value === 'most helpful') {
+      this.setState({
+        sorted: 'helpful'
+      }, callback);
+    }
+  }
+
+  handleSortedList(e) {
+    this.sortListOnChange(e, () => {
+      let options = {
+        id: this.state.id,
+        sort: this.state.sorted,
+      };
+      this.get(options, (err, result) => {
+        if (err) {
+          console.log('err');
+        } else {
+          this.setState({
+            reviews: result.reviewsArr
+          });
+        }
+      });
+    });
+  }
+
   componentDidMount() {
     let options = {
       id: this.state.id,
@@ -51,7 +85,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings />
-          <ReviewsList list={this.state.reviews} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.reviews} />
         </div>
       </div>
     );
