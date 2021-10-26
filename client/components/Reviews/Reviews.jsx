@@ -27,7 +27,7 @@ class Reviews extends React.Component {
     })
   }
 
-  sortList(e, callback) {
+  sortListOnChange(e, callback) {
     if (e.target.value === 'newest') {
       this.setState({
         sorted: 'newest',
@@ -43,8 +43,8 @@ class Reviews extends React.Component {
     }
   }
 
-  sortedList(e) {
-    this.sortList(e, () => {
+  handleSortedList(e) {
+    this.sortListOnChange(e, () => {
       let options = {
         id: this.state.id,
         sort: this.state.sorted,
@@ -85,7 +85,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings />
-          <ReviewsList onChange={this.sortedList.bind(this)} list={this.state.reviews} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.reviews} />
         </div>
       </div>
     );
