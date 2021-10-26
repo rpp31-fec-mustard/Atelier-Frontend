@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  entry: __dirname + '/client/src/index.jsx',
+  entry: __dirname + '/client/components/index.jsx',
   module: {
     rules: [
       {
