@@ -13,6 +13,11 @@ div {
   border: 1px solid black;
 }
 
+button {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
 
@@ -24,7 +29,6 @@ div {
   justify-content: center;
 
   width: 100%;
-  height: 500px;
 }
 
 
@@ -168,7 +172,6 @@ div {
 
   margin: 0;
   width: 100%;
-  height: 50%;
 }
 
 .prod_card_container {
@@ -178,12 +181,21 @@ div {
   justify-content: space-around;
   border: none;
   width: 100%;
-  height: 60%;
 }
 
 .prod-card {
+  display: flex;
+  flex-direction: column;
   width: 20%;
   height: 100%;
+}
+
+.action_button_wrapper {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  align-self: flex-end;
+  z-index: 1;
 }
 
 /* *** QUESTIONS/ANSWER *** */
