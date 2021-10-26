@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx'
 
@@ -13,19 +13,18 @@ class Reviews extends React.Component {
     };
   }
 
-  get(options, callback) {
-    $.ajax({
-      type: 'GET',
+  get(option, callback) {
+    let options = {
       url: '/getReviews',
-      data: options,
-      contentType: 'application/json',
-      success: (result) => {
-        callback(null, result);
-      },
-      error: (err) => {
-        callback(err, null);
-      }
-    });
+      params: option,
+      method: 'get'
+    }
+    axios.request(options).then((result) => {
+      callback(null, result.data)
+    })
+    .catch((err) => {
+      callback(err, null)
+    })
   }
 
   componentDidMount() {
@@ -42,7 +41,6 @@ class Reviews extends React.Component {
         });
       }
     });
-
   }
 
   render() {
