@@ -1,52 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Answer from './Answer.jsx';
+import _ from 'underscore';
 
-// class Question extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       answers: this.props.answer
-//     }
-//   }
-
-//   componentDidMount() {
-//     console.log('this state:', this.state.answers)
-//   }
-
-
-//   render () {
-//     return (
-//       <div>
-//         {this.state.answers.map((answer) =>
-//           <Answer answer={answer}/>
-//         )}
-//       </div>
-//     )
-//   }
-
-// };
-
-// const Question = (props) => (
-//   <div>
-//     Q: {props.question}
-//     {props.answer.map((answer, i) =>
-//       <Answer key={i} answer={answer}/>
-//     )}
-//   </div>
-// )
 
 const Question = (props) => {
   var keys = [];
+  var answers = [];
   props.answer.map((answer) => {
     keys = Object.keys(answer)
   })
 
   keys.map((id) => {
-    console.log('singleAnswerID:', props.answer[0][id].id, 'singleAnswerHelpfulness', props.answer[0][id].helpfulness)
+    console.log('singleAnswerID:', props.answer[0][id].id, 'singleAnswerHelpfulness', props.answer[0][id].helpfulness);
+    answers.push(props.answer[0][id])
   })
 
-  const [show, setShow] = useState(false);
-  const onClick = () => setShow(true)
+  console.log('ANSWERS ARRAY IN QUESTION COMP:', answers)
+
+  var sortedAnswers = _.sortBy(answers, 'helpfulness');
+  console.log('SORTED ANSWERS IN QUESTION COMP:', sortedAnswers)
+
+  // console.log('ANSWERS PROP IN QUESTION COMPONENT:', props.answer)
+
 
   if (keys.length === 0) {
     return (

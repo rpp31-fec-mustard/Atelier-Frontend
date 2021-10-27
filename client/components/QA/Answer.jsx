@@ -1,13 +1,27 @@
 import React, { useState } from 'react';
+import _ from 'underscore';
 
 const Answer = (props) => {
 
   var singleAnswer = props.answer[0][props.id]
+  console.log('SINGLE ANSWER:', singleAnswer)
+  // var date = singleAnswer.date;
+  // var firstHalf = date.split('T')[0]
+  // console.log('new date first half:', new Date(firstHalf))
+
+  // console.log('date split:', date.split('T'))
+  // console.log('date parse:', Date.parse(date))
 
   return (
     <div className="singleAnswer">
-      {singleAnswer.body}
+      <div>{singleAnswer.body}</div>
+      <div>
+        <div>by {singleAnswer.answerer_name}</div>
+        <div>{singleAnswer.date}</div>
+        <div>Helpful? Yes({singleAnswer.helpfulness})</div>
+      </div>
     </div>
+
   )
 }
 
