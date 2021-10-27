@@ -11,32 +11,40 @@ const Question = (props) => {
   })
 
   keys.map((id) => {
-    console.log('singleAnswerID:', props.answer[0][id].id, 'singleAnswerHelpfulness', props.answer[0][id].helpfulness);
     answers.push(props.answer[0][id])
   })
 
-  console.log('ANSWERS ARRAY IN QUESTION COMP:', answers)
+  var unsortedAnswers = _.sortBy(answers, 'helpfulness');
+  for (var i = 0; i < unsortedAnswers.length; i ++) {
+    if (unsortedAnswers[i].answerer_name === 'Seller') {
+      unsortedAnswers.push(unsortedAnswers[i]);
+      unsortedAnswers.splice(i, 1)
+    }
+  }
 
-  var sortedAnswers = _.sortBy(answers, 'helpfulness');
-  console.log('SORTED ANSWERS IN QUESTION COMP:', sortedAnswers)
-
-  // console.log('ANSWERS PROP IN QUESTION COMPONENT:', props.answer)
-
+  var sortedAnswers = unsortedAnswers.reverse();
 
   if (keys.length === 0) {
     return (
       <div>
-        <div>Q: {props.question}</div>
+        <div>Q: {props.question} Helpful? Yes({props.helpfulness})</div>
         <div>NO ANSWER</div>
       </div>
     )
   } else {
     return (
       <div>
-        <div>Q: {props.question}</div>
+        <div>Q: {props.question} Helpful? Yes({props.helpfulness})</div>
         <div className="answer">
-          A: {keys.map((id, i) =>
-            <Answer key={i} id={id} answer={props.answer}/>
+          A: {sortedAnswers.map((answer, i) =>
+            <Answer
+              key={i}
+              name={answer.answerer_name}
+              id={answer.id}
+              answer={answer.body}
+              date={answer.date}
+              helpfulness={answer.helpfulness}
+            />
           )}
         </div>
       </div>
