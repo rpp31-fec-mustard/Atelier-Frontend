@@ -5,13 +5,8 @@ import _ from 'underscore';
 
 const Q_A = (props) => {
 
-  console.log('QUESTIONS:', props.questions)
   var unsortedQuestions = _.sortBy(props.questions, 'question_helpfulness');
   var sortedQuestions = unsortedQuestions.reverse();
-
-  console.log('SORTED QUESTIONS IN QA COMP:', sortedQuestions);
-
-
 
   return (
     <div>
