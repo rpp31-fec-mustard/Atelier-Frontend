@@ -66,5 +66,29 @@ const getReviewMeta = (id, callback) => {
     });
 };
 
-module.exports.parseRelated = parseRelated;
-module.exports.getReviews = getReviews;
+const getQuestions = (productId) => {
+  // let options = {
+  //   method: 'get',
+  //   url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`,
+  // }
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, {
+    headers: {
+      'Authorization': `${config.key}`
+    }
+  })
+    .then((results) => {
+      console.log('GET QUESTIONS RESULTS:', results.data.results)
+      return results.data.results
+    })
+    .catch((err) => {
+      console.log('ERROR', err)
+      return err
+    })
+
+}
+
+module.exports = {
+  parseRelated: parseRelated,
+  getReviews: getReviews,
+  getQuestions: getQuestions
+}

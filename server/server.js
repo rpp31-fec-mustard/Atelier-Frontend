@@ -27,6 +27,18 @@ app.get('/related', (req, res) => {
     })
 });
 
+app.get('/questions', (req, res) => {
+  api.getQuestions('59553')
+    .then((results) => {
+      console.log('GET QUESTIONS RESULTS IN SERVER:', results)
+      res.send(results)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).end();
+    })
+})
+
 const port = 5500;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
