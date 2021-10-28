@@ -1,15 +1,36 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-function parseRelated(productId) {
+const parseRelated = (productId) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`, {
-    headers: {
-      'Authorization': `${config.key}`
-    }
+    headers: {'Authorization': `${config.key}`}
   })
     .then((response) => {
       const relatedProdIds = response.data;
-      console.log('apiHelper', {relatedProdIds});
+      let relatedPromise = Promise.all(relatedProdIds.map((productId) => {
+        // create an array of promises
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
+          headers: {'Authorization': `${config.key}`}
+        })
+        .then((productInfo) => {
+          return getRating(productId)
+            .then((rating) => {
+              const id = productInfo.data.id;
+              const category = productInfo.data.category;
+              const name = productInfo.data.name;
+
+              return ({id, category, name, rating});
+            })
+        })
+        .catch((error) => {
+          throw error;
+        });
+      }));
+
+      return relatedPromise;
+    })
+    .then((relatedList) => {
+      return relatedList;
     })
 };
 
@@ -64,6 +85,26 @@ const getReviewMeta = (id, callback) => {
     .catch((err) => {
       callback(err, null);
     });
+};
+
+const getRating = (productId) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, {
+    headers: {'Authorization': `${config.key}`}
+  })
+  .then((result) => {
+    const reviews = result.data.results;
+    if (reviews.length) {
+      let ratingSum = reviews.reduce((previousVal, currentVal) => {
+        return previousVal + currentVal.rating;
+      }, 0)
+
+      const avgRating = ratingSum/reviews.length;
+
+      return avgRating;
+    }
+    // in the case where objects have no reviews
+    return 0;
+  })
 };
 
 module.exports.parseRelated = parseRelated;

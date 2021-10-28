@@ -1,12 +1,8 @@
-// RESOURCES USED
-// https://reactjs.org/docs/test-utils.html#isdomcomponent
-// https://reactjs.org/docs/testing-recipes.html
-
 import React, { useState } from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import App from '../client/components/app.jsx';
+import Related from '../client/components/Related/Related.jsx';
 
 let container = null;
 beforeEach(() => {
@@ -22,10 +18,10 @@ afterEach(() => {
   container = null;
 });
 
-test('Four module_containers should be rendering', () => {
+test('Related products and outfit creation module should render', () => {
   act(() => {
-    render(<App />, container);
+    render(<Related />, container);
   });
-  const modules = document.getElementsByClassName('module_container');
-  expect(modules.length).toBe(4);
+  const related = document.getElementById('related_main');
+  expect(!!related).toBe(true);
 });
