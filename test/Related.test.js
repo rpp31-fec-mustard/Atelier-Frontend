@@ -18,7 +18,7 @@ afterEach(() => {
   container = null;
 });
 
-test('Four module_containers should be rendering', () => {
+test('Related products and outfit creation module should render', () => {
   act(() => {
     render(<Related />, container);
   });

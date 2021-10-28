@@ -1,7 +1,15 @@
 import React from 'react';
-import ActionButton from './ActionButton.jsx';
+import StarButton from './StarButton.jsx';
+import XButton from './XButton.jsx';
 
 const ProductCard = (props) => {
+  let actionButton;
+
+  if (props.action === 'star') {
+    actionButton = <StarButton />;
+  } else {
+    actionButton = <XButton />;
+  }
   return (
     <div className="prod-card">
       <img src={props.image}></img>
@@ -9,7 +17,7 @@ const ProductCard = (props) => {
       <div>{props.productName}</div>
       <div>${props.price}</div>
       <div>Stars</div>
-      <ActionButton action={props.action}/>
+      {actionButton}
     </div>
   );
 };
