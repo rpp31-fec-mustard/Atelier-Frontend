@@ -66,5 +66,30 @@ const getReviewMeta = (id, callback) => {
     });
 };
 
+const putReviewHelpfullness = (id, callback) => {
+  let options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
+    headers: {
+      'Authorization': `${config.key}`
+    },
+    params: {
+      review_id: id,
+    },
+    method: 'put',
+  };
+  axios.request(options)
+    .then((result) => {
+      console.log('success')
+      callback(null);
+    })
+    .catch((err) => {
+      // console.log(err)
+      callback(err, null);
+    });
+}
+
+
+
 module.exports.parseRelated = parseRelated;
 module.exports.getReviews = getReviews;
+module.exports.putReviewHelpfullness = putReviewHelpfullness;

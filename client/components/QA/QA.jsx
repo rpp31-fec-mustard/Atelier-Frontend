@@ -11,7 +11,7 @@ class QA extends React.Component {
   render () {
     return (
       <div>
-        <div>Testing QA Compoonent</div>
+        <div className='module_container'>Testing QA Compoonent</div>
         <Search/>
         <Q_A/>
         <button>More Questions</button>

@@ -27,6 +27,12 @@ app.get('/related', (req, res) => {
     })
 });
 
+app.post('/helpfulPost', (req, res) => {
+  console.log('' + req.query.reviewId +'')
+  api.putReviewHelpfullness(req.query.reviewId.toString(), () => {})
+
+})
+
 const port = 5500;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
