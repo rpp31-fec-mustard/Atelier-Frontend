@@ -6,7 +6,7 @@ import YourOutfit from './YourOutfit.jsx';
 
 const Related = (props) => {
   const [productId, setProductId] = useState('59553');
-  const [relatedProductsList, setRelatedProductsList] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   // [{productId, starred, category, name, price, rating}]
   const [outfitList, setOutfitList] = useState([]);
   // [{productId, category, name, price, rating}]
@@ -14,7 +14,7 @@ const Related = (props) => {
   useEffect(() => {
     axios.get('/related')
     .then((result) => {
-      setRelatedProductsList(result.data);
+      setRelatedProducts(result.data);
     })
   }, []);
 
@@ -26,7 +26,7 @@ const Related = (props) => {
 
   return (
     <div id="related_main" className="module_container">
-      <RelatedProducts handleStar={handleStar} productId={productId}/>
+      <RelatedProducts productId={productId} relatedProducts={relatedProducts} handleStar={handleStar}/>
       <YourOutfit />
     </div>
   );

@@ -13,12 +13,14 @@ const parseRelated = (productId) => {
           headers: {'Authorization': `${config.key}`}
         })
         .then((productInfo) => {
-          const prodId = productInfo.data.id;
-          const prodCategory = productInfo.data.category;
-          const prodName = productInfo.data.name;
-          const prodRating= getRating(productId);
+          return getRating(productId)
+            .then((rating) => {
+              const id = productInfo.data.id;
+              const category = productInfo.data.category;
+              const name = productInfo.data.name;
 
-          return({ prodId, prodCategory, prodName, prodRating});
+              return ({id, category, name, rating});
+            })
         })
         .catch((error) => {
           throw error;
@@ -102,9 +104,6 @@ const getRating = (productId) => {
     }
     // in the case where objects have no reviews
     return 0;
-  })
-  .then((avgRating) => {
-    console.log(avgRating);
   })
 };
 

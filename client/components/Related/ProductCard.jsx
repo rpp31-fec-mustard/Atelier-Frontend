@@ -6,7 +6,8 @@ const ProductCard = (props) => {
   let actionButton;
 
   if (props.action === 'star') {
-    actionButton = <StarButton productId={'59553'} handleStar={props.handleStar} starred={true}/>;
+    console.log({props})
+    actionButton = <StarButton handleStar={props.handleStar} starred={true}/>;
   } else {
     actionButton = <XButton />;
   }
@@ -15,9 +16,9 @@ const ProductCard = (props) => {
     <div className="prod-card">
       <img src={props.image}></img>
       <div>{props.category}</div>
-      <div>{props.productName}</div>
+      <div>{props.name}</div>
       <div>${props.price}</div>
-      <div>Stars</div>
+      <div>{props.rating}</div>
       {actionButton}
     </div>
   );
