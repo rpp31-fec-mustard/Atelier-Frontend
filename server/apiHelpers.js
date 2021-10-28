@@ -100,7 +100,7 @@ const getRating = (productId) => {
 
       return avgRating;
     }
-
+    // in the case where objects have no reviews
     return 0;
   })
   .then((avgRating) => {

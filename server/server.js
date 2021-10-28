@@ -21,9 +21,8 @@ app.get('/getReviews', (req, res) => {
 
 app.get('/related', (req, res) => {
   api.parseRelated('59553')
-    .then((related) => {
-      // console.log('parsed', {related})
-      res.send('RELATED');
+    .then((relatedList) => {
+      res.send(relatedList);
     })
 });
 
