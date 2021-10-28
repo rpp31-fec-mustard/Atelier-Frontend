@@ -9,12 +9,14 @@ const Related = (props) => {
   const [outfitList, setOutfitList] = useState([]);
 
   function handleStar(event) {
-    setOutfitList([1]);
+    // fill in star
+    // update outfit list with clicked on product info
+    console.log('star clicked', event.target);
   }
 
   return (
     <div id="related_main" className="module_container">
-      <RelatedProducts handleStar={handleStar}/>
+      <RelatedProducts handleStar={handleStar} productId={'59553'}/>
       <YourOutfit />
     </div>
   );

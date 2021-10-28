@@ -6,10 +6,11 @@ const ProductCard = (props) => {
   let actionButton;
 
   if (props.action === 'star') {
-    actionButton = <StarButton />;
+    actionButton = <StarButton productId={'59553'} handleStar={props.handleStar} starred={true}/>;
   } else {
     actionButton = <XButton />;
   }
+
   return (
     <div className="prod-card">
       <img src={props.image}></img>
