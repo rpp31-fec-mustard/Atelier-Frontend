@@ -1,7 +1,3 @@
-// RESOURCES USED
-// https://reactjs.org/docs/test-utils.html#isdomcomponent
-// https://reactjs.org/docs/testing-recipes.html
-
 import React, { useState } from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
@@ -28,4 +24,8 @@ test('Four module_containers should be rendering', () => {
   });
   const modules = document.getElementsByClassName('module_container');
   expect(modules.length).toBe(4);
+});
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(1 + 2).toBe(3);
 });
