@@ -9,14 +9,14 @@ const RelatedProducts = (props) => {
     return (
       <ProductCard key={product.id} handleStar={props.handleStar} action={'star'} id={product.id} image={null} category={product.category} name={product.name} price={null} rating={product.rating}/>
     );
-  })
+  });
 
   return (
     <div id="related_products" className="related_submodule">
       <h1>RELATED PRODUCTS LIST</h1>
       <div className="prod_card_container">
         <LeftButton />
-        {productCards}
+        { productCards }
         <RightButton />
       </div>
     </div>

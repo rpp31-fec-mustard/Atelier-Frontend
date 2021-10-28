@@ -6,7 +6,6 @@ const ProductCard = (props) => {
   let actionButton;
 
   if (props.action === 'star') {
-    console.log({props})
     actionButton = <StarButton handleStar={props.handleStar} starred={true}/>;
   } else {
     actionButton = <XButton />;
