@@ -1,15 +1,33 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-function parseRelated(productId) {
+const parseRelated = (productId) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`, {
-    headers: {
-      'Authorization': `${config.key}`
-    }
+    headers: {'Authorization': `${config.key}`}
   })
     .then((response) => {
       const relatedProdIds = response.data;
-      console.log('apiHelper', {relatedProdIds});
+      let relatedPromise = Promise.all(relatedProdIds.map((productId) => {
+        // create an array of promises
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
+          headers: {'Authorization': `${config.key}`}
+        })
+        .then((productInfo) => {
+          const prodId = productInfo.data.id;
+          const prodCategory = productInfo.data.category;
+          const prodName = productInfo.data.name;
+
+          return({ prodId, prodCategory, prodName });
+        })
+        .catch((error) => {
+          return error;
+        });
+      }));
+
+      return relatedPromise;
+    })
+    .then((relatedPromise) => {
+      console.log({relatedPromise})
     })
 };
 
@@ -64,6 +82,10 @@ const getReviewMeta = (id, callback) => {
     .catch((err) => {
       callback(err, null);
     });
+};
+
+const getRating = (productId) => {
+
 };
 
 module.exports.parseRelated = parseRelated;
