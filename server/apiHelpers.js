@@ -16,18 +16,19 @@ const parseRelated = (productId) => {
           const prodId = productInfo.data.id;
           const prodCategory = productInfo.data.category;
           const prodName = productInfo.data.name;
+          const prodRating= getRating(productId);
 
-          return({ prodId, prodCategory, prodName });
+          return({ prodId, prodCategory, prodName, prodRating});
         })
         .catch((error) => {
-          return error;
+          throw error;
         });
       }));
 
       return relatedPromise;
     })
-    .then((relatedPromise) => {
-      console.log({relatedPromise})
+    .then((relatedList) => {
+      return relatedList;
     })
 };
 
@@ -85,7 +86,26 @@ const getReviewMeta = (id, callback) => {
 };
 
 const getRating = (productId) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, {
+    headers: {'Authorization': `${config.key}`}
+  })
+  .then((result) => {
+    const reviews = result.data.results;
+    if (reviews.length) {
+      let ratingSum = reviews.reduce((previousVal, currentVal) => {
+        return previousVal + currentVal.rating;
+      }, 0)
 
+      const avgRating = ratingSum/reviews.length;
+
+      return avgRating;
+    }
+
+    return 0;
+  })
+  .then((avgRating) => {
+    console.log(avgRating);
+  })
 };
 
 module.exports.parseRelated = parseRelated;
