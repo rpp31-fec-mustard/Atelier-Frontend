@@ -18,41 +18,25 @@ const Related = (props) => {
   }, []);
 
   function handleStar(event) {
-    let target = event.target.firstElementChild;
-    if (event.target.tagName === "I") {
-      target = event.target;
-    }
+    const target = event.target.tagName === "I" ? event.target : event.target.firstElementChild;
     const productId = target.parentElement.parentElement.parentElement.classList[1];
-    if (target.className === "far fa-star") {
-      // check that this id doesn't already exist in oufitList
-      let outfitExists = false;
-      if (outfitList.length) {
-        for (let i = 0; i < outfitList.length; i++) {
-          const outfitProduct = outfitList[i];
-          if (outfitProduct.id.toString(10) === productId) {
-            outfitExists = !outfitExists;
-          }
-        }
-      }
 
-      if (!outfitExists || outfitList.length === 0) {
-        // if star is empty when clicked, add to outfit list
-        for (let i = 0; i < relatedProducts.length; i++) {
-          const product = relatedProducts[i];
-          if (product.id.toString(10) === productId) {
-            setOutfitList(outfitList.concat([product]));
-          }
+    if (target.className === "far fa-star") {
+      // add to outfit list
+      relatedProducts.forEach((item) => {
+        const itemId = item.id.toString(10);
+        if (itemId === productId) {
+          setOutfitList(outfitList.concat([item]));
         }
-      }
+      })
     } else {
-      // else remove from outfit list
-      for (let i = 0; i < outfitList.length; i++) {
-        // const outfitProduct = outfitList[i];
-        // if (outfitProduct.id.toString(10) === productId) {
-        //   const newOutfitList = outfitList.splice(i, 1);
-        //   setOutfitList(newOutfitList);
-        // }
-      }
+      // remove from outfit list
+      const newOutfitList = outfitList.filter((item) => {
+        const itemId = item.id.toString(10);
+        return itemId !== productId;
+      });
+
+      setOutfitList(newOutfitList);
     }
   }
 
