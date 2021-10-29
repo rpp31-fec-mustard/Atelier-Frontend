@@ -18,9 +18,42 @@ const Related = (props) => {
   }, []);
 
   function handleStar(event) {
-    // fill in star
-    // update outfit list with clicked on product info
-    console.log("star clicked", event.target);
+    let target = event.target.firstElementChild;
+    if (event.target.tagName === "I") {
+      target = event.target;
+    }
+    const productId = target.parentElement.parentElement.parentElement.classList[1];
+    if (target.className === "far fa-star") {
+      // check that this id doesn't already exist in oufitList
+      let outfitExists = false;
+      if (outfitList.length) {
+        for (let i = 0; i < outfitList.length; i++) {
+          const outfitProduct = outfitList[i];
+          if (outfitProduct.id.toString(10) === productId) {
+            outfitExists = !outfitExists;
+          }
+        }
+      }
+
+      if (!outfitExists || outfitList.length === 0) {
+        // if star is empty when clicked, add to outfit list
+        for (let i = 0; i < relatedProducts.length; i++) {
+          const product = relatedProducts[i];
+          if (product.id.toString(10) === productId) {
+            setOutfitList(outfitList.concat([product]));
+          }
+        }
+      }
+    } else {
+      // else remove from outfit list
+      for (let i = 0; i < outfitList.length; i++) {
+        // const outfitProduct = outfitList[i];
+        // if (outfitProduct.id.toString(10) === productId) {
+        //   const newOutfitList = outfitList.splice(i, 1);
+        //   setOutfitList(newOutfitList);
+        // }
+      }
+    }
   }
 
   return (

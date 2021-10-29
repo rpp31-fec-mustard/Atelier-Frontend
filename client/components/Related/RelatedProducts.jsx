@@ -1,13 +1,23 @@
-import React from 'react';
-import ProductCard from './ProductCard.jsx';
-import LeftButton from './LeftButton.jsx';
-import RightButton from './RightButton.jsx';
+import React from "react";
+import ProductCard from "./ProductCard.jsx";
+import LeftButton from "./LeftButton.jsx";
+import RightButton from "./RightButton.jsx";
 
 const RelatedProducts = (props) => {
-
   const productCards = props.relatedProducts.map((product, i) => {
     return (
-      <ProductCard key={product.id} handleStar={props.handleStar} action={'star'} id={product.id} image={null} category={product.category} name={product.name} price={null} rating={product.rating}/>
+      <ProductCard
+        key={product.id}
+        className={product.id}
+        handleStar={props.handleStar}
+        action={"star"}
+        id={product.id}
+        image={null}
+        category={product.category}
+        name={product.name}
+        price={null}
+        rating={product.rating}
+      />
     );
   });
 
@@ -16,12 +26,11 @@ const RelatedProducts = (props) => {
       <h1>RELATED PRODUCTS LIST</h1>
       <div className="prod_card_container">
         <LeftButton />
-        { productCards }
+        {productCards}
         <RightButton />
       </div>
     </div>
   );
-
 };
 
 export default RelatedProducts;

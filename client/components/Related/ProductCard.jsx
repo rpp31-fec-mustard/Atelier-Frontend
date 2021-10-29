@@ -12,7 +12,7 @@ const ProductCard = (props) => {
   }
 
   return (
-    <div className="prod-card">
+    <div className={`prod-card ${props.id}`}>
       <img src={props.image}></img>
       <div>{props.category}</div>
       <div>{props.name}</div>
