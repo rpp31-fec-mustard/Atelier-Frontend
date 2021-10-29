@@ -17,7 +17,6 @@ class QA extends React.Component {
       type: 'GET',
       url: '/questions',
       success: (data) => {
-        console.log('SUCCESS DATA GETTING QUESTIONS:', data);
         this.setState({
           questions: data
         })
