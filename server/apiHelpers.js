@@ -87,25 +87,25 @@ const getReviewMeta = (id, callback) => {
     });
 };
 
+const getRating = (productId) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, {
+    headers: {'Authorization': `${config.key}`}
+  })
+  .then((result) => {
+    const reviews = result.data.results;
+    if (reviews.length) {
+      let ratingSum = reviews.reduce((previousVal, currentVal) => {
+        return previousVal + currentVal.rating;
+      }, 0)
 
+      const avgRating = ratingSum/reviews.length;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      return avgRating;
+    }
+    // in the case where objects have no reviews
+    return 0;
+  })
+};
 
 const getQuestions = (productId) => {
 
