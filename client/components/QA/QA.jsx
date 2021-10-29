@@ -1,7 +1,7 @@
 import React from 'react';
 import Search from './Search.jsx';
 import Q_A from './Q_A.jsx';
-import $ from 'jquery';
+import axios from 'axios';
 
 class QA extends React.Component {
   constructor(props) {
@@ -13,17 +13,26 @@ class QA extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      type: 'GET',
-      url: '/questions',
-      success: (data) => {
-        this.setState({
-          questions: data
-        })
-      },
-      error: (error) => {
-        console.log('ERROR GETTING DATA:', error);
-      }
+    // $.ajax({
+    //   type: 'GET',
+    //   url: '/questions',
+    //   success: (data) => {
+    //     this.setState({
+    //       questions: data
+    //     })
+    //   },
+    //   error: (error) => {
+    //     console.log('ERROR GETTING DATA:', error);
+    //   }
+    // })
+    axios.get('/questions')
+    .then((result) => {
+      this.setState({
+        questions: result.data
+      })
+    })
+    .catch((error) => {
+      console.log('Error Getting Questions:', error)
     })
   }
 

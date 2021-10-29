@@ -5,13 +5,11 @@ const Answer = (props) => {
 
   const convertDate = (date) => {
     var updatedDate = new Date(date).toDateString();
-    var updatedDate2 = new Date(date)
     console.log(updatedDate)
-    console.log(updatedDate2)
     var dateArr = date.split(' ');
     dateArr.shift();
     dateArr[1] = dateArr[1] + ', ';
-    return dateArr.join(' ');
+    return updatedDate;
   };
 
   return (
