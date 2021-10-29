@@ -125,5 +125,6 @@ const getQuestions = (productId) => {
 module.exports = {
   parseRelated: parseRelated,
   getReviews: getReviews,
-  getQuestions: getQuestions
+  getQuestions: getQuestions,
+  getRating: getRating
 }
