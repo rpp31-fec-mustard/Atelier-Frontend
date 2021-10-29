@@ -119,10 +119,6 @@ const getRating = (productId) => {
     });
 };
 
-<<<<<<< HEAD
-module.exports.parseRelated = parseRelated;
-module.exports.getReviews = getReviews;
-=======
 const getQuestions = (productId) => {
 
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, {
@@ -144,4 +140,3 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating
 }
->>>>>>> main

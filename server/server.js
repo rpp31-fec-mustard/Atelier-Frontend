@@ -1,12 +1,12 @@
-const express = require("express");
-const parser = require("body-parser");
-const api = require("./apiHelpers.js");
+const express = require('express');
+const parser = require('body-parser');
+const api = require('./apiHelpers.js');
 const app = express();
 
-app.use(express.static(__dirname + "/../client/public"));
+app.use(express.static(__dirname + '/../client/public'));
 app.use(parser.json());
 
-app.get("/getReviews", (req, res) => {
+app.get('/getReviews', (req, res) => {
   let id = req.query.id;
   let sort = req.query.sort;
   api.getReviews(id, sort, (err, result) => {
@@ -18,8 +18,8 @@ app.get("/getReviews", (req, res) => {
   });
 });
 
-app.get("/related", (req, res) => {
-  api.parseRelated("59553")
+app.get('/related', (req, res) => {
+  api.parseRelated('59553')
     .then((relatedList) => {
       res.status(200).send(relatedList);
     })
