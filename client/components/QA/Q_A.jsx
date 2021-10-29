@@ -18,6 +18,8 @@ const Q_A = (props) => {
         question={question.question_body}
         answer={[question.answers]}/>
       )}
+      <button>More Questions</button>
+      <button>Add Questions +</button>
     </div>
   )
 }

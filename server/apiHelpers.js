@@ -107,5 +107,24 @@ const getRating = (productId) => {
   })
 };
 
-module.exports.parseRelated = parseRelated;
-module.exports.getReviews = getReviews;
+const getQuestions = (productId) => {
+
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, {
+    headers: {
+      'Authorization': `${config.key}`
+    }
+  })
+    .then((results) => {
+      return results.data.results
+    })
+    .catch((err) => {
+      return err
+    })
+}
+
+module.exports = {
+  parseRelated: parseRelated,
+  getReviews: getReviews,
+  getQuestions: getQuestions,
+  getRating: getRating
+}
