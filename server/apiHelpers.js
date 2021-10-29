@@ -26,7 +26,6 @@ const parseRelated = (productId) => {
           throw error;
         });
       }));
-
       return relatedPromise;
     })
     .then((relatedList) => {
@@ -100,11 +99,11 @@ const putReviewHelpfullness = (id, callback) => {
   };
   axios.request(options)
     .then((result) => {
-      console.log('success')
-      callback(null);
+      //console.log('success)
+      callback(null, result);
     })
     .catch((err) => {
-      // console.log(err)
+      // console.log('err')
       callback(err, null);
     });
 }
@@ -133,3 +132,4 @@ const getRating = (productId) => {
 module.exports.parseRelated = parseRelated;
 module.exports.getReviews = getReviews;
 module.exports.putReviewHelpfullness = putReviewHelpfullness;
+module.exports.getRating = getRating;

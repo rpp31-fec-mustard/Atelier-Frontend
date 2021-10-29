@@ -26,11 +26,18 @@ app.get('/related', (req, res) => {
     })
 });
 
-app.post('/helpfulPost', (req, res) => {
-  console.log('' + req.query.reviewId +'')
-  api.putReviewHelpfullness(req.query.reviewId.toString(), () => {})
-
+app.get('/getOverallRating', (req, res) => {
+  api.getRating(req.query[0]).then((result) => {
+    var obj = {
+      rating: result
+    }
+    res.status(200).send(obj);
+  })
+  .catch((err) => {
+    res.sendStatus(500).end()
+  })
 })
+
 
 const port = 5500;
 app.listen(port, () => {

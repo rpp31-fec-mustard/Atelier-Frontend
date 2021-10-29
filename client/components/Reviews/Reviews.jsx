@@ -8,7 +8,7 @@ class Reviews extends React.Component {
     super(props);
     this.state = {
       sorted: 'relevant',
-      id: '59553',
+      id: this.props.product,
       reviews: []
     };
   }
@@ -51,7 +51,7 @@ class Reviews extends React.Component {
       };
       this.get(options, (err, result) => {
         if (err) {
-          console.log('err');
+
         } else {
           this.setState({
             reviews: result.reviewsArr
@@ -68,7 +68,7 @@ class Reviews extends React.Component {
     };
     this.get(options, (err, result) => {
       if (err) {
-        console.log('err');
+
       } else {
         this.setState({
           reviews: result.reviewsArr
@@ -79,12 +79,12 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      <div className='module_container'>
+      <div id='ratings_reviews' className='module_container'>
         <div className='reviewsTitle'>
           <h1> Ratings and Reviews </h1>
         </div>
         <div className='reviews'>
-          <Ratings />
+          <Ratings product_id={this.state.id}/>
           <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.reviews} />
         </div>
       </div>

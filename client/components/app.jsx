@@ -13,6 +13,7 @@ class App extends React.Component {
     }
   }
 
+
   render () {
     return (
       <div id="index">
@@ -20,7 +21,7 @@ class App extends React.Component {
         <ProductOverview />
         <Related />
         <QA product={this.state.product_id}/>
-        <Reviews />
+        <Reviews product={this.state.product_id} />
       </div>
     );
   }

@@ -28,27 +28,6 @@ class ReviewsListEntry extends React.Component {
       }
     };
 
-     onClick(e, id) {
-      e.preventDefault();
-      this.helpfulPost({reviewId: id}, () => {})
-    }
-
-     helpfulPost(id, callback) {
-      this.setState({
-        helpful: this.state.helpful + 1
-      }, callback)
-      let options = {
-        url: '/helpfulPost',
-        params: id,
-        method: 'POST'
-      }
-      axios.request(options).then((result) => {
-        callback(null, result.data)
-      })
-      .catch((err) => {
-        callback(err, null)
-      })
-    }
     render() {
       return (
         <div className='entry'>
@@ -61,7 +40,7 @@ class ReviewsListEntry extends React.Component {
           <section className='response'> {this.response(this.props.review.response)} </section>
           <section className='helpful'>
             Helpful?
-              <a href='/' onClick={(e) => {this.onClick(e, this.props.review.review_id)} } >
+              <a href=''>
                 Yes({this.state.helpful})
               </a>
           </section>
