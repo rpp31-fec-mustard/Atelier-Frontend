@@ -6,7 +6,6 @@ const app = express();
 app.use(express.static(__dirname + '/../client/public'));
 app.use(parser.json());
 
-
 app.get('/getReviews', (req, res) => {
   let id = req.query.id;
   let sort = req.query.sort;
@@ -16,14 +15,17 @@ app.get('/getReviews', (req, res) => {
     } else {
       res.status(200).send(result);
     }
-  })
-})
+  });
+});
 
 app.get('/related', (req, res) => {
   api.parseRelated('59553')
     .then((relatedList) => {
-      res.send(relatedList);
+      res.status(200).send(relatedList);
     })
+    .catch((error) => {
+      res.status(500).end();
+    });
 });
 
 app.get('/getOverallRating', (req, res) => {
@@ -38,6 +40,16 @@ app.get('/getOverallRating', (req, res) => {
   })
 })
 
+
+app.get('/questions', (req, res) => {
+  api.getQuestions('59553')
+    .then((results) => {
+      res.send(results)
+    })
+    .catch((err) => {
+      res.status(500).end();
+    })
+})
 
 const port = 5500;
 app.listen(port, () => {

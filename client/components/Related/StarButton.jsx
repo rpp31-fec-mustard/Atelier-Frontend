@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from "react";
 
 const StarButton = (props) => {
+  const [starred, _setStarred] = useState(false);
   let star;
-  if (props.starred) {
+
+  const setStarred = (event) => {
+    props.handleStar(event);
+    _setStarred(!starred);
+  };
+
+  if (starred) {
     star = <i className="fas fa-star"></i>;
   } else {
     star = <i className="far fa-star"></i>;
@@ -10,7 +17,7 @@ const StarButton = (props) => {
 
   return (
     <div className="action_button_wrapper">
-      <button onClick={props.handleStar}>{star}</button>
+      <button onClick={setStarred}>{star}</button>
     </div>
   );
 };
