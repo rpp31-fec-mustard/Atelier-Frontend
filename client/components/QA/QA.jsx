@@ -7,33 +7,22 @@ class QA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: this.props.product,
+      productId: this.props.product,
       questions: []
     };
   }
 
   componentDidMount() {
-    // $.ajax({
-    //   type: 'GET',
-    //   url: '/questions',
-    //   success: (data) => {
-    //     this.setState({
-    //       questions: data
-    //     })
-    //   },
-    //   error: (error) => {
-    //     console.log('ERROR GETTING DATA:', error);
-    //   }
-    // })
+
     axios.get('/questions')
-    .then((result) => {
-      this.setState({
-        questions: result.data
+      .then((result) => {
+        this.setState({
+          questions: result.data
+        });
       })
-    })
-    .catch((error) => {
-      console.log('Error Getting Questions:', error)
-    })
+      .catch((error) => {
+        console.log('Error Getting Questions:', error);
+      });
   }
 
   render () {
@@ -41,7 +30,7 @@ class QA extends React.Component {
       <div className="module_container">
         <h1>QUESTIONS & ANSWERS</h1>
         <Search/>
-        <Q_A product={this.state.product_id} questions={this.state.questions}/>
+        <Q_A product={this.state.productId} questions={this.state.questions}/>
       </div>
     );
   }

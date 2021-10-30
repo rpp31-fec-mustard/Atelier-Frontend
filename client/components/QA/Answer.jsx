@@ -18,7 +18,7 @@ const Answer = (props) => {
         <div><sub>by {props.name}, {convertDate(props.date)} | Helpful? Yes({props.helpfulness}) | Report</sub></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Answer;

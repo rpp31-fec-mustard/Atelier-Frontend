@@ -12,17 +12,17 @@ const Q_A = (props) => {
     <div>
       {sortedQuestions.map((question, answer) =>
       // console.log('Question:', question.question_body, 'Answer:', question.answers)
-      <Question
-        key={question.question_id}
-        helpfulness={question.question_helpfulness}
-        question={question.question_body}
-        answer={[question.answers]}/>
+        <Question
+          key={question.question_id}
+          helpfulness={question.question_helpfulness}
+          question={question.question_body}
+          answer={[question.answers]}/>
       )}
       <button>More Questions</button>
       <button>Add Questions +</button>
     </div>
-  )
-}
+  );
+};
 
 
 export default Q_A;
