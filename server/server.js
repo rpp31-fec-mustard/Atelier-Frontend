@@ -30,7 +30,6 @@ app.get('/related', (req, res) => {
 });
 
 app.get('/questions', (req, res) => {
-  console.log('GET QUESTIONS REQ ID:', req.query.productId);
   api.getQuestions(req.query.productId)
     .then((results) => {
       res.send(results);
