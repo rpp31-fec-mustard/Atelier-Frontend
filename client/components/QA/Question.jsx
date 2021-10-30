@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Answer from './Answer.jsx';
 import _ from 'underscore';
 
@@ -23,6 +23,12 @@ const Question = (props) => {
   }
 
   var sortedAnswers = unsortedAnswers.reverse();
+  var displayAnswers = [];
+
+  const [count, setCount] = useState(0);
+  if (sortedAnswers.length > 0) {
+    displayAnswers.push(sortedAnswers[count], sortedAnswers[count + 1]);
+  }
 
   if (keys.length === 0) {
     return (
@@ -36,7 +42,7 @@ const Question = (props) => {
       <div>
         <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div className="answer">
-          A: {sortedAnswers.map((answer, i) =>
+          A: {displayAnswers.map((answer, i) =>
             <Answer
               key={i}
               name={answer.answerer_name}
