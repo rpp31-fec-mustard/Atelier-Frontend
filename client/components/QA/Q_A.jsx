@@ -9,7 +9,7 @@ const Q_A = (props) => {
   var sortedQuestions = unsortedQuestions.reverse();
 
   return (
-    <div>
+    <div className="questionList">
       {sortedQuestions.map((question, answer) =>
       // console.log('Question:', question.question_body, 'Answer:', question.answers)
         <Question

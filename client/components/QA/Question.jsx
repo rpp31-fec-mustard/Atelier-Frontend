@@ -26,7 +26,7 @@ const Question = (props) => {
 
   if (keys.length === 0) {
     return (
-      <div>
+      <div className="questionEntry">
         <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div>NO ANSWER</div>
       </div>
@@ -34,7 +34,7 @@ const Question = (props) => {
   } else {
     return (
       <div>
-        <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div className="answer">
           A: {sortedAnswers.map((answer, i) =>
             <Answer

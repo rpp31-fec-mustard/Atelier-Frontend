@@ -5,9 +5,9 @@ const Answer = (props) => {
 
   const convertDate = (date) => {
     var updatedDate = new Date(date).toDateString();
-    var dateArr = date.split(' ');
-    dateArr.shift();
-    dateArr[1] = dateArr[1] + ', ';
+    // var dateArr = date.split(' ');
+    // dateArr.shift();
+    // dateArr[1] = dateArr[1] + ', ';
     return updatedDate;
   };
 
