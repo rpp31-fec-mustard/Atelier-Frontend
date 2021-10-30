@@ -24,19 +24,20 @@ app.get('/related', (req, res) => {
       res.status(200).send(relatedList);
     })
     .catch((error) => {
-      res.status(500).end();
+      console.log({error});
+      res.status(500).send(error).end();
     });
 });
 
 app.get('/questions', (req, res) => {
   api.getQuestions('59553')
     .then((results) => {
-      res.send(results)
+      res.send(results);
     })
     .catch((err) => {
       res.status(500).end();
-    })
-})
+    });
+});
 
 const port = 5500;
 app.listen(port, () => {
