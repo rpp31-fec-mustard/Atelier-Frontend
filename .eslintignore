@@ -2,4 +2,5 @@
 .eslintrc.js
 **/node_modules
 
+client/public/bundle.js
 bundle.js
