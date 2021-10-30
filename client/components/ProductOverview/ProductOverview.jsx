@@ -1,37 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ImageGallery from './ImageGallery.jsx';
 
 const ProductOverview = () => (
 
   <div id='product_overview_main' className="module_container">
     <div className='top01'>
-      <div className='left02'>
-        <div className='thumbnails_po'>
-          <div className='thumbnail_po'></div>
-          <div className='thumbnail_po'></div>
-          <div className='thumbnail_po'></div>
-          <div className='thumbnail_po'></div>
-          <div className='thumbnail_po'></div>
-        </div>
-        <div className='arrow_po'>
-          <div className='arrow_space_po'></div>
-          L
-          <div className='arrow_space_po'></div>
-        </div>
-        <div className='space01_po'>Image Gallery</div>
-        <div className='arrow_po'>
-          <div className='arrow_space_po'>
-            <div className='fullscreen_po'></div>
-          </div>
-          R
-          <div className='arrow_space_po'></div>
-          </div>
-        </div>
+      <ImageGallery />
       <div className='right02'>
         <div className='stars_po' >STARS</div>
         <div className='name_block_po'>
         Category
-        <h2>Expanded Product Name</h2>
+          <h2>Expanded Product Name</h2>
         price
         </div>
         <div className='style_po'>STYLE </div>
