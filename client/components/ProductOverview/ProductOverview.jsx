@@ -1,9 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ImageGallery from './ImageGallery.jsx';
+import StyleSelector from './StyleSelector.jsx';
+import AddToCart from './AddToCart.jsx'
 
-const ProductOverview = () => (
+class ProductOverview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
+    }
+  }
+
+  render () {
+
+    return (
   <div id='product_overview_main' className="module_container">
     <div className='top01'>
       <ImageGallery />
@@ -14,8 +25,9 @@ const ProductOverview = () => (
           <h2>Expanded Product Name</h2>
         price
         </div>
-        <div className='style_po'>STYLE </div>
-        <div className='add_to_bag_po'>ADD TO BAG</div>
+        <StyleSelector/>
+
+        <AddToCart/>
       </div>
     </div>
     <div className='bottom01'>
@@ -23,8 +35,9 @@ const ProductOverview = () => (
       <div className= 'highlights_po'>Highlights</div>
     </div>
   </div>
-
-);
+    )
+  }
+  };
 
 
 export default ProductOverview;
