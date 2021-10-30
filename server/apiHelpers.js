@@ -20,32 +20,26 @@ const getReviewMeta = (id, callback) => {
 };
 
 const getRating = (productId) => {
-  // return axios
-  //   .get(
-  //     `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
-  //     {
-  //       headers: { Authorization: `${config.key}` },
-  //     }
-  //   ) // returns a PROMISE that resolves in an average rating of a product
-  //   .then((result) => {
-  //     const reviews = result.data.results;
-  //     if (reviews.length) {
-  //       let ratingSum = reviews.reduce((previousVal, currentVal) => {
-  //         return previousVal + currentVal.rating;
-  //       }, 0);
+  return axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
+      {
+        headers: { Authorization: `${config.key}` },
+      }
+    ) // returns a PROMISE that resolves in an average rating of a product
+    .then((result) => {
+      const reviews = result.data.results;
+      if (reviews.length) {
+        let ratingSum = reviews.reduce((previousVal, currentVal) => {
+          return previousVal + currentVal.rating;
+        }, 0);
 
-  //       const avgRating = ratingSum / reviews.length;
+        const avgRating = ratingSum / reviews.length;
 
-  //       return avgRating;
-  //     }
-  //     // in the case where product have no reviews
-  //     return 0;
-  //   });
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
-    { headers: { Authorization: `${config.key}` }, })
-    .then((response) => {
-      const metaData = response.data;
-      console.log({metaData});
+        return avgRating;
+      }
+      // in the case where product have no reviews
+      return 0;
     });
 };
 
@@ -67,7 +61,7 @@ const parseRelated = (productId) => {
               }
             ) // gets productInfo for each product
             .then((productInfo) => {
-              return getRating(productId, ()=>{}).then((rating) => {
+              return getRating(productId).then((rating) => {
                 const id = productInfo.data.id;
                 const category = productInfo.data.category;
                 const name = productInfo.data.name;

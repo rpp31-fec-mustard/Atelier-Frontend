@@ -24,7 +24,8 @@ app.get('/related', (req, res) => {
       res.status(200).send(relatedList);
     })
     .catch((error) => {
-      res.status(500).end();
+      console.log({error});
+      res.status(500).send(error).end();
     });
 });
 
