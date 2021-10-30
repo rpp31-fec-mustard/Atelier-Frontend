@@ -18,10 +18,12 @@ afterEach(() => {
   container = null;
 });
 
-test('Related products and outfit creation module should render', () => {
-  act(() => {
-    render(<Related />, container);
+describe('Tests for rendering', () => {
+  test('Related products and outfit creation module should render', () => {
+    act(() => {
+      render(<Related />, container);
+    });
+    const related = document.getElementById('related_main');
+    expect(!!related).toBe(true);
   });
-  const related = document.getElementById('related_main');
-  expect(!!related).toBe(true);
 });

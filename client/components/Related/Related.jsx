@@ -7,9 +7,7 @@ import YourOutfit from './YourOutfit.jsx';
 const Related = (props) => {
   const [productId, setProductId] = useState('59553');
   const [relatedProducts, setRelatedProducts] = useState([]);
-  // [{productId, starred, category, name, price, rating}]
   const [outfitList, setOutfitList] = useState([]);
-  // [{productId, category, name, price, rating}]
 
   useEffect(() => {
     axios.get('/related')
