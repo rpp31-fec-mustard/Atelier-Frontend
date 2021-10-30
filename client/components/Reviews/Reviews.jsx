@@ -13,18 +13,18 @@ class Reviews extends React.Component {
     };
   }
 
-  get(option, callback) {
+  get(option) {
     let options = {
       url: '/getReviews',
       params: option,
       method: 'get'
-    }
-    axios.request(options).then((result) => {
-      callback(null, result.data)
+    };
+    return axios.request(options).then((result) => {
+      return result.data
     })
-    .catch((err) => {
-      callback(err, null)
-    })
+      .catch((err) => {
+        throw err
+      });
   }
 
   sortListOnChange(e, callback) {
@@ -49,15 +49,14 @@ class Reviews extends React.Component {
         id: this.state.id,
         sort: this.state.sorted,
       };
-      this.get(options, (err, result) => {
-        if (err) {
-
-        } else {
+     this.get(options).then((result) => {
           this.setState({
             reviews: result.reviewsArr
           });
-        }
-      });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     });
   }
 
@@ -66,15 +65,14 @@ class Reviews extends React.Component {
       id: this.state.id,
       sort: 'relevant',
     };
-    this.get(options, (err, result) => {
-      if (err) {
-
-      } else {
+    this.get(options).then((result) => {
         this.setState({
           reviews: result.reviewsArr
-        });
-      }
-    });
+        })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -84,7 +82,7 @@ class Reviews extends React.Component {
           <h1> Ratings and Reviews </h1>
         </div>
         <div className='reviews'>
-          <Ratings product_id={this.state.id}/>
+          <Ratings product_id={this.state.id} />
           <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.reviews} />
         </div>
       </div>

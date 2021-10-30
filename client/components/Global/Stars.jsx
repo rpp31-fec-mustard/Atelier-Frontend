@@ -7,28 +7,28 @@ let qtrPercent = {
   2: ['48%', '50%', '53%', '60%'],
   3: ['68%', '70%', '73%', '80%'],
   4: ['88%', '90%', '93%', '100%']
-}
+};
 
 class Stars extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       rating: '0'
-    }
+    };
   }
 
-  getRatings(option, callback) {
+  getRatings(option) {
     let options = {
       url: '/getOverallRating',
       params: option,
       method: 'get'
-    }
-    axios.request(options).then((result) => {
-      callback(null, result.data.rating)
+    };
+    return axios.request(options).then((result) => {
+      return result.data.rating
     })
-    .catch((err) => {
-     callback(err, null)
-    })
+      .catch((err) => {
+       return err
+      });
   }
 
   convertDecimalToQtr(decimal) {
@@ -57,25 +57,21 @@ class Stars extends React.Component {
     var integer = Math.floor(input);
 
     if (input === '0') {
-      return '0%'
+      return '0%';
     } else if (input % 1 === 0) {
-      return qtrPercent[input - 1][3]
+      return qtrPercent[input - 1][3];
     } else {
-      var decimal = Math.round((input - integer) * 100) / 100
+      var decimal = Math.round((input - integer) * 100) / 100;
       var index = this.convertDecimalToQtr(decimal);
-      return qtrPercent[integer][index]
+      return qtrPercent[integer][index];
     }
   }
 
   componentDidMount() {
-    this.getRatings(this.props.product_id, (err, result) => {
-      if (err) {
-        console.log(err)
-      } else {
+    this.getRatings(this.props.product_id, (result) => {
         this.setState({
           rating: result
-        })
-      }
+        });
     })
   }
 
@@ -85,7 +81,7 @@ class Stars extends React.Component {
       <div className='stars-outer'>
         <div className='stars-inner' style={style} > </div>
       </div>
-    )
+    );
   }
 }
 

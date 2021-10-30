@@ -10,25 +10,25 @@ class Ratings extends React.Component {
   render() {
     return (
       <div className='ratings_container'>
-       <h1> Ratings Breakdown </h1>
-       <div className='overall'>
-         <Stars product_id={this.props.product_id} />
+        <h1> Ratings Breakdown </h1>
+        <div className='overall'>
+          <Stars product_id={this.props.product_id} />
         </div>
-       <div className='starBreakdown'>
-         Star breakdown
-         <div className='star'>5 stars:
+        <div className='starBreakdown'>
+          Star breakdown
+          <div className='star'>5 stars:
             <progress className="star_bar" max="100" value="70"> 70% </progress>
-         </div>
-         <div className='star'>4 stars:  <progress className="star_bar" max="100" value="90"></progress>
-         </div>
-         <div className='star'>3 stars:  <progress className="star_bar" max="100" value="30"></progress>
-         </div>
-         <div className='star'>2 stars:  <progress className="star_bar" max="100" value="50"></progress>
-         </div>
-         <div className='star'>1 stars:  <progress className="star_bar" max="100" value="20"></progress>
-         </div>
-       </div>
-       <div className='productBreakdown'>Product Breakdown</div>
+          </div>
+          <div className='star'>4 stars:  <progress className="star_bar" max="100" value="90"></progress>
+          </div>
+          <div className='star'>3 stars:  <progress className="star_bar" max="100" value="30"></progress>
+          </div>
+          <div className='star'>2 stars:  <progress className="star_bar" max="100" value="50"></progress>
+          </div>
+          <div className='star'>1 stars:  <progress className="star_bar" max="100" value="20"></progress>
+          </div>
+        </div>
+        <div className='productBreakdown'>Product Breakdown</div>
       </div>
     );
   }
@@ -37,9 +37,3 @@ class Ratings extends React.Component {
 
 export default Ratings;
 
-
-//<span className="fa fa-star checked"></span>
-/* <span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star checked"></span>
-<span className="fa fa-star"></span> */

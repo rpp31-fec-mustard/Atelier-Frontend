@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
+
 import App from '../client/components/app.jsx';
+import Reviews from '../client/components/Reviews/Reviews.jsx';
+
+
 
 let container = null;
 beforeEach(() => {
