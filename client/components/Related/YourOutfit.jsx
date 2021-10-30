@@ -7,19 +7,19 @@ const YourOutfit = (props) => {
   const outfitProducts = props.outfitList.map((item) => {
     return (
       <ProductCard
-      key={item.id}
-      className={item.id}
-      handleStar={props.handleStar}
-      action={'x'}
-      id={item.id}
-      image={null}
-      category={item.category}
-      name={item.name}
-      price={null}
-      rating={item.rating}
-    />
+        key={item.id}
+        className={item.id}
+        handleStar={props.handleStar}
+        action={'x'}
+        id={item.id}
+        image={null}
+        category={item.category}
+        name={item.name}
+        price={null}
+        rating={item.rating}
+      />
     );
-  })
+  });
 
   return (
     <div id="your_outfit" className="related_submodule">

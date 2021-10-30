@@ -31,12 +31,12 @@ app.get('/related', (req, res) => {
 app.get('/questions', (req, res) => {
   api.getQuestions('59553')
     .then((results) => {
-      res.send(results)
+      res.send(results);
     })
     .catch((err) => {
       res.status(500).end();
-    })
-})
+    });
+});
 
 const port = 5500;
 app.listen(port, () => {

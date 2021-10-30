@@ -5,7 +5,7 @@ REQUIRED HEADER FOR ACCESS:
 Authorization: GITHUB TOKEN
 
 USING PARAMETERS:
-/endpoint?parameter=value&parmeter=value
+/endpoint?parameter=value&parameter=value
 
 example:
 https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products?page=2&count=3

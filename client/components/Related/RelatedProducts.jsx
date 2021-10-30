@@ -1,7 +1,7 @@
-import React from "react";
-import ProductCard from "./ProductCard.jsx";
-import LeftButton from "./LeftButton.jsx";
-import RightButton from "./RightButton.jsx";
+import React from 'react';
+import ProductCard from './ProductCard.jsx';
+import LeftButton from './LeftButton.jsx';
+import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
   const productCards = props.relatedProducts.map((product, i) => {
@@ -10,7 +10,7 @@ const RelatedProducts = (props) => {
         key={product.id}
         className={product.id}
         handleStar={props.handleStar}
-        action={"star"}
+        action={'star'}
         id={product.id}
         image={null}
         category={product.category}
