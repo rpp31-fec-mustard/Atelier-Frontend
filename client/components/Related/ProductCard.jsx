@@ -1,14 +1,10 @@
-import React from "react";
-import StarButton from "./StarButton.jsx";
-import XButton from "./XButton.jsx";
-
+import React from 'react';
+import StarButton from './StarButton.jsx';
 const ProductCard = (props) => {
   let actionButton;
 
-  if (props.action === "star") {
-    actionButton = <StarButton handleStar={props.handleStar} starred={true} />;
-  } else {
-    actionButton = <XButton />;
+  if (!props.outfit) {
+    actionButton = <StarButton handleStar={props.handleStar}/>;
   }
 
   return (

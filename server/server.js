@@ -16,8 +16,8 @@ app.get('/getReviews', (req, res) => {
   });
 });
 
-app.get('/related', (req, res) => {
-  api.parseRelated('59553')
+app.post('/related', (req, res) => {
+  api.getRelated(req.body.product)
     .then((relatedList) => {
       res.status(200).send(relatedList);
     })

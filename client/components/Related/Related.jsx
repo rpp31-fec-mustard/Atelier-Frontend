@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import RelatedProducts from './RelatedProducts.jsx';
-import YourOutfit from './YourOutfit.jsx';
+import Outfit from './Outfit.jsx';
 
 const Related = (props) => {
-  const [productId, setProductId] = useState('59553');
+  const [productId, setProductId] = useState(props.product);
   const [relatedProducts, setRelatedProducts] = useState([]);
-  // [{productId, starred, category, name, price, rating}]
   const [outfitList, setOutfitList] = useState([]);
-  // [{productId, category, name, price, rating}]
 
   useEffect(() => {
-    axios.get('/related')
+    axios.post('/related', { product: props.product })
       .then((result) => {
         setRelatedProducts(result.data);
       })
@@ -21,11 +19,11 @@ const Related = (props) => {
       });
   }, []);
 
-  const handleStar = (event) => {
+  const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
     const productId = target.parentElement.parentElement.parentElement.classList[1];
 
-    if (target.className === 'far fa-star') {
+    if (target.className === 'fas fa-star') {
       // add to outfit list
       relatedProducts.forEach((item) => {
         const itemId = item.id.toString(10);
@@ -39,7 +37,6 @@ const Related = (props) => {
         const itemId = item.id.toString(10);
         return itemId !== productId;
       });
-
       setOutfitList(newOutfitList);
     }
   };
@@ -49,10 +46,11 @@ const Related = (props) => {
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
-        handleStar={handleStar}
+        handleStar={handleAction}
       />
-      <YourOutfit
+      <Outfit
         outfitList={outfitList}
+        handleX={handleAction}
       />
     </div>
   );

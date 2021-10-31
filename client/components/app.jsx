@@ -19,7 +19,7 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner />
         <ProductOverview />
-        <Related />
+        <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
         <Reviews product={this.state.productId} />
       </div>
