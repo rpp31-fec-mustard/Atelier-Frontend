@@ -22,10 +22,12 @@ afterEach(() => {
   container = null;
 });
 
-test('Four module_containers should be rendering', () => {
-  act(() => {
-    render(<App />, container);
-  });
-  const modules = document.getElementsByClassName('module_container');
-  expect(modules.length).toBe(4);
-});
+// describe('Tests for rendering', () => {
+//   test('Four module_containers should be rendering', () => {
+//     act(() => {
+//       render(<App />, container);
+//     });
+//     const modules = document.getElementsByClassName('module_container');
+//     expect(modules.length).toBe(4);
+//   });
+// });

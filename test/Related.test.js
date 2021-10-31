@@ -18,12 +18,26 @@ afterEach(() => {
   container = null;
 });
 
-describe('Tests for rendering', () => {
-  test('Related products and outfit creation module should render', () => {
+describe('Related products module: render tests', () => {
+  test('Module should render', () => {
     act(() => {
       render(<Related />, container);
     });
     const related = document.getElementById('related_main');
     expect(!!related).toBe(true);
+  });
+
+  test('4 product cards should render in related products', () => {
+    act(() => {
+      render(<Related />, container);
+    });
+    const productCards = document.getElementsByClassName('prod-card');
+    expect(productCards.length).toBe(4);
+  });
+
+  test('Empty product card should render in outfit list if empty', () => {
+    act(() => {
+      render(<Related />, container);
+    });
   });
 });
