@@ -1,14 +1,53 @@
-const axios = require("axios");
-const config = require("../config.js");
+const axios = require('axios');
+const config = require('../config.js');
+
+// const getReviewMeta = (id, callback) => {
+//   let options = {
+//     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
+//     headers: {
+//       Authorization: `${config.key}`,
+//     },
+//     method: 'get',
+//   };
+//   axios
+//     .request(options)
+//     .then((result) => {
+//       callback(null, result.data);
+//     })
+//     .catch((err) => {
+//       callback(err, null);
+//     });
+// };
+
+const getRating = (productId) => {
+  return axios
+    .get(
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
+      {
+        headers: { Authorization: `${config.key}` },
+      }
+    ) // returns a PROMISE that resolves in an average rating of a product
+    .then((result) => {
+      const reviews = result.data.results;
+      if (reviews.length) {
+        let ratingSum = reviews.reduce((previousVal, currentVal) => {
+          return previousVal + currentVal.rating;
+        }, 0);
+
+        const avgRating = ratingSum / reviews.length;
+
+        return avgRating;
+      }
+      // in the case where product have no reviews
+      return 0;
+    });
+};
 
 const parseRelated = (productId) => {
   return axios
     .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`, {
-        headers: {
-          Authorization: `${config.key}`
-        },
-      }
+      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`,
+      { headers: { Authorization: `${config.key}` }, }
     ) // gets list of related prodIds
     .then((response) => {
       const relatedProdIds = response.data;
@@ -71,14 +110,9 @@ const getReviewMeta = (id) => {
 
 const getReviews = (id, sort) => {
   let options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`,
     headers: {
       Authorization: `${config.key}`,
-    },
-    params: {
-      product_id: id,
-      sort: sort,
-      count: 100,
     },
     method: 'get',
   };
@@ -117,33 +151,33 @@ const putReviewHelpfullness = (id, callback) => {
 };
 
 
-const getRating = (productId) => {
-  return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, {
-        headers: {
-          Authorization: `${config.key}`
-        },
-      }
-    ) // returns a PROMISE that resolves in an average rating of a product
-    .then((result) => {
-      const reviews = result.data.results;
-      if (reviews.length) {
-        let ratingSum = reviews.reduce((previousVal, currentVal) => {
-          return previousVal + currentVal.rating;
-        }, 0);
+// const getRating = (productId) => {
+//   return axios
+//     .get(
+//       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, {
+//         headers: {
+//           Authorization: `${config.key}`
+//         },
+//       }
+//     ) // returns a PROMISE that resolves in an average rating of a product
+//     .then((result) => {
+//       const reviews = result.data.results;
+//       if (reviews.length) {
+//         let ratingSum = reviews.reduce((previousVal, currentVal) => {
+//           return previousVal + currentVal.rating;
+//         }, 0);
 
-        const avgRating = ratingSum / reviews.length;
+//         const avgRating = ratingSum / reviews.length;
 
-        return avgRating;
-      }
-      // in the case where product have no reviews
-      return 0;
-    })
-    .catch((err) => {
-      return err;
-    });
-};
+//         return avgRating;
+//       }
+//       // in the case where product have no reviews
+//       return 0;
+//     })
+//     .catch((err) => {
+//       return err;
+//     });
+// };
 
 const getQuestions = (productId) => {
 

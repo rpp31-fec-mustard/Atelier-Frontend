@@ -20,8 +20,10 @@ app.get('/related', (req, res) => {
   api.parseRelated('59553')
     .then((relatedList) => {
       res.status(200).send(relatedList);
-    }).catch((error) => {
-      res.status(500).end();
+    })
+    .catch((error) => {
+      // console.log({error});
+      res.status(500).send(error).end();
     });
 });
 
@@ -38,7 +40,7 @@ app.get('/getOverallRating', (req, res) => {
 
 
 app.get('/questions', (req, res) => {
-  api.getQuestions('59553')
+  api.getQuestions(req.query.productId)
     .then((results) => {
       res.send(results);
     })

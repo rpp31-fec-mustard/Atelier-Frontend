@@ -68,10 +68,10 @@ class Stars extends React.Component {
   }
 
   componentDidMount() {
-    this.getRatings(this.props.product_id, (result) => {
-        this.setState({
-          rating: result
-        });
+    this.getRatings(this.props.productId).then((result) => {
+      this.setState({
+        rating: result
+      });
     })
   }
 

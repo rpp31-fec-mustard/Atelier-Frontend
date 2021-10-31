@@ -12,7 +12,7 @@ class Ratings extends React.Component {
       <div className='ratings_container'>
         <h1> Ratings Breakdown </h1>
         <div className='overall'>
-          <Stars product_id={this.props.product_id} />
+          <Stars productId={this.props.productId} />
         </div>
         <div className='starBreakdown'>
           Star breakdown

@@ -5,6 +5,7 @@ import { act } from "react-dom/test-utils";
 
 import App from '../client/components/app.jsx';
 import Reviews from '../client/components/Reviews/Reviews.jsx';
+import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
 
 
 
@@ -21,7 +22,6 @@ afterEach(() => {
   container.remove();
   container = null;
 });
-
 
 test('Four module_containers should be rendering', () => {
   act(() => {
