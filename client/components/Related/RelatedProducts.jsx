@@ -4,19 +4,18 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
-  const productCards = props.relatedProducts.map((product, i) => {
+  const productCards = props.relatedProducts.map((item, i) => {
     return (
       <ProductCard
-        key={product.id}
-        className={product.id}
+        key={item.id}
+        className={item.id}
         handleStar={props.handleStar}
-        action={'star'}
-        id={product.id}
+        id={item.id}
         image={null}
-        category={product.category}
-        name={product.name}
+        category={item.category}
+        name={item.name}
         price={null}
-        rating={product.rating}
+        rating={item.rating}
       />
     );
   });
