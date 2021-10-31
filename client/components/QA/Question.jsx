@@ -23,21 +23,39 @@ const Question = (props) => {
   }
 
   var sortedAnswers = unsortedAnswers.reverse();
+
+  console.log('sorted answers:', sortedAnswers);
   var displayAnswers = [];
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(2);
+
+  const addAnswers = () => {
+    console.log('count:', count);
+    for (var i = 0; i < count; i++) {
+      if (!sortedAnswers[i]) {
+        return;
+      }
+      displayAnswers.push(sortedAnswers[i]);
+    }
+  };
+
   if (sortedAnswers.length > 0) {
-    displayAnswers.push(sortedAnswers[count], sortedAnswers[count + 1]);
+    addAnswers();
   }
 
-  if (keys.length === 0) {
+  console.log('display answers:', displayAnswers);
+
+
+
+
+  if (displayAnswers.length === 0) {
     return (
       <div className="questionEntry">
         <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div>NO ANSWER</div>
       </div>
     );
-  } else {
+  } else if (displayAnswers.length < sortedAnswers.length) {
     return (
       <div>
         <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
@@ -53,6 +71,26 @@ const Question = (props) => {
             />
           )}
         </div>
+        <button onClick={() => setCount(count + 2)}>Load More Answers</button>
+      </div>
+    );
+  } else if (displayAnswers.length === sortedAnswers.length) {
+    return (
+      <div>
+        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="answer">
+          A: {displayAnswers.map((answer, i) =>
+            <Answer
+              key={i}
+              name={answer.answerer_name}
+              id={answer.id}
+              answer={answer.body}
+              date={answer.date}
+              helpfulness={answer.helpfulness}
+            />
+          )}
+        </div>
+        <button>Collapse Answers</button>
       </div>
     );
   }

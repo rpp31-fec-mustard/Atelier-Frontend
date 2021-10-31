@@ -15,6 +15,10 @@ const Q_A = (props) => {
     displayQuestions.push(sortedQuestions[count], sortedQuestions[count + 1]);
   }
 
+  const addQuestion = () => {
+    displayQuestions.push(sortedQuestions[count], sortedQuestions[count + 1]);
+  };
+
   // useEffect(() => {
   //   if (sortedQuestions.length > 0) {
   //     setDisplayQuestion(sortedQuestions[count]);
@@ -34,7 +38,7 @@ const Q_A = (props) => {
           question={question.question_body}
           answer={[question.answers]}/>
       )}
-      <button>More Questions</button>
+      <button onClick={() => setCount(count + 2)}>More Questions</button>
       <button>Add Questions +</button>
     </div>
   );
