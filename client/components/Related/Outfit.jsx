@@ -3,20 +3,20 @@ import ProductCard from './ProductCard.jsx';
 import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
-const YourOutfit = (props) => {
+const Outfit = (props) => {
   const outfitProducts = props.outfitList.map((item) => {
     return (
       <ProductCard
         key={item.id}
         className={item.id}
-        handleStar={props.handleStar}
-        action={'x'}
+        handleX={props.handleX}
         id={item.id}
         image={null}
         category={item.category}
         name={item.name}
         price={null}
         rating={item.rating}
+        outfit={true}
       />
     );
   });
@@ -27,10 +27,6 @@ const YourOutfit = (props) => {
       <div className="prod_card_container">
         <LeftButton />
         {outfitProducts}
-        {/* <ProductCard action={'x'}/>
-        <ProductCard action={'x'}/>
-        <ProductCard action={'x'}/>
-        <ProductCard action={'x'}/> */}
         <RightButton />
       </div>
     </div>
@@ -38,4 +34,4 @@ const YourOutfit = (props) => {
 
 };
 
-export default YourOutfit;
+export default Outfit;
