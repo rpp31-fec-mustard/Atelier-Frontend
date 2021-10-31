@@ -5,12 +5,12 @@ import RelatedProducts from './RelatedProducts.jsx';
 import Outfit from './Outfit.jsx';
 
 const Related = (props) => {
-  const [productId, setProductId] = useState('59553');
+  const [productId, setProductId] = useState(props.product);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
 
   useEffect(() => {
-    axios.get('/related')
+    axios.post('/related', { product: props.product })
       .then((result) => {
         setRelatedProducts(result.data);
       })
