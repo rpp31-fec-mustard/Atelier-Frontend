@@ -73,10 +73,13 @@ button {
   height: 70%;
 }
 
-.image_gallery_po {
+
+/* .image_gallery_po { */
+#image_gallery_po {
   display: flex;
   width: 60%;
   /* height: 100%; */
+  background-image: url('https://d2cdo4blch85n8.cloudfront.net/wp-content/uploads/2019/07/Hasbro-Full-sized-Replica-Cookie-Monster-image-1.jpg');
   background-color: #ddd;
 }
 
