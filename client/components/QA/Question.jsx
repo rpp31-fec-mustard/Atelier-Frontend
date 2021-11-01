@@ -7,18 +7,18 @@ const Question = (props) => {
   var keys = [];
   var answers = [];
   props.answer.map((answer) => {
-    keys = Object.keys(answer)
-  })
+    keys = Object.keys(answer);
+  });
 
   keys.map((id) => {
-    answers.push(props.answer[0][id])
-  })
+    answers.push(props.answer[0][id]);
+  });
 
   var unsortedAnswers = _.sortBy(answers, 'helpfulness');
   for (var i = 0; i < unsortedAnswers.length; i ++) {
     if (unsortedAnswers[i].answerer_name === 'Seller') {
       unsortedAnswers.push(unsortedAnswers[i]);
-      unsortedAnswers.splice(i, 1)
+      unsortedAnswers.splice(i, 1);
     }
   }
 
@@ -26,15 +26,15 @@ const Question = (props) => {
 
   if (keys.length === 0) {
     return (
-      <div>
+      <div className="questionEntry">
         <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div>NO ANSWER</div>
       </div>
-    )
+    );
   } else {
     return (
       <div>
-        <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
         <div className="answer">
           A: {sortedAnswers.map((answer, i) =>
             <Answer
@@ -48,10 +48,10 @@ const Question = (props) => {
           )}
         </div>
       </div>
-    )
+    );
   }
 
-}
+};
 
 
 

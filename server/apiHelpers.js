@@ -65,7 +65,7 @@ const getRating = (productId) => {
     });
 };
 
-const parseRelated = (productId) => {
+const getRelated = (productId) => {
   return axios
     .get(
       `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`,
@@ -147,8 +147,7 @@ const getQuestions = (productId) => {
 };
 
 module.exports = {
-  getProduct: getProduct,
-  parseRelated: parseRelated,
+  getRelated: getRelated,
   getReviews: getReviews,
   getQuestions: getQuestions,
   getRating: getRating

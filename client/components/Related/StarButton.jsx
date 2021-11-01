@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const StarButton = (props) => {
-  const [starred, _setStarred] = useState(false);
-  let star;
+  const [starred, _updateStar] = useState(false);
 
-  const setStarred = (event) => {
+  const updateStar = (event) => {
+    _updateStar(!starred);
     props.handleStar(event);
-    _setStarred(!starred);
   };
 
+  let star;
+
   if (starred) {
-    star = <i className="fas fa-star"></i>;
+    star = <i className="fas fa-times"></i>;
   } else {
-    star = <i className="far fa-star"></i>;
+    star = <i className="fas fa-star"></i>;
   }
 
   return (
     <div className="action_button_wrapper">
-      <button onClick={setStarred}>{star}</button>
+      <button className="star-button" onClick={updateStar}>{star}</button>
     </div>
   );
 };
