@@ -1,6 +1,12 @@
+
+PRODUCTS GET ENDPOINTS                  | PARAMETERS
+/products                               | page (int), count (int)
+/products/:product_id(int)              |
+/products/:product_id(int)/styles       |
+/products/:product_id(int)/related      |
+
+
 /*/example data
-
-
 /products                               | page (int), count (int)
 
   {
