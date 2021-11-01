@@ -21,7 +21,7 @@ afterEach(() => {
 describe('Related products module: render tests', () => {
   test('Module should render', () => {
     act(() => {
-      render(<Related />, container);
+      render(<Related product={'59553'}/>, container);
     });
     const related = document.getElementById('related_main');
     expect(!!related).toBe(true);
