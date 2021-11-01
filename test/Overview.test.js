@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import {shallow} from 'enzyme';
+import {mount} from 'enzyme';
+import sinon from 'sinon';
 
 import App from '../client/components/app.jsx';
+import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
+import ThumbnailsBar from '../client/components/ProductOverview/ImageGalleryDir/ThumbnailsBar.jsx'
+import Thumbnail from '../client/components/ProductOverview/ImageGalleryDir/Thumbnail.jsx'
+
+Enzyme.configure({ adapter: new Adapter() });
 
 let container = null;
 beforeEach(() => {
@@ -86,3 +96,38 @@ describe('Math tests', () => {
     expect(1 + 2).toBe(3);
   });
 });
+
+describe('<ProductOverview /> full rendering', () => {
+  it('renders one <ImageGallery /> component', () => {
+    act(() => {
+      render(<App />, container);
+    });
+
+    const wrapper = mount(<ProductOverview />);
+    expect(wrapper.contains(<ImageGallery />)).toEqual(true);
+  })
+
+  it('renders five <Thumbnail /> components', () => {
+    act(() => {
+      render(<App />, container);
+    });
+
+    const wrapper = mount(<ProductOverview />);
+    // console.log('test')
+    // console.log(wrapper.find(Thumbnail))
+    expect(wrapper.find(Thumbnail).length).toEqual(5);
+  })
+})
+
+describe('<ThumbnailsBar /> shallow rendering', () => {
+  it('renders five <Thumbnail /> components', () => {
+    act(() => {
+      render(<App />, container);
+    });
+
+    const wrapper = shallow(<ThumbnailsBar />);
+    // console.log('test')
+    // console.log(wrapper.find(Thumbnail))
+    expect(wrapper.find(Thumbnail).length).toEqual(5);
+  })
+})

@@ -18,9 +18,9 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner />
         <ProductOverview />
-        <Related product={this.state.productId}/>
+        {/* <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
-        <Reviews />
+        <Reviews /> */}
       </div>
     );
   }
