@@ -71,17 +71,6 @@ const Stars = (props) => {
     );
 }
 
-
-//   componentDidMount() {
-//     this.getRatings(this.props.productId).then((result) => {
-//       this.setState({
-//         rating: result
-//       });
-//     })
-//     .catch(err => console.log(err))
-//   }
-
-// }
 export default Stars;
 
 
