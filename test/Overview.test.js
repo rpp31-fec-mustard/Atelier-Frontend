@@ -19,67 +19,70 @@ afterEach(() => {
   container = null;
 });
 
+describe('Render Tests', () => {
 
-test('Product Overview should render', () => {
-  act(() => {
-    render(<App />, container);
+  test('Product Overview should render', () => {
+    act(() => {
+      render(<App />, container);
 
+    });
+
+    //journal entry
+    window.onload = ()=> {
+
+      const component = document.getElementById('product_overview_main');
+      expect(!!component).toBe(true);
+    };
   });
 
-  //journal entry
-  window.onload = ()=> {
 
-    const component = document.getElementById('product_overview_main');
-    expect(!!component).toBe(true);
-  };
-});
+  test('Image Gallery should render', () => {
+    act(() => {
+      render(<App />, container);
 
+    });
 
-test('Image Gallery should render', () => {
-  act(() => {
-    render(<App />, container);
+    //journal entry
+    window.onload = ()=> {
 
+      const component = document.getElementById('image_gallery_po');
+      expect(!!component).toBe(true);
+    };
   });
 
-  //journal entry
-  window.onload = ()=> {
 
-    const component = document.getElementById('image_gallery_po');
-    expect(!!component).toBe(true);
-  };
-});
+  test('Style Selector should render', () => {
+    act(() => {
+      render(<App />, container);
 
+    });
 
-test('Style Selector should render', () => {
-  act(() => {
-    render(<App />, container);
+    //journal entry
+    window.onload = ()=> {
 
+      const component = document.getElementsByClassName('style_po');
+      expect(!!component).toBe(true);
+    };
   });
 
-  //journal entry
-  window.onload = ()=> {
 
-    const component = document.getElementsByClassName('style_po');
-    expect(!!component).toBe(true);
-  };
-});
+  test('Add To Cart should render', () => {
+    act(() => {
+      render(<App />, container);
 
+    });
 
-test('Add To Cart should render', () => {
-  act(() => {
-    render(<App />, container);
+    //journal entry
+    window.onload = ()=> {
 
+      const component = document.getElementsByClassName('add_to_bag_po');
+      expect(!!component).toBe(true);
+    };
   });
-
-  //journal entry
-  window.onload = ()=> {
-
-    const component = document.getElementsByClassName('add_to_bag_po');
-    expect(!!component).toBe(true);
-  };
 });
 
-
-test('adds 1 + 2 to equal 3', () => {
-  expect(1 + 2).toBe(3);
+describe('Math tests', () => {
+  test('adds 1 + 2 to equal 3', () => {
+    expect(1 + 2).toBe(3);
+  });
 });
