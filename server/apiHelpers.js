@@ -183,5 +183,5 @@ module.exports = {
   getReviews: getReviews,
   getQuestions: getQuestions,
   getRating: getRating,
-  putReviewHelpfullness: putReviewHelpfullness,
+  putReviewHelpfulness: putReviewHelpfulness,
 };
