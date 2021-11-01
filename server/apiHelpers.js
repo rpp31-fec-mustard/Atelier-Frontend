@@ -23,24 +23,6 @@ const getProduct = (productId, cb) => {
 };
 
 
-const getReviewMeta = (id, callback) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
-    headers: {
-      Authorization: `${config.key}`,
-    },
-    method: 'get',
-  };
-  axios
-    .request(options)
-    .then((result) => {
-      callback(null, result.data);
-    })
-    .catch((err) => {
-      callback(err, null);
-    });
-};
-
 const getRating = (productId) => {
   return axios
     .get(
@@ -116,36 +98,70 @@ const getRelated = (productId) => {
     .then((relatedList) => {
       return relatedList;
     })
+    .catch((err) => {
+      return err;
+    })
+};
+
+const getReviewMeta = (id) => {
+  let options = {
+    url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/",
+    headers: {
+      Authorization: `${config.key}`,
+    },
+    params: {
+      product_id: id,
+    },
+    method: "get",
+  };
+  return axios.request(options).then((result) => {
+    return result.data;
+  })
     .catch((error) => {
       throw error;
     });
 };
 
-const getReviews = (id, sort, callback) => {
+const getReviews = (id, sort) => {
   let options = {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`,
     headers: { Authorization: `${config.key}` },
     method: 'get',
   };
-  axios
-    .request(options)
-    .then((result) => {
-      var resultObj = {
-        reviewsArr: result.data.results,
-      };
-      getReviewMeta(id, (err, result) => {
-        if (err) {
-          callback(err, null);
-        } else {
-          resultObj.meta = result;
-          callback(null, resultObj);
-        }
-      });
-    })
+  return axios.request(options).then((result) => {
+    var reviewsObj = {
+      reviewsArr: result.data.results,
+    };
+    return getReviewMeta(id).then((meta) => {
+      reviewsObj.meta = meta;
+      return reviewsObj;
+    });
+  })
     .catch((err) => {
-      callback(err, null);
+      return err;
     });
 };
+
+const putReviewHelpfulness = (id, callback) => {
+  let options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
+    headers: {
+      'Authorization': `${config.key}`
+    },
+    params: {
+      review_id: id,
+    },
+    method: 'put',
+  };
+  axios.request(options)
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
 
 const getQuestions = (productId) => {
 
@@ -166,5 +182,6 @@ module.exports = {
   getRelated: getRelated,
   getReviews: getReviews,
   getQuestions: getQuestions,
-  getRating: getRating
+  getRating: getRating,
+  putReviewHelpfulness: putReviewHelpfulness,
 };
