@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductComparison = (props) => {
   return (
-    <div>
+    <div className="prod-comparison-wrapper">
       HOVER TEST
     </div>
   );

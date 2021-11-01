@@ -23,17 +23,21 @@ const ProductCard = (props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseOut}
     >
-      <a href="https://xd.adobe.com/view/e600dc0f-454c-44e3-5075-7872d04189ff-9031/?fullscreen" target="_blank">
-        <div className="product-card-img-wrapper">
-          <img src={props.image} className="product-card-img"></img>
+      <div className="prod-card-wrapper">
+        <a href="https://xd.adobe.com/view/e600dc0f-454c-44e3-5075-7872d04189ff-9031/?fullscreen" target="_blank">
+          <div className="prod-card-img-wrapper">
+            <img src={props.image} className="prod-card-img"></img>
+          </div>
+          <div>{props.category}</div>
+          <div>{props.name}</div>
+          <div>${props.price}</div>
+          <div>{props.rating}</div>
+        </a>
+        <div className="prod-comparison-container">
+          {isHovering && <ProductComparison />}
         </div>
-        <div>{props.category}</div>
-        <div>{props.name}</div>
-        <div>${props.price}</div>
-        <div>{props.rating}</div>
-      </a>
+      </div>
       {actionButton}
-      {isHovering && <ProductComparison />}
     </div>
   );
 };
