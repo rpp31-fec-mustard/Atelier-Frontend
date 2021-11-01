@@ -142,7 +142,7 @@ const getReviews = (id, sort) => {
     });
 };
 
-const putReviewHelpfullness = (id, callback) => {
+const putReviewHelpfulness = (id, callback) => {
   let options = {
     url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
     headers: {
