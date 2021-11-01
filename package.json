@@ -20,7 +20,9 @@
     "build": "webpack --mode development --watch"
   },
   "dependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "axios": "^0.23.0",
+    "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "install": "^0.13.0",
     "jest": "^27.3.1",

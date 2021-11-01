@@ -52,10 +52,10 @@ class Reviews extends React.Component {
      this.get(options).then((result) => {
           this.setState({
             reviews: result.reviewsArr
-          });
+          })
       })
       .catch((err) => {
-        console.log(err)
+        throw err
       })
     });
   }
@@ -65,14 +65,17 @@ class Reviews extends React.Component {
       id: this.state.id,
       sort: 'relevant',
     };
-    this.get(options).then((result) => {
-      this.setState({
-        reviews: result.reviewsArr
+    axios.get('/getReviews', {
+      params: options
+    })
+    .then((result) => {
+        this.setState({
+          reviews: result.data.reviewsArr
+        })
       })
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+      .catch((error) => {
+        console.log('error getting reviews', error)
+      });
   }
 
   render() {
