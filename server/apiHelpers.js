@@ -1,6 +1,28 @@
 const axios = require('axios');
 const config = require('../config.js');
 
+
+//testing
+const getProduct = (productId, cb) => {
+  console.log('productId :', typeof productId, productId);
+
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
+    headers: {
+      Authorization: `${config.key}`
+    }
+  })
+    .then((result) => {
+      console.log('@APIH: ', result.data);
+      cb(null, result.data);
+    })
+    .catch((err) => {
+      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
+      cb(err);
+      // console.log('@APIH Error: ', err);
+    });
+};
+
+
 const getReviewMeta = (id, callback) => {
   let options = {
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
