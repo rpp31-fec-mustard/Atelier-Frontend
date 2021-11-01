@@ -65,17 +65,14 @@ class Reviews extends React.Component {
       id: this.state.id,
       sort: 'relevant',
     };
-    axios.get('/getReviews', {
-      params: options
-    })
-    .then((result) => {
-        this.setState({
-          reviews: result.data.reviewsArr
-        })
+    this.get(options).then((result) => {
+      this.setState({
+        reviews: result.reviewsArr
       })
-      .catch((error) => {
-        console.log('error getting reviews', error)
-      });
+    })
+    .catch((err) => {
+      console.log('Error Getting Reviews:', err);
+    })
   }
 
   render() {
