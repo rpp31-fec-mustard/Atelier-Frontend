@@ -11,10 +11,10 @@ const RelatedProducts = (props) => {
         className={item.id}
         handleStar={props.handleStar}
         id={item.id}
-        image={null}
+        image={item.thumbnailUrl}
         category={item.category}
         name={item.name}
-        price={null}
+        price={item.price}
         rating={item.rating}
       />
     );

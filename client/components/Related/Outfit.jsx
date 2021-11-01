@@ -11,10 +11,10 @@ const Outfit = (props) => {
         className={item.id}
         handleX={props.handleX}
         id={item.id}
-        image={null}
+        image={item.thumbnailUrl}
         category={item.category}
         name={item.name}
-        price={null}
+        price={item.price}
         rating={item.rating}
         outfit={true}
       />
