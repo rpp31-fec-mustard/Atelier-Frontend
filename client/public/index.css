@@ -256,6 +256,7 @@ button {
   align-items: center;
   width: 50%;
   height: 100%;
+  color: rgb(59, 58, 58);
 }
 
 .entry_container {
@@ -271,19 +272,29 @@ button {
   border: none;
 }
 
+
 .overall {
-  height: 30%;
-  width: 80%
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  width: 80%;
+  color: rgb(77, 63, 63);
+ justify-content: center;
+ align-items: center;
+}
+
+.starScale {
+  margin: 10px;
 }
 
 .starBreakdown {
-  height: 30%;
+  height: 40%;
   width: 80%;
   overflow-y: scroll;
 }
 
 .productBreakdown {
-  height: 30%;
+  height: 40%;
   width: 80%
 }
 
@@ -297,12 +308,17 @@ button {
 }
 
 .reviewsTitle {
-  float: left;
   border: none;
   margin-top: 25px;
 }
 
+.overallRating {
+  font-size: 40px;
+  font-weight: bold;
+}
+
 .star {
+  font-size: 75%;
   display: flex;
   flex-direction: row;
 }
@@ -312,7 +328,7 @@ progress {
   margin-top: 5px;
   margin-left: 5px;
   height: 10px;
-  width: 250px;
+  width: 75%;
 }
 progress::-webkit-progress-bar {
   background-color: rgb(143, 143, 129);
@@ -339,11 +355,19 @@ progress::-webkit-progress-value {
   content: '\f005 \f005 \f005 \f005 \f005';
   font-family: 'Font Awesome 5 Free';
   font-weight: 200;
-  color: rgb(22, 20, 20);
 }
 .stars-inner::before {
   content: '\f005 \f005 \f005 \f005 \f005';
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
-  color: rgb(22, 20, 21);
+}
+
+
+.filter {
+  display: flex;
+  flex-direction: row;
+}
+
+.filterMessage {
+  margin-left: 30px;
 }

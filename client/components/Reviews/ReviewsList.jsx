@@ -18,7 +18,7 @@ class ReviewsList extends React.Component {
   }
 
   moreReviewsButton() {
-    if (this.state.showing !== this.props.list.length) {
+    if (this.state.showing !== this.props.list.length && (this.state.showing - 1) !== this.props.list.length) {
       return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>
     }
   }
