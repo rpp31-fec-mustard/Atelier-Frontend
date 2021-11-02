@@ -6,28 +6,58 @@ const app = express();
 app.use(express.static(__dirname + '/../client/public'));
 app.use(parser.json());
 
-app.get('/getReviews', (req, res) => {
-  let id = req.query.id;
-  let sort = req.query.sort;
-  api.getReviews(id, sort, (err, result) => {
+
+
+app.get('/product', (req, res) => {
+  console.log('@Server req:', req.query.productId);
+
+  let productId = req.query.productId;
+  api.getProduct(productId, (err, result) => {
     if (err) {
-      res.status(500).end();
+      console.log('Server error');
+      // console.log('Server: ', {err});
+      res.status(500).send(err);
     } else {
+      console.log('@Server result: ', result);
       res.status(200).send(result);
     }
   });
 });
 
-app.get('/related', (req, res) => {
-  api.parseRelated('59553')
+
+app.get('/getReviews', (req, res) => {
+  let id = req.query.id;
+  let sort = req.query.sort;
+  api.getReviews(id, sort).then((result) => {
+    console.log(result)
+    res.status(200).send(result);
+  }).catch((err) => {
+    res.sendStatus(500).end();
+  });
+});
+
+app.post('/related', (req, res) => {
+  api.getRelated(req.body.product)
     .then((relatedList) => {
       res.status(200).send(relatedList);
     })
     .catch((error) => {
-      console.log({error});
+      // console.log({error});
       res.status(500).send(error).end();
     });
 });
+
+app.get('/getOverallRating', (req, res) => {
+  api.getRating(req.query[0]).then((result) => {
+    var obj = {
+      rating: result
+    };
+    res.status(200).send(obj);
+  }).catch((err) => {
+    res.sendStatus(500).end();
+  });
+});
+
 
 app.get('/questions', (req, res) => {
   api.getQuestions(req.query.productId)

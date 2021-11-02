@@ -13,14 +13,15 @@ class App extends React.Component {
     };
   }
 
+
   render () {
     return (
       <div id="index">
         <TempTopBanner />
         <ProductOverview />
-        <Related />
+        <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
-        <Reviews />
+        <Reviews product={this.state.productId} />
       </div>
     );
   }

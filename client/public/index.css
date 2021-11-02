@@ -73,10 +73,13 @@ button {
   height: 70%;
 }
 
-.image_gallery_po {
+
+/* .image_gallery_po { */
+#image_gallery_po {
   display: flex;
   width: 60%;
   /* height: 100%; */
+  background-image: url('https://d2cdo4blch85n8.cloudfront.net/wp-content/uploads/2019/07/Hasbro-Full-sized-Replica-Cookie-Monster-image-1.jpg');
   background-color: #ddd;
 }
 
@@ -186,6 +189,7 @@ button {
 .prod-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 20%;
   height: 100%;
 }
@@ -195,6 +199,21 @@ button {
   height: 30px;
   position: absolute;
   align-self: flex-end;
+}
+
+.prod-card-img {
+  width: 100%;
+  object-fit: none;
+}
+
+.prod-comparison-container {
+  position: absolute;
+}
+
+.prod-comparison-wrapper {
+  position: absolute;
+  /* top: -300px;
+  left: 40px; */
 }
 
 /* *** QUESTIONS/ANSWER *** */
@@ -259,7 +278,8 @@ button {
 
 .starBreakdown {
   height: 30%;
-  width: 80%
+  width: 80%;
+  overflow-y: scroll;
 }
 
 .productBreakdown {
@@ -282,3 +302,48 @@ button {
   margin-top: 25px;
 }
 
+.star {
+  display: flex;
+  flex-direction: row;
+}
+
+progress {
+  border-radius: 7px;
+  margin-top: 5px;
+  margin-left: 5px;
+  height: 10px;
+  width: 250px;
+}
+progress::-webkit-progress-bar {
+  background-color: rgb(143, 143, 129);
+}
+progress::-webkit-progress-value {
+  background-color: rgb(0, 0, 0);
+}
+
+.stars-outer {
+  border: none;
+  position: relative;
+  display: inline-block;
+}
+
+.stars-inner  {
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.stars-outer::before {
+  content: '\f005 \f005 \f005 \f005 \f005';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 200;
+  color: rgb(22, 20, 20);
+}
+.stars-inner::before {
+  content: '\f005 \f005 \f005 \f005 \f005';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  color: rgb(22, 20, 21);
+}
