@@ -7,41 +7,65 @@ const Q_A = (props) => {
 
   var unsortedQuestions = _.sortBy(props.questions, 'question_helpfulness');
   var sortedQuestions = unsortedQuestions.reverse();
-
-  const [count, setCount] = useState(0);
-
   var displayQuestions = [];
-  if (sortedQuestions.length > 0) {
-    displayQuestions.push(sortedQuestions[count], sortedQuestions[count + 1]);
-  }
 
+  const [count, setCount] = useState(2);
   const addQuestion = () => {
-    displayQuestions.push(sortedQuestions[count], sortedQuestions[count + 1]);
+    for (let i = 0; i < count; i++) {
+      if (!sortedQuestions[i]) {
+        return;
+      }
+      displayQuestions.push(sortedQuestions[i]);
+    }
   };
 
-  // useEffect(() => {
-  //   if (sortedQuestions.length > 0) {
-  //     setDisplayQuestion(sortedQuestions[count]);
-  //     console.log('display in use effect:', displayQuestion);
-  //   }
-  // });
 
-  console.log('sorted Questions:', sortedQuestions, 'displayQuestion', displayQuestions);
+  if (sortedQuestions.length > 0) {
+    addQuestion();
+  }
 
-  return (
-    <div className="questionList">
-      {displayQuestions.map((question, answer) =>
-      // console.log('Question:', question.question_body, 'Answer:', question.answers)
-        <Question
-          key={question.question_id}
-          helpfulness={question.question_helpfulness}
-          question={question.question_body}
-          answer={[question.answers]}/>
-      )}
-      <button onClick={() => setCount(count + 2)}>More Questions</button>
-      <button>Add Questions +</button>
-    </div>
-  );
+  if (sortedQuestions.length === 0) {
+    return (
+      <div className="questionButton">
+        <button>Add Questions +</button>
+      </div>
+    );
+  } else if (displayQuestions.length !== sortedQuestions.length) {
+    return (
+      <div>
+        <div className="questionList">
+          {displayQuestions.map((question, answer) =>
+            <Question
+              key={question.question_id}
+              helpfulness={question.question_helpfulness}
+              question={question.question_body}
+              answer={[question.answers]}/>
+          )}
+        </div>
+        <div className="questionButton">
+          <button onClick={() => setCount(count + 2)}>More Questions</button>
+          <button>Add Questions +</button>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div className="questionList">
+          {displayQuestions.map((question, answer) =>
+            <Question
+              key={question.question_id}
+              helpfulness={question.question_helpfulness}
+              question={question.question_body}
+              answer={[question.answers]}/>
+          )}
+        </div>
+        <div className="questionButton">
+          <button>Add Questions +</button>
+        </div>
+      </div>
+    );
+  }
 };
 
 
