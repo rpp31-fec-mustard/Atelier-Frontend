@@ -269,11 +269,8 @@ button {
 .expandCollapseAnswers {
   border: none;
   font-weight: bold;
+  margin-left: 28px;
 }
-/* .singleAnswer {
-  list-style: none;
-} */
-
 
 
 
