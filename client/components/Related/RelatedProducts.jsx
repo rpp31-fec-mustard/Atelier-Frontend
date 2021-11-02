@@ -9,7 +9,7 @@ const RelatedProducts = (props) => {
       <ProductCard
         key={item.id}
         className={item.id}
-        handleStar={props.handleStar}
+        handleAction={props.handleAction}
         id={item.id}
         image={item.thumbnailUrl}
         category={item.category}

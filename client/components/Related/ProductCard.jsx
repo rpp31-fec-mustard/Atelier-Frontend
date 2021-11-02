@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StarButton from './StarButton.jsx';
+import ActionButton from './ActionButton.jsx';
 import ProductComparison from './ProductComparison.jsx';
 
 const ProductCard = (props) => {
@@ -12,10 +12,20 @@ const ProductCard = (props) => {
     setIsHovering(false);
   };
 
+  // setting action button only for related product cards
   let actionButton;
 
   if (!props.outfit) {
-    actionButton = <StarButton handleStar={props.handleStar}/>;
+    actionButton = <ActionButton handleAction={props.handleAction}/>;
+  }
+
+  // setting image in cases of null image
+  let image;
+
+  if (props.image) {
+    image = <img src={props.image} className="prod-card-img"></img>
+  } else {
+    image = <div className="prod-card-no-img">No image</div>
   }
 
   return (
@@ -26,12 +36,12 @@ const ProductCard = (props) => {
       <div className="prod-card-wrapper">
         <a href="https://xd.adobe.com/view/e600dc0f-454c-44e3-5075-7872d04189ff-9031/?fullscreen" target="_blank">
           <div className="prod-card-img-wrapper">
-            <img src={props.image} className="prod-card-img"></img>
+            {image}
           </div>
-          <div>{props.category}</div>
-          <div>{props.name}</div>
-          <div>${props.price}</div>
-          <div>{props.rating}</div>
+          <div className = "prod-card-info category">{props.category}</div>
+          <div className = "prod-card-info name">{props.name}</div>
+          <div className = "prod-card-info price">${props.price}</div>
+          <div className = "prod-card-info rating">{props.rating}</div>
         </a>
         <div className="prod-comparison-container">
           {isHovering && <ProductComparison />}

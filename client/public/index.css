@@ -7,6 +7,7 @@ html, body, #app, #index {
   margin: -1px;  /* this is to remove scrollbar at the bottom of the page. */
   padding: 0;
   width: 99.9%;
+  font-family: 'Zen Maru Gothic', sans-serif;
 }
 
 div {
@@ -28,7 +29,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  width: 100%;
+  width: 80%;
 }
 
 
@@ -164,9 +165,11 @@ button {
 
 }
 
-
-
 /* *** RELATED *** */
+#related_main h1{
+  align-self: flex-start;
+  border-style: none;
+}
 
 .related_submodule {
   display: flex;
@@ -186,24 +189,62 @@ button {
   width: 100%;
 }
 
+/* change width if needed */
 .prod-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20%;
+  width: 250px;
   height: 100%;
 }
 
-.action_button_wrapper {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  align-self: flex-end;
+.prod-card-wrapper {
+  width: 100%;
+  color: black;
+  text-decoration: none;
+}
+
+.prod-card-info {
+  width: 100%;
+  border: none;
+}
+
+.prod-card-img-wrapper {
+  width: 100%;
+  height: 300px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .prod-card-img {
   width: 100%;
+  height: 100%;
   object-fit: none;
+}
+
+.prod-card-no-img {
+  text-align: center;
+}
+
+.action-button-wrapper {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  align-self: flex-end;
+  border: none;
+}
+
+.action-button {
+  font-size: 20px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  fill: none;
+  color: orange;
+  border-style: none;
+  cursor: pointer;
 }
 
 .prod-comparison-container {
@@ -212,8 +253,8 @@ button {
 
 .prod-comparison-wrapper {
   position: absolute;
-  /* top: -300px;
-  left: 40px; */
+  top: -300px;
+  left: 40px;
 }
 
 /* *** QUESTIONS/ANSWER *** */

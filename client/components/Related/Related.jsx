@@ -46,11 +46,11 @@ const Related = (props) => {
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
-        handleStar={handleAction}
+        handleAction={handleAction}
       />
       <Outfit
         outfitList={outfitList}
-        handleX={handleAction}
+        // handleAction={handleAction}
       />
     </div>
   );

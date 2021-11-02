@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import { render, unmountComponentAtNode } from 'react-dom';
-// import { act } from 'react-dom/test-utils';
 import { shallow, mount, render } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
