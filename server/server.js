@@ -9,16 +9,13 @@ app.use(parser.json());
 
 
 app.get('/product', (req, res) => {
-  console.log('@Server req:', req.query.productId);
 
   let productId = req.query.productId;
   api.getProduct(productId, (err, result) => {
     if (err) {
       console.log('Server error');
-      // console.log('Server: ', {err});
       res.status(500).send(err);
     } else {
-      console.log('@Server result: ', result);
       res.status(200).send(result);
     }
   });

@@ -12,13 +12,11 @@ const getProduct = (productId, cb) => {
     }
   })
     .then((result) => {
-      console.log('@APIH: ', result.data);
       cb(null, result.data);
     })
     .catch((err) => {
       console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
       cb(err);
-      // console.log('@APIH Error: ', err);
     });
 };
 
