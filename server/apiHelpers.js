@@ -4,7 +4,7 @@ const config = require('../config.js');
 
 //testing
 const getProduct = (productId, cb) => {
-  console.log('productId :', typeof productId, productId);
+  // console.log('productId :', typeof productId, productId);
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
     headers: {
@@ -20,6 +20,21 @@ const getProduct = (productId, cb) => {
     });
 };
 
+const getProductStyles = (productId, cb) => {
+
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, {
+    headers: {
+      Authorization: `${config.key}`
+    }
+  })
+    .then((result) => {
+      cb(null, result.data);
+    })
+    .catch((err) => {
+      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
+      cb(err);
+    });
+};
 
 const getRating = (productId) => {
   return axios
@@ -178,6 +193,7 @@ const getQuestions = (productId) => {
 
 module.exports = {
   getProduct: getProduct,
+  getProductStyles: getProductStyles,
   getRelated: getRelated,
   getReviews: getReviews,
   getQuestions: getQuestions,

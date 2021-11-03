@@ -9,6 +9,7 @@ import {mount} from 'enzyme';
 import App from '../client/components/app.jsx';
 import Reviews from '../client/components/Reviews/Reviews.jsx';
 import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
+import ReviewsListEntry from '../client/components/Reviews/ReviewsListEntry.jsx';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -78,12 +79,12 @@ let reviewsArr = [
   }
 ];
 
-test('checks reviews comp', () => {
-  const spy = jest.spyOn(Reviews.prototype, 'componentDidMount');
-  const wrapper = mount(<Reviews />);
-  expect(spy).toHaveBeenCalled();
-  spy.mockReset();
-  spy.mockRestore();
+test('Four module_containers should be rendering', () => {
+  act(() => {
+    render(<App />, container);
+  });
+  const modules = document.getElementsByClassName('module_container');
+  expect(modules.length).toBe(4);
 });
 
 test('checks reviews component', () => {
@@ -91,17 +92,31 @@ test('checks reviews component', () => {
   expect(wrapper).toHaveLength(1);
 });
 
+test('checks reviews componentDidMount', () => {
+  const spy = jest.spyOn(Reviews.prototype, 'componentDidMount');
+  const wrapper = mount(<Reviews />);
+  expect(spy).toHaveBeenCalled();
+  spy.mockReset();
+  spy.mockRestore();
+});
+
+
+test('checks reviews api get call', () => {
+  const spy = jest.spyOn(Reviews.prototype, 'get');
+  const wrapper = mount(<Reviews />);
+  expect(spy).toHaveBeenCalled();
+  spy.mockReset();
+  spy.mockRestore();
+});
+
 test('checks reviewsList component', () => {
   const wrapper = mount(<ReviewsList list={reviewsArr} />);
   expect(wrapper).toHaveLength(1);
 });
 
-test('Four module_containers should be rendering', () => {
-  act(() => {
-    render(<App />, container);
-  });
-  const modules = document.getElementsByClassName('module_container');
-  expect(modules.length).toBe(4);
+test('checks reviewsListEntry component', () => {
+  const wrapper = mount(<ReviewsListEntry review={reviewsArr[0]}/>);
+  expect(wrapper).toHaveLength(1);
 });
 
 test('adds 1 + 2 to equal 3', () => {

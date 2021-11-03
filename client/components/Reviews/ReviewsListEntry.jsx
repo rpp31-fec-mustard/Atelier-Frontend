@@ -3,12 +3,13 @@ import axios from 'axios';
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
-    super (props);
+    super(props);
     this.state = {
       helpful: this.props.review.helpfulness
     };
   }
-  wouldRecommend () {
+
+  wouldRecommend() {
     if (this.props.review.recommend) {
       return 'I would recommend this item!';
     }

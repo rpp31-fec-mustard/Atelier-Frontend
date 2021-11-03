@@ -13,5 +13,5 @@ const SortBy = (props) => {
       </select>
     </form>
   );
-}
+};
 export default SortBy;

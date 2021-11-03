@@ -21,6 +21,19 @@ app.get('/product', (req, res) => {
   });
 });
 
+app.get('/product/styles', (req, res) => {
+
+  let productId = req.query.productId;
+  api.getProductStyles(productId, (err, result) => {
+    if (err) {
+      console.log('Server error');
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(result);
+    }
+  });
+});
+
 
 app.get('/getReviews', (req, res) => {
   let id = req.query.id;
