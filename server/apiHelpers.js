@@ -83,8 +83,9 @@ const getRelated = (productId) => {
                     const name = productInfo.productInfo.name;
                     const rating = productInfo.rating;
                     const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
-                    const price = primaryStyle.sale_price ? primaryStyle.sale_price : primaryStyle.original_price;
-                    return { id, category, name, rating, thumbnailUrl, price};
+                    const originalPrice = primaryStyle.original_price;
+                    const salePrice = primaryStyle.sale_price;
+                    return { id, category, name, rating, thumbnailUrl, originalPrice, salePrice};
                   }); // consolidates and returns all product information including thumbnail url and price
                 });
             })
