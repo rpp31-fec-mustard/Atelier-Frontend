@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FullScreen from './FullScreen.jsx'
+import FullScreen from './FullScreen.jsx';
 
 
 const ArrowRight = () => (
