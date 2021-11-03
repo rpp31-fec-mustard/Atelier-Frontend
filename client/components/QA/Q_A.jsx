@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
-import Answer from './Answer.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import _ from 'underscore';
 
