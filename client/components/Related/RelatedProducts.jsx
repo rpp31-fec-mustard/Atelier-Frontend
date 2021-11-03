@@ -10,7 +10,7 @@ const RelatedProducts = (props) => {
         key={item.id}
         className={item.id}
         handleAction={props.handleAction}
-        id={item.id}
+        productId={item.id}
         image={item.thumbnailUrl}
         category={item.category}
         name={item.name}

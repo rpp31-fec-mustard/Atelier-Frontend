@@ -27,7 +27,7 @@ class App extends React.Component {
       }
     })
       .then((res) => {
-        console.log('@client res:', res.data);
+        // console.log('@client res:', res.data);
         this.setState({product: res.data});
       })
       .catch((err) => {

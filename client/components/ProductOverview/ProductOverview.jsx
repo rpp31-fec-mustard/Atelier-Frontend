@@ -40,7 +40,7 @@ class ProductOverview extends React.Component {
       }
     })
       .then((res) => {
-        console.log('@client res:', res);
+        // console.log('@client res:', res);
       })
       .catch((err) => {
         console.log('Error retrieving product/all: ', err);

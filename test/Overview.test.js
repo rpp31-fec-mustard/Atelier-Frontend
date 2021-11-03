@@ -105,7 +105,7 @@ describe('<ProductOverview /> full rendering', () => {
 
     const wrapper = mount(<ProductOverview />);
     expect(wrapper.contains(<ImageGallery />)).toEqual(true);
-  })
+  });
 
   it('renders five <Thumbnail /> components', () => {
     act(() => {
@@ -116,8 +116,8 @@ describe('<ProductOverview /> full rendering', () => {
     // console.log('test')
     // console.log(wrapper.find(Thumbnail))
     expect(wrapper.find(Thumbnail).length).toEqual(5);
-  })
-})
+  });
+});
 
 describe('<ThumbnailsBar /> shallow rendering', () => {
   it('renders five <Thumbnail /> components', () => {
@@ -129,5 +129,5 @@ describe('<ThumbnailsBar /> shallow rendering', () => {
     // console.log('test')
     // console.log(wrapper.find(Thumbnail))
     expect(wrapper.find(Thumbnail).length).toEqual(5);
-  })
-})
+  });
+});

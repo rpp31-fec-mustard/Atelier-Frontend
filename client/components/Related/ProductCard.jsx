@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ActionButton from './ActionButton.jsx';
 import ProductComparison from './ProductComparison.jsx';
 import Price from '../Global/Price.jsx';
+import Stars from '../Global/Stars.jsx';
 
 const ProductCard = (props) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -42,7 +43,7 @@ const ProductCard = (props) => {
           <div className="prod-card-info category">{props.category}</div>
           <div className="prod-card-info name">{props.name}</div>
           <Price originalPrice={props.originalPrice} salePrice={props.salePrice}/>
-          <div className="prod-card-info rating">{props.rating}</div>
+          <div className="prod-card-info rating"><Stars productId={props.productId}/></div>
         </a>
         <div className="prod-comparison-container">
           {isHovering && <ProductComparison />}

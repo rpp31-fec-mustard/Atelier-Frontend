@@ -30,16 +30,21 @@ const getRating = (productId) => {
     .then((result) => {
       const reviews = result.data.results;
       if (reviews.length) {
-        let ratingSum = reviews.reduce((previousVal, currentVal) => {
-          return previousVal + currentVal.rating;
+        let ratingSum = reviews.reduce((ratingSum, currentReview) => {
+          return ratingSum + currentReview.rating;
         }, 0);
 
+
         const avgRating = ratingSum / reviews.length;
+        console.log({ratingSum});
 
         return avgRating;
       }
-      // in the case where product have no reviews
+      // in the case where product has no reviews
       return 0;
+    })
+    .catch((err) => {
+      console.log('Error getting rating', err);
     });
 };
 
