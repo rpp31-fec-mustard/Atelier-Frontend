@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import { render, unmountComponentAtNode } from 'react-dom';
-// import { act } from 'react-dom/test-utils';
 import { shallow, mount, render } from 'enzyme';
 import { configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -16,7 +14,7 @@ describe('Related products module: render tests', () => {
     expect(!!related).toBe(true);
   });
 
-  test('Four product cards should render in related products', () => {
+  test('At most four product cards should render in related products submodule', () => {
     const related = shallow(<Related />);
     const productCards = document.getElementsByClassName('prod-card');
     expect(productCards.length).toBe(4);

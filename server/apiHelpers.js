@@ -12,13 +12,11 @@ const getProduct = (productId, cb) => {
     }
   })
     .then((result) => {
-      console.log('@APIH: ', result.data);
       cb(null, result.data);
     })
     .catch((err) => {
       console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
       cb(err);
-      // console.log('@APIH Error: ', err);
     });
 };
 
@@ -100,19 +98,16 @@ const getRelated = (productId) => {
     })
     .catch((err) => {
       return err;
-    })
+    });
 };
 
 const getReviewMeta = (id) => {
   let options = {
-    url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/",
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
     headers: {
       Authorization: `${config.key}`,
     },
-    params: {
-      product_id: id,
-    },
-    method: "get",
+    method: 'get',
   };
   return axios.request(options).then((result) => {
     return result.data;
@@ -142,14 +137,12 @@ const getReviews = (id, sort) => {
     });
 };
 
-const putReviewHelpfulness = (id, callback) => {
+
+const putReviewHelpfulness = (id) => {
   let options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`,
     headers: {
       'Authorization': `${config.key}`
-    },
-    params: {
-      review_id: id,
     },
     method: 'put',
   };
@@ -179,6 +172,7 @@ const getQuestions = (productId) => {
 };
 
 module.exports = {
+  getProduct: getProduct,
   getRelated: getRelated,
   getReviews: getReviews,
   getQuestions: getQuestions,
