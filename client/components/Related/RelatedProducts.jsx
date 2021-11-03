@@ -14,16 +14,17 @@ const RelatedProducts = (props) => {
         image={item.thumbnailUrl}
         category={item.category}
         name={item.name}
-        price={item.price}
+        originalPrice={item.originalPrice}
+        salePrice={item.salePrice}
         rating={item.rating}
       />
     );
   });
 
   return (
-    <div id="related_products" className="related_submodule">
-      <h1>RELATED PRODUCTS LIST</h1>
-      <div className="prod_card_container">
+    <div id="related-products" className="related-submodule">
+      <h3>RELATED PRODUCTS</h3>
+      <div className="prod-card-container">
         <LeftButton />
         {productCards}
         <RightButton />
