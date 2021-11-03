@@ -42,15 +42,15 @@ const Related = (props) => {
   };
 
   return (
-    <div id="related_main" className="module_container">
+    <div id="related-main" className="module_container">
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
-        handleStar={handleAction}
+        handleAction={handleAction}
       />
       <Outfit
         outfitList={outfitList}
-        handleX={handleAction}
+        // handleAction={handleAction}
       />
     </div>
   );

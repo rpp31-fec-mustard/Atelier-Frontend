@@ -5,7 +5,7 @@ const StarButton = (props) => {
 
   const updateStar = (event) => {
     _updateStar(!starred);
-    props.handleStar(event);
+    props.handleAction(event);
   };
 
   let star;
@@ -17,8 +17,8 @@ const StarButton = (props) => {
   }
 
   return (
-    <div className="action_button_wrapper">
-      <button className="star-button" onClick={updateStar}>{star}</button>
+    <div className="action-button-wrapper">
+      <button className="action-button" onClick={updateStar}>{star}</button>
     </div>
   );
 };

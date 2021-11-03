@@ -1,29 +1,26 @@
 import React, { useState } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import { shallow, mount, render } from 'enzyme';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import sinon from 'sinon';
+
+configure({ adapter: new Adapter() });
 
 import Related from '../client/components/Related/Related.jsx';
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement('div');
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-describe('Tests for rendering', () => {
-  test('Related products and outfit creation module should render', () => {
-    act(() => {
-      render(<Related />, container);
-    });
-    const related = document.getElementById('related_main');
+describe('Related products module: render tests', () => {
+  test('Module should render', () => {
+    const related = shallow(<Related />);
     expect(!!related).toBe(true);
+  });
+
+  test('Four product cards should render in related products', () => {
+    const related = shallow(<Related />);
+    const productCards = document.getElementsByClassName('prod-card');
+    expect(productCards.length).toBe(4);
+  });
+
+  test('Empty product card should render in outfit list if empty', () => {
+    const related = shallow(<Related />);
   });
 });

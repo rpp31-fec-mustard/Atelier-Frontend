@@ -32,35 +32,38 @@ test('Four module_containers should be rendering', () => {
   expect(modules.length).toBe(4);
 });
 
-test('renders Search Component', () => {
-  act(() => {
-    render(<Search />, container);
+describe('Q&A Module: render tests', () => {
+  test('renders Search Component', () => {
+    act(() => {
+      render(<Search />, container);
+    });
+    const component = document.getElementsByClassName('search');
+    expect(component.length).toBe(1);
   });
-  const component = document.getElementsByClassName('search');
-  expect(component.length).toBe(1);
-});
 
-test('renders Q_A Component', () => {
-  act(() => {
-    render(<Q_A />, container);
+  test('renders Q_A Component', () => {
+    act(() => {
+      render(<Q_A />, container);
+    });
+    const component = document.getElementsByClassName('questionList');
+    expect(component.length).toBe(1);
   });
-  const component = document.getElementsByClassName('questionList');
-  expect(component.length).toBe(1);
-});
 
-test('renders Question Component', () => {
-  act(() => {
-    render(<Question key="1" helpfulness="5" question="Does this test work?" answer={['I hope so']}/>, container);
+  test('renders Question Component', () => {
+    act(() => {
+      render(<Question key="1" helpfulness="5" question="Does this test work?" answer={['I hope so']}/>, container);
+    });
+    const component = document.getElementsByClassName('questionEntry');
+    expect(component.length).toBe(1);
   });
-  const component = document.getElementsByClassName('questionEntry');
-  expect(component.length).toBe(1);
-});
 
-test('renders Answer Component', () => {
-  act(() => {
-    render(<Answer />, container);
+  test('renders Answer Component', () => {
+    act(() => {
+      render(<Answer />, container);
+    });
+    const component = document.getElementsByClassName('singleAnswer');
+    expect(component.length).toBe(1);
   });
-  const component = document.getElementsByClassName('singleAnswer');
-  expect(component.length).toBe(1);
+
 });
 

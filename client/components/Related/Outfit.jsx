@@ -11,10 +11,10 @@ const Outfit = (props) => {
         className={item.id}
         handleX={props.handleX}
         id={item.id}
-        image={null}
+        image={item.thumbnailUrl}
         category={item.category}
         name={item.name}
-        price={null}
+        price={item.price}
         rating={item.rating}
         outfit={true}
       />
@@ -22,9 +22,9 @@ const Outfit = (props) => {
   });
 
   return (
-    <div id="your_outfit" className="related_submodule">
-      <h1>YOUR OUTFIT LIST</h1>
-      <div className="prod_card_container">
+    <div id="your-outfit" className="related-submodule">
+      <h3>YOUR OUTFIT</h3>
+      <div className="prod-card-container">
         <LeftButton />
         {outfitProducts}
         <RightButton />
