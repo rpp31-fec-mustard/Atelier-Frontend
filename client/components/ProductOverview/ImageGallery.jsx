@@ -2,48 +2,40 @@
 
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import ThumbnailsBar from './ImageGalleryDir/ThumbnailsBar.jsx'
-import ArrowLeft from './ImageGalleryDir/ArrowLeft.jsx'
-import ArrowRight from './ImageGalleryDir/ArrowRight.jsx'
-import FullScreen from './ImageGalleryDir/FullScreen.jsx'
+import ThumbnailsBar from './ImageGalleryDir/ThumbnailsBar.jsx';
+import ArrowLeft from './ImageGalleryDir/ArrowLeft.jsx';
+import ArrowRight from './ImageGalleryDir/ArrowRight.jsx';
+import FullScreen from './ImageGalleryDir/FullScreen.jsx';
 
 const ImageGallery = ({images}) => {
-  console.log('images:', images)
+  console.log('images:', images);
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
 
   if (images) {
   // console.log('props.styles :',images);
     let node = document.getElementsByClassName('image_gallery_po').style;
-    console.log('node', node)
+    console.log('node', node);
 
     return (
       <div className='image_gallery_po' style={{
-        color:'red',
+        color: 'red',
         backgroundImage: `url(${images.photos[index].url})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover'
-
       }}>
         <ThumbnailsBar />
         <ArrowLeft />
-
         <div className='space01_po'>Image Gallery</div>
-
         <ArrowRight />
-
       </div>
-
-
-  );
-} else {
-  return (
- <div></div>
-
-
-  );
+    );
+  } else {
+    return (
+      <div></div>
+    );
+  }
 };
-}
 
 export default ImageGallery;
 

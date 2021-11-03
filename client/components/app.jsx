@@ -13,14 +13,30 @@ class App extends React.Component {
     this.state = {
       productId: '59553',
       product: {},
-      styles: {}
+      styles: {},
+      randomizer: this.randomizer.bind(this)
     };
   }
+
+
+  randomizer(id) {
+    console.log('id :', id);
+    new Promise((works, busted) => {
+      this.setState({productId: id});
+      works();
+    })
+      .then(() => {
+        this.getProductId(this.state.productId);
+        this.getProductStyles(this.state.productId);
+      });
+  }
+
 
   componentDidMount() {
     this.getProductId(this.state.productId);
     this.getProductStyles(this.state.productId);
   }
+
 
   getProductId(id) {
     axios.get('/product', {
@@ -36,6 +52,7 @@ class App extends React.Component {
         console.log('Error retrieving product/all: ', err);
       });
   }
+
 
   getProductStyles(id) {
     // console.log('this.props.product.id :', id);
@@ -57,7 +74,7 @@ class App extends React.Component {
   render () {
     return (
       <div id="index">
-        <TempTopBanner />
+        <TempTopBanner randomizer={this.state.randomizer}/>
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>

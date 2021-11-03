@@ -27,33 +27,33 @@ const ProductOverview = ({styles, product}) => {
   console.log('PO styles :', styles);
   console.log('PO product :', product);
 
-  const [styleIndex, setStyle] = useState(0)
+  const [styleIndex, setStyle] = useState(0);
   console.log('styleIndex :', styleIndex);
 
 
-if (styles.product_id && product.id ) {
+  if (styles.product_id && product.id ) {
 
 
 
   //   console.log('PO:', this.props);
   //   // const product = this.props.product;
-  const {
-    description,
-    name,
-    category,
-    default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-    slogan
-  } = product
+    const {
+      description,
+      name,
+      category,
+      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
+      slogan
+    } = product;
 
-  const {
-    results,
-  } = styles;
+    const {
+      results,
+    } = styles;
   //   console.log('PO results:', results)
 
 
 
-  return (
-    <div id='product_overview_main' className="module_container">
+    return (
+      <div id='product_overview_main' className="module_container">
         <div className='top01'>
           <ImageGallery images={results[styleIndex]}/>
           <div className='right02'>
@@ -76,7 +76,7 @@ if (styles.product_id && product.id ) {
     );
   } else {
     console.log('props load delayed');
-    return <div></div>
+    return <div></div>;
   }
 };
 
