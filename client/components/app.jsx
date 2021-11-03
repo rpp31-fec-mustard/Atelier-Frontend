@@ -12,22 +12,40 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '59553',
-      product: {}
+      product: {},
+      styles: {},
+      randomizer: this.randomizer.bind(this)
     };
   }
 
-  componentDidMount() {
-    this.getProductId();
+
+  randomizer(id) {
+    console.log('id :', id);
+    new Promise((works, busted) => {
+      this.setState({productId: id});
+      works();
+    })
+      .then(() => {
+        this.getProductId(this.state.productId);
+        this.getProductStyles(this.state.productId);
+      });
   }
 
-  getProductId() {
+
+  componentDidMount() {
+    this.getProductId(this.state.productId);
+    this.getProductStyles(this.state.productId);
+  }
+
+
+  getProductId(id) {
     axios.get('/product', {
       params: {
-        productId: this.state.productId
+        productId: id
       }
     })
       .then((res) => {
-        console.log('@client res:', res.data);
+        console.log('@client res product:', res.data);
         this.setState({product: res.data});
       })
       .catch((err) => {
@@ -36,11 +54,28 @@ class App extends React.Component {
   }
 
 
+  getProductStyles(id) {
+    // console.log('this.props.product.id :', id);
+    axios.get('/product/styles', {
+      params: {
+        productId: id
+      }
+    })
+      .then((res) => {
+        console.log('@client res product/styles:', res.data);
+        this.setState({styles: res.data});
+      })
+      .catch((err) => {
+        console.log('Error retrieving product/styles: ', err);
+      });
+  }
+
+
   render () {
     return (
       <div id="index">
-        <TempTopBanner />
-        <ProductOverview product={this.state.product}/>
+        <TempTopBanner randomizer={this.state.randomizer}/>
+        <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
         <Reviews product={this.state.productId} />

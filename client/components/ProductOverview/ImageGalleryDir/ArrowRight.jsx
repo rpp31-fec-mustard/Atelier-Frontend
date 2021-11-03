@@ -11,7 +11,7 @@ const ArrowRight = () => (
     <div className='arrow_space_po'>
       <FullScreen />
     </div>
-    L
+    R
     <div className='arrow_space_po'></div>
   </div>
 

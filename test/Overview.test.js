@@ -10,8 +10,8 @@ import sinon from 'sinon';
 import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
-import ThumbnailsBar from '../client/components/ProductOverview/ImageGalleryDir/ThumbnailsBar.jsx'
-import Thumbnail from '../client/components/ProductOverview/ImageGalleryDir/Thumbnail.jsx'
+import ThumbnailsBar from '../client/components/ProductOverview/ImageGalleryDir/ThumbnailsBar.jsx';
+import Thumbnail from '../client/components/ProductOverview/ImageGalleryDir/Thumbnail.jsx';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -105,7 +105,7 @@ describe('<ProductOverview /> full rendering', () => {
 
     const wrapper = mount(<ProductOverview />);
     expect(wrapper.contains(<ImageGallery />)).toEqual(true);
-  })
+  });
 
   it('renders five <Thumbnail /> components', () => {
     act(() => {
@@ -116,8 +116,8 @@ describe('<ProductOverview /> full rendering', () => {
     // console.log('test')
     // console.log(wrapper.find(Thumbnail))
     expect(wrapper.find(Thumbnail).length).toEqual(5);
-  })
-})
+  });
+});
 
 describe('<ThumbnailsBar /> shallow rendering', () => {
   it('renders five <Thumbnail /> components', () => {
@@ -129,5 +129,5 @@ describe('<ThumbnailsBar /> shallow rendering', () => {
     // console.log('test')
     // console.log(wrapper.find(Thumbnail))
     expect(wrapper.find(Thumbnail).length).toEqual(5);
-  })
-})
+  });
+});
