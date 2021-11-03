@@ -4,21 +4,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
-
 import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import Stars from '../Global/Stars.jsx';
+import Price from '../Global/Price.jsx';
+
 
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '59553',
-      name: 'Product Name',
-      slogan: 'Product slogan',
-      description: 'Product description paragraph.',
-      category: 'category',
-      defaultPrice: '100.00'
+      styles: {}
     };
     //grab from global?
   }
@@ -27,50 +24,61 @@ class ProductOverview extends React.Component {
   //temp for API testing
   componentDidMount() {
 
-    this.getProductId();
+    this.getProductStyles();
     //fetch first product
   }
 
   //get everything from API server at one go?
   //currently hardcoded for 59553
-  getProductId() {
-    axios.get('/product', {
+  getProductStyles() {
+    axios.get('/product/styles', {
       params: {
-        productId: 59553
+        productId: this.props.product.id
       }
     })
       .then((res) => {
-        console.log('@client res:', res);
+        console.log('@client res:', res.data);
+        this.setState({styles: res.data})
       })
       .catch((err) => {
-        console.log('Error retrieving product/all: ', err);
+        console.log('Error retrieving product/styles: ', err);
       });
 
   }
 
 
 
-
+  /* eslint-disable camelcase*/
 
   render() {
+    console.log('PO:', this.props);
+    // const product = this.props.product;
+    const {
+      description,
+      name,
+      category,
+      default_price,
+      slogan
+    } = this.props.product;
 
     return (
       <div id='product_overview_main' className="module_container">
         <div className='top01'>
-          <ImageGallery />
+          <ImageGallery props={this.props}/>
           <div className='right02'>
-            <div className='stars_po' >STARS</div>
+            <div className='stars_po' ><Stars /></div>
             <div className='name_block_po'>
-              Category
-              <h2>Expanded Product Name</h2>
-              price
+              {category}
+              <h1>{name}</h1>
+              {/* <Price /> */}
+              ${default_price}
             </div>
-            <StyleSelector />
-            <AddToCart />
+            <StyleSelector props={this.props}/>
+            <AddToCart props={this.props}/>
           </div>
         </div>
         <div className='bottom01'>
-          <div className='product_desc_po'>Product </div>
+          <div className='product_desc_po'><h2>{slogan}</h2><br/>{description}</div>
           <div className='highlights_po'>Highlights</div>
         </div>
       </div>

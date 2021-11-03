@@ -5,7 +5,7 @@ const ArrowLeft = () => (
 
   <div className='arrow_po'>
   <div className='arrow_space_po'></div>
-  R
+  L
   <div className='arrow_space_po'></div>
 </div>
 

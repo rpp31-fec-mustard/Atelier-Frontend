@@ -11,7 +11,7 @@ html, body, #app, #index {
 }
 
 #index {
-  width: 70%;
+  width: 1040px;
 }
 
 div {
@@ -86,19 +86,33 @@ button {
   /* height: 100%; */
   background-image: url('https://d2cdo4blch85n8.cloudfront.net/wp-content/uploads/2019/07/Hasbro-Full-sized-Replica-Cookie-Monster-image-1.jpg');
   background-color: #ddd;
+  background-position: 50% 20%;
 }
 
 .thumbnails_po {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 10%;
 }
 
 .thumbnail_po {
   width: 50px;
   height: 50px;
-  margin: 5px 5px;
+  margin: 5px 0px;
 }
+
+#arrow_up_po, #arrow_down_po {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50px;
+  height: 15px;
+  margin: 5px 0px;
+  overflow: hidden;
+}
+
 .arrow_po {
   display: flex;
   flex-direction: column;
@@ -158,7 +172,10 @@ button {
 }
 
 .product_desc_po{
+  margin-left: 100px;
   display: flex;
+  flex-direction: column;
+  justify-items: right;
   width: 60%;
 
 }
