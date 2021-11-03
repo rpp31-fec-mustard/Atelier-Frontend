@@ -83,9 +83,8 @@ const getRelated = (productId) => {
                     const name = productInfo.productInfo.name;
                     const rating = productInfo.rating;
                     const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
-                    const originalPrice = primaryStyle.original_price;
-                    const salePrice = primaryStyle.sale_price;
-                    return { id, category, name, rating, thumbnailUrl, originalPrice, salePrice};
+                    const price = primaryStyle.sale_price ? primaryStyle.sale_price : primaryStyle.original_price;
+                    return { id, category, name, rating, thumbnailUrl, price};
                   }); // consolidates and returns all product information including thumbnail url and price
                 });
             })
@@ -106,12 +105,9 @@ const getRelated = (productId) => {
 
 const getReviewMeta = (id) => {
   let options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
     headers: {
       Authorization: `${config.key}`,
-    },
-    params: {
-      productId: id,
     },
     method: 'get',
   };
@@ -143,14 +139,12 @@ const getReviews = (id, sort) => {
     });
 };
 
-const putReviewHelpfulness = (id, callback) => {
+
+const putReviewHelpfulness = (id) => {
   let options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`,
     headers: {
       'Authorization': `${config.key}`
-    },
-    params: {
-      reviewId: id,
     },
     method: 'put',
   };
