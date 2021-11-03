@@ -10,6 +10,10 @@ html, body, #app, #index {
   font-family: 'Zen Maru Gothic', sans-serif;
 }
 
+#index {
+  width: 70%;
+}
+
 div {
   border: 1px solid black;
 }
@@ -29,7 +33,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  width: 70%;
+  width: 100%;
 }
 
 
