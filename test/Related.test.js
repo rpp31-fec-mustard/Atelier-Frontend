@@ -14,7 +14,7 @@ describe('Related products module: render tests', () => {
     expect(!!related).toBe(true);
   });
 
-  test('Four product cards should render in related products', () => {
+  test('At most four product cards should render in related products submodule', () => {
     const related = shallow(<Related />);
     const productCards = document.getElementsByClassName('prod-card');
     expect(productCards.length).toBe(4);

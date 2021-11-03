@@ -19,6 +19,10 @@
     "lint": "eslint ./ --fix; exit 0",
     "build": "webpack --mode development --watch"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "dependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "axios": "^0.23.0",
@@ -47,6 +51,7 @@
     "eslint": "^8.0.1",
     "mocha": "^9.1.3",
     "nodemon": "^2.0.14",
+    "pre-commit": "^1.2.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.4.4",
