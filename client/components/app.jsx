@@ -18,6 +18,7 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner />
         <ProductOverview />
+        {/* testing - off to squelch jest log error */}
         {/* <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
         <Reviews /> */}

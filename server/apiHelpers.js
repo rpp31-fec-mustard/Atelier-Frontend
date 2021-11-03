@@ -147,6 +147,7 @@ const getQuestions = (productId) => {
 };
 
 module.exports = {
+  getProduct: getProduct,
   getRelated: getRelated,
   getReviews: getReviews,
   getQuestions: getQuestions,

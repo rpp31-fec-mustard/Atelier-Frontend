@@ -27,7 +27,7 @@ class ProductOverview extends React.Component {
   //temp for API testing
   componentDidMount() {
 
-    // this.getProductId();
+    this.getProductId();
     //fetch first product
   }
 
@@ -40,7 +40,7 @@ class ProductOverview extends React.Component {
       }
     })
       .then((res) => {
-        console.log(res);
+        console.log('@client res:', res);
       })
       .catch((err) => {
         console.log('Error retrieving product/all: ', err);
