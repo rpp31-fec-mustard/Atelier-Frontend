@@ -5,11 +5,11 @@ import Thumbnail from './Thumbnail.jsx'
 const ThumbnailsBar = () => (
 
   <div className='thumbnails_po'>
-    <Thumbnail/>
-    <Thumbnail/>
-    <Thumbnail/>
-    <Thumbnail/>
-    <Thumbnail/>
+    <Thumbnail />
+    <Thumbnail />
+    <Thumbnail />
+    <Thumbnail />
+    <Thumbnail />
 </div>
 
 )
