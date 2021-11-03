@@ -12,26 +12,44 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '59553',
-      product: {}
+      product: {},
+      styles: {}
     };
   }
 
   componentDidMount() {
-    this.getProductId();
+    this.getProductId(this.state.productId);
+    this.getProductStyles(this.state.productId);
   }
 
-  getProductId() {
+  getProductId(id) {
     axios.get('/product', {
       params: {
-        productId: this.state.productId
+        productId: id
       }
     })
       .then((res) => {
-        console.log('@client res:', res.data);
+        console.log('@client res product:', res.data);
         this.setState({product: res.data});
       })
       .catch((err) => {
         console.log('Error retrieving product/all: ', err);
+      });
+  }
+
+  getProductStyles(id) {
+    // console.log('this.props.product.id :', id);
+    axios.get('/product/styles', {
+      params: {
+        productId: id
+      }
+    })
+      .then((res) => {
+        console.log('@client res product/styles:', res.data);
+        this.setState({styles: res.data});
+      })
+      .catch((err) => {
+        console.log('Error retrieving product/styles: ', err);
       });
   }
 
@@ -40,7 +58,7 @@ class App extends React.Component {
     return (
       <div id="index">
         <TempTopBanner />
-        <ProductOverview product={this.state.product}/>
+        <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
         <Reviews product={this.state.productId} />

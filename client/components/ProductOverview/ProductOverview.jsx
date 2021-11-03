@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-import React from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
@@ -11,70 +11,61 @@ import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 
 
-class ProductOverview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      styles: {}
-    };
-    //grab from global?
-  }
+// class ProductOverview extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       styles: {},
+//       styleNo: 0
+//     };
+//     //grab from global?
+//   }
+
+//set style at this level
+
+const ProductOverview = ({styles, product}) => {
+  console.log('PO styles :', styles);
+  console.log('PO product :', product);
+
+  const [styleIndex, setStyle] = useState(0)
+  console.log('styleIndex :', styleIndex);
 
 
-  //temp for API testing
-  componentDidMount() {
-
-    this.getProductStyles();
-    //fetch first product
-  }
-
-  //get everything from API server at one go?
-  //currently hardcoded for 59553
-  getProductStyles() {
-    axios.get('/product/styles', {
-      params: {
-        productId: this.props.product.id
-      }
-    })
-      .then((res) => {
-        console.log('@client res:', res.data);
-        this.setState({styles: res.data})
-      })
-      .catch((err) => {
-        console.log('Error retrieving product/styles: ', err);
-      });
-
-  }
+if (styles.product_id && product.id ) {
 
 
 
-  /* eslint-disable camelcase*/
+  //   console.log('PO:', this.props);
+  //   // const product = this.props.product;
+  const {
+    description,
+    name,
+    category,
+    default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
+    slogan
+  } = product
 
-  render() {
-    console.log('PO:', this.props);
-    // const product = this.props.product;
-    const {
-      description,
-      name,
-      category,
-      default_price,
-      slogan
-    } = this.props.product;
+  const {
+    results,
+  } = styles;
+  //   console.log('PO results:', results)
 
-    return (
-      <div id='product_overview_main' className="module_container">
+
+
+  return (
+    <div id='product_overview_main' className="module_container">
         <div className='top01'>
-          <ImageGallery props={this.props}/>
+          <ImageGallery images={results[styleIndex]}/>
           <div className='right02'>
             <div className='stars_po' ><Stars /></div>
             <div className='name_block_po'>
               {category}
-              <h1>{name}</h1>
+              <p id='name_po'>{name}</p>
               {/* <Price /> */}
-              ${default_price}
+              ${default_price}   {/* eslint-disable-line camelcase, no-multi-spaces*/}
             </div>
-            <StyleSelector props={this.props}/>
-            <AddToCart props={this.props}/>
+            <StyleSelector styles={styles}/>
+            <AddToCart styles={styles}/>
           </div>
         </div>
         <div className='bottom01'>
@@ -83,8 +74,11 @@ class ProductOverview extends React.Component {
         </div>
       </div>
     );
+  } else {
+    console.log('props load delayed');
+    return <div></div>
   }
-}
+};
 
 
 export default ProductOverview;

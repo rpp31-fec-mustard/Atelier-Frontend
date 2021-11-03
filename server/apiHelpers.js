@@ -21,7 +21,7 @@ const getProduct = (productId, cb) => {
 };
 
 const getProductStyles = (productId, cb) => {
-  // console.log('productId :', typeof productId, productId);
+  console.log('productId :', typeof productId, productId);
 
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, {
     headers: {
