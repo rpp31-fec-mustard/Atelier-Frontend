@@ -1,8 +1,8 @@
 node_modules
+package-lock.json
 dist
 .DS_Store
 bundle.js
-client/public/bundle.js
 dummyData.js
 test/coverage
 
@@ -10,3 +10,9 @@ test/coverage
 API_paths.txt
 config.js
 
+
+
+# MLapid - 21.11.01 - Adding package-lock.json. It's only necessary once we deploy live to lock-in
+# module versions that are compatible with codebase. Till then, these versions will change as we
+# develop and can show a huge number of changes in git.
+# https://stackoverflow.com/questions/60220919/which-files-or-folders-should-be-in-gitignore-in-react-project
