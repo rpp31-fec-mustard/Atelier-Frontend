@@ -20,7 +20,10 @@ const Stars = (props) => {
       method: 'get'
     };
     axios.request(options).then((result) => {
-      setRating(result.data.rating);
+      setRating(result.data.rating)
+      if (props.getOverallRating) {
+        props.getOverallRating(result.data.rating)
+      }
     })
       .catch((err) => {
         console.log('error getting rating', err);

@@ -39,7 +39,6 @@ app.get('/getReviews', (req, res) => {
   let id = req.query.id;
   let sort = req.query.sort;
   api.getReviews(id, sort).then((result) => {
-    console.log(result);
     res.status(200).send(result);
   }).catch((err) => {
     res.sendStatus(500).end();
