@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
-import Ratings from './Ratings.jsx'
+import Ratings from './Ratings.jsx';
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -20,10 +20,10 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      return result.data
+      return result.data;
     })
       .catch((err) => {
-        throw err
+        throw err;
       });
   }
 
@@ -49,14 +49,15 @@ class Reviews extends React.Component {
         id: this.state.id,
         sort: this.state.sorted,
       };
-     this.get(options).then((result) => {
+      this.get(options)
+        .then((result) => {
           this.setState({
             reviews: result.reviewsArr
-          })
-      })
-      .catch((err) => {
-        throw err
-      })
+          });
+        })
+        .catch((err) => {
+          throw err;
+        });
     });
   }
 
@@ -68,11 +69,11 @@ class Reviews extends React.Component {
     this.get(options).then((result) => {
       this.setState({
         reviews: result.reviewsArr
-      })
+      });
     })
-    .catch((err) => {
-      console.log('Error Getting Reviews:', err);
-    })
+      .catch((err) => {
+        console.log('Error Getting Reviews:', err);
+      });
   }
 
   render() {

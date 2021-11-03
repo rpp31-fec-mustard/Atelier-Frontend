@@ -19,7 +19,7 @@ class ReviewsList extends React.Component {
 
   moreReviewsButton() {
     if (this.state.showing !== this.props.list.length) {
-      return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>
+      return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
     }
   }
 
@@ -35,10 +35,10 @@ class ReviewsList extends React.Component {
             );
           })}
         </div>
-          <div className='reviewButtons'>
-            {this.moreReviewsButton()}
-            <button>Add a Review</button>
-          </div>
+        <div className='reviewButtons'>
+          {this.moreReviewsButton()}
+          <button>Add a Review</button>
+        </div>
       </div>
     );
   }
