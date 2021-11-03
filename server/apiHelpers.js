@@ -101,19 +101,19 @@ const getRelated = (productId) => {
     })
     .catch((err) => {
       return err;
-    })
+    });
 };
 
 const getReviewMeta = (id) => {
   let options = {
-    url: "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/",
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/',
     headers: {
       Authorization: `${config.key}`,
     },
     params: {
-      product_id: id,
+      productId: id,
     },
-    method: "get",
+    method: 'get',
   };
   return axios.request(options).then((result) => {
     return result.data;
@@ -150,7 +150,7 @@ const putReviewHelpfulness = (id, callback) => {
       'Authorization': `${config.key}`
     },
     params: {
-      review_id: id,
+      reviewId: id,
     },
     method: 'put',
   };

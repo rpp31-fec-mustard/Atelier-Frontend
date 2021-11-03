@@ -19,13 +19,13 @@ const Stars = (props) => {
       params: props.productId,
       method: 'get'
     };
-   axios.request(options).then((result) => {
-      setRating(result.data.rating)
+    axios.request(options).then((result) => {
+      setRating(result.data.rating);
     })
       .catch((err) => {
-       console.log('error getting rating', err)
+        console.log('error getting rating', err);
       });
-  },[])
+  }, []);
 
   const convertDecimalToQtr = (decimal) => {
     var buckets = [0.25, 0.5, 0.75, 1];
@@ -47,7 +47,7 @@ const Stars = (props) => {
         }
       }
     }
-  }
+  };
 
   const getStarPercent = (input) => {
     var integer = Math.floor(input);
@@ -61,15 +61,15 @@ const Stars = (props) => {
       var index = convertDecimalToQtr(decimal);
       return qtrPercent[integer][index];
     }
-  }
+  };
 
-    const style = { width: getStarPercent(rating) };
-    return (
-      <div className='stars-outer'>
-        <div className='stars-inner' style={style} > </div>
-      </div>
-    );
-}
+  const style = { width: getStarPercent(rating) };
+  return (
+    <div className='stars-outer'>
+      <div className='stars-inner' style={style} > </div>
+    </div>
+  );
+};
 
 export default Stars;
 
