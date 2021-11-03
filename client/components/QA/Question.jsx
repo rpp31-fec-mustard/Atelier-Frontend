@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Answer from './Answer.jsx';
+import AnswerModal from './AnswerModal.jsx';
 import _ from 'underscore';
 
 
 const Question = (props) => {
+
+  const [count, setCount] = useState(2);
+  const [modal, setModal] = useState(false);
+  const hideModal = () => {
+    setModal(false);
+  };
   var keys = [];
   var answers = [];
   props.answer.map((answer) => {
@@ -23,10 +30,7 @@ const Question = (props) => {
   }
 
   var sortedAnswers = unsortedAnswers.reverse();
-
   var displayAnswers = [];
-
-  const [count, setCount] = useState(2);
 
   const addAnswers = () => {
     for (let i = 0; i < count; i++) {
@@ -43,15 +47,22 @@ const Question = (props) => {
 
   if (displayAnswers.length === 0) {
     return (
-      <div className="questionEntry">
-        <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
-        {/* <div>No answers yet. Contribute an answer!</div> */}
+      <div>
+        <div className="questionEntry">Q: {props.question}
+          <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
+          <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
+          <AnswerModal show={modal} hide={hideModal}/>
+        </div>
       </div>
     );
   } else if (displayAnswers.length < sortedAnswers.length) {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="questionEntry">Q: {props.question}
+          <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
+          <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
+          <AnswerModal show={modal} hide={hideModal}/>
+        </div>
         <div className="answer"> A:
           <div className="answerEntry">
             {displayAnswers.map((answer, i) =>
@@ -72,7 +83,11 @@ const Question = (props) => {
   } else if ((displayAnswers.length === sortedAnswers.length) && sortedAnswers.length !== 2) {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="questionEntry">Q: {props.question}
+          <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
+          <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
+          <AnswerModal show={modal} hide={hideModal}/>
+        </div>
         <div className="answer"> A:
           <div className="answerEntry">
             {displayAnswers.map((answer, i) =>
@@ -93,7 +108,11 @@ const Question = (props) => {
   } else {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
+        <div className="questionEntry">Q: {props.question}
+          <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
+          <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
+          <AnswerModal show={modal} hide={hideModal}/>
+        </div>
         <div className="answer"> A:
           <div className="answerEntry">
             {displayAnswers.map((answer, i) =>
@@ -112,7 +131,5 @@ const Question = (props) => {
     );
   }
 };
-
-
 
 export default Question;

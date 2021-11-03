@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
 import Answer from './Answer.jsx';
+import QuestionModal from './QuestionModal.jsx';
 import _ from 'underscore';
 
 const Q_A = (props) => {
@@ -10,6 +11,10 @@ const Q_A = (props) => {
   var displayQuestions = [];
 
   const [count, setCount] = useState(2);
+  const [show, setShow] = useState(false);
+  const closeModal = () => {
+    setShow(false);
+  };
   const addQuestion = () => {
     for (let i = 0; i < count; i++) {
       if (!sortedQuestions[i]) {
@@ -27,7 +32,8 @@ const Q_A = (props) => {
   if (sortedQuestions.length === 0) {
     return (
       <div className="questionButton">
-        <button>Add Questions +</button>
+        <button onClick={() => setShow(true)}>Add Questions +</button>
+        <QuestionModal show={show} hide={closeModal}/>
       </div>
     );
   } else if (displayQuestions.length !== sortedQuestions.length) {
@@ -44,7 +50,8 @@ const Q_A = (props) => {
         </div>
         <div className="questionButton">
           <button onClick={() => setCount(count + 2)}>More Questions</button>
-          <button>Add Questions +</button>
+          <button onClick={() => setShow(true)}>Add Questions +</button>
+          <QuestionModal show={show} hide={closeModal}/>
         </div>
       </div>
     );
@@ -61,7 +68,8 @@ const Q_A = (props) => {
           )}
         </div>
         <div className="questionButton">
-          <button>Add Questions +</button>
+          <button onClick={() => setShow(true)}>Add Questions +</button>
+          <QuestionModal show={show} hide={closeModal}/>
         </div>
       </div>
     );
