@@ -4,6 +4,7 @@ dist
 bundle.js
 client/public/bundle.js
 dummyData.js
+test/coverage
 
 ## API Keys ##
 API_paths.txt
