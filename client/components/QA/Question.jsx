@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Answer from './Answer.jsx';
+import AnswerList from './AnswerList.jsx';
+import QuestionList from './QuestionList.jsx';
 import _ from 'underscore';
 
 
 const Question = (props) => {
+
+  const [count, setCount] = useState(2);
+
   var keys = [];
   var answers = [];
   props.answer.map((answer) => {
@@ -23,10 +27,7 @@ const Question = (props) => {
   }
 
   var sortedAnswers = unsortedAnswers.reverse();
-
   var displayAnswers = [];
-
-  const [count, setCount] = useState(2);
 
   const addAnswers = () => {
     for (let i = 0; i < count; i++) {
@@ -43,76 +44,34 @@ const Question = (props) => {
 
   if (displayAnswers.length === 0) {
     return (
-      <div className="questionEntry">
-        <div>Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
-        {/* <div>No answers yet. Contribute an answer!</div> */}
+      <div>
+        <QuestionList question={props.question} helpfulness={props.helpfulness}/>
       </div>
     );
   } else if (displayAnswers.length < sortedAnswers.length) {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
-        <div className="answer"> A:
-          <div className="answerEntry">
-            {displayAnswers.map((answer, i) =>
-              <Answer
-                key={i}
-                name={answer.answerer_name}
-                id={answer.id}
-                answer={answer.body}
-                date={answer.date}
-                helpfulness={answer.helpfulness}
-              />
-            )}
-          </div>
-        </div>
+        <QuestionList question={props.question} helpfulness={props.helpfulness}/>
+        <AnswerList displayAnswers={displayAnswers}/>
         <div className="expandCollapseAnswers" onClick={() => setCount(sortedAnswers.length)}><small>LOAD MORE ANSWERS</small></div>
       </div>
     );
   } else if ((displayAnswers.length === sortedAnswers.length) && sortedAnswers.length !== 2) {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
-        <div className="answer"> A:
-          <div className="answerEntry">
-            {displayAnswers.map((answer, i) =>
-              <Answer
-                key={i}
-                name={answer.answerer_name}
-                id={answer.id}
-                answer={answer.body}
-                date={answer.date}
-                helpfulness={answer.helpfulness}
-              />
-            )}
-          </div>
-        </div>
+        <QuestionList question={props.question} helpfulness={props.helpfulness}/>
+        <AnswerList displayAnswers={displayAnswers}/>
         <div className="expandCollapseAnswers" onClick={() => setCount(2)}><small>COLLAPSE ANSWERS</small></div>
       </div>
     );
   } else {
     return (
       <div>
-        <div className="questionEntry">Q: {props.question} <small>Helpful? Yes({props.helpfulness}) | Add Answer</small></div>
-        <div className="answer"> A:
-          <div className="answerEntry">
-            {displayAnswers.map((answer, i) =>
-              <Answer
-                key={i}
-                name={answer.answerer_name}
-                id={answer.id}
-                answer={answer.body}
-                date={answer.date}
-                helpfulness={answer.helpfulness}
-              />
-            )}
-          </div>
-        </div>
+        <QuestionList question={props.question} helpfulness={props.helpfulness}/>
+        <AnswerList displayAnswers={displayAnswers}/>
       </div>
     );
   }
 };
-
-
 
 export default Question;
