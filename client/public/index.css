@@ -429,6 +429,11 @@ progress::-webkit-progress-value {
   position: relative;
 }
 
+.numStar {
+  border: none;
+  cursor: pointer;
+}
+
 .hoverMessage {
   position: absolute;
   bottom: 15px;
@@ -437,5 +442,7 @@ progress::-webkit-progress-value {
 }
 
 .star:hover .hoverMessage {
+  cursor: pointer;
   visibility: visible;
 }
+

@@ -29,25 +29,30 @@ class Ratings extends React.Component {
         </div>
         <div className='starBreakdown'>
           Star Breakdown
-          <div className='star' onClick={this.props.handleChange.bind(this)}>5 stars:
-          <span className='hoverMessage'>filter by 5 stars</span>
+          <div className='star'>
+            <div className='numStar' onClick={this.props.handleChange.bind(this)}>5 stars:</div>
+            <span className='hoverMessage'>filter by 5 stars</span>
             <progress className="star_bar" max="100" value="70"> 70% </progress>
           </div>
-          <div className='star' onClick={this.props.handleChange.bind(this)}>4 stars:
-          <span className='hoverMessage'>filter by 4 stars</span>
-           <progress className="star_bar" max="100" value="90"></progress>
+          <div className='star' >
+            <div className='numStar' onClick={this.props.handleChange.bind(this)}>4 stars:</div>
+            <span className='hoverMessage'>filter by 4 stars</span>
+            <progress className="star_bar" max="100" value="90"></progress>
           </div>
-          <div className='star' onClick={this.props.handleChange.bind(this)}>3 stars:
-          <span className='hoverMessage'>filter by 3 stars</span>
-           <progress className="star_bar" max="100" value="30"></progress>
+          <div className='star'>
+            <div className='numStar' onClick={this.props.handleChange.bind(this)}>3 stars:</div>
+            <span className='hoverMessage'>filter by 3 stars</span>
+            <progress className="star_bar" max="100" value="30"></progress>
           </div>
-          <div className='star' onClick={this.props.handleChange.bind(this)}>2 stars:
-          <span className='hoverMessage'>filter by 2 stars</span>
-           <progress className="star_bar" max="100" value="50"></progress>
+          <div className='star' onClick={this.props.handleChange.bind(this)}>
+            <div className='numStar' onClick={this.props.handleChange.bind(this)}>2 stars:</div>
+            <span className='hoverMessage'>filter by 2 stars</span>
+            <progress className="star_bar" max="100" value="50"></progress>
           </div>
-          <div className='star' onClick={this.props.handleChange.bind(this)}>1 stars:
-          <span className='hoverMessage'>filter by 1 star</span>
-          <progress className="star_bar" max="100" value="20"></progress>
+          <div className='star' onClick={this.props.handleChange.bind(this)}>
+            <div className='numStar' onClick={this.props.handleChange.bind(this)}>1 stars:</div>
+            <span className='hoverMessage'>filter by 1 star</span>
+            <progress className="star_bar" max="100" value="20"></progress>
           </div>
         </div>
         <div className='productBreakdown'>Product Breakdown</div>
