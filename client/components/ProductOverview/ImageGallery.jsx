@@ -20,7 +20,10 @@ const ImageGallery = ({images}) => {
     return (
       <div className='image_gallery_po' style={{
         color:'red',
-        backgroundImage: `url(${images.photos[index].url})`
+        backgroundImage: `url(${images.photos[index].url})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover'
+
       }}>
         <ThumbnailsBar />
         <ArrowLeft />
