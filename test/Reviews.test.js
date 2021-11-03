@@ -28,95 +28,56 @@ afterEach(() => {
   container = null;
 });
 
-<<<<<<< HEAD
-let reviewsArr =
-[
-  {
-    review_id: 1016925,
-=======
 let reviewsArr = [
   {
     reviewId: 1016925,
->>>>>>> main
     rating: 5,
     summary: 'This product was great!',
     recommend: true,
     response: '',
     body: 'I really did or did not like this product based on whether it was sustainably sourced. Then I found out that its made from nothing at all.',
     date: '2019-01-01T00:00:00.000Z',
-<<<<<<< HEAD
-    reviewer_name: 'funtime',
-=======
     reviewerName: 'funtime',
->>>>>>> main
     helpfulness: 17,
     photos: []
   },
   {
-<<<<<<< HEAD
-    review_id: 1016926,
-=======
     reviewId: 1016926,
->>>>>>> main
     rating: 4,
     summary: 'This product was ok!',
     recommend: false,
     response: '',
     body: 'I really did not like this product solely because I am tiny and do not fit into it.',
     date: '2019-01-11T00:00:00.000Z',
-<<<<<<< HEAD
-    reviewer_name: 'mymainstreammother',
-=======
     reviewerName: 'mymainstreammother',
->>>>>>> main
     helpfulness: 2,
     photos: []
   },
   {
-<<<<<<< HEAD
-    review_id: 1074951,
-=======
     reviewId: 1074951,
->>>>>>> main
     rating: 5,
     summary: 'I love it!!',
     recommend: false,
     response: null,
     body: 'Just the best, I live for this product',
     date: '2021-10-30T00:00:00.000Z',
-<<<<<<< HEAD
-    reviewer_name: 'Clayton',
-=======
     reviewerName: 'Clayton',
->>>>>>> main
     helpfulness: 0,
     photos: []
   },
   {
-<<<<<<< HEAD
-    review_id: 1074950,
-=======
     reviewId: 1074950,
->>>>>>> main
     rating: 5,
     summary: 'hello',
     recommend: false,
     response: null,
     body: 'a',
     date: '2021-10-30T00:00:00.000Z',
-<<<<<<< HEAD
-    reviewer_name: 'Clayton',
-    helpfulness: 0,
-    photos: [Array]
-  }
-]
-=======
     reviewerName: 'Clayton',
     helpfulness: 0,
     photos: [Array]
   }
 ];
->>>>>>> main
 
 test('Four module_containers should be rendering', () => {
   act(() => {
@@ -146,7 +107,7 @@ test('checks reviews api get call', () => {
   expect(spy).toHaveBeenCalled();
   spy.mockReset();
   spy.mockRestore();
-})
+});
 
 test('checks reviewsList component', () => {
   const wrapper = mount(<ReviewsList list={reviewsArr} />);

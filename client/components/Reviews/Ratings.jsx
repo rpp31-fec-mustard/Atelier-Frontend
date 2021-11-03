@@ -7,14 +7,14 @@ class Ratings extends React.Component {
     super(props);
     this.state = {
       overallRating: '0'
-    }
+    };
   }
 
   getOverallRating(rating) {
-    rating = Math.round(rating * 10) / 10
+    rating = Math.round(rating * 10) / 10;
     this.setState({
       overallRating: rating
-    })
+    });
   }
 
   render() {
@@ -24,7 +24,7 @@ class Ratings extends React.Component {
         <div className='overall'>
           <section className='overallRating'> {this.state.overallRating} </section>
           <section className='starScale'>
-          <Stars getOverallRating={this.getOverallRating.bind(this)} productId={this.props.productId} />
+            <Stars getOverallRating={this.getOverallRating.bind(this)} productId={this.props.productId} />
           </section>
         </div>
         <div className='starBreakdown'>
