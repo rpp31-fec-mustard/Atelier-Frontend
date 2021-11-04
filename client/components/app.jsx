@@ -71,7 +71,6 @@ class App extends React.Component {
       });
   }
 
-
   render () {
     return (
       <div id="index">
@@ -79,7 +78,7 @@ class App extends React.Component {
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related key={this.state.productId} product={this.state.productId}/>
         <QA product={this.state.productId}/>
-        <Reviews product={this.state.productId} />
+        <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>
     );
   }
