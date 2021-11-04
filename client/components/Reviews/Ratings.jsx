@@ -55,7 +55,51 @@ class Ratings extends React.Component {
             <progress className="star_bar" max="100" value="20"></progress>
           </div>
         </div>
-        <div className='productBreakdown'>Product Breakdown</div>
+        <div className='productBreakdown'>
+          <div className='charRatingEntry'>
+            <section className='characteristicName'> size </section>
+            <section className='pBreakdownScale'>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <i class="fas fa-caret-down indicator"></i>
+            </section>
+            <section className='ratingMeaning'>
+              <section>too small</section>
+              <section>perfect</section>
+              <section>too big</section>
+            </section>
+          </div>
+          <div className='charRatingEntry'>
+            <section className='characteristicName'> comfort </section>
+            <section className='pBreakdownScale'>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <i class="fas fa-caret-down indicator"></i>
+            </section>
+            <section className='ratingMeaning'>
+              <section>poor</section>
+              <section>perfect</section>
+              <section>great</section>
+            </section>
+          </div>
+          <div className='charRatingEntry'>
+            <section className='characteristicName'> fit </section>
+            <section className='pBreakdownScale'>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <section className='innerBar'></section>
+              <i class="fas fa-caret-down indicator"></i>
+            </section>
+            <section className='ratingMeaning'>
+              <section>too small</section>
+              <section>perfect</section>
+              <section>too big</section>
+            </section>
+          </div>
+        </div>
+
       </div>
     );
   }
