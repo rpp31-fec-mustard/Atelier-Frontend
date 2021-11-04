@@ -43,7 +43,7 @@ const ProductCard = (props) => {
           <div className="prod-card-info category">{props.product.category}</div>
           <div className="prod-card-info name">{props.product.name}</div>
           <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
-          <div className="prod-card-info rating"><Stars productId={props.product.productId}/></div>
+          <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
         </a>
         <div className="prod-comparison-container">
           {isHovering && <ProductComparison />}

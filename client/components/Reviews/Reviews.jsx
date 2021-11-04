@@ -60,7 +60,7 @@ class Reviews extends React.Component {
             displayedReviews: result.reviewsArr
           });
         } else {
-          this.filterReviews(result.reviewsArr, this.state.starFilter)
+          this.filterReviews(result.reviewsArr, this.state.starFilter);
         }
       })
         .catch((err) => {
@@ -92,7 +92,7 @@ class Reviews extends React.Component {
     let starFilter = this.state.starFilter;
     let filteredReviews = [];
     if (starFilter.length === 0) {
-      starFilter.push(clickedStar)
+      starFilter.push(clickedStar);
       for (var i = 0; i < allReviews.length; i++) {
         let currRating = allReviews[i].rating.toString();
         if (currRating === clickedStar) {

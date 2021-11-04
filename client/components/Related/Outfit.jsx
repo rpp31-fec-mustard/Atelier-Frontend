@@ -11,14 +11,7 @@ const Outfit = (props) => {
       return (
         <ProductCard
           key={item.id}
-          className={item.id}
-          handleX={props.handleX}
-          productId={item.id}
-          image={item.thumbnailUrl}
-          category={item.category}
-          name={item.name}
-          price={item.price}
-          rating={item.rating}
+          product={item}
           outfit={true}
         />
       );

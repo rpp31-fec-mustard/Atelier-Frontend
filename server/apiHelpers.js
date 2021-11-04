@@ -4,7 +4,6 @@ const config = require('../config.js');
 const auth = { headers: {Authorization: `${config.key}`} };
 
 
-//testing
 const getProduct = (productId, cb) => {
   // console.log('productId :', typeof productId, productId);
 
@@ -12,9 +11,9 @@ const getProduct = (productId, cb) => {
     .then((result) => {
       cb(null, result.data);
     })
-    .catch((err) => {
-      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
-      cb(err);
+    .catch((error) => {
+      console.log('API Helper getProduct error: ', error);
+      cb(error);
     });
 };
 
@@ -24,9 +23,9 @@ const getProductStyles = (productId, cb) => {
     .then((result) => {
       cb(null, result.data);
     })
-    .catch((err) => {
-      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
-      cb(err);
+    .catch((error) => {
+      console.log('API Helper getProductStyles error: ', error);
+      cb(error);
     });
 };
 
@@ -47,19 +46,19 @@ const getRating = (productId) => {
       // in the case where product has no reviews
       return 0;
     })
-    .catch((err) => {
-      console.log('API Helper error getting rating', err);
+    .catch((error) => {
+      console.log('API Helper getRating error: ', error);
     });
 };
 
 const getPrimaryStyle = (productId) => {
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,auth)
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((response) => {
       const primaryStyle = response.data.results[0];
       return primaryStyle;
     })
     .catch((error) => {
-      throw error;
+      console.log('API Helper getPrimaryStyle error: ', error);
     });
 };
 
@@ -85,10 +84,13 @@ const getRelated = (productId) => {
                     const salePrice = primaryStyle.sale_price;
                     return { id, category, name, rating, thumbnailUrl, originalPrice, salePrice};
                   }); // consolidates and returns all product information including thumbnail url and price
+                })
+                .catch((error) => {
+                  console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
                 });
             })
             .catch((error) => {
-              throw error;
+              console.log('API Helper getRelated error at step getRating: ', error);
             });
         })
       );
@@ -97,8 +99,8 @@ const getRelated = (productId) => {
     .then((relatedList) => {
       return relatedList;
     })
-    .catch((err) => {
-      return err;
+    .catch((error) => {
+      console.log('API Helper getRelated error at getting full related items list: ', error);
     });
 };
 
@@ -108,7 +110,7 @@ const getReviewMeta = (id) => {
       return result.data;
     })
     .catch((error) => {
-      throw error;
+      console.log('API Helper getReviewMeta error: ', error);
     });
 };
 
@@ -123,8 +125,8 @@ const getReviews = (id, sort) => {
         return reviewsObj;
       });
     })
-    .catch((err) => {
-      return err;
+    .catch((error) => {
+      console.log('API Helper getReviews error: ', error);
     });
 };
 
@@ -135,7 +137,7 @@ const putReviewHelpfulness = (id) => {
       return result;
     })
     .catch((err) => {
-      return err;
+      console.log('API Helper putReviewHelpfulness error: ', error);
     });
 };
 
@@ -147,7 +149,7 @@ const getQuestions = (productId) => {
       return results.data.results;
     })
     .catch((err) => {
-      return err;
+      console.log('API Helper getQuestions error: ', error);
     });
 };
 

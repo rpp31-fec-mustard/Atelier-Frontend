@@ -31,7 +31,7 @@ const Stars = (props) => {
       setRating(result.data);
     })
       .catch((err) => {
-        console.log('error getting rating', err);
+        console.log('Client unable to get rating', err);
       });
   }, []);
 

@@ -20,7 +20,7 @@ class App extends React.Component {
 
 
   randomizer(id) {
-    console.log('id :', id);
+    // console.log('id :', id);
     new Promise((works, busted) => {
       this.setState({productId: id});
       works();
@@ -28,6 +28,9 @@ class App extends React.Component {
       .then(() => {
         this.getProductId(this.state.productId);
         this.getProductStyles(this.state.productId);
+      })
+      .catch((error) => {
+        console.log('Randomizer not working: ', error);
       });
   }
 
@@ -47,8 +50,8 @@ class App extends React.Component {
       .then((res) => {
         this.setState({product: res.data});
       })
-      .catch((err) => {
-        console.log('Error retrieving product/all: ', err);
+      .catch((error) => {
+        console.log('Error retrieving product/all: ', error);
       });
   }
 
@@ -63,8 +66,8 @@ class App extends React.Component {
         // console.log('@client res product/styles:', res.data);
         this.setState({styles: res.data});
       })
-      .catch((err) => {
-        console.log('Error retrieving product/styles: ', err);
+      .catch((error) => {
+        console.log('Error retrieving product/styles: ', error);
       });
   }
 

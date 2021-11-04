@@ -15,7 +15,7 @@ const Related = (props) => {
         setRelatedProducts(result.data);
       })
       .catch((error) => {
-        console.log({error});
+        console.log('Client unable to get related products: ', error);
       });
   }, []);
 
