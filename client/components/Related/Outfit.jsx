@@ -4,22 +4,21 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const Outfit = (props) => {
-  const outfitProducts = props.outfitList.map((item) => {
-    return (
-      <ProductCard
-        key={item.id}
-        className={item.id}
-        handleX={props.handleX}
-        id={item.id}
-        image={item.thumbnailUrl}
-        category={item.category}
-        name={item.name}
-        price={item.price}
-        rating={item.rating}
-        outfit={true}
-      />
-    );
-  });
+  let outfitProducts;
+
+  if (props.outfitList.length) {
+    outfitProducts = props.outfitList.map((item) => {
+      return (
+        <ProductCard
+          key={item.id}
+          product={item}
+          outfit={true}
+        />
+      );
+    });
+  } else {
+    outfitProducts = <div className="add-product">Add a product here<br></br><i className="fas fa-plus"></i></div>;
+  }
 
   return (
     <div id="your-outfit" className="related-submodule">

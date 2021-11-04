@@ -11,8 +11,12 @@ class Ratings extends React.Component {
   }
 
   getOverallRating(rating) {
-    rating = Math.round(rating * 10) / 10;
-    return rating;
+    if (typeof rating === 'number') {
+      rating = Math.round(rating * 10) / 10;
+      this.setState({
+        overallRating: rating
+      });
+    }
   }
 
   getPercentRecommend() {
@@ -21,7 +25,9 @@ class Ratings extends React.Component {
       let trueCount = Number(this.props.meta.recommended.true);
       let total = falseCount + trueCount;
       let percent = Math.round((this.props.meta.recommended.true / total) * 100);
-      return percent + '% of reviews recommend this product';
+      if (percent) {
+        return percent + '% of reviews recommend this product';
+      }
     }
   }
 
@@ -30,9 +36,9 @@ class Ratings extends React.Component {
       <div className='ratings_container'>
         <h1> Ratings Breakdown </h1>
         <div className='overall'>
-          <section className='overallRating'> {this.getOverallRating(this.props.rating)}
+          <section className='overallRating'> {this.state.overallRating}
             <section className='starScale'>
-              <Stars rating={this.props.rating} productId={this.props.productId} />
+              <Stars rating={this.props.rating} getRating={this.getOverallRating.bind(this)} productId={this.props.productId} />
             </section>
           </section>
           <section className='percentRecommend'>{this.getPercentRecommend()}</section>

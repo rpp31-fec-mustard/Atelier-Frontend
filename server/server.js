@@ -34,7 +34,6 @@ app.get('/product/styles', (req, res) => {
   });
 });
 
-
 app.get('/getReviews', (req, res) => {
   let id = req.query.id;
   let sort = req.query.sort;
@@ -51,21 +50,17 @@ app.post('/related', (req, res) => {
       res.status(200).send(relatedList);
     })
     .catch((error) => {
-      // console.log({error});
       res.status(500).send(error).end();
     });
 });
 
-app.get('/getOverallRating', (req, res) => {
-  api.getRating(req.query[0]).then((result) => {
-    var obj = {
-      rating: result
-    };
-    res.status(200).send(obj);
-  }).catch((err) => {
-    // console.log(err)
-    res.sendStatus(500).end();
-  });
+app.post('/getRating', (req, res) => {
+  api.getRating(req.body.productId)
+    .then((rating) => {
+      res.status(200).send(rating.toString());
+    }).catch((err) => {
+      res.sendStatus(500).end();
+    });
 });
 
 

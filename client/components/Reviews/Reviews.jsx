@@ -157,7 +157,7 @@ class Reviews extends React.Component {
           <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
         </div>
         <div className='reviews'>
-          <Ratings rating={this.props.rating} handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} />
+          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} />
           <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
         </div>
       </div>
