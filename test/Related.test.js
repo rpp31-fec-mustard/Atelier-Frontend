@@ -8,6 +8,20 @@ configure({ adapter: new Adapter() });
 
 import Related from '../client/components/Related/Related.jsx';
 
+let container = null;
+beforeEach(() => {
+  // setup a DOM element as a render target
+  container = document.createElement('div');
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  unmountComponentAtNode(container);
+  container.remove();
+  container = null;
+});
+
 describe('Related products module: render tests', () => {
   const related = shallow(<Related />);
   test('Module should render', () => {
