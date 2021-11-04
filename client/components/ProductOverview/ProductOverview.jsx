@@ -24,11 +24,11 @@ import Price from '../Global/Price.jsx';
 //set style at this level
 
 const ProductOverview = ({styles, product}) => {
-  console.log('PO styles :', styles);
-  console.log('PO product :', product);
+//   console.log('PO styles :', styles);
+//   console.log('PO product :', product);
 
   const [styleIndex, setStyle] = useState(0);
-  console.log('styleIndex :', styleIndex);
+//   console.log('styleIndex :', styleIndex);
 
 
   if (styles.product_id && product.id ) {
@@ -75,7 +75,7 @@ const ProductOverview = ({styles, product}) => {
       </div>
     );
   } else {
-    console.log('props load delayed');
+    // console.log('props load delayed');
     return <div></div>;
   }
 };

@@ -200,7 +200,7 @@ button {
 /* *** RELATED *** */
 
 :root {
-  --prod-card-width: 250px;
+  --prod-card-width: 20%;
   --prod-card-height: 300px;
   --add-card-height: 300px;
   --prod-img-height: 200px;

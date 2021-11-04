@@ -34,7 +34,6 @@ app.get('/product/styles', (req, res) => {
   });
 });
 
-
 app.get('/getReviews', (req, res) => {
   let id = req.query.id;
   let sort = req.query.sort;

@@ -60,7 +60,7 @@ class App extends React.Component {
       }
     })
       .then((res) => {
-        console.log('@client res product/styles:', res.data);
+        // console.log('@client res product/styles:', res.data);
         this.setState({styles: res.data});
       })
       .catch((err) => {

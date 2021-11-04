@@ -50,7 +50,6 @@ const Related = (props) => {
       />
       <Outfit
         outfitList={outfitList}
-        // handleAction={handleAction}
       />
     </div>
   );

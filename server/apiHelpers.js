@@ -48,10 +48,7 @@ const getRating = (productId) => {
         let ratingSum = reviews.reduce((ratingSum, currentReview) => {
           return ratingSum + currentReview.rating;
         }, 0);
-
-
         const avgRating = ratingSum / reviews.length;
-        console.log({ratingSum});
 
         return avgRating;
       }
@@ -59,7 +56,7 @@ const getRating = (productId) => {
       return 0;
     })
     .catch((err) => {
-      console.log('Error getting rating', err);
+      console.log('API Helper error getting rating', err);
     });
 };
 
