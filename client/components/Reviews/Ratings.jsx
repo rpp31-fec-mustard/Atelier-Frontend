@@ -34,7 +34,8 @@ class Ratings extends React.Component {
   render() {
     return (
       <div className='ratings_container'>
-        <h1> Ratings Breakdown </h1>
+        <h3> Ratings Breakdown </h3>
+        <div className='ratingsContent'>
         <div className='overall'>
           <section className='overallRating'> {this.state.overallRating}
             <section className='starScale'>
@@ -44,7 +45,6 @@ class Ratings extends React.Component {
           <section className='percentRecommend'>{this.getPercentRecommend()}</section>
         </div>
         <div className='starBreakdown'>
-          Star Breakdown
           <div className='star'>
             <div className='numStar' onClick={this.props.handleChange.bind(this)}>5 stars:</div>
             <span className='hoverMessage'>filter by 5 stars</span>
@@ -78,7 +78,7 @@ class Ratings extends React.Component {
               <section className='innerBar'></section>
               <section className='innerBar'></section>
               <section className='innerBar'></section>
-              <i class="fas fa-caret-down indicator"></i>
+              <i className="fas fa-caret-down indicator"></i>
             </section>
             <section className='ratingMeaning'>
               <section>too small</section>
@@ -92,7 +92,7 @@ class Ratings extends React.Component {
               <section className='innerBar'></section>
               <section className='innerBar'></section>
               <section className='innerBar'></section>
-              <i class="fas fa-caret-down indicator"></i>
+              <i className="fas fa-caret-down indicator"></i>
             </section>
             <section className='ratingMeaning'>
               <section>poor</section>
@@ -106,7 +106,7 @@ class Ratings extends React.Component {
               <section className='innerBar'></section>
               <section className='innerBar'></section>
               <section className='innerBar'></section>
-              <i class="fas fa-caret-down indicator"></i>
+              <i className="fas fa-caret-down indicator"></i>
             </section>
             <section className='ratingMeaning'>
               <section>too small</section>
@@ -114,6 +114,8 @@ class Ratings extends React.Component {
               <section>too big</section>
             </section>
           </div>
+        </div>
+
         </div>
 
       </div>

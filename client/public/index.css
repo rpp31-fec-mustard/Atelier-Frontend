@@ -456,6 +456,15 @@ button {
   width: 50%;
   height: 100%;
   color: rgb(59, 58, 58);
+  border: none;
+}
+
+.ratingsContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .entry_container {
@@ -480,6 +489,7 @@ button {
   color: rgb(77, 63, 63);
  justify-content: center;
  align-items: center;
+ border: none;
 }
 
 .starScale {
@@ -487,9 +497,11 @@ button {
 }
 
 .starBreakdown {
+  margin-top: 10px;
   height: 40%;
   width: 80%;
   overflow-y: scroll;
+  border: none;
 }
 
 .productBreakdown {
@@ -498,6 +510,7 @@ button {
   height: 40%;
   width: 80%;
   font-size: 10px;
+  border: none;
 }
 
 .star {
@@ -519,6 +532,7 @@ button {
   flex-direction: row;
   font-size: 40px;
   font-weight: bold;
+  border: none;
 }
 
 .starScale {
@@ -529,6 +543,7 @@ button {
   font-size: 75%;
   display: flex;
   flex-direction: row;
+  border: none;
 }
 
 progress {
@@ -596,6 +611,7 @@ progress::-webkit-progress-value {
 .numStar {
   border: none;
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .hoverMessage {
@@ -621,6 +637,7 @@ display: flex;
 flex-direction: row;
 width: 254px;
 margin: 10px 10px 0px 10px;
+border: none;
 }
 
 .innerBar {
@@ -642,15 +659,13 @@ margin: 10px 10px 0px 10px;
 .ratingMeaning {
   display: table;
   width: 100%;
-  table-layout: fixed;    /* For cells of equal size */
+  table-layout: fixed;
 }
 .ratingMeaning section {
   display: table-cell;
   text-align: center;
   font-size: 8px;
 }
-
-
 
 .percentRecommend {
   font-size: 10px;
