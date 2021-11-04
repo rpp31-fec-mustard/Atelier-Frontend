@@ -8,12 +8,21 @@ class QA extends React.Component {
     super(props);
     this.state = {
       productId: this.props.product,
+      productInfo: this.props.productInfo,
       questions: []
     };
   }
 
   componentDidMount() {
     this.getQuestions(this.state.productId);
+  }
+
+  componentDidUpdate() {
+    if (this.state.productInfo !== this.props.productInfo) {
+      this.setState({
+        productInfo: this.props.productInfo
+      });
+    }
   }
 
   getQuestions (id) {
@@ -37,7 +46,7 @@ class QA extends React.Component {
       <div className="module_container">
         <h1>QUESTIONS & ANSWERS</h1>
         <Search/>
-        <Q_A product={this.state.productId} questions={this.state.questions}/>
+        <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo}/>
       </div>
     );
   }
