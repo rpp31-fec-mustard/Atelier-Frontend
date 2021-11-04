@@ -1,5 +1,5 @@
 import React from 'react';
-import Stars from '../Global/Stars.jsx'
+import Stars from '../Global/Stars.jsx';
 
 
 class Ratings extends React.Component {

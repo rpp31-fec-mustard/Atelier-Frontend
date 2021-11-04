@@ -4,9 +4,9 @@ dist
 .DS_Store
 bundle.js*
 dummyData.js
+test/coverage
 
 ## API Keys ##
-API_paths.txt
 config.js
 
 

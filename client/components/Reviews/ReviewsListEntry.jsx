@@ -21,13 +21,13 @@ class ReviewsListEntry extends React.Component {
     dateArr.shift();
     dateArr[1] = dateArr[1] + ', ';
     return dateArr.join(' ');
-  };
+  }
 
   response(res) {
     if (res) {
       return 'Response from seller ' + res;
     }
-  };
+  }
 
   render() {
     return (
