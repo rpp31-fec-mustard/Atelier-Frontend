@@ -1,16 +1,14 @@
 const axios = require('axios');
 const config = require('../config.js');
 
+const auth = { headers: {Authorization: `${config.key}`} };
+
 
 //testing
 const getProduct = (productId, cb) => {
   // console.log('productId :', typeof productId, productId);
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
-    headers: {
-      Authorization: `${config.key}`
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
     .then((result) => {
       cb(null, result.data);
     })
@@ -22,11 +20,7 @@ const getProduct = (productId, cb) => {
 
 const getProductStyles = (productId, cb) => {
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, {
-    headers: {
-      Authorization: `${config.key}`
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((result) => {
       cb(null, result.data);
     })
@@ -36,12 +30,10 @@ const getProductStyles = (productId, cb) => {
     });
 };
 
+// returns a PROMISE that resolves in an average rating of a product
 const getRating = (productId) => {
   return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
-      { headers: { Authorization: `${config.key}` } }
-    ) // returns a PROMISE that resolves in an average rating of a product
+    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, auth)
     .then((result) => {
       const reviews = result.data.results;
       if (reviews.length) {
@@ -61,8 +53,7 @@ const getRating = (productId) => {
 };
 
 const getPrimaryStyle = (productId) => {
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,
-    { headers: { Authorization: `${config.key}` } })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,auth)
     .then((response) => {
       const primaryStyle = response.data.results[0];
       return primaryStyle;
@@ -73,21 +64,13 @@ const getPrimaryStyle = (productId) => {
 };
 
 const getRelated = (productId) => {
-  return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`,
-      { headers: { Authorization: `${config.key}` } }
-    ) // gets list of related prodIds
-    .then((response) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`, auth)
+    .then((response) => { // gets list of related prodIds
       const relatedProdIds = response.data;
       let relatedPromise = Promise.all(
         relatedProdIds.map((productId) => {
-          return axios
-            .get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`,
-              { headers: { Authorization: `${config.key}` } }
-            ) // gets productInfo for each product
-            .then((productInfo) => {
+          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
+            .then((productInfo) => { // gets productInfo for each product
               return getRating(productId).then((rating) => {
                 return {productInfo: productInfo.data, rating: rating};
               }) // gets rating
@@ -120,36 +103,26 @@ const getRelated = (productId) => {
 };
 
 const getReviewMeta = (id) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
-    headers: {
-      Authorization: `${config.key}`,
-    },
-    method: 'get',
-  };
-  return axios.request(options).then((result) => {
-    return result.data;
-  })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`, auth)
+    .then((result) => {
+      return result.data;
+    })
     .catch((error) => {
       throw error;
     });
 };
 
 const getReviews = (id, sort) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`,
-    headers: { Authorization: `${config.key}` },
-    method: 'get',
-  };
-  return axios.request(options).then((result) => {
-    var reviewsObj = {
-      reviewsArr: result.data.results,
-    };
-    return getReviewMeta(id).then((meta) => {
-      reviewsObj.meta = meta;
-      return reviewsObj;
-    });
-  })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`, auth)
+    .then((result) => {
+      var reviewsObj = {
+        reviewsArr: result.data.results,
+      };
+      return getReviewMeta(id).then((meta) => {
+        reviewsObj.meta = meta;
+        return reviewsObj;
+      });
+    })
     .catch((err) => {
       return err;
     });
@@ -157,14 +130,7 @@ const getReviews = (id, sort) => {
 
 
 const putReviewHelpfulness = (id) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`,
-    headers: {
-      'Authorization': `${config.key}`
-    },
-    method: 'put',
-  };
-  axios.request(options)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
     .then((result) => {
       return result;
     })
@@ -176,11 +142,7 @@ const putReviewHelpfulness = (id) => {
 
 const getQuestions = (productId) => {
 
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, {
-    headers: {
-      'Authorization': `${config.key}`
-    }
-  })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, auth)
     .then((results) => {
       return results.data.results;
     })
