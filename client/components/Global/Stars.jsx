@@ -13,24 +13,24 @@ let qtrPercent = {
 const Stars = (props) => {
   const [rating, setRating] = useState('0');
 
-  useEffect(() => {
-    console.log(props.productId);
-    let options = {
-      url: '/getOverallRating',
-      params: props.productId,
-      method: 'get'
-    };
-    axios.request(options).then((result) => {
-      // console.log(result.data.rating);
-      setRating(result.data.rating);
-      if (props.getOverallRating) {
-        props.getOverallRating(result.data.rating);
-      }
-    })
-      .catch((err) => {
-        console.log('error getting rating', err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   console.log(props.productId);
+    // let options = {
+    //   url: '/getOverallRating',
+    //   params: props.productId,
+    //   method: 'get'
+    // };
+    // axios.request(options).then((result) => {
+    //   // console.log(result.data.rating);
+    //   setRating(result.data.rating);
+    //   if (props.getOverallRating) {
+    //     props.getOverallRating(result.data.rating);
+    //   }
+    // })
+    //   .catch((err) => {
+    //     console.log('error getting rating', err);
+    //   });
+  // }, []);
 
   const convertDecimalToQtr = (decimal) => {
     var buckets = [0.25, 0.5, 0.75, 1];
@@ -68,7 +68,7 @@ const Stars = (props) => {
     }
   };
 
-  const style = { width: getStarPercent(rating) };
+  const style = { width: getStarPercent('4.90') };
   return (
     <div className='stars-outer'>
       <div className='stars-inner' style={style} > </div>

@@ -14,6 +14,7 @@ class App extends React.Component {
       productId: '59553',
       product: {},
       styles: {},
+      rating: '',
       randomizer: this.randomizer.bind(this)
     };
   }
@@ -35,6 +36,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getProductId(this.state.productId);
     this.getProductStyles(this.state.productId);
+    this.getOverallRating(this.state.productId);
   }
 
 
@@ -70,6 +72,21 @@ class App extends React.Component {
       });
   }
 
+  getOverallRating(id) {
+    let options = {
+      url: '/getOverallRating',
+      params: id,
+      method: 'get'
+    };
+    axios.request(options).then((result) => {
+      this.setState({
+        rating: result.data.rating.toFixed(2)
+      });
+    })
+      .catch((err) => {
+        console.log('error getting rating', err);
+      });
+  }
 
   render () {
     return (
@@ -78,7 +95,7 @@ class App extends React.Component {
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related product={this.state.productId}/>
         <QA product={this.state.productId}/>
-        <Reviews product={this.state.productId} />
+        <Reviews key={this.state.productId + 3} rating={this.state.rating} product={this.state.productId} />
       </div>
     );
   }

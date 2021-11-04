@@ -12,9 +12,7 @@ class Ratings extends React.Component {
 
   getOverallRating(rating) {
     rating = Math.round(rating * 10) / 10;
-    this.setState({
-      overallRating: rating
-    });
+    return rating;
   }
 
   getPercentRecommend() {
@@ -32,9 +30,9 @@ class Ratings extends React.Component {
       <div className='ratings_container'>
         <h1> Ratings Breakdown </h1>
         <div className='overall'>
-          <section className='overallRating'> {this.state.overallRating}
+          <section className='overallRating'> {this.getOverallRating(this.props.rating)}
             <section className='starScale'>
-              <Stars getOverallRating={this.getOverallRating.bind(this)} productId={this.props.productId} />
+              <Stars rating={this.props.rating} productId={this.props.productId} />
             </section>
           </section>
           <section className='percentRecommend'>{this.getPercentRecommend()}</section>
@@ -63,7 +61,7 @@ class Ratings extends React.Component {
           </div>
           <div className='star' >
             <div className='numStar' onClick={this.props.handleChange.bind(this)}>1 stars:</div>
-            {/* <span className='hoverMessage'>filter by 1 star</span> */}
+            <span className='hoverMessage'>filter by 1 star</span>
             <progress className="star_bar" max="100" value="0"></progress>
           </div>
         </div>
