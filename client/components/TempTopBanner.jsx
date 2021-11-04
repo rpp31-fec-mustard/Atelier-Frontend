@@ -10,7 +10,7 @@ const TempTopBanner = ({randomizerCb}) => {
       return Math.floor(Math.random() * (max - min + 1) + min);
     };
 
-    randomizerCb(getRandomIntInclusive(59553, 59700).toString());
+    randomizerCb(getRandomIntInclusive(59553, 60563).toString());
   };
 
 
@@ -21,7 +21,7 @@ const TempTopBanner = ({randomizerCb}) => {
         <h3 onClick={clickHandler}>SEARCH</h3>
       </div>
       <p id='announcements'>
-        announcements announcements announcements announcements
+        announcements *** Click search to change product! *** announcements
       </p>
     </div>
   );

@@ -1,6 +1,10 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-import React, {useState} from 'react';
+export const DEBUG = true;
+var mlog = (DEBUG) ? console.log : () => {};
+
+
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
@@ -23,19 +27,49 @@ import Price from '../Global/Price.jsx';
 
 //set style at this level
 
-const ProductOverview = ({styles, product}) => {
-  console.log('PO styles :', styles);
-  console.log('PO product :', product);
-
-  const [styleIndex, setStyle] = useState(0);
-  console.log('styleIndex :', styleIndex);
-
-
-  if (styles.product_id && product.id ) {
+export const ProductOverview = ({styles, product, id}) => {
+  mlog('PO styles :', styles);
+  mlog('PO product :', product);
+  mlog('PO id :', id);
+  const [styleIndex, setIndex] = useState(0);
+  const [style, setStyle] = useState();
 
 
+  // componentDidMount();
 
-  //   console.log('PO:', this.props);
+  useEffect(() => {
+    getProductStyles(id);
+  }, []);
+
+
+  useEffect(() => {
+    getProductStyles(id);
+  }, [id]);
+
+
+  const getProductStyles = (id) => {
+    mlog('this.props.product.id :', id);
+    axios.get('/product/styles', {
+      params: {
+        productId: id
+      }
+    })
+      .then(res => {
+        mlog('@client PO res product/styles:', res.data);
+        setStyle(res.data);
+      })
+      .catch(err => {
+        console.log('Error retrieving product/styles: ', err);
+      });
+  };
+
+
+
+
+
+  if (style && product.id ) {
+
+    // mlog('PO:', );
   //   // const product = this.props.product;
     const {
       description,
@@ -47,8 +81,8 @@ const ProductOverview = ({styles, product}) => {
 
     const {
       results,
-    } = styles;
-  //   console.log('PO results:', results)
+    } = style;
+  //   mlog('PO results:', results)
 
 
 
@@ -75,13 +109,13 @@ const ProductOverview = ({styles, product}) => {
       </div>
     );
   } else {
-    console.log('props load delayed');
+    mlog('props load delayed');
     return <div></div>;
   }
 };
 
 
-export default ProductOverview;
+// export default ProductOverview;
 
 
 /*/example data

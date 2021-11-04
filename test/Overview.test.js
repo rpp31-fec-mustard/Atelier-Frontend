@@ -30,6 +30,15 @@ afterEach(() => {
 });
 
 describe('Render Tests', () => {
+  test('Four module_containers should be rendering', () => {
+    act(() => {
+      render(<App />, container);
+    });
+    const modules = document.getElementsByClassName('module_container');
+    window.onLoad = ()=> {
+      expect(modules.length).toBe(4);
+    }
+  });
 
   test('Product Overview should render', () => {
     act(() => {
@@ -102,9 +111,10 @@ describe('<ProductOverview /> full rendering', () => {
     act(() => {
       render(<App />, container);
     });
-
-    const wrapper = mount(<ProductOverview />);
-    expect(wrapper.contains(<ImageGallery />)).toEqual(true);
+    window.onLoad = () => {
+      const wrapper = mount(<ProductOverview />);
+      expect(wrapper.contains(<ImageGallery />)).toEqual(true);
+    }
   });
 
   it('renders five <Thumbnail /> components', () => {
@@ -112,10 +122,12 @@ describe('<ProductOverview /> full rendering', () => {
       render(<App />, container);
     });
 
+    window.onLoad = () => {
     const wrapper = mount(<ProductOverview />);
     // console.log('test')
     // console.log(wrapper.find(Thumbnail))
     expect(wrapper.find(Thumbnail).length).toEqual(5);
+    }
   });
 });
 

@@ -6,16 +6,20 @@ import ThumbnailsBar from './ImageGalleryDir/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGalleryDir/ArrowLeft.jsx';
 import ArrowRight from './ImageGalleryDir/ArrowRight.jsx';
 import FullScreen from './ImageGalleryDir/FullScreen.jsx';
+import {DEBUG} from './ProductOverview.jsx';
+
+var mlog = (DEBUG) ? console.log : () => {};
+
 
 const ImageGallery = ({images}) => {
-  console.log('images:', images);
+  mlog('images:', images);
 
   const [index, setIndex] = useState(0);
 
   if (images) {
-  // console.log('props.styles :',images);
+  // mlog('props.styles :',images);
     let node = document.getElementsByClassName('image_gallery_po').style;
-    console.log('node', node);
+    mlog('node', node);
 
     return (
       <div className='image_gallery_po' style={{

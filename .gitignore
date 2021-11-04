@@ -3,10 +3,12 @@ package-lock.json
 dist
 .DS_Store
 bundle.js
+bundle.js*
 dummyData.js
 
 ## API Keys ##
 API_paths.txt
+API_product_ref.txt
 config.js
 
 
