@@ -31,8 +31,7 @@ const getProductStyles = (productId, cb) => {
 
 // returns a PROMISE that resolves in an average rating of a product
 const getRating = (productId) => {
-  return axios
-    .get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, auth)
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, auth)
     .then((result) => {
       const reviews = result.data.results;
       if (reviews.length) {

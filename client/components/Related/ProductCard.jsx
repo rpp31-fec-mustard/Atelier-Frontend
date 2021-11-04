@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ActionButton from './ActionButton.jsx';
-import ProductComparison from './ProductComparison.jsx';
+import ProductComparison from './Comparison.jsx';
 import Price from '../Global/Price.jsx';
 import Stars from '../Global/Stars.jsx';
 
@@ -46,7 +46,7 @@ const ProductCard = (props) => {
           <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
         </a>
         <div className="prod-comparison-container">
-          {isHovering && <ProductComparison />}
+          {isHovering && <ProductComparison currentProduct={props.product}/>}
         </div>
       </div>
       {actionButton}
