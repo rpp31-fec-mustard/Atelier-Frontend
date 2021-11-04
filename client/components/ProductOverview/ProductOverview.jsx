@@ -87,7 +87,7 @@ export const ProductOverview = ({styles, product, id}) => {
 
 
     return (
-      <div id='product_overview_main' className="module_container">
+      <div id='product_overview_main' className='module_container'>
         <div className='top01'>
           <ImageGallery images={results[styleIndex]}/>
           <div className='right02'>
