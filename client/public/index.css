@@ -259,7 +259,11 @@ button {
 
 .sale {
   color: red;
+}
+
+.sale span {
   text-decoration: line-through;
+  color: black;
 }
 
 .prod-card-img-wrapper {

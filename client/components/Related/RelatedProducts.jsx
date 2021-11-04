@@ -8,15 +8,8 @@ const RelatedProducts = (props) => {
     return (
       <ProductCard
         key={item.id}
-        className={item.id}
         handleAction={props.handleAction}
-        productId={item.id}
-        image={item.thumbnailUrl}
-        category={item.category}
-        name={item.name}
-        originalPrice={item.originalPrice}
-        salePrice={item.salePrice}
-        rating={item.rating}
+        product={item}
       />
     );
   });
