@@ -91,7 +91,7 @@ export const ProductOverview = ({styles, product, id}) => {
         <div className='top01'>
           <ImageGallery images={results[styleIndex]}/>
           <div className='right02'>
-            <div className='stars_po' ><Stars /></div>
+            <div className='stars_po' ><Stars productId={product.id}/></div>
             <div className='name_block_po'>
               {category}
               <p id='name_po'>{name}</p>

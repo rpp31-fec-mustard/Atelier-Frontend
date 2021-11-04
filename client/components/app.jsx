@@ -21,18 +21,15 @@ class App extends React.Component {
 
   randomizerCb(id) {
     // console.log('id :', id);
-    new Promise((works, busted) => {
+    new Promise((resolve, notResolve) => {
       this.setState({productId: id});
-      works();
+      resolve();
     })
       .then(() => {
         this.getProductId(this.state.productId);
       })
-      // .then(() => {
-      //   this.getProductStyles(this.state.productId);
-      // })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
       });
   }
 
@@ -49,15 +46,13 @@ class App extends React.Component {
         productId: id
       }
     })
-      .then(res => {
-        // console.log('@client res product:', res.data);
+      .then((res) => {
         this.setState({product: res.data});
       })
-      .catch(err => {
-        console.log('Error retrieving product/all: ', err);
+      .catch((error) => {
+        console.log('Error retrieving product/all: ', error);
       });
   }
-
 
 
 
@@ -67,7 +62,7 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner randomizerCb={this.state.randomizerCb}/>
         <ProductOverview product={this.state.product} styles={this.state.styles} id={this.state.productId}/>
-        <Related product={this.state.productId}/>
+        <Related key={this.state.productId} product={this.state.productId}/>
         <QA product={this.state.productId}/>
         <Reviews product={this.state.productId} />
       </div>

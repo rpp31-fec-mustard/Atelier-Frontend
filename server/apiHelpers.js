@@ -1,91 +1,74 @@
 const axios = require('axios');
 const config = require('../config.js');
 
+const auth = { headers: {Authorization: `${config.key}`} };
 
-//testing
+
 const getProduct = (productId, cb) => {
   // console.log('productId :', typeof productId, productId);
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, {
-    headers: {
-      Authorization: `${config.key}`
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
     .then((result) => {
       cb(null, result.data);
     })
-    .catch((err) => {
-      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
-      cb(err);
+    .catch((error) => {
+      console.log('API Helper getProduct error: ', error);
+      cb(error);
     });
 };
 
 const getProductStyles = (productId, cb) => {
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, {
-    headers: {
-      Authorization: `${config.key}`
-    }
-  })
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((result) => {
       cb(null, result.data);
     })
-    .catch((err) => {
-      console.log('\x1b[31m' + '@APIH Error' + '\x1b[0m');
-      cb(err);
+    .catch((error) => {
+      console.log('API Helper getProductStyles error: ', error);
+      cb(error);
     });
 };
 
+// returns a PROMISE that resolves in an average rating of a product
 const getRating = (productId) => {
-  return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`,
-      { headers: { Authorization: `${config.key}` } }
-    ) // returns a PROMISE that resolves in an average rating of a product
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${productId}&count=100`, auth)
     .then((result) => {
       const reviews = result.data.results;
       if (reviews.length) {
-        let ratingSum = reviews.reduce((previousVal, currentVal) => {
-          return previousVal + currentVal.rating;
+        let ratingSum = reviews.reduce((ratingSum, currentReview) => {
+          return ratingSum + currentReview.rating;
         }, 0);
-
         const avgRating = ratingSum / reviews.length;
 
         return avgRating;
       }
-      // in the case where product have no reviews
+      // in the case where product has no reviews
       return 0;
+    })
+    .catch((error) => {
+      console.log('API Helper getRating error: ', error);
     });
 };
 
 const getPrimaryStyle = (productId) => {
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`,
-    { headers: { Authorization: `${config.key}` } })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((response) => {
       const primaryStyle = response.data.results[0];
       return primaryStyle;
     })
     .catch((error) => {
-      throw error;
+      console.log('API Helper getPrimaryStyle error: ', error);
     });
 };
 
 const getRelated = (productId) => {
-  return axios
-    .get(
-      `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`,
-      { headers: { Authorization: `${config.key}` } }
-    ) // gets list of related prodIds
-    .then((response) => {
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/related`, auth)
+    .then((response) => { // gets list of related prodIds
       const relatedProdIds = response.data;
       let relatedPromise = Promise.all(
         relatedProdIds.map((productId) => {
-          return axios
-            .get(
-              `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`,
-              { headers: { Authorization: `${config.key}` } }
-            ) // gets productInfo for each product
-            .then((productInfo) => {
+          return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
+            .then((productInfo) => { // gets productInfo for each product
               return getRating(productId).then((rating) => {
                 return {productInfo: productInfo.data, rating: rating};
               }) // gets rating
@@ -96,13 +79,17 @@ const getRelated = (productId) => {
                     const name = productInfo.productInfo.name;
                     const rating = productInfo.rating;
                     const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
-                    const price = primaryStyle.sale_price ? primaryStyle.sale_price : primaryStyle.original_price;
-                    return { id, category, name, rating, thumbnailUrl, price};
+                    const originalPrice = primaryStyle.original_price;
+                    const salePrice = primaryStyle.sale_price;
+                    return { id, category, name, rating, thumbnailUrl, originalPrice, salePrice};
                   }); // consolidates and returns all product information including thumbnail url and price
+                })
+                .catch((error) => {
+                  console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
                 });
             })
             .catch((error) => {
-              throw error;
+              console.log('API Helper getRelated error at step getRating: ', error);
             });
         })
       );
@@ -111,78 +98,57 @@ const getRelated = (productId) => {
     .then((relatedList) => {
       return relatedList;
     })
-    .catch((err) => {
-      return err;
+    .catch((error) => {
+      console.log('API Helper getRelated error at getting full related items list: ', error);
     });
 };
 
 const getReviewMeta = (id) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`,
-    headers: {
-      Authorization: `${config.key}`,
-    },
-    method: 'get',
-  };
-  return axios.request(options).then((result) => {
-    return result.data;
-  })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`, auth)
+    .then((result) => {
+      return result.data;
+    })
     .catch((error) => {
-      throw error;
+      console.log('API Helper getReviewMeta error: ', error);
     });
 };
 
 const getReviews = (id, sort) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`,
-    headers: { Authorization: `${config.key}` },
-    method: 'get',
-  };
-  return axios.request(options).then((result) => {
-    var reviewsObj = {
-      reviewsArr: result.data.results,
-    };
-    return getReviewMeta(id).then((meta) => {
-      reviewsObj.meta = meta;
-      return reviewsObj;
-    });
-  })
-    .catch((err) => {
-      return err;
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews?product_id=${id}&sort=${sort}&count=100`, auth)
+    .then((result) => {
+      var reviewsObj = {
+        reviewsArr: result.data.results,
+      };
+      return getReviewMeta(id).then((meta) => {
+        reviewsObj.meta = meta;
+        return reviewsObj;
+      });
+    })
+    .catch((error) => {
+      console.log('API Helper getReviews error: ', error);
     });
 };
 
 
 const putReviewHelpfulness = (id) => {
-  let options = {
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`,
-    headers: {
-      'Authorization': `${config.key}`
-    },
-    method: 'put',
-  };
-  axios.request(options)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
     .then((result) => {
       return result;
     })
     .catch((err) => {
-      return err;
+      console.log('API Helper putReviewHelpfulness error: ', error);
     });
 };
 
 
 const getQuestions = (productId) => {
 
-  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, {
-    headers: {
-      'Authorization': `${config.key}`
-    }
-  })
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${productId}&count=100`, auth)
     .then((results) => {
       return results.data.results;
     })
     .catch((err) => {
-      return err;
+      console.log('API Helper getQuestions error: ', error);
     });
 };
 
