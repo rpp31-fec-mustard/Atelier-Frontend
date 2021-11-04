@@ -14,15 +14,17 @@ const Stars = (props) => {
   const [rating, setRating] = useState('0');
 
   useEffect(() => {
+    console.log(props.productId);
     let options = {
       url: '/getOverallRating',
       params: props.productId,
       method: 'get'
     };
     axios.request(options).then((result) => {
-      setRating(result.data.rating)
+      // console.log(result.data.rating);
+      setRating(result.data.rating);
       if (props.getOverallRating) {
-        props.getOverallRating(result.data.rating)
+        props.getOverallRating(result.data.rating);
       }
     })
       .catch((err) => {

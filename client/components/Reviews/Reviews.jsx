@@ -13,7 +13,8 @@ class Reviews extends React.Component {
       id: this.props.product,
       allReviews: [],
       displayedReviews: [],
-      starFilter: []
+      starFilter: [],
+      reviewMeta: []
     };
   }
 
@@ -24,7 +25,7 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      return result.data
+      return result.data;
     })
       .catch((err) => {
         throw err;
@@ -60,7 +61,7 @@ class Reviews extends React.Component {
             displayedReviews: result.reviewsArr
           });
         } else {
-          this.filterReviews(result.reviewsArr, this.state.starFilter)
+          this.filterReviews(result.reviewsArr, this.state.starFilter);
         }
       })
         .catch((err) => {
@@ -92,7 +93,7 @@ class Reviews extends React.Component {
     let starFilter = this.state.starFilter;
     let filteredReviews = [];
     if (starFilter.length === 0) {
-      starFilter.push(clickedStar)
+      starFilter.push(clickedStar);
       for (var i = 0; i < allReviews.length; i++) {
         let currRating = allReviews[i].rating.toString();
         if (currRating === clickedStar) {
@@ -109,7 +110,7 @@ class Reviews extends React.Component {
         if (starFilter.length === 0) {
           this.setState({
             displayedReviews: allReviews,
-            starFilter: starFilter
+            starFilter: []
           });
         } else {
           this.filterReviews(allReviews, starFilter);
@@ -137,7 +138,8 @@ class Reviews extends React.Component {
     this.get(options).then((result) => {
       this.setState({
         allReviews: result.reviewsArr,
-        displayedReviews: result.reviewsArr
+        displayedReviews: result.reviewsArr,
+        reviewMeta: result.meta
       });
     })
       .catch((err) => {
@@ -155,7 +157,7 @@ class Reviews extends React.Component {
           <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
         </div>
         <div className='reviews'>
-          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} />
+          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} />
           <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
         </div>
       </div>

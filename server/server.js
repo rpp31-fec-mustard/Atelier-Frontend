@@ -63,6 +63,7 @@ app.get('/getOverallRating', (req, res) => {
     };
     res.status(200).send(obj);
   }).catch((err) => {
+    // console.log(err)
     res.sendStatus(500).end();
   });
 });
