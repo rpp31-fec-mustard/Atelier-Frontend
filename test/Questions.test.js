@@ -43,9 +43,9 @@ describe('Q&A Module: render tests', () => {
 
   test('renders Q_A Component', () => {
     act(() => {
-      render(<Q_A />, container);
+      render(<Q_A productInfo={{name: 'name'}}/>, container);
     });
-    const component = document.getElementsByClassName('questionList');
+    const component = document.getElementsByClassName('questionButton');
     expect(component.length).toBe(1);
   });
 
