@@ -47,6 +47,7 @@ class App extends React.Component {
       .then((res) => {
         console.log('@client res product:', res.data);
         this.setState({product: res.data});
+        console.log('prodcut id after getproduct:', this.state.productId);
       })
       .catch((err) => {
         console.log('Error retrieving product/all: ', err);
@@ -77,7 +78,7 @@ class App extends React.Component {
         <TempTopBanner randomizer={this.state.randomizer}/>
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
         <Related product={this.state.productId}/>
-        <QA product={this.state.productId}/>
+        <QA key={this.state.productId} product={this.state.productId}/>
         <Reviews product={this.state.productId} />
       </div>
     );

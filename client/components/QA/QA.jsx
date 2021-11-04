@@ -13,10 +13,13 @@ class QA extends React.Component {
   }
 
   componentDidMount() {
+    this.getQuestions(this.state.productId);
+  }
 
+  getQuestions (id) {
     axios.get('/questions', {
       params: {
-        productId: this.state.productId
+        productId: id
       }
     })
       .then((result) => {

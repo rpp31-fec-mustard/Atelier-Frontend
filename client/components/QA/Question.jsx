@@ -56,7 +56,7 @@ const Question = (props) => {
         <div className="expandCollapseAnswers" onClick={() => setCount(sortedAnswers.length)}><small>LOAD MORE ANSWERS</small></div>
       </div>
     );
-  } else if ((displayAnswers.length === sortedAnswers.length) && sortedAnswers.length !== 2) {
+  } else if ((displayAnswers.length === sortedAnswers.length) && sortedAnswers.length > 2) {
     return (
       <div>
         <QuestionList question={props.question} helpfulness={props.helpfulness}/>
