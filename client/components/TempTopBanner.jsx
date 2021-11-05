@@ -1,18 +1,18 @@
 import React from 'react';
 
+const getRandomIntInclusive = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const productId = Math.floor(Math.random() * (max - min + 1) + min);
+  console.log('random productId:', productId);
+  return productId;
+};
+
 const TempTopBanner = ({randomizer}) => {
 
   const clickHandler = () => {
-
-    const getRandomIntInclusive = (min, max) => {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    };
-
     randomizer(getRandomIntInclusive(59553, 59700).toString());
   };
-
 
   return (
     <div id='top_banner'>
