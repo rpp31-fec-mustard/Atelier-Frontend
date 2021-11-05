@@ -54,7 +54,8 @@ const getPrimaryStyle = (productId) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((response) => {
       const primaryStyle = response.data.results[0];
-      return primaryStyle;
+      const styleCount = response.data.results.length;
+      return { primaryStyle, styleCount };
     })
     .catch((error) => {
       console.log('API Helper getPrimaryStyle error: ', error);
@@ -68,28 +69,22 @@ const getRelated = (productId) => {
       let relatedPromise = Promise.all(
         relatedProdIds.map((productId) => {
           return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
-            .then((productInfo) => { // gets productInfo for each product
-              return getRating(productId).then((rating) => {
-                return {productInfo: productInfo.data, rating: rating};
-              }) // gets rating
-                .then((productInfo) => {
-                  return getPrimaryStyle(productInfo.productInfo.id).then((primaryStyle) => {
-                    const id = productInfo.productInfo.id;
-                    const category = productInfo.productInfo.category;
-                    const name = productInfo.productInfo.name;
-                    const rating = productInfo.rating;
-                    const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
-                    const originalPrice = primaryStyle.original_price;
-                    const salePrice = primaryStyle.sale_price;
-                    return { id, category, name, rating, thumbnailUrl, originalPrice, salePrice};
-                  }); // consolidates and returns all product information including thumbnail url and price
-                })
-                .catch((error) => {
-                  console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
-                });
+            .then((productInfo) => {
+              return getPrimaryStyle(productInfo.data.id).then((styleInfo) => {
+                const id = productInfo.data.id;
+                const category = productInfo.data.category;
+                const name = productInfo.data.name;
+                const styleCount = styleInfo.styleCount;
+                const features = productInfo.data.features;
+                const thumbnailUrl = styleInfo.primaryStyle.photos[0].thumbnail_url;
+                const defaultPrice = productInfo.data.default_price;
+                const originalPrice = styleInfo.primaryStyle.original_price;
+                const salePrice = styleInfo.primaryStyle.sale_price;
+                return { id, category, name, styleCount, features, thumbnailUrl, defaultPrice, originalPrice, salePrice};
+              }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {
-              console.log('API Helper getRelated error at step getRating: ', error);
+              console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
             });
         })
       );
