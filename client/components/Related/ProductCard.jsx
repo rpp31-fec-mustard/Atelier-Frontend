@@ -23,7 +23,7 @@ const ProductCard = (props) => {
 
   // setting image in cases of null image
   let image = props.product.thumbnailUrl ? (
-    <img src={props.product.thumbnailUrl} className="prod-card-img"></img>
+    <img src={props.product.thumbnailUrl} className="prod-card-img" alt={props.product.name}></img>
   ) : (
     <div className="prod-card-no-img">No image</div>
   );

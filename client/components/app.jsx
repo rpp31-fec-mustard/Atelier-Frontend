@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59553',
+      productId: '59601',
       product: {},
       styles: {},
       randomizer: this.randomizer.bind(this)
@@ -76,7 +76,7 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner randomizer={this.state.randomizer}/>
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
-        <Related key={this.state.productId} product={this.state.productId}/>
+        <Related productId={this.state.productId} />
         <QA product={this.state.productId}/>
         <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>
