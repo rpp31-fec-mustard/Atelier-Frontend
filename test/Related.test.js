@@ -1,29 +1,48 @@
 import React, { useState } from 'react';
-import { shallow, mount, render, configure } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import sinon from 'sinon';
+import { shallow, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
+import { withHooks } from 'jest-react-hooks-shallow';
+import axios from 'axios';
 
-configure({ adapter: new Adapter() });
-
+// components
 import Related from '../client/components/Related/Related.jsx';
+import RelatedProducts from '../client/components/Related/RelatedProducts.jsx';
 
-/* MOCK FUNCTIONS */
-const getRelatedMock = jest.fn();
+// fixtures
+import * as fixtures from './fixtures.js';
+
+//NOAH test spy was called
 
 /* TESTS */
+
 describe('Related products module: render tests', () => {
-  const related = shallow(<Related />);
-  test('Module should render', () => {
-    expect(!!related).toBe(true);
+  describe('<RelatedProducts />', () => {
+    beforeEach(() => {
+      jest.spyOn(axios, 'post').mockImplementation((endpoint, options) => {
+        switch (endpoint) {
+        case '/related':
+          return Promise.resolve({ data: fixtures.relatedProducts });
+        default:
+          const error = new Error(`ENDPOINT[${endpoint}] MUST BE MOCKED`);
+          console.error({ error });
+        }
+      });
+    });
+
+    test('<RelatedProducts /> should receive a list of relatedProducts on render', () => {
+      withHooks(() => {
+        const related = shallow(<Related productId={'59601'}/>);
+        return Promise.resolve().then(() => {
+          expect(related.find(RelatedProducts).props().relatedProducts).toBe(fixtures.relatedProducts);
+        });
+      });
+    });
   });
 
   test('Related products and Outfit submodules should render', () => {
   });
 
   test('At most four product cards should render in related products submodule', () => {
-    // const related = shallow(<Related />);
-    const productCards = document.getElementsByClassName('prod-card');
-    expect(productCards.length).toBe(4);
   });
 
   test('Empty product card should render in outfit list when empty', () => {
