@@ -1,7 +1,10 @@
 const path = require('path');
+
+const entry = __dirname + '/client/components/index.jsx';
+
 module.exports = {
   mode: 'development',
-  entry: __dirname + '/client/components/index.jsx',
+  entry: ['regenerator-runtime/runtime.js', entry],
   module: {
     rules: [
       {

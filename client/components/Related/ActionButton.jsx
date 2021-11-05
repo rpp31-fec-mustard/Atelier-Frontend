@@ -8,17 +8,17 @@ const StarButton = (props) => {
     props.handleAction(event);
   };
 
-  let star;
+  let icon;
 
   if (starred) {
-    star = <i className="fas fa-times"></i>;
+    icon = <i className="fas fa-times" aria-label="Remove product"></i>;
   } else {
-    star = <i className="fas fa-star"></i>;
+    icon = <i className="fas fa-star" aria-label="Add product"></i>;
   }
 
   return (
     <div className="action-button-wrapper">
-      <button className="action-button" onClick={updateStar}>{star}</button>
+      <button className="action-button" onClick={updateStar}>{icon}</button>
     </div>
   );
 };
