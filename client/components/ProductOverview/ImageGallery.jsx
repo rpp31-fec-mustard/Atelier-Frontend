@@ -2,10 +2,10 @@
 
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import ThumbnailsBar from './ImageGalleryDir/ThumbnailsBar.jsx';
-import ArrowLeft from './ImageGalleryDir/ArrowLeft.jsx';
-import ArrowRight from './ImageGalleryDir/ArrowRight.jsx';
-import FullScreen from './ImageGalleryDir/FullScreen.jsx';
+import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
+import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
+import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
+import FullScreen from './ImageGallerySubs/FullScreen.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 var mlog = (DEBUG) ? console.log : () => {};
@@ -15,6 +15,21 @@ const ImageGallery = ({images}) => {
   mlog('images:', images);
 
   const [index, setIndex] = useState(0);
+
+
+
+  const imageLeft = () => {
+    if (index !== 0) {
+      setIndex(index--);
+    }
+  };
+
+
+
+
+
+
+
 
   if (images) {
   // mlog('props.styles :',images);
