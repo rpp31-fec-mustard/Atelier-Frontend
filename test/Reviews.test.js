@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
+import React, {useState} from 'react';
+import {render, unmountComponentAtNode} from 'react-dom';
+import {act} from 'react-dom/test-utils';
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import {shallow} from 'enzyme';
@@ -8,10 +8,13 @@ import {mount} from 'enzyme';
 
 import App from '../client/components/app.jsx';
 import Reviews from '../client/components/Reviews/Reviews.jsx';
+import Ratings from '../client/components/Reviews/Ratings.jsx';
 import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
 import ReviewsListEntry from '../client/components/Reviews/ReviewsListEntry.jsx';
 
-Enzyme.configure({ adapter: new Adapter() });
+Enzyme.configure({
+  adapter: new Adapter()
+});
 
 
 let container = null;
@@ -28,8 +31,7 @@ afterEach(() => {
   container = null;
 });
 
-let reviewsArr = [
-  {
+let reviewsArr = [{
     reviewId: 1016925,
     rating: 5,
     summary: 'This product was great!',
@@ -79,44 +81,85 @@ let reviewsArr = [
   }
 ];
 
+let meta = {
+  product_id: '59553',
+  ratings: {
+    '4': '1',
+    '5': '10'
+  },
+  recommended: {
+    false: '3',
+    true: '8'
+  },
+  characteristics: {
+    Fit: [Object],
+    Length: [Object],
+    Comfort: [Object],
+    Quality: [Object]
+  }
+};
+
 test('Four module_containers should be rendering', () => {
   act(() => {
-    render(<App />, container);
+    render( < App / >, container);
   });
   const modules = document.getElementsByClassName('module_container');
   expect(modules.length).toBe(4);
 });
 
-test('checks reviews component', () => {
-  const wrapper = shallow(<Reviews />);
-  expect(wrapper).toHaveLength(1);
+describe('Reviews Component', () => {
+  test('checks reviews component', () => {
+    const wrapper = shallow( < Reviews / > );
+    expect(wrapper).toHaveLength(1);
+    expect(wrapper.find('h1')).toHaveLength(1);
+  });
+
+  test('checks reviews componentDidMount', () => {
+    const spy = jest.spyOn(Reviews.prototype, 'componentDidMount');
+    const wrapper = mount( < Reviews / > );
+    expect(spy).toHaveBeenCalled();
+    spy.mockReset();
+    spy.mockRestore();
+  });
+
+  test('test sortBy change', () => {
+    const wrapper = shallow( < Reviews / > );
+  });
+
+
+  test('checks reviews api get call', () => {
+    const spy = jest.spyOn(Reviews.prototype, 'get');
+    const wrapper = mount( < Reviews / > );
+    expect(spy).toHaveBeenCalled();
+    spy.mockReset();
+    spy.mockRestore();
+  });
 });
 
-test('checks reviews componentDidMount', () => {
-  const spy = jest.spyOn(Reviews.prototype, 'componentDidMount');
-  const wrapper = mount(<Reviews />);
-  expect(spy).toHaveBeenCalled();
-  spy.mockReset();
-  spy.mockRestore();
+describe('ReviewsList Component', () => {
+  test('checks if ReviewsList renders', () => {
+    const wrapper = shallow( < ReviewsList list = {reviewsArr}/>);
+    expect(wrapper).toHaveLength(1);
+  });
+
+  test('checks if getMoreReviews function adjusts state', () => {
+    const wrapper = shallow( < ReviewsList list = {reviewsArr}/>);
+    wrapper.instance().getMoreReviews(); expect(wrapper.state('showing')).toEqual(4);
+  });
 });
 
-
-test('checks reviews api get call', () => {
-  const spy = jest.spyOn(Reviews.prototype, 'get');
-  const wrapper = mount(<Reviews />);
-  expect(spy).toHaveBeenCalled();
-  spy.mockReset();
-  spy.mockRestore();
+describe('ReviewsListEntry Component', () => {
+  test('checks if reviewsListEntry component renders', () => {
+    const wrapper = mount( < ReviewsListEntry review = {reviewsArr[0]}/>);
+    expect(wrapper).toHaveLength(1);
+  });
 });
 
-test('checks reviewsList component', () => {
-  const wrapper = mount(<ReviewsList list={reviewsArr} />);
-  expect(wrapper).toHaveLength(1);
-});
-
-test('checks reviewsListEntry component', () => {
-  const wrapper = mount(<ReviewsListEntry review={reviewsArr[0]}/>);
-  expect(wrapper).toHaveLength(1);
+describe('Ratings Component', () => {
+  test('checks if Ratings component renders', () => {
+    const wrapper = shallow( < Ratings handleChange = {() => {}} meta = {meta}/>);
+    expect(wrapper).toHaveLength(1);
+  });
 });
 
 test('adds 1 + 2 to equal 3', () => {
