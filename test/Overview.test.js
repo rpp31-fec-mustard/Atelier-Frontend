@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import {shallow} from 'enzyme';
-import {mount} from 'enzyme';
-import sinon from 'sinon';
+import { shallow, mount } from 'enzyme';
 
 import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGalleryDir/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGalleryDir/Thumbnail.jsx';
-
-Enzyme.configure({ adapter: new Adapter() });
 
 let container = null;
 beforeEach(() => {
