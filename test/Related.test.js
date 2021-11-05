@@ -11,7 +11,7 @@ import RelatedProducts from '../client/components/Related/RelatedProducts.jsx';
 // fixtures
 import * as fixtures from './fixtures.js';
 
-//NOAH test spy was called
+// TODO: test that spy was called
 
 /* TESTS */
 
