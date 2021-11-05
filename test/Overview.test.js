@@ -37,7 +37,7 @@ describe('Render Tests', () => {
     const modules = document.getElementsByClassName('module_container');
     window.onLoad = ()=> {
       expect(modules.length).toBe(4);
-    }
+    };
   });
 
   test('Product Overview should render', () => {
@@ -114,7 +114,7 @@ describe('<ProductOverview /> full rendering', () => {
     window.onLoad = () => {
       const wrapper = mount(<ProductOverview />);
       expect(wrapper.contains(<ImageGallery />)).toEqual(true);
-    }
+    };
   });
 
   it('renders five <Thumbnail /> components', () => {
@@ -123,11 +123,11 @@ describe('<ProductOverview /> full rendering', () => {
     });
 
     window.onLoad = () => {
-    const wrapper = mount(<ProductOverview />);
-    // console.log('test')
-    // console.log(wrapper.find(Thumbnail))
-    expect(wrapper.find(Thumbnail).length).toEqual(5);
-    }
+      const wrapper = mount(<ProductOverview />);
+      // console.log('test')
+      // console.log(wrapper.find(Thumbnail))
+      expect(wrapper.find(Thumbnail).length).toEqual(5);
+    };
   });
 });
 

@@ -10,9 +10,9 @@ import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
-import Stars from '../Global/Stars.jsx';
-import Price from '../Global/Price.jsx';
+import AddToCart from './AddToCart.jsx'
+import Stars from '../Global/Stars.jsx'
+import Price from '../Global/Price.jsx'
 
 
 // class ProductOverview extends React.Component {
