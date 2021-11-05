@@ -27,7 +27,7 @@ import Price from '../Global/Price.jsx'
 
 //set style at this level
 
-export const ProductOverview = ({styles, product, id}) => {
+const ProductOverview = ({styles, product, id}) => {
   mlog('PO styles :', styles);
   mlog('PO product :', product);
   mlog('PO id :', id);
@@ -64,10 +64,8 @@ export const ProductOverview = ({styles, product, id}) => {
   };
 
 
-
-
-
   if (style && product.id ) {
+
 
     // mlog('PO:', );
   //   // const product = this.props.product;
@@ -114,8 +112,7 @@ export const ProductOverview = ({styles, product, id}) => {
   }
 };
 
-
-// export default ProductOverview;
+export default ProductOverview;
 
 
 /*/example data

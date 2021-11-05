@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -29,6 +28,9 @@ const Stars = (props) => {
   useEffect(() => {
     axios.post('/getRating', { productId: props.productId }).then((result) => {
       setRating(result.data);
+      if (props.getRating) {
+        props.getRating(result.data);
+      }
     })
       .catch((err) => {
         console.log('Client unable to get rating', err);

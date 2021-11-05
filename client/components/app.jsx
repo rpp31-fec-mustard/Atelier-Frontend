@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import TempTopBanner from './TempTopBanner.jsx';
-import {ProductOverview} from './ProductOverview/ProductOverview.jsx';
+import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
@@ -56,7 +56,6 @@ class App extends React.Component {
 
 
 
-
   render () {
     return (
       <div id="index">
@@ -64,7 +63,7 @@ class App extends React.Component {
         <ProductOverview product={this.state.product} styles={this.state.styles} id={this.state.productId}/>
         <Related key={this.state.productId} product={this.state.productId}/>
         <QA product={this.state.productId}/>
-        <Reviews product={this.state.productId} />
+        <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>
     );
   }
