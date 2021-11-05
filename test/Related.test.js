@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { shallow, mount, render } from 'enzyme';
-import { configure } from 'enzyme';
+import { shallow, mount, render, configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import sinon from 'sinon';
 
@@ -8,20 +7,10 @@ configure({ adapter: new Adapter() });
 
 import Related from '../client/components/Related/Related.jsx';
 
-let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement('div');
-  document.body.appendChild(container);
-});
+/* MOCK FUNCTIONS */
+const getRelatedMock = jest.fn();
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
+/* TESTS */
 describe('Related products module: render tests', () => {
   const related = shallow(<Related />);
   test('Module should render', () => {

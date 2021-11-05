@@ -9,7 +9,7 @@ const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [outfitList, setOutfitList] = useState([]);
 
-  useEffect(() => {
+  const getRelated = props.mock ? props.mock : (() => {
     axios.post('/related', { product: props.product })
       .then((result) => {
         setRelatedProducts(result.data);
@@ -17,7 +17,9 @@ const Related = (props) => {
       .catch((error) => {
         console.log('Client unable to get related products: ', error);
       });
-  }, []);
+  });
+
+  useEffect(getRelated, []);
 
   const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
