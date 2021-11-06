@@ -76,7 +76,7 @@ class App extends React.Component {
       <div id="index">
         <TempTopBanner randomizer={this.state.randomizer}/>
         <ProductOverview product={this.state.product} styles={this.state.styles}/>
-        <Related productId={this.state.productId} />
+        <Related productId={this.state.productId} homeProduct={this.state.product}/>
         <QA product={this.state.productId}/>
         <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>

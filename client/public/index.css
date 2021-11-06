@@ -326,6 +326,9 @@ button {
   position: absolute;
   top: -300px;
   left: 40px;
+  z-index: 2;
+
+  background: white;
 }
 
 /* *** QUESTIONS/ANSWER *** */

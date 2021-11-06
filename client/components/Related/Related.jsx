@@ -47,6 +47,7 @@ const Related = (props) => {
         productId={productId}
         relatedProducts={relatedProducts}
         handleAction={handleAction}
+        homeProduct={props.homeProduct}
       />
       <Outfit
         outfitList={outfitList}

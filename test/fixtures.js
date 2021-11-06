@@ -4,8 +4,9 @@ const fixtures = {
       id: 60012,
       category: 'Suit',
       name: 'Abigale Suit',
-      rating: 3,
+      features: [ { feature: 'Cut', value: '"Striaght"' } ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '896.00',
       originalPrice: '896.00',
       salePrice: null
     },
@@ -13,8 +14,9 @@ const fixtures = {
       id: 60389,
       category: 'Sweater',
       name: 'Alberta Sweater',
-      rating: 2.9285714285714284,
+      features: [ { feature: 'Fabric', value: '"Cashmere"' } ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1554774853-d50f9c681ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '595.00',
       originalPrice: '595.00',
       salePrice: null
     },
@@ -22,8 +24,9 @@ const fixtures = {
       id: 60123,
       category: 'Dress',
       name: 'The Evangeline Dress',
-      rating: 3,
+      features: [ { feature: 'Stitching', value: '"Cross Stitch"' } ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '230.00',
       originalPrice: '230.00',
       salePrice: null
     },
@@ -31,8 +34,12 @@ const fixtures = {
       id: 59930,
       category: 'Trousers',
       name: 'Julian Trousers',
-      rating: 2.8461538461538463,
+      features: [
+        { feature: 'Green Leaf Certified', value: null },
+        { feature: 'Lens', value: '"Ultrasheen Basic"' }
+      ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1422557379185-474fa15bf770?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '881.00',
       originalPrice: '881.00',
       salePrice: '100.00'
     },
@@ -40,8 +47,13 @@ const fixtures = {
       id: 60109,
       category: 'Shorts',
       name: 'Ezekiel Shorts',
-      rating: 3.259259259259259,
+      features: [
+        { feature: 'Sustainably Sourced', value: null },
+        { feature: 'Fair Trade Certified', value: null },
+        { feature: '5 Year Warranty', value: null }
+      ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '906.00',
       originalPrice: '1024.00',
       salePrice: null
     },
@@ -49,8 +61,13 @@ const fixtures = {
       id: 60156,
       category: 'Suit',
       name: 'Raymundo Suit',
-      rating: 3.466666666666667,
+      features: [
+        { feature: 'Frame', value: '"DuraResin"' },
+        { feature: 'Non-GMO', value: null },
+        { feature: 'Non-GMO', value: null }
+      ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1560857792-215f9e3534ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '352.00',
       originalPrice: '352.00',
       salePrice: null
     },
@@ -58,12 +75,17 @@ const fixtures = {
       id: 59772,
       category: 'Coat',
       name: 'Otho Coat',
-      rating: 3.3333333333333335,
+      features: [
+        { feature: 'Non-GMO', value: null },
+        { feature: 'Frame', value: '"AllLight Composition Resin"' },
+        { feature: 'Stitching', value: '"Double Stitch"' }
+      ],
       thumbnailUrl: 'https://images.unsplash.com/photo-1469617833234-8a6843da14d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '400.00',
       originalPrice: '400.00',
       salePrice: null
     }
-  ],
+  ]
 };
 
 export default fixtures;

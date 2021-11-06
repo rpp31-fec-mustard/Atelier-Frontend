@@ -54,8 +54,7 @@ const getPrimaryStyle = (productId) => {
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((response) => {
       const primaryStyle = response.data.results[0];
-      const styleCount = response.data.results.length;
-      return { primaryStyle, styleCount };
+      return primaryStyle;
     })
     .catch((error) => {
       console.log('API Helper getPrimaryStyle error: ', error);
@@ -74,13 +73,12 @@ const getRelated = (productId) => {
                 const id = productInfo.data.id;
                 const category = productInfo.data.category;
                 const name = productInfo.data.name;
-                const styleCount = styleInfo.styleCount;
                 const features = productInfo.data.features;
-                const thumbnailUrl = styleInfo.primaryStyle.photos[0].thumbnail_url;
+                const thumbnailUrl = styleInfo.photos[0].thumbnail_url;
                 const defaultPrice = productInfo.data.default_price;
-                const originalPrice = styleInfo.primaryStyle.original_price;
-                const salePrice = styleInfo.primaryStyle.sale_price;
-                return { id, category, name, styleCount, features, thumbnailUrl, defaultPrice, originalPrice, salePrice};
+                const originalPrice = styleInfo.original_price;
+                const salePrice = styleInfo.sale_price;
+                return { id, category, name, features, thumbnailUrl, defaultPrice, originalPrice, salePrice};
               }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {

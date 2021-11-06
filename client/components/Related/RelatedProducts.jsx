@@ -10,6 +10,7 @@ const RelatedProducts = (props) => {
         key={item.id}
         handleAction={props.handleAction}
         product={item}
+        homeProduct={props.homeProduct}
       />
     );
   });

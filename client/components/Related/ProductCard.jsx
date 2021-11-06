@@ -6,20 +6,6 @@ import Stars from '../Global/Stars.jsx';
 
 const ProductCard = (props) => {
   const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-
-  // setting action button only for related product cards
-  let actionButton;
-
-  if (!props.outfit) {
-    actionButton = <ActionButton handleAction={props.handleAction} />;
-  }
 
   // setting image in cases of null image
   let image = props.product.thumbnailUrl ? (
@@ -31,8 +17,8 @@ const ProductCard = (props) => {
   return (
     <div
       className={`prod-card ${props.product.id}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseOut}
+      onMouseEnter={() => { setIsHovering(true); }}
+      onMouseLeave={() => { setIsHovering(false); }}
     >
       <div className="prod-card-wrapper">
         <a
@@ -46,10 +32,10 @@ const ProductCard = (props) => {
           <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
         </a>
         <div className="prod-comparison-container">
-          {isHovering && <ProductComparison currentProduct={props.product}/>}
+          {isHovering && !props.outfit && <ProductComparison currentProduct={props.product} homeProduct={props.homeProduct}/>}
         </div>
       </div>
-      {actionButton}
+      {!props.outfit && <ActionButton handleAction={props.handleAction} />}
     </div>
   );
 };
