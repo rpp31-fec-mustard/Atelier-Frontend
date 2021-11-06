@@ -6,8 +6,8 @@ import { shallow, mount } from 'enzyme';
 import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
-import ThumbnailsBar from '../client/components/ProductOverview/ImageGalleryDir/ThumbnailsBar.jsx';
-import Thumbnail from '../client/components/ProductOverview/ImageGalleryDir/Thumbnail.jsx';
+import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
+import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
 
 let container = null;
 beforeEach(() => {

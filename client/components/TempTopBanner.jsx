@@ -11,7 +11,7 @@ const getRandomIntInclusive = (min, max) => {
 const TempTopBanner = ({randomizerCb}) => {
 
   const clickHandler = () => {
-    randomizer(getRandomIntInclusive(59553, 59700).toString());
+    randomizerCb(getRandomIntInclusive(59553, 59700).toString());
   };
 
   return (

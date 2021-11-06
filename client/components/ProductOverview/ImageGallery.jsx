@@ -8,23 +8,30 @@ import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
 import FullScreen from './ImageGallerySubs/FullScreen.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
-var mlog = (DEBUG) ? console.log : () => {};
+
 
 
 const ImageGallery = ({images}) => {
+  var mlog = DEBUG ? console.log : () => {};
+
   mlog('images:', images);
+  console.log('test')
 
   const [index, setIndex] = useState(0);
 
 
 
-  const imageLeft = () => {
-    if (index !== 0) {
-      setIndex(index--);
+  const imageLeftClick = () => {
+    if (index > 0) {
+      setIndex(index - 1);
     }
   };
 
-
+  const imageRightClick = () => {
+    if (index < images.photos.length - 1) {
+      setIndex(index + 1);
+    }
+  }
 
 
 
@@ -44,9 +51,9 @@ const ImageGallery = ({images}) => {
         backgroundSize: 'cover'
       }}>
         <ThumbnailsBar />
-        <ArrowLeft />
+        <ArrowLeft imageLeftClick={imageLeftClick}/>
         <div className='space01_po'>Image Gallery</div>
-        <ArrowRight />
+        <ArrowRight imageRightClick={imageRightClick}/>
       </div>
     );
   } else {

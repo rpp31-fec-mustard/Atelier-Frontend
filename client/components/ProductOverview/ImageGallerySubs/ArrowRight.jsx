@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import FullScreen from './FullScreen.jsx';
 
 
-const ArrowRight = () => (
+const ArrowRight = (props) => (
 
 
 
@@ -11,7 +11,7 @@ const ArrowRight = () => (
     <div className='arrow_space_po'>
       <FullScreen />
     </div>
-    R
+    <p onClick={props.imageRightClick}>R</p>
     <div className='arrow_space_po'></div>
   </div>
 

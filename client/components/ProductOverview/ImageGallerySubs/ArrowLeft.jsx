@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const ArrowLeft = () => (
+const ArrowLeft = (props) => (
 
   <div className='arrow_po'>
     <div className='arrow_space_po'></div>
-    <p onClick={() => {console.log('click')}}>L</p>
+    <p onClick={props.imageLeftClick}>L</p>
     <div className='arrow_space_po'></div>
   </div>
 
