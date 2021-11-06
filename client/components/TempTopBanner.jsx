@@ -8,10 +8,10 @@ const getRandomIntInclusive = (min, max) => {
   return productId;
 };
 
-const TempTopBanner = ({randomizer}) => {
+const TempTopBanner = ({randomizerCb}) => {
 
   const clickHandler = () => {
-    randomizer(getRandomIntInclusive(59553, 59700).toString());
+    randomizerCb(getRandomIntInclusive(59553, 59700).toString());
   };
 
   return (
@@ -21,7 +21,7 @@ const TempTopBanner = ({randomizer}) => {
         <h3 onClick={clickHandler}>SEARCH</h3>
       </div>
       <p id='announcements'>
-        announcements announcements announcements announcements
+        announcements *** Click search to change product! *** announcements
       </p>
     </div>
   );

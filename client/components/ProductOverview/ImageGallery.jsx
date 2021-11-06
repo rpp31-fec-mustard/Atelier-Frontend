@@ -2,32 +2,51 @@
 
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import ThumbnailsBar from './ImageGalleryDir/ThumbnailsBar.jsx';
-import ArrowLeft from './ImageGalleryDir/ArrowLeft.jsx';
-import ArrowRight from './ImageGalleryDir/ArrowRight.jsx';
-import FullScreen from './ImageGalleryDir/FullScreen.jsx';
+import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
+import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
+import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
+import FullScreen from './ImageGallerySubs/FullScreen.jsx';
+import {DEBUG} from './ProductOverview.jsx';
 
-const ImageGallery = ({images}) => {
-//   console.log('images:', images);
+
+
+
+const ImageGallery = ({photos}) => {
+  var mlog = DEBUG ? console.log : () => {};
+
+  mlog('photos', photos);
 
   const [index, setIndex] = useState(0);
+  const [indexMax, setIndexMax] = useState(0);
 
-  if (images) {
-  // console.log('props.styles :',images);
+
+  const imageLeftClick = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  };
+
+  const imageRightClick = () => {
+    if (index < photos.length - 1) {
+      setIndex(index + 1);
+    }
+  };
+
+  if (photos) {
     let node = document.getElementsByClassName('image_gallery_po').style;
-    // console.log('node', node);
+    mlog('node', node);
 
     return (
       <div className='image_gallery_po' style={{
         color: 'red',
-        backgroundImage: `url(${images.photos[index].url})`,
+        backgroundImage: `url(${photos[index].url})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
         <ThumbnailsBar />
-        <ArrowLeft />
+        <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
         <div className='space01_po'>Image Gallery</div>
-        <ArrowRight />
+        <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
       </div>
     );
   } else {
