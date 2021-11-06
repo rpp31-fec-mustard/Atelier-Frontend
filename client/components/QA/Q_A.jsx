@@ -20,16 +20,15 @@ const Q_A = (props) => {
     var splitFilter = [];
     var filteredQuestions = [];
     if (filter.length > 2 && !filter.includes(' ')) {
-      // splitFilter = filter.split();
-      splitFilter.push(filter);
+      splitFilter = filter.split();
     }
     if (filter.includes(' ')) {
-      // splitFilter = filter.split(' ');
-      splitFilter.push(filter.split(' '));
+      splitFilter = filter.split(' ');
     }
-    console.log('filter', splitFilter);
-    splitFilter = _.without(splitFilter, '', ' ');
-    console.log('filter after without ', splitFilter);
+    if (_.contains(splitFilter, '')) {
+      splitFilter = _.without(splitFilter, '');
+    }
+
     for (let i = 0; i < sortedQuestions.length; i++) {
       for (let j = 0; j < splitFilter.length; j++) {
         var lowerCase = sortedQuestions[i].question_body.toLowerCase();
