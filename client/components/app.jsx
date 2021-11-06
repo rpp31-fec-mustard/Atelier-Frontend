@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59554',
+      productId: '59601',
       product: {},
       styles: {},
       randomizer: this.randomizer.bind(this)
@@ -49,7 +49,6 @@ class App extends React.Component {
     })
       .then((res) => {
         this.setState({product: res.data});
-        console.log('prodcut after getproduct:', this.state.product);
       })
       .catch((error) => {
         console.log('Error retrieving product/all: ', error);
