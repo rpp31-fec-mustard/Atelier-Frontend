@@ -21,6 +21,9 @@ const ProductCard = (props) => {
       onMouseLeave={() => { setIsHovering(false); }}
     >
       <div className="prod-card-wrapper">
+        <div className="prod-comparison-container">
+          {isHovering && !props.outfit && <ProductComparison currentProduct={props.product} homeProduct={props.homeProduct}/>}
+        </div>
         <a
           href="https://xd.adobe.com/view/e600dc0f-454c-44e3-5075-7872d04189ff-9031/?fullscreen"
           target="_blank"
@@ -31,9 +34,6 @@ const ProductCard = (props) => {
           <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
           <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
         </a>
-        <div className="prod-comparison-container">
-          {isHovering && !props.outfit && <ProductComparison currentProduct={props.product} homeProduct={props.homeProduct}/>}
-        </div>
       </div>
       {!props.outfit && <ActionButton handleAction={props.handleAction} />}
     </div>

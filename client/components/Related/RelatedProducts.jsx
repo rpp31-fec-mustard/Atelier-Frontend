@@ -5,6 +5,7 @@ import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
   const productCards = props.relatedProducts.map((item, i) => {
+    console.log(item.name, item.features);
     return (
       <ProductCard
         key={item.id}
