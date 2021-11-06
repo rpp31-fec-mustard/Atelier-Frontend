@@ -426,6 +426,18 @@ button {
   border-bottom: 1px solid white;
 }
 
+textarea {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.add-question-body {
+  border: none;
+}
+
+.disclaimer {
+  font-size: 13px;
+  border: none;
+}
 
 
 /* *** RATINGS/REVIEWS *** */
