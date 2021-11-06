@@ -3,7 +3,6 @@ import React from 'react';
 const hasMetric = (product, metric) => {
   for (let i = 0; i < product.features.length; i++) {
     const feature = product.features[i].feature;
-    console.log({feature});
     if (feature === metric) {
       return <i className="fas fa-check"></i>;
     } else {
