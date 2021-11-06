@@ -6,7 +6,7 @@ import FullScreen from './FullScreen.jsx';
 const ArrowRight = ({index, indexMax, imageRightClick}) => {
 
   if (index === undefined) {
-    return (<div></div>)
+    return (<div></div>);
   } else {
     return (
       <div className='arrow_po'>
