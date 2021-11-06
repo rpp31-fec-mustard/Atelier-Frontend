@@ -5,6 +5,6 @@ const Thumbnail = () => (
 
   <div className='thumbnail_po'></div>
 
-)
+);
 
 export default Thumbnail;

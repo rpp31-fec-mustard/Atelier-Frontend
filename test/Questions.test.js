@@ -1,6 +1,8 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
+import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 import App from '../client/components/app.jsx';
 import QA from '../client/components/QA/QA.jsx';
@@ -43,9 +45,9 @@ describe('Q&A Module: render tests', () => {
 
   test('renders Q_A Component', () => {
     act(() => {
-      render(<Q_A />, container);
+      render(<Q_A productInfo={{name: 'name'}}/>, container);
     });
-    const component = document.getElementsByClassName('questionList');
+    const component = document.getElementsByClassName('questionButton');
     expect(component.length).toBe(1);
   });
 
@@ -66,4 +68,6 @@ describe('Q&A Module: render tests', () => {
   });
 
 });
+
+
 

@@ -10,7 +10,7 @@ const QuestionList = (props) => {
     <div className="questionEntry">Q: {props.question}
       <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
       <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
-      <AnswerModal show={modal} hide={hideModal}/>
+      <AnswerModal show={modal} hide={hideModal} question={props.question} name ={props.name}/>
     </div>
   );
 };

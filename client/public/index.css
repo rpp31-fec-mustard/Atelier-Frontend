@@ -15,7 +15,7 @@ html, body, #app, #index {
 }
 
 div {
-  border: 1px solid black;
+  border: 1px solid rgb(199, 199, 199);
 }
 
 button {
@@ -79,7 +79,7 @@ button {
 }
 
 
-/* .image_gallery_po { */
+/** image gallery **/
 .image_gallery_po {
   display: flex;
   width: 60%;
@@ -127,7 +127,6 @@ button {
 .arrow_space_po {
   display: flex;
   flex-direction: column;
-  /* align-content: center; */
   align-items: center;
   height: 40%;
   width: 100%;
@@ -152,10 +151,12 @@ button {
   /* height: 100%; */
 }
 
+/** stars **/
 .stars_po {
   height: 10%;
 }
 
+/** product name **/
 .name_block_po {
   height: 30%;
 }
@@ -168,14 +169,75 @@ button {
   margin: 5px;
 }
 
+/** product style **/
 .style_po {
   height: 30%;
 }
 
+.style_text_po {
+  height: 20px;
+}
+
+.text_po {
+  padding: 0px;
+  margin: 0px
+}
+
+.style_row_thumbnail_po {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+}
+
+.style_thumbnail_po {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  margin: 10px
+}
+
+/** add to bag **/
 .add_to_bag_po {
   height: 30%;
 }
 
+.add_to_bag_top_po {
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.size_select {
+  width: 200px;
+  height: 40px;
+}
+
+.qty_select {
+  width: 75px;
+  height: 40px;
+}
+
+.add_to_bag_bottom_po {
+  height: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.add_to_bag_button_po {
+  width: 25%;
+  height: 50%;
+}
+
+.favorites_add_button_po {
+  width: 25%;
+  height: 50%;
+}
+
+/** description and features **/
 .bottom01 {
   display: flex;
   width: 100%;
@@ -426,6 +488,18 @@ button {
   border-bottom: 1px solid white;
 }
 
+textarea {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.add-question-body {
+  border: none;
+}
+
+.disclaimer {
+  font-size: 13px;
+  border: none;
+}
 
 
 /* *** RATINGS/REVIEWS *** */
