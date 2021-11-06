@@ -4,17 +4,17 @@ import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
 
-
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sorted: 'relevant',
-      id: this.props.product,
+      id: this.props.productId,
       allReviews: [],
       displayedReviews: [],
       starFilter: [],
-      reviewMeta: []
+      reviewMeta: [],
+      isLoaded: false
     };
   }
 
@@ -28,7 +28,7 @@ class Reviews extends React.Component {
       return result.data;
     })
       .catch((err) => {
-        throw err;
+        console.log(err);
       });
   }
 
@@ -51,7 +51,7 @@ class Reviews extends React.Component {
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
-        id: this.state.id,
+        productId: this.state.id,
         sort: this.state.sorted,
       };
       this.get(options).then((result) => {
@@ -132,36 +132,43 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     let options = {
-      id: this.state.id,
+      productId: this.state.id,
       sort: 'relevant',
     };
     this.get(options).then((result) => {
       this.setState({
         allReviews: result.reviewsArr,
         displayedReviews: result.reviewsArr,
-        reviewMeta: result.meta
+        reviewMeta: result.meta,
+        isLoaded: true
       });
     })
       .catch((err) => {
-        console.log('Error Getting Reviews:', err);
+        console.log('Error Getting Reviews:');
       });
   }
 
   render() {
-    return (
-      <div id='ratings_reviews' className='module_container'>
-        <div className='reviewsTitle'>
-          <h1> Ratings and Reviews </h1>
+    if (this.state.isLoaded) {
+      return (
+        <div id='ratings_reviews' className='module_container'>
+          <div className='reviewsTitle'>
+            <h1> Ratings and Reviews </h1>
+          </div>
+          <div className='filterMessage'>
+            <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
+          </div>
+          <div className='reviews'>
+            <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
+            <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
+          </div>
         </div>
-        <div className='filterMessage'>
-          <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
-        </div>
-        <div className='reviews'>
-          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} />
-          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 }
 

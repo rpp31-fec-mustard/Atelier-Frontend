@@ -85,7 +85,74 @@ const fixtures = {
       originalPrice: '400.00',
       salePrice: null
     }
-  ]
+  ],
+  reviews: [
+    {
+      reviewId: 1016925,
+      rating: 5,
+      summary: 'This product was great!',
+      recommend: true,
+      response: '',
+      body: 'I really did or did not like this product based on whether it was sustainably sourced. Then I found out that its made from nothing at all.',
+      date: '2019-01-01T00:00:00.000Z',
+      reviewerName: 'funtime',
+      helpfulness: 17,
+      photos: []
+    },
+    {
+      reviewId: 1016926,
+      rating: 4,
+      summary: 'This product was ok!',
+      recommend: false,
+      response: '',
+      body: 'I really did not like this product solely because I am tiny and do not fit into it.',
+      date: '2019-01-11T00:00:00.000Z',
+      reviewerName: 'mymainstreammother',
+      helpfulness: 2,
+      photos: []
+    },
+    {
+      reviewId: 1074951,
+      rating: 5,
+      summary: 'I love it!!',
+      recommend: false,
+      response: null,
+      body: 'Just the best, I live for this product',
+      date: '2021-10-30T00:00:00.000Z',
+      reviewerName: 'Clayton',
+      helpfulness: 0,
+      photos: []
+    },
+    {
+      reviewId: 1074950,
+      rating: 5,
+      summary: 'hello',
+      recommend: false,
+      response: null,
+      body: 'a',
+      date: '2021-10-30T00:00:00.000Z',
+      reviewerName: 'Clayton',
+      helpfulness: 0,
+      photos: [Array]
+    }
+  ],
+  meta: {
+    productId: '59553',
+    ratings: {
+      '4': '1',
+      '5': '10'
+    },
+    recommended: {
+      false: '3',
+      true: '8'
+    },
+    characteristics: {
+      Fit: { id: 199845, value: '3.1818181818181818' },
+      Length: { id: 199846, value: '3.0909090909090909' },
+      Comfort: { id: 199847, value: '5.0000000000000000' },
+      Quality: { id: 199848, value: '4.8181818181818182' }
+    }
+  }
 };
 
 export default fixtures;
