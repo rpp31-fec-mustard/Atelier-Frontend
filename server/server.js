@@ -35,7 +35,7 @@ app.get('/product/styles', (req, res) => {
 });
 
 app.get('/getReviews', (req, res) => {
-  let id = req.query.id;
+  let id = req.query.productId;
   let sort = req.query.sort;
   api.getReviews(id, sort).then((result) => {
     res.status(200).send(result);
@@ -78,3 +78,7 @@ const port = 5500;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+module.exports = {
+  app: app
+};

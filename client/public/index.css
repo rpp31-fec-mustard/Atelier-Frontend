@@ -614,16 +614,9 @@ progress::-webkit-progress-value {
   text-decoration: underline;
 }
 
-.hoverMessage {
-  position: absolute;
-  bottom: 15px;
-  visibility: hidden;
-  background-color:lightgray;
-}
-
-.star:hover .hoverMessage {
-  cursor: pointer;
-  visibility: visible;
+.numStar:hover {
+ background-color: lightskyblue;
+ font-size: 15px;
 }
 
 

@@ -33,7 +33,7 @@ const Stars = (props) => {
       }
     })
       .catch((err) => {
-        console.log('Client unable to get rating', err);
+        console.log('Client unable to get rating');
       });
   }, []);
 
