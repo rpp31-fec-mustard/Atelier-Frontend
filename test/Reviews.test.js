@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-import Enzyme from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import {shallow} from 'enzyme';
-import {mount} from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import App from '../client/components/app.jsx';
 import Reviews from '../client/components/Reviews/Reviews.jsx';
 import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
 import ReviewsListEntry from '../client/components/Reviews/ReviewsListEntry.jsx';
-
-Enzyme.configure({ adapter: new Adapter() });
-
 
 let container = null;
 beforeEach(() => {
