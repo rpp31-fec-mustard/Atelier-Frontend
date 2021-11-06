@@ -11,10 +11,43 @@ const Q_A = (props) => {
 
   const [count, setCount] = useState(2);
   const [show, setShow] = useState(false);
+  const [filter, setFilter] = useState(props.filter);
   const closeModal = () => {
     setShow(false);
   };
+
+  var checkFilter = (sortedQuestions) => {
+    var splitFilter = [];
+    var filteredQuestions = [];
+    if (filter.length > 2 && !filter.includes(' ')) {
+      // splitFilter = filter.split();
+      splitFilter.push(filter);
+    }
+    if (filter.includes(' ')) {
+      // splitFilter = filter.split(' ');
+      splitFilter.push(filter.split(' '));
+    }
+    console.log('filter', splitFilter);
+    splitFilter = _.without(splitFilter, '', ' ');
+    console.log('filter after without ', splitFilter);
+    for (let i = 0; i < sortedQuestions.length; i++) {
+      for (let j = 0; j < splitFilter.length; j++) {
+        var lowerCase = sortedQuestions[i].question_body.toLowerCase();
+        if (lowerCase.includes(splitFilter[j])) {
+          filteredQuestions.push(sortedQuestions[i]);
+        }
+      }
+    }
+    filteredQuestions = _.uniq(filteredQuestions);
+    if (filteredQuestions.length > 0) {
+      return filteredQuestions;
+    } else {
+      return sortedQuestions;
+    }
+  };
+
   const addQuestion = () => {
+    sortedQuestions = checkFilter(sortedQuestions);
     for (let i = 0; i < count; i++) {
       if (!sortedQuestions[i]) {
         return;
@@ -23,12 +56,17 @@ const Q_A = (props) => {
     }
   };
 
+  useEffect(() => {
+    setFilter(props.filter);
+  });
+
 
   if (sortedQuestions.length > 0) {
     addQuestion();
   }
 
-  if (sortedQuestions.length === 0) {
+
+  if (displayQuestions.length === 0) {
     return (
       <div className="questionButton">
         <button onClick={() => setShow(true)}>Add Questions +</button>

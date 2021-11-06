@@ -9,7 +9,8 @@ class QA extends React.Component {
     this.state = {
       productId: this.props.product,
       productInfo: this.props.productInfo,
-      questions: []
+      questions: [],
+      search: ''
     };
   }
 
@@ -17,12 +18,20 @@ class QA extends React.Component {
     this.getQuestions(this.state.productId);
   }
 
-  componentDidUpdate() {
-    if (this.state.productInfo !== this.props.productInfo) {
+  componentDidUpdate () {
+    if ((this.state.productInfo !== this.props.productInfo) || (this.state.productId !== this.props.product)) {
       this.setState({
-        productInfo: this.props.productInfo
+        productInfo: this.props.productInfo,
+        productId: this.props.product
       });
+      this.getQuestions(this.state.productId);
     }
+  }
+
+  searchQuestions (value) {
+    this.setState({
+      search: value
+    });
   }
 
   getQuestions (id) {
@@ -45,8 +54,8 @@ class QA extends React.Component {
     return (
       <div className="module_container">
         <h1>QUESTIONS & ANSWERS</h1>
-        <Search/>
-        <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo}/>
+        <Search searchQuestions={this.searchQuestions.bind(this)}/>
+        <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo} filter={this.state.search}/>
       </div>
     );
   }
