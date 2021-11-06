@@ -24,7 +24,6 @@ class Reviews extends React.Component {
       params: option,
       method: 'get'
     };
-    console.log(option)
     return axios.request(options).then((result) => {
       return result.data;
     })
