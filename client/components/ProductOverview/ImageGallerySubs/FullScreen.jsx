@@ -11,6 +11,6 @@ const FullScreen = () => (
 
 
 
-)
+);
 
 export default FullScreen;

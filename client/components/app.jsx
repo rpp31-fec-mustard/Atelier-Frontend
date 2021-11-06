@@ -11,33 +11,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59601',
+      productId: '59601', //testing
+      // productId: '59553',  //testing
       product: {},
-      styles: {},
-      randomizer: this.randomizer.bind(this)
+      randomizerCb: this.randomizerCb.bind(this)
     };
   }
 
 
-  randomizer(id) {
+  randomizerCb(id) {
     // console.log('id :', id);
-    new Promise((works, busted) => {
+    new Promise((resolve, notResolve) => {
       this.setState({productId: id});
-      works();
+      resolve();
     })
       .then(() => {
         this.getProductId(this.state.productId);
-        this.getProductStyles(this.state.productId);
       })
-      .catch((error) => {
-        console.log('Randomizer not working: ', error);
+      .catch(error => {
+        console.log(error);
       });
   }
 
 
   componentDidMount() {
     this.getProductId(this.state.productId);
-    this.getProductStyles(this.state.productId);
   }
 
 
@@ -56,28 +54,14 @@ class App extends React.Component {
   }
 
 
-  getProductStyles(id) {
-    axios.get('/product/styles', {
-      params: {
-        productId: id
-      }
-    })
-      .then((res) => {
-        // console.log('@client res product/styles:', res.data);
-        this.setState({styles: res.data});
-      })
-      .catch((error) => {
-        console.log('Error retrieving product/styles: ', error);
-      });
-  }
 
   render () {
     return (
       <div id="index">
-        <TempTopBanner randomizer={this.state.randomizer}/>
-        <ProductOverview product={this.state.product} styles={this.state.styles}/>
+        <TempTopBanner randomizerCb={this.state.randomizerCb}/>
+        <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} homeProduct={this.state.product}/>
-        <QA product={this.state.productId}/>
+        <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>
     );

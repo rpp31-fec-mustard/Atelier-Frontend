@@ -2,6 +2,7 @@ import React from 'react';
 import Answer from './Answer.jsx';
 
 const AnswerList = (props) => {
+
   return (
     <div className="answer"> A:
       <div className="answerEntry">
