@@ -14,7 +14,7 @@ class App extends React.Component {
       // productId: '59601',  //testing
       productId: '59553',  //testing
       product: {},
-      styles: {},
+      // styles: {},
       randomizerCb: this.randomizerCb.bind(this)
     };
   }
@@ -61,7 +61,7 @@ class App extends React.Component {
     return (
       <div id="index">
         <TempTopBanner randomizerCb={this.state.randomizerCb}/>
-        <ProductOverview product={this.state.product} styles={this.state.styles} id={this.state.productId}/>
+        <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} />
         <QA product={this.state.productId}/>
         <Reviews key={this.state.productId + 1} product={this.state.productId} />

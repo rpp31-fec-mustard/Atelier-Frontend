@@ -27,12 +27,12 @@ import Price from '../Global/Price.jsx'
 
 //set style at this level
 
-const ProductOverview = ({styles, product, id}) => {
-  mlog('PO styles :', styles);
+const ProductOverview = ({product, id}) => {
   mlog('PO product :', product);
   mlog('PO id :', id);
   const [styleIndex, setIndex] = useState(0);
-  const [style, setStyle] = useState();
+  const [styles, setStyles] = useState();
+  mlog('PO styles :', styles);
 
 
   // componentDidMount();
@@ -56,7 +56,7 @@ const ProductOverview = ({styles, product, id}) => {
     })
       .then(res => {
         mlog('@client PO res product/styles:', res.data);
-        setStyle(res.data);
+        setStyles(res.data);
       })
       .catch(err => {
         console.log('Error retrieving product/styles: ', err);
@@ -64,7 +64,7 @@ const ProductOverview = ({styles, product, id}) => {
   };
 
 
-  if (style && product.id ) {
+  if (styles && product.id ) {
 
 
     // mlog('PO:', );
@@ -79,7 +79,7 @@ const ProductOverview = ({styles, product, id}) => {
 
     const {
       results,
-    } = style;
+    } = styles;
   //   mlog('PO results:', results)
 
 
@@ -96,7 +96,7 @@ const ProductOverview = ({styles, product, id}) => {
               {/* <Price /> */}
               ${default_price}   {/* eslint-disable-line camelcase, no-multi-spaces*/}
             </div>
-            <StyleSelector styles={styles}/>
+            <StyleSelector styles={styles.results} styleIndex={styleIndex}/>
             <AddToCart styles={styles}/>
           </div>
         </div>

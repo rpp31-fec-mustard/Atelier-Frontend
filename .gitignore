@@ -2,20 +2,14 @@ node_modules
 package-lock.json
 dist
 .DS_Store
-<<<<<<< HEAD
 bundle.js
-=======
->>>>>>> main
 bundle.js*
 dummyData.js
 test/coverage
 
 ## API Keys ##
-<<<<<<< HEAD
 API_paths.txt
 API_product_ref.txt
-=======
->>>>>>> main
 config.js
 
 
