@@ -12,6 +12,7 @@ const Q_A = (props) => {
   const [count, setCount] = useState(2);
   const [show, setShow] = useState(false);
   const [filter, setFilter] = useState(props.filter);
+  const [productInfo, setProductInfo] = useState(props.productInfo);
   const closeModal = () => {
     setShow(false);
   };
@@ -57,7 +58,12 @@ const Q_A = (props) => {
 
   useEffect(() => {
     setFilter(props.filter);
+    if (productInfo !== props.productInfo) {
+      setCount(2);
+      setProductInfo(props.productInfo);
+    }
   });
+
 
 
   if (sortedQuestions.length > 0) {
