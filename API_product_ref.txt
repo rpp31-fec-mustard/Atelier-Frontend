@@ -1,123 +1,12 @@
-/*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
-var mlog = (DEBUG) ? console.log : () => {};
-
-
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-
-import ImageGallery from './ImageGallery.jsx';
-import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
-import Stars from '../Global/Stars.jsx';
-import Price from '../Global/Price.jsx';
-
-
-// class ProductOverview extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       styles: {},
-//       styleNo: 0
-//     };
-//     //grab from global?
-//   }
-
-//set style at this level
-
-const ProductOverview = ({product, id}) => {
-  mlog('PO product :', product);
-  mlog('PO id :', id);
-  const [styleIndex, setIndex] = useState(0);
-  const [styles, setStyles] = useState();
-  mlog('PO styles :', styles);
-
-
-  // componentDidMount();
-
-  useEffect(() => {
-    getProductStyles(id);
-  }, []);
-
-
-  useEffect(() => {
-    getProductStyles(id);
-  }, [id]);
-
-
-  const getProductStyles = (id) => {
-    mlog('this.props.product.id :', id);
-    axios.get('/product/styles', {
-      params: {
-        productId: id
-      }
-    })
-      .then(res => {
-        mlog('@client PO res product/styles:', res.data);
-        setStyles(res.data);
-      })
-      .catch(err => {
-        console.log('Error retrieving product/styles: ', err);
-      });
-  };
-
-
-  if (styles && product.id ) {
-
-
-    // mlog('PO:', );
-  //   // const product = this.props.product;
-    const {
-      description,
-      name,
-      category,
-      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-      slogan
-    } = product;
-
-    // const {
-    //   results,
-    // } = styles;
-  //   mlog('PO results:', results)
-
-
-
-    return (
-      <div id='product_overview_main' className='module_container'>
-        <div className='top01'>
-          <ImageGallery photos={styles.results[styleIndex].photos} />
-          <div className='right02'>
-            <div className='stars_po' ><Stars productId={product.id}/></div>
-            <div className='name_block_po'>
-              {category}
-              <p id='name_po'>{name}</p>
-              {/* <Price /> */}
-              ${default_price}   {/* eslint-disable-line camelcase, no-multi-spaces*/}
-            </div>
-            <StyleSelector styles={styles.results} styleIndex={styleIndex}/>
-            <AddToCart styles={styles}/>
-          </div>
-        </div>
-        <div className='bottom01'>
-          <div className='product_desc_po'><h2>{slogan}</h2><br/>{description}</div>
-          <div className='highlights_po'>Highlights</div>
-        </div>
-      </div>
-    );
-  } else {
-    mlog('props load delayed');
-    return <div></div>;
-  }
-};
-
-export default ProductOverview;
+PRODUCTS GET ENDPOINTS                  | PARAMETERS
+/products                               | page (int), count (int)
+/products/:product_id(int)              |
+/products/:product_id(int)/styles       |
+/products/:product_id(int)/related      |
 
 
 /*/example data
-
-
 /products                               | page (int), count (int)
 
   {
@@ -531,9 +420,3 @@ export default ProductOverview;
     59559
 ]
 
-
-
-
-
-
-//*/
