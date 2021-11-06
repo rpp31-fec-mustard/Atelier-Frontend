@@ -77,9 +77,9 @@ const ProductOverview = ({product, id}) => {
       slogan
     } = product;
 
-    const {
-      results,
-    } = styles;
+    // const {
+    //   results,
+    // } = styles;
   //   mlog('PO results:', results)
 
 
@@ -87,7 +87,7 @@ const ProductOverview = ({product, id}) => {
     return (
       <div id='product_overview_main' className='module_container'>
         <div className='top01'>
-          <ImageGallery images={results[styleIndex]}/>
+          <ImageGallery photos={styles.results[styleIndex].photos} />
           <div className='right02'>
             <div className='stars_po' ><Stars productId={product.id}/></div>
             <div className='name_block_po'>

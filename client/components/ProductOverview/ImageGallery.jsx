@@ -11,14 +11,13 @@ import {DEBUG} from './ProductOverview.jsx';
 
 
 
-const ImageGallery = ({images}) => {
+const ImageGallery = ({photos}) => {
   var mlog = DEBUG ? console.log : () => {};
 
-  mlog('images:', images);
-  console.log('test')
+  mlog('photos', photos);
 
   const [index, setIndex] = useState(0);
-
+  const [indexMax, setIndexMax] = useState(0);
 
 
   const imageLeftClick = () => {
@@ -28,32 +27,26 @@ const ImageGallery = ({images}) => {
   };
 
   const imageRightClick = () => {
-    if (index < images.photos.length - 1) {
+    if (index < photos.length - 1) {
       setIndex(index + 1);
     }
-  }
+  };
 
-
-
-
-
-
-  if (images) {
-  // mlog('props.styles :',images);
+  if (photos) {
     let node = document.getElementsByClassName('image_gallery_po').style;
     mlog('node', node);
 
     return (
       <div className='image_gallery_po' style={{
         color: 'red',
-        backgroundImage: `url(${images.photos[index].url})`,
+        backgroundImage: `url(${photos[index].url})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
         <ThumbnailsBar />
-        <ArrowLeft imageLeftClick={imageLeftClick}/>
+        <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
         <div className='space01_po'>Image Gallery</div>
-        <ArrowRight imageRightClick={imageRightClick}/>
+        <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
       </div>
     );
   } else {
