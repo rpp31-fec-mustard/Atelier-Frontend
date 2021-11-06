@@ -17,13 +17,13 @@ const StyleSelector = ({styles, styleIndex}) => {
         </div>
         <div className='style_row_thumbnail_po'>
           <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[0].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[1].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[2].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[3].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+          <div className='style_thumbnail_po'></div>
+          <div className='style_thumbnail_po'></div>
+          <div className='style_thumbnail_po'></div>
         </div>
         <div className='style_row_thumbnail_po'>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[4].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[5].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+          <div className='style_thumbnail_po'></div>
+          <div className='style_thumbnail_po'></div>
           <div className='style_thumbnail_po'></div>
           <div className='style_thumbnail_po'></div>
         </div>
@@ -35,10 +35,15 @@ const StyleSelector = ({styles, styleIndex}) => {
 
 export default StyleSelector;
 
-
-// style={{
-//   color: 'red',
-//   backgroundImage: `url(${images.photos[index].url})`,
-//   backgroundPosition: 'center',
-//   backgroundSize: 'cover'
-// }}
+{/* <div className='style_row_thumbnail_po'>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[0].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[1].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[2].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[3].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+</div>
+<div className='style_row_thumbnail_po'>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[4].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[5].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
+<div className='style_thumbnail_po'></div>
+<div className='style_thumbnail_po'></div>
+</div> */}

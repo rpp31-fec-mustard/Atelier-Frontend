@@ -127,7 +127,6 @@ button {
 .arrow_space_po {
   display: flex;
   flex-direction: column;
-  /* align-content: center; */
   align-items: center;
   height: 40%;
   width: 100%;
@@ -489,6 +488,18 @@ button {
   border-bottom: 1px solid white;
 }
 
+textarea {
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.add-question-body {
+  border: none;
+}
+
+.disclaimer {
+  font-size: 13px;
+  border: none;
+}
 
 
 /* *** RATINGS/REVIEWS *** */

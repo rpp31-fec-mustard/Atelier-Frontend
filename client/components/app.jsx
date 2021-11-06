@@ -11,10 +11,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601',  //testing
-      productId: '59553',  //testing
+      productId: '59601',  //testing
+      // productId: '59553',  //testing
       product: {},
-      // styles: {},
       randomizerCb: this.randomizerCb.bind(this)
     };
   }
@@ -37,7 +36,6 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getProductId(this.state.productId);
-    // this.getProductStyles(this.state.productId);
   }
 
 
@@ -63,7 +61,7 @@ class App extends React.Component {
         <TempTopBanner randomizerCb={this.state.randomizerCb}/>
         <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} />
-        <QA product={this.state.productId}/>
+        <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews key={this.state.productId + 1} product={this.state.productId} />
       </div>
     );
