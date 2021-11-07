@@ -23,6 +23,15 @@ button {
   height: 100%;
 }
 
+/* GLOBAL VARIABLES */
+
+:root {
+  /* RELATED PRODUCTS */
+  --prod-card-width: 20%;
+  --prod-card-height: 310px;
+  --prod-img-height: 200px;
+  --comparison-width: 400px;
+}
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
 
@@ -261,17 +270,6 @@ button {
 
 /* *** RELATED *** */
 
-:root {
-  --prod-card-width: 20%;
-  --prod-card-height: 300px;
-  --add-card-height: 300px;
-  --prod-img-height: 200px;
-}
-
-#related-main div{
-  border: none;
-}
-
 #related-main h3{
   align-self: flex-start;
   border-style: none;
@@ -279,6 +277,7 @@ button {
 }
 
 .related-submodule {
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -307,11 +306,17 @@ button {
 
 .prod-card-wrapper {
   width: 100%;
+  border: none;
 }
 
 .prod-card-wrapper a {
   color: black;
   text-decoration: none;
+}
+
+.prod-card-info-wrapper {
+  margin: 5px;
+  border: none;
 }
 
 .prod-card-info {
@@ -335,17 +340,22 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 
 .prod-card-img {
   width: 100%;
   height: 100%;
   object-fit: none;
+  border: none;
 }
 
 .prod-card-no-img {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
+  border: none;
 }
 
 .action-button-wrapper {
@@ -368,6 +378,10 @@ button {
 }
 
 .add-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: var(--prod-card-width);
   height: var(--prod-card-height);
 }
@@ -388,9 +402,13 @@ button {
   position: absolute;
   top: 50px;
   left: 50px;
+  width: var(--comparison-width);
   z-index: 2;
 
-  background: white;
+  background-color: #ffffff80;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
 }
 
 /* *** QUESTIONS/ANSWER *** */

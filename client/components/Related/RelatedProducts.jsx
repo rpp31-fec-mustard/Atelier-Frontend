@@ -4,6 +4,7 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
+  // console.log(props);
   const productCards = props.relatedProducts.map((item, i) => {
     return (
       <ProductCard

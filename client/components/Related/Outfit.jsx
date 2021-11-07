@@ -12,12 +12,19 @@ const Outfit = (props) => {
         <ProductCard
           key={item.id}
           product={item}
+          handleAction={props.handleAction}
           outfit={true}
         />
       );
     });
   } else {
-    outfitProducts = <div className="add-product">Add a product here<br></br><i className="fas fa-plus"></i></div>;
+    outfitProducts = (
+      <div className="add-product">Add a product here
+        <br></br>
+        <br></br>
+        <i className="fas fa-plus"></i>
+      </div>
+    );
   }
 
   return (

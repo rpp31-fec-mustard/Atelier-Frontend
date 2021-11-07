@@ -29,13 +29,15 @@ const ProductCard = (props) => {
           target="_blank"
         >
           <div className="prod-card-img-wrapper">{image}</div>
-          <div className="prod-card-info category">{props.product.category}</div>
-          <div className="prod-card-info name">{props.product.name}</div>
-          <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
-          <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
+          <div className="prod-card-info-wrapper">
+            <div className="prod-card-info category">{props.product.category}</div>
+            <div className="prod-card-info name">{props.product.name}</div>
+            <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
+            <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
+          </div>
         </a>
       </div>
-      {!props.outfit && <ActionButton handleAction={props.handleAction} />}
+      <ActionButton product={props.product} handleAction={props.handleAction} />
     </div>
   );
 };

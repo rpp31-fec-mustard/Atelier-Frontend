@@ -21,23 +21,42 @@ const Related = (props) => {
 
   const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
-    const productId = target.parentElement.parentElement.parentElement.classList[1];
+    const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
 
-    if (target.className === 'fas fa-star') {
+    if (target.className === 'ri-star-fill') {
       // add to outfit list
-      relatedProducts.forEach((item) => {
-        const itemId = item.id.toString(10);
-        if (itemId === productId) {
-          setOutfitList(outfitList.concat([item]));
+      const newRelatedProducts = relatedProducts.map((product) => {
+        const productId = product.id.toString(10);
+        if (productId === targetProductId) {
+          product['starred'] = true;
+          // TODO: check that product not already in outfit list
+          setOutfitList(outfitList.concat([product]));
+          return product;
+        } else {
+          return product;
         }
       });
+
+      setRelatedProducts(newRelatedProducts);
     } else {
       // remove from outfit list
-      const newOutfitList = outfitList.filter((item) => {
-        const itemId = item.id.toString(10);
-        return itemId !== productId;
+      const newOutfitList = outfitList.filter((product) => {
+        const productId = product.id.toString(10);
+        return productId !== targetProductId;
       });
+
+      const newRelatedProducts = relatedProducts.map((product) => {
+        const productId = product.id.toString(10);
+        if (productId === targetProductId) {
+          product['starred'] = false;
+          return product;
+        } else {
+          return product;
+        }
+      });
+
       setOutfitList(newOutfitList);
+      setRelatedProducts(newRelatedProducts);
     }
   };
 
@@ -51,6 +70,7 @@ const Related = (props) => {
       />
       <Outfit
         outfitList={outfitList}
+        handleAction={handleAction}
       />
     </div>
   );
