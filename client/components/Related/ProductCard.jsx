@@ -20,6 +20,7 @@ const ProductCard = (props) => {
       onMouseEnter={() => { setIsHovering(true); }}
       onMouseLeave={() => { setIsHovering(false); }}
     >
+      <ActionButton product={props.product} handleAction={props.handleAction} />
       <div className="prod-card-wrapper">
         <div className="prod-comparison-container">
           {isHovering && !props.outfit && <ProductComparison currentProduct={props.product} homeProduct={props.homeProduct}/>}
@@ -37,7 +38,6 @@ const ProductCard = (props) => {
           </div>
         </a>
       </div>
-      <ActionButton product={props.product} handleAction={props.handleAction} />
     </div>
   );
 };

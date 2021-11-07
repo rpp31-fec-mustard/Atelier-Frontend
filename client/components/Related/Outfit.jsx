@@ -22,7 +22,7 @@ const Outfit = (props) => {
       <div className="add-product">Add a product here
         <br></br>
         <br></br>
-        <i className="fas fa-plus"></i>
+        <i className="ri-add-line"></i>
       </div>
     );
   }
@@ -30,9 +30,11 @@ const Outfit = (props) => {
   return (
     <div id="your-outfit" className="related-submodule">
       <h3>YOUR OUTFIT</h3>
-      <div className="prod-card-container">
+      <div className="prod-cards-container">
         <LeftButton />
-        {outfitProducts}
+        <section className="prod-cards-wrapper">
+          {outfitProducts}
+        </section>
         <RightButton />
       </div>
     </div>

@@ -19,9 +19,11 @@ const RelatedProducts = (props) => {
   return (
     <div id="related-products" className="related-submodule">
       <h3>RELATED PRODUCTS</h3>
-      <div className="prod-card-container">
+      <div className="prod-cards-container">
         <LeftButton />
-        {productCards}
+        <section className="prod-cards-wrapper">
+          {productCards}
+        </section>
         <RightButton />
       </div>
     </div>

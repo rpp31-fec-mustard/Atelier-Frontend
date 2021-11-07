@@ -15,7 +15,7 @@ html, body, #app, #index {
 }
 
 div {
-  border: 1px solid rgb(199, 199, 199);
+  border: 1px solid var(--global-border-color);
 }
 
 button {
@@ -26,10 +26,16 @@ button {
 /* GLOBAL VARIABLES */
 
 :root {
+  --mustard: #FFDB58;
+  --mustard-shadow: #d09821;
+  --global-border-color: rgb(125, 125, 125);
+
   /* RELATED PRODUCTS */
-  --prod-card-width: 20%;
+  --prod-card-width: 200px;
   --prod-card-height: 310px;
+  --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
+  --prod-img-background-color: rgb(180, 180, 180);
   --comparison-width: 400px;
 }
 
@@ -273,7 +279,7 @@ button {
 #related-main h3{
   align-self: flex-start;
   border-style: none;
-  color: rgb(125, 125, 125);
+  color: var(--global-border-color);
 }
 
 .related-submodule {
@@ -286,13 +292,24 @@ button {
   width: 100%;
 }
 
-.prod-card-container {
+.prod-cards-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   border: none;
   width: 100%;
+}
+
+.prod-cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border: none;
+  width: 90%;
 }
 
 /* change width if needed */
@@ -302,6 +319,8 @@ button {
   align-items: center;
   width: var(--prod-card-width);
   height: var(--prod-card-height);
+  margin: var(--prod-card-margins);
+  flex: 0 0 auto;
 }
 
 .prod-card-wrapper {
@@ -336,7 +355,7 @@ button {
 .prod-card-img-wrapper {
   width: 100%;
   height: var(--prod-img-height);
-  background: black;
+  background: var(--prod-img-background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -359,9 +378,9 @@ button {
 }
 
 .action-button-wrapper {
-  width: 40px;
-  height: 40px;
-  position: absolute;
+  width: 30px;
+  height: 0px;
+  position: sticky;
   align-self: flex-end;
   border: none;
 }
@@ -372,7 +391,7 @@ button {
   -moz-appearance: none;
   background: none;
   fill: none;
-  color: orange;
+  color: var(--mustard);
   border-style: none;
   cursor: pointer;
 }
@@ -384,13 +403,22 @@ button {
   justify-content: center;
   width: var(--prod-card-width);
   height: var(--prod-card-height);
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+
+  font-size: 24px;
+  color: white;
+  background: var(--prod-img-background-color);
 }
 
 .lbutton-container {
+  border: none;
   align-self: center;
 }
 
 .rbutton-container {
+  border: none;
   align-self: center;
 }
 
@@ -405,10 +433,11 @@ button {
   width: var(--comparison-width);
   z-index: 2;
 
-  background-color: #ffffff80;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: #ffffffcd;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border: none;
+  text-align: center;
 }
 
 /* *** QUESTIONS/ANSWER *** */
