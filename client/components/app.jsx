@@ -53,14 +53,11 @@ class App extends React.Component {
       });
   }
 
-<<<<<<< HEAD
-=======
   renderRelated(event) {
     const relatedId = event.target.closest('button').className;
     this.setState({productId: relatedId});
   }
 
->>>>>>> main
   render () {
     return (
       <div id="index">
