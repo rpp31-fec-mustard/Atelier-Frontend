@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +30,19 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  showModal(e) {
+    this.setState({
+      modal: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modal: false
+    });
+  }
+
+
   render() {
     return (
       <div className='entry'>
@@ -37,7 +51,8 @@ class ReviewsListEntry extends React.Component {
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='summary'> {this.props.review.summary} </section>
         <section className='recommend'> {this.wouldRecommend()} </section>
-        <section className='reviewBody'> {this.props.review.body} </section>
+        <section className='reviewBody'> {this.props.review.body}
+        </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>
           Helpful?

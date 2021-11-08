@@ -14,7 +14,6 @@ class Reviews extends React.Component {
       displayedReviews: [],
       starFilter: [],
       reviewMeta: [],
-      isLoaded: false
     };
   }
 
@@ -25,10 +24,14 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      return result.data;
+      this.setState({
+        allReviews: result.data.reviewsArr,
+        displayedReviews: result.data.reviewsArr,
+        reviewMeta: result.data.meta,
+      });
     })
       .catch((err) => {
-        console.log(err);
+        console.log('Error Getting Reviews:');
       });
   }
 
@@ -131,44 +134,46 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    let options = {
-      productId: this.state.id,
-      sort: 'relevant',
-    };
-    this.get(options).then((result) => {
-      this.setState({
-        allReviews: result.reviewsArr,
-        displayedReviews: result.reviewsArr,
-        reviewMeta: result.meta,
-        isLoaded: true
-      });
-    })
-      .catch((err) => {
-        console.log('Error Getting Reviews:');
-      });
+    if (this.state.id) {
+      let options = {
+        productId: this.state.id,
+        sort: 'relevant',
+      };
+      this.get(options);
+    }
   }
 
-  render() {
-    if (this.state.isLoaded) {
-      return (
-        <div id='ratings_reviews' className='module_container'>
-          <div className='reviewsTitle'>
-            <h1> Ratings and Reviews </h1>
-          </div>
-          <div className='filterMessage'>
-            <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
-          </div>
-          <div className='reviews'>
-            <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
-            <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div></div>
-      );
+  componentDidUpdate() {
+    if (this.state.id !== this.props.productId) {
+      this.setState({
+        id: this.props.productId
+      }, () => {
+        let options = {
+          productId: this.state.id,
+          sort: this.state.sorted,
+        };
+        this.get(options);
+      });
     }
+  }
+
+
+
+  render() {
+    return (
+      <div id='ratings_reviews' className='module_container'>
+        <div className='reviewsTitle'>
+          <h1> Ratings and Reviews </h1>
+        </div>
+        <div className='filterMessage'>
+          <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
+        </div>
+        <div className='reviews'>
+          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
+        </div>
+      </div>
+    );
   }
 }
 

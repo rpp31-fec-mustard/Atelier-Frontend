@@ -26,16 +26,18 @@ const Stars = (props) => {
   const [rating, setRating] = useState(0);
 
   useEffect(() => {
-    axios.post('/getRating', { productId: props.productId }).then((result) => {
-      setRating(result.data);
-      if (props.getRating) {
-        props.getRating(result.data);
-      }
-    })
-      .catch((err) => {
-        console.log('Client unable to get rating', err);
-      });
-  }, []);
+    if (props.productId) {
+      axios.post('/getRating', { productId: props.productId }).then((result) => {
+        setRating(result.data);
+        if (props.getRating) {
+          props.getRating(result.data);
+        }
+      })
+        .catch((err) => {
+          console.log('Client unable to get rating', err);
+        });
+    }
+  }, [props.productId]);
 
   let roundedRating = roundRating(rating) / 5 * 100;
   let width = `${roundedRating}%`;

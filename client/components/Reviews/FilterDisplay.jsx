@@ -16,7 +16,7 @@ const FilterDisplay = (props) => {
       </div>
     );
   } else {
-    return <div></div>;
+    return <section></section>;
   }
 };
 
