@@ -67,10 +67,12 @@ const Related = (props) => {
         relatedProducts={relatedProducts}
         handleAction={handleAction}
         homeProduct={props.homeProduct}
+        renderRelated={props.renderRelated}
       />
       <Outfit
         outfitList={outfitList}
         handleAction={handleAction}
+        renderRelated={props.renderRelated}
       />
     </div>
   );

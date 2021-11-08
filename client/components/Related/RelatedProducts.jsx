@@ -12,6 +12,7 @@ const RelatedProducts = (props) => {
         handleAction={props.handleAction}
         product={item}
         homeProduct={props.homeProduct}
+        renderRelated={props.renderRelated}
       />
     );
   });

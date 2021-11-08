@@ -27,7 +27,7 @@ const ProductCard = (props) => {
       </div>
       <ActionButton product={props.product} handleAction={props.handleAction} />
       <div className="prod-card-wrapper">
-        <button>
+        <button className ={props.product.id} onClick={(event) => { props.renderRelated(event); }}>
           <div className="prod-card-img-wrapper">{image}</div>
           <div className="prod-card-info-wrapper">
             <div className="prod-card-category">{props.product.category}</div>
