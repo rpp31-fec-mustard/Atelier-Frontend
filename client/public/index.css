@@ -546,6 +546,15 @@ textarea {
   height: 60%;
   overflow-y: scroll;
 }
+.reviewBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewBody .reviewThumbnail {
+  height: 50px;
+  width: 50px;
+}
 
 .reviewButtons {
   display: flex;
@@ -700,7 +709,6 @@ progress::-webkit-progress-value {
   border: none;
 }
 .pBreakdownScale {
-  z-index: 1;
 position: relative;
 display: flex;
 flex-direction: row;
@@ -736,4 +744,32 @@ border: none;
 
 .percentRecommend {
   font-size: 10px;
+}
+
+.img_modal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(87, 59, 59, 0.938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.exitModal {
+  background-color: white;
+  font-weight: bolder;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+}
+
+.img_modal .largeImg {
+  height:500px;
+  width:600px;
 }

@@ -62,7 +62,7 @@ class Ratings extends React.Component {
     let ratingStorage = [];
     for (var key in char) {
       let ratingEntry = {};
-      ratingEntry[key] = Number(char[key].value).toFixed(2)
+      ratingEntry[key] = Number(char[key].value).toFixed(2);
       ratingStorage.push(ratingEntry);
     }
     this.setState({
@@ -124,7 +124,7 @@ export default Ratings;
 
 
 
-{/* <div className='charRatingEntry'>
+/* <div className='charRatingEntry'>
               <section className='characteristicName'> size </section>
               <section className='pBreakdownScale'>
                 <section className='innerBar'></section>
@@ -165,4 +165,4 @@ export default Ratings;
                 <section>perfect</section>
                 <section>too big</section>
               </section>
-            </div> */}
+            </div> */
