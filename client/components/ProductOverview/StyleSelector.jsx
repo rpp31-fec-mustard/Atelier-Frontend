@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {DEBUG} from './ProductOverview.jsx';
+// import {DEBUG} from './ProductOverview.jsx';
+import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 
 const StyleSelector = ({styles, styleIndex}) => {
+  const DEBUG = false;
   var mlog = (DEBUG) ? console.log : () => {};
 
   mlog('styleSelector:', styles);
   mlog('styleNum:', styleIndex);
+  mlog('singleStyle:', styles[styleIndex]);
 
   if (styles) {
 
@@ -16,16 +19,15 @@ const StyleSelector = ({styles, styleIndex}) => {
           <p className='text_po'>STYLE {'>'} {styles[styleIndex].name}</p>
         </div>
         <div className='style_row_thumbnail_po'>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[0].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[1].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[2].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[3].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-        </div>
-        <div className='style_row_thumbnail_po'>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[4].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[5].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-          <div className='style_thumbnail_po'></div>
-          <div className='style_thumbnail_po'></div>
+          {
+            styles.map((style) => {
+              mlog('i', style);
+              mlog('id', style.style_id);
+              return (
+                <StyleThumbnail style={style} styleId={style.style_id}/>
+              );
+            })
+          }
         </div>
       </div>
     );
@@ -34,16 +36,3 @@ const StyleSelector = ({styles, styleIndex}) => {
 };
 
 export default StyleSelector;
-
-{/* <div className='style_row_thumbnail_po'>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[0].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[1].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[2].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[3].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-</div>
-<div className='style_row_thumbnail_po'>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[4].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-<div className='style_thumbnail_po' style={{backgroundImage: `url(${styles[5].photos[0].thumbnail_url})`, backgroundPosition: 'center', backgroundSize: 'cover'}}></div>
-<div className='style_thumbnail_po'></div>
-<div className='style_thumbnail_po'></div>
-</div> */}

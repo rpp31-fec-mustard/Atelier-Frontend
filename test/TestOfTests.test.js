@@ -26,7 +26,7 @@ afterEach(() => {
   container = null;
 });
 
-describe('Tests of Render Tests', () => {
+xdescribe('Tests of Render Tests', () => {
 
   describe('shallow test testing', () => {
 

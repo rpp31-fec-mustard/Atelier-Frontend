@@ -37,6 +37,10 @@ button {
   --prod-img-height: 200px;
   --prod-img-background-color: rgb(180, 180, 180);
   --comparison-width: 420px;
+
+   /* PRODUCT OVERVIEW */
+  --po-info-margin: 0px 20px;
+
 }
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
@@ -77,7 +81,7 @@ button {
 
 
 
-/* *** PRODUCT OVERVIEW *** */
+/* *** *** *** *** PRODUCT OVERVIEW *** *** *** *** */
 
 #product_overview_main {
 
@@ -170,11 +174,13 @@ button {
 /** stars **/
 .stars_po {
   height: 10%;
+  margin: var(--po-info-margin);
 }
 
 /** product name **/
 .name_block_po {
   height: 30%;
+  margin: var(--po-info-margin);
 }
 
 #name_po {
@@ -185,9 +191,11 @@ button {
   margin: 5px;
 }
 
+/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 /** product style **/
 .style_po {
   height: 30%;
+  margin: var(--po-info-margin);
 }
 
 .style_text_po {
@@ -200,9 +208,11 @@ button {
 }
 
 .style_row_thumbnail_po {
-  height: 60px;
+  height: 120px;
+  width: 260px;
   display: flex;
   flex-direction: row;
+  flex-flow: wrap;
 }
 
 .style_thumbnail_po {

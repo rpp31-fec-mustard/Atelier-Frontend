@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -55,24 +55,24 @@ const ProductOverview = ({product, id}) => {
 
     // mlog('PO:', );
   //   // const product = this.props.product;
-  const {
-    description,
-    name,
-    category,
-    default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-    slogan
-  } = product;
+    const {
+      description,
+      name,
+      category,
+      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
+      slogan
+    } = product;
 
     // const {
     //   results,
     // } = styles;
   //   mlog('PO results:', results)
 
-  mlog(styles)
+    mlog(styles);
   // if (styles !== undefined) {
     return (
       // <div id='product_overview_main' className='module_container'>
-        <div className='module_container' id='product_overview_main' >
+      <div className='module_container' id='product_overview_main' >
         {/* <div className='product_overview_main module_container'> */}
         <div className='top01'>
           <ImageGallery photos={styles.results[styleIndex].photos} />

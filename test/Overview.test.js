@@ -8,6 +8,8 @@ import ProductOverview from '../client/components/ProductOverview/ProductOvervie
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
+import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
+import StyleThumbnail from '../client/components/ProductOverview/StyleCartSubs/StyleThumbnail.jsx';
 
 let container = null;
 
@@ -24,8 +26,8 @@ afterEach(() => {
   container = null;
 });
 
-xdescribe('Render Tests', () => {
-  test('Four module_containers should be rendering', () => {
+describe('Render Tests', () => {
+  xtest('Four module_containers should be rendering', () => {
     act(() => {
       render(<App />, container);
     });
@@ -56,7 +58,7 @@ xdescribe('Render Tests', () => {
 
 
 
-describe('<ProductOverview /> full rendering', () => {
+xdescribe('<ProductOverview /> full rendering', () => {
   it('renders one <ImageGallery /> component', () => {
     act(() => {
       render(<App />, container);
@@ -83,7 +85,7 @@ describe('<ProductOverview /> full rendering', () => {
 
 
 
-xdescribe('Image Gallery Module', () => {
+describe('Image Gallery Module', () => {
   xit('renders all modules', () => {
   });
   test('Image Gallery should render', () => {
@@ -103,13 +105,27 @@ xdescribe('Image Gallery Module', () => {
     expect(!!component).toBe(true);
   });
 
-  it('right arrow should render', ()=> {
+  xit('right arrow should render', ()=> {
     act(() => {
-      render(<App />, container);
+      render(<ImageGallery />, container);
     });
     //journ
     const component = document.getElementsByClassName('arrow_right_po');
-    expect(!!component).toBe(true);
+    expect(component.length).toBe(1);
+  });
+
+  xit('style thumbnails should render', () => {
+    // let count =
+    const wrapper = shallow(<StyleSelector />);
+    expect(wrapper.find(StyleThumbnail)).toHave(6);
+  });
+
+  // test('renders five <Thumbnail /> components shallow', () => {
+  //   const wrapper = shallow(<ThumbnailsBar />);
+  //   expect(wrapper.find(Thumbnail)).toHaveLength(5);
+  // });
+
+  xit('interacts correctly', () => {
   });
 
   xit('interacts correctly', () => {
@@ -122,7 +138,7 @@ xdescribe('Image Gallery Module', () => {
   });
 });
 
-xdescribe('Style Module', () => {
+describe('Style Module', () => {
   xit('renders all modules', () => {
   });
   test('Style Selector should render', () => {
