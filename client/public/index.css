@@ -528,7 +528,7 @@ textarea {
   flex-direction:column;
   align-items: center;
   width: 50%;
-  height: 100%;
+  height: 500px;
   color: rgb(59, 58, 58);
   border: none;
 }
@@ -558,7 +558,7 @@ textarea {
 .overall {
   display: flex;
   flex-direction: column;
-  height: 20%;
+  height: 50px;
   width: 80%;
   color: rgb(77, 63, 63);
  justify-content: center;
@@ -572,7 +572,7 @@ textarea {
 
 .starBreakdown {
   margin-top: 10px;
-  height: 40%;
+  height: 110px;
   width: 80%;
   overflow-y: scroll;
   border: none;
@@ -581,10 +581,12 @@ textarea {
 .productBreakdown {
   display: flex;
   flex-direction: column;
-  height: 40%;
+  height: 300px;
   width: 80%;
   font-size: 10px;
   border: none;
+  overflow-y: scroll;
+  font-size: 10px;
 }
 
 .star {
@@ -703,7 +705,7 @@ position: relative;
 display: flex;
 flex-direction: row;
 width: 254px;
-margin: 10px 10px 0px 10px;
+margin: 4px 10px 0px 10px;
 border: none;
 }
 
@@ -717,9 +719,7 @@ border: none;
 }
 
 .indicator {
-  z-index: 2;
   position: absolute;
-  left: 120px;
   bottom: 10%;
 }
 
