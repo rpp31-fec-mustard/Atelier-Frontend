@@ -31,12 +31,12 @@ button {
   --global-border-color: rgb(125, 125, 125);
 
   /* RELATED PRODUCTS */
-  --prod-card-width: 200px;
+  --prod-card-width: 22.5%;
   --prod-card-height: 300px;
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
   --prod-img-background-color: rgb(180, 180, 180);
-  --comparison-width: 400px;
+  --comparison-width: 420px;
 }
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
@@ -402,7 +402,7 @@ button {
 }
 
 .action-button-wrapper {
-  width: 30px;
+  width: 27px;
   height: 0px;
   position: sticky;
   align-self: flex-end;
@@ -447,21 +447,29 @@ button {
 }
 
 .prod-comparison-container {
+  border: 0px;
   position: absolute;
+  top: 50px;
+  left: -50px;
 }
 
 .prod-comparison-wrapper {
-  position: absolute;
-  top: 50px;
-  left: 50px;
+  position: sticky;
   width: var(--comparison-width);
   z-index: 2;
 
   background-color: #ffffffcd;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: none;
   text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  width: 33%;
 }
 
 /* *** QUESTIONS/ANSWER *** */
