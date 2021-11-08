@@ -4,11 +4,10 @@ const hasMetric = (product, metric) => {
   for (let i = 0; i < product.features.length; i++) {
     const feature = product.features[i].feature;
     if (feature === metric) {
-      return <i className="fas fa-check"></i>;
+      return <i className="ri-check-line" style={{color: 'green'}}></i>;
     } else {
-      return <i className="fas fa-times"></i>;
+      return <i className="ri-close-fill" style={{color: 'red'}}></i>;
     }
-
   }
 };
 
