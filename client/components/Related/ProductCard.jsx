@@ -6,20 +6,6 @@ import Stars from '../Global/Stars.jsx';
 
 const ProductCard = (props) => {
   const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-
-  // setting action button only for related product cards
-  let actionButton;
-
-  if (!props.outfit) {
-    actionButton = <ActionButton handleAction={props.handleAction} />;
-  }
 
   // setting image in cases of null image
   let image = props.product.thumbnailUrl ? (
@@ -31,25 +17,26 @@ const ProductCard = (props) => {
   return (
     <div
       className={`prod-card ${props.product.id}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseOut}
+      onMouseEnter={() => { setIsHovering(true); }}
+      onMouseLeave={() => { setIsHovering(false); }}
     >
-      <div className="prod-card-wrapper">
-        <a
-          href="https://xd.adobe.com/view/e600dc0f-454c-44e3-5075-7872d04189ff-9031/?fullscreen"
-          target="_blank"
-        >
-          <div className="prod-card-img-wrapper">{image}</div>
-          <div className="prod-card-info category">{props.product.category}</div>
-          <div className="prod-card-info name">{props.product.name}</div>
-          <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
-          <div className="prod-card-info rating"><Stars productId={props.product.id}/></div>
-        </a>
+      <div style={{position: 'absolute'}}>
         <div className="prod-comparison-container">
-          {isHovering && <ProductComparison currentProduct={props.product}/>}
+          {isHovering && !props.outfit && <ProductComparison currentProduct={props.product} homeProduct={props.homeProduct}/>}
         </div>
       </div>
-      {actionButton}
+      <ActionButton product={props.product} handleAction={props.handleAction} />
+      <div className="prod-card-wrapper">
+        <button className ={props.product.id} onClick={(event) => { props.renderRelated(event); }}>
+          <div className="prod-card-img-wrapper">{image}</div>
+          <div className="prod-card-info-wrapper">
+            <div className="prod-card-category">{props.product.category}</div>
+            <div className="prod-card-name">{props.product.name}</div>
+            <Price originalPrice={props.product.originalPrice} salePrice={props.product.salePrice}/>
+            <div className="rating"><Stars productId={props.product.id}/></div>
+          </div>
+        </button>
+      </div>
     </div>
   );
 };

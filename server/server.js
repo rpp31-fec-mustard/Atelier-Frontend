@@ -47,6 +47,7 @@ app.get('/getReviews', (req, res) => {
 app.post('/related', (req, res) => {
   api.getRelated(req.body.product)
     .then((relatedList) => {
+      // console.log({relatedList});
       res.status(200).send(relatedList);
     })
     .catch((error) => {

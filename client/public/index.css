@@ -15,7 +15,7 @@ html, body, #app, #index {
 }
 
 div {
-  border: 1px solid rgb(199, 199, 199);
+  border: 1px solid var(--global-border-color);
 }
 
 button {
@@ -23,6 +23,21 @@ button {
   height: 100%;
 }
 
+/* GLOBAL VARIABLES */
+
+:root {
+  --mustard: #FFDB58;
+  --mustard-shadow: #d09821;
+  --global-border-color: rgb(125, 125, 125);
+
+  /* RELATED PRODUCTS */
+  --prod-card-width: 22.5%;
+  --prod-card-height: 300px;
+  --prod-card-margins: 0px 10px;
+  --prod-img-height: 200px;
+  --prod-img-background-color: rgb(180, 180, 180);
+  --comparison-width: 420px;
+}
 
 /* .module_cointainer is only temporary. Feel free to mod yours as you see fit. */
 
@@ -261,24 +276,14 @@ button {
 
 /* *** RELATED *** */
 
-:root {
-  --prod-card-width: 20%;
-  --prod-card-height: 300px;
-  --add-card-height: 300px;
-  --prod-img-height: 200px;
-}
-
-#related-main div{
-  border: none;
-}
-
 #related-main h3{
   align-self: flex-start;
   border-style: none;
-  color: rgb(125, 125, 125);
+  color: var(--global-border-color);
 }
 
 .related-submodule {
+  border: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -287,13 +292,24 @@ button {
   width: 100%;
 }
 
-.prod-card-container {
+.prod-cards-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   border: none;
   width: 100%;
+}
+
+.prod-cards-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border: none;
+  width: 90%;
 }
 
 /* change width if needed */
@@ -303,27 +319,59 @@ button {
   align-items: center;
   width: var(--prod-card-width);
   height: var(--prod-card-height);
+  margin: var(--prod-card-margins);
+  flex: 0 0 auto;
 }
 
 .prod-card-wrapper {
   width: 100%;
-}
-
-.prod-card-wrapper a {
-  color: black;
-  text-decoration: none;
-}
-
-.prod-card-info {
-  width: 100%;
   border: none;
 }
 
-.sale {
-  color: red;
+.prod-card-wrapper button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  fill: none;
+  border-style: none;
+  cursor: pointer;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.sale span {
+.prod-card-info-wrapper {
+  margin: 5px;
+  border: none;
+  text-align: left;
+  font-family: 'Zen Maru Gothic', sans-serif;
+}
+
+.prod-card-info-wrapper div {
+  border: none;
+}
+
+.prod-card-category {
+  text-transform: uppercase;
+  color: var(--global-border-color)
+}
+
+.prod-card-name {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.sale-price {
+  color: red;
+  font-weight: 700;
+}
+
+.sale-price span {
+  margin: 0px 5px;
+  font-weight: 400;
   text-decoration: line-through;
   color: black;
 }
@@ -331,27 +379,32 @@ button {
 .prod-card-img-wrapper {
   width: 100%;
   height: var(--prod-img-height);
-  background: black;
+  background: var(--prod-img-background-color);
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
 }
 
 .prod-card-img {
   width: 100%;
   height: 100%;
   object-fit: none;
+  border: none;
 }
 
 .prod-card-no-img {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
+  border: none;
 }
 
 .action-button-wrapper {
-  width: 40px;
-  height: 40px;
-  position: absolute;
+  width: 27px;
+  height: 0px;
+  position: sticky;
   align-self: flex-end;
   border: none;
 }
@@ -362,32 +415,61 @@ button {
   -moz-appearance: none;
   background: none;
   fill: none;
-  color: orange;
+  color: var(--mustard);
   border-style: none;
   cursor: pointer;
 }
 
 .add-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: var(--prod-card-width);
   height: var(--prod-card-height);
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0;
+
+  font-size: 24px;
+  color: white;
+  background: var(--prod-img-background-color);
 }
 
 .lbutton-container {
+  border: none;
   align-self: center;
 }
 
 .rbutton-container {
+  border: none;
   align-self: center;
 }
 
 .prod-comparison-container {
+  border: 0px;
   position: absolute;
+  top: 50px;
+  left: -50px;
 }
 
 .prod-comparison-wrapper {
-  position: absolute;
-  top: -300px;
-  left: 40px;
+  position: sticky;
+  width: var(--comparison-width);
+  z-index: 2;
+
+  background-color: #ffffffcd;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  width: 33%;
 }
 
 /* *** QUESTIONS/ANSWER *** */
