@@ -4,12 +4,15 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
+  // console.log(props);
   const productCards = props.relatedProducts.map((item, i) => {
     return (
       <ProductCard
         key={item.id}
         handleAction={props.handleAction}
         product={item}
+        homeProduct={props.homeProduct}
+        renderRelated={props.renderRelated}
       />
     );
   });
@@ -17,9 +20,11 @@ const RelatedProducts = (props) => {
   return (
     <div id="related-products" className="related-submodule">
       <h3>RELATED PRODUCTS</h3>
-      <div className="prod-card-container">
+      <div className="prod-cards-container">
         <LeftButton />
-        {productCards}
+        <section className="prod-cards-wrapper">
+          {productCards}
+        </section>
         <RightButton />
       </div>
     </div>

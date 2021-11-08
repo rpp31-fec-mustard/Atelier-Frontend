@@ -11,16 +11,16 @@ import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thu
 
 let container = null;
 
-beforeEach(async () => {
+beforeEach(() => {
   // setup a DOM element as a render target
-  container = await document.createElement('div');
-  await document.body.appendChild(container);
+  container = document.createElement('div');
+  document.body.appendChild(container);
 });
 
-afterEach(async () => {
+afterEach(() => {
   // cleanup on exiting
-  await unmountComponentAtNode(container);
-  await container.remove();
+  unmountComponentAtNode(container);
+  container.remove();
   container = null;
 });
 
@@ -63,7 +63,7 @@ describe('<ProductOverview /> full rendering', () => {
     });
 
     const wrapper = mount(<ProductOverview />);
-    console.log('wrapper', wrapper)
+    console.log('wrapper', wrapper);
     expect(wrapper.contains(<ImageGallery />)).toEqual(true);
 
   });

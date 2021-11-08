@@ -4,17 +4,16 @@ import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
 
-
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sorted: 'relevant',
-      id: this.props.product,
+      id: this.props.productId,
       allReviews: [],
       displayedReviews: [],
       starFilter: [],
-      reviewMeta: []
+      reviewMeta: [],
     };
   }
 
@@ -25,10 +24,14 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      return result.data;
+      this.setState({
+        allReviews: result.data.reviewsArr,
+        displayedReviews: result.data.reviewsArr,
+        reviewMeta: result.data.meta,
+      });
     })
       .catch((err) => {
-        throw err;
+        console.log('Error Getting Reviews:');
       });
   }
 
@@ -51,7 +54,7 @@ class Reviews extends React.Component {
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
-        id: this.state.id,
+        productId: this.state.id,
         sort: this.state.sorted,
       };
       this.get(options).then((result) => {
@@ -131,21 +134,30 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    let options = {
-      id: this.state.id,
-      sort: 'relevant',
-    };
-    this.get(options).then((result) => {
-      this.setState({
-        allReviews: result.reviewsArr,
-        displayedReviews: result.reviewsArr,
-        reviewMeta: result.meta
-      });
-    })
-      .catch((err) => {
-        console.log('Error Getting Reviews:', err);
-      });
+    if (this.state.id) {
+      let options = {
+        productId: this.state.id,
+        sort: 'relevant',
+      };
+      this.get(options);
+    }
   }
+
+  componentDidUpdate() {
+    if (this.state.id !== this.props.productId) {
+      this.setState({
+        id: this.props.productId
+      }, () => {
+        let options = {
+          productId: this.state.id,
+          sort: this.state.sorted,
+        };
+        this.get(options);
+      });
+    }
+  }
+
+
 
   render() {
     return (
@@ -157,7 +169,7 @@ class Reviews extends React.Component {
           <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />
         </div>
         <div className='reviews'>
-          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} />
+          <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
           <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
         </div>
       </div>

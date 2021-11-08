@@ -12,8 +12,7 @@ const ThumbnailsBar = () => (
     <Thumbnail />
     <Thumbnail />
     <div id='arrow_down_po'>down</div>
-</div>
-
-)
+  </div>
+);
 
 export default ThumbnailsBar;

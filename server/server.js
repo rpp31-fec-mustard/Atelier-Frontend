@@ -32,7 +32,7 @@ app.get('/product/styles', (req, res) => {
 });
 
 app.get('/getReviews', (req, res) => {
-  let id = req.query.id;
+  let id = req.query.productId;
   let sort = req.query.sort;
   api.getReviews(id, sort).then((result) => {
     res.status(200).send(result);
@@ -44,6 +44,7 @@ app.get('/getReviews', (req, res) => {
 app.post('/related', (req, res) => {
   api.getRelated(req.body.product)
     .then((relatedList) => {
+      // console.log({relatedList});
       res.status(200).send(relatedList);
     })
     .catch((error) => {
