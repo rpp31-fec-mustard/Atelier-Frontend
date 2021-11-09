@@ -11,9 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59601', //testing
-      //59669
-      // productId: '59553', //testing
+      // productId: '59601',  //testing
+      productId: '59553', //testing
       product: {},
       randomizerCb: this.randomizerCb.bind(this)
     };

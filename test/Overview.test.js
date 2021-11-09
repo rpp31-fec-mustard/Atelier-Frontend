@@ -8,8 +8,11 @@ import ProductOverview from '../client/components/ProductOverview/ProductOvervie
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
+import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
+import StyleThumbnail from '../client/components/ProductOverview/StyleCartSubs/StyleThumbnail.jsx';
 
 let container = null;
+
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement('div');
@@ -24,14 +27,15 @@ afterEach(() => {
 });
 
 describe('Render Tests', () => {
-  test('Four module_containers should be rendering', () => {
+  xtest('Four module_containers should be rendering', () => {
     act(() => {
       render(<App />, container);
     });
     const modules = document.getElementsByClassName('module_container');
-    window.onLoad = ()=> {
-      expect(modules.length).toBe(4);
-    };
+    // console.log('modules count render test', modules)
+    // window.onLoad = ()=> {
+    expect(modules.length).toBe(4);
+    // };
   });
 
   test('Product Overview should render', () => {
@@ -40,12 +44,9 @@ describe('Render Tests', () => {
 
     });
 
-    //journal entry
-    window.onload = ()=> {
-
-      const component = document.getElementById('product_overview_main');
-      expect(!!component).toBe(true);
-    };
+    const component = document.getElementsByClassName('product_overview_main');
+    expect(!!component).toBe(true);
+    // };
   });
 });
 
@@ -57,28 +58,28 @@ describe('Render Tests', () => {
 
 
 
-describe('<ProductOverview /> full rendering', () => {
+xdescribe('<ProductOverview /> full rendering', () => {
   it('renders one <ImageGallery /> component', () => {
     act(() => {
       render(<App />, container);
     });
-    window.onLoad = () => {
-      const wrapper = mount(<ProductOverview />);
-      expect(wrapper.contains(<ImageGallery />)).toEqual(true);
-    };
+
+    const wrapper = mount(<ProductOverview />);
+    console.log('wrapper', wrapper);
+    expect(wrapper.contains(<ImageGallery />)).toEqual(true);
+
   });
 
-  it('renders five <Thumbnail /> components', () => {
+  test('renders five <Thumbnail /> components', () => {
     act(() => {
       render(<App />, container);
     });
 
-    window.onLoad = () => {
-      const wrapper = mount(<ProductOverview />);
-      // console.log('test')
-      // console.log(wrapper.find(Thumbnail))
-      expect(wrapper.find(Thumbnail).length).toEqual(5);
-    };
+    const wrapper = mount(<ProductOverview />);
+    // console.log('test')
+    // console.log(wrapper.find(Thumbnail))
+    expect(wrapper).toHaveLength(5);
+
   });
 });
 
@@ -92,24 +93,39 @@ describe('Image Gallery Module', () => {
       render(<App />, container);
     });
     //journal entry
-    window.onload = ()=> {
-      const component = document.getElementById('image_gallery_po');
-      expect(!!component).toBe(true);
-    };
+    const component = document.getElementsByClassName('image_gallery_po');
+    expect(!!component).toBe(true);
   });
 
   it('left arrow should render', ()=> {
-    window.onload = ()=> {
-      const component = document.getElementById('arrow_left_po');
-      expect(!!component).toBe(true);
-    };
+    act(() => {
+      render(<App />, container);
+    });
+    const component = document.getElementsByClassName('arrow_left_po');
+    expect(!!component).toBe(true);
   });
 
-  it('right arrow should render', ()=> {
-    window.onload = ()=> {
-      const component = document.getElementById('arrow_right_po');
-      expect(!!component).toBe(true);
-    };
+  xit('right arrow should render', ()=> {
+    act(() => {
+      render(<ImageGallery />, container);
+    });
+    //journ
+    const component = document.getElementsByClassName('arrow_right_po');
+    expect(component.length).toBe(1);
+  });
+
+  xit('style thumbnails should render', () => {
+    // let count =
+    const wrapper = shallow(<StyleSelector />);
+    expect(wrapper.find(StyleThumbnail)).toHave(6);
+  });
+
+  // test('renders five <Thumbnail /> components shallow', () => {
+  //   const wrapper = shallow(<ThumbnailsBar />);
+  //   expect(wrapper.find(Thumbnail)).toHaveLength(5);
+  // });
+
+  xit('interacts correctly', () => {
   });
 
   xit('interacts correctly', () => {
@@ -130,16 +146,16 @@ describe('Style Module', () => {
       render(<App />, container);
     });
     //journal entry
-    window.onload = ()=> {
-      const component = document.getElementsByClassName('style_po');
-      expect(!!component).toBe(true);
-    };
+
+    const component = document.getElementsByClassName('style_po');
+    expect(!!component).toBe(true);
+
   });
   xit('interacts correctly', () => {
   });
 });
 
-describe('Add to Cart Module', () => {
+xdescribe('Add to Cart Module', () => {
   xit('renders all modules', () => {
   });
 
@@ -147,7 +163,7 @@ describe('Add to Cart Module', () => {
   });
 });
 
-describe('Cart Interaction Module', () => {
+xdescribe('Cart Interaction Module', () => {
   xit('renders all modules', () => {
   });
   xit('interacts correctly', () => {
