@@ -11,9 +11,11 @@ const hasMetric = (product, metric) => {
   }
 };
 
+// {top: `${props.position.y}px`, left: `${props.position.x}px`}
+
 const ProductComparison = (props) => {
   return (
-    <div className="prod-comparison-wrapper">
+    <div className="prod-comparison-wrapper" style={{top: `${props.position.y - 250}px`, left: `${props.position.x - 140}px`}}>
       <table>
         <thead>
           <tr>
@@ -22,7 +24,7 @@ const ProductComparison = (props) => {
           <tr>
             <th>{props.homeProduct.name}</th>
             <th></th>
-            <th>{props.currentProduct.name}</th>
+            <th style={{color: '#FFDB58'}}>{props.currentProduct.name}</th>
           </tr>
         </thead>
         <tbody>

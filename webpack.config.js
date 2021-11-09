@@ -1,9 +1,11 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const entry = __dirname + '/client/components/index.jsx';
 
 module.exports = {
   mode: 'development',
+  plugins: [new CompressionPlugin()],
   entry: ['regenerator-runtime/runtime.js', entry],
   module: {
     rules: [
