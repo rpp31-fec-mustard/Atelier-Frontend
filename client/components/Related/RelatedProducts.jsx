@@ -23,11 +23,11 @@ const RelatedProducts = (props) => {
     <div id="related-products" className="related-submodule">
       <h3>RELATED PRODUCTS</h3>
       <div className="prod-cards-container">
-        <LeftButton />
+        <LeftButton cardsWrapper={cardsWrapper}/>
         <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {productCards}
         </section>
-        <RightButton />
+        <RightButton cardsWrapper={cardsWrapper}/>
       </div>
     </div>
   );

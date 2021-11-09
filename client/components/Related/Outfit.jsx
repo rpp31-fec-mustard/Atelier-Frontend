@@ -4,6 +4,8 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const Outfit = (props) => {
+  const cardsWrapper = React.useRef(null);
+
   let outfitProducts;
 
   if (props.outfitList.length) {
@@ -31,11 +33,11 @@ const Outfit = (props) => {
     <div id="your-outfit" className="related-submodule">
       <h3>YOUR OUTFIT</h3>
       <div className="prod-cards-container">
-        <LeftButton />
-        <section className="prod-cards-wrapper">
+        <LeftButton cardsWrapper={cardsWrapper}/>
+        <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {outfitProducts}
         </section>
-        <RightButton />
+        <RightButton cardsWrapper={cardsWrapper}/>
       </div>
     </div>
   );

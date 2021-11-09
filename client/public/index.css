@@ -357,7 +357,7 @@ button {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  overflow: auto;
+  overflow: scroll;
   border: none;
   width: 90%;
 }
