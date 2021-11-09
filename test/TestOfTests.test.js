@@ -26,7 +26,7 @@ afterEach(() => {
   container = null;
 });
 
-xdescribe('Tests of Render Tests', () => {
+describe('Tests of Render Tests', () => {
 
   describe('shallow test testing', () => {
 
@@ -39,10 +39,11 @@ xdescribe('Tests of Render Tests', () => {
 
       it('renders one <ImageGallery /> component shallow', () => {
         const wrapper = shallow(<ProductOverview />);
+        console.log(wrapper.debug({ ignoreProps: true }));
         expect(wrapper.find(ImageGallery)).toHaveLength(1);
       });
       //works
-      it('renders one <ImageGallery /> component shallow', () => {
+      xit('renders one <ImageGallery /> component shallow', () => {
         const wrapper = shallow(<ProductOverview />);
         expect(!!wrapper).toBe(true);
       });
@@ -58,10 +59,11 @@ xdescribe('Tests of Render Tests', () => {
 
       it('renders one <ThumbnailsBar /> component shallow', () => {
         const wrapper = shallow(<ImageGallery />);
+        console.log(wrapper.debug({ ignoreProps: true }));
         expect(wrapper.find(ThumbnailsBar)).toHaveLength(1);
       });
       //works
-      it('renders one <ThumbnailsBar /> component shallow', () => {
+      xit('renders one <ThumbnailsBar /> component shallow', () => {
         const wrapper = shallow(<ImageGallery />);
         expect(!!wrapper).toBe(true);
       });
@@ -81,6 +83,11 @@ xdescribe('Tests of Render Tests', () => {
         expect(wrapper.find(Thumbnail)).toHaveLength(5);
       });
       test('renders five <Thumbnail /> components shallow', () => {
+        const wrapper = shallow(<ThumbnailsBar />);
+        console.log(wrapper.debug({ ignoreProps: true }));
+        expect(wrapper.find(Thumbnail)).toHaveLength(5);
+      });
+      xtest('renders five <Thumbnail /> components shallow', () => {
         const wrapper = shallow(<ThumbnailsBar />);
         expect(!!wrapper).toBe(true);
       });
@@ -96,6 +103,7 @@ xdescribe('Tests of Render Tests', () => {
     //works
       it('renders one <ImageGallery /> component mount', () => {
         const wrapper = mount(<ProductOverview />);
+        console.log('2', wrapper.debug({ ignoreProps: true }));
         expect(wrapper.contains(ImageGallery)).toEqual(true);
       });
       it('renders one <ImageGallery /> component mount', () => {
@@ -103,7 +111,7 @@ xdescribe('Tests of Render Tests', () => {
         expect(wrapper.find(ImageGallery)).toHaveLength(1);
       });
       //works
-      it('renders one <ImageGallery /> component mount', () => {
+      xit('renders one <ImageGallery /> component mount', () => {
         const wrapper = mount(<ProductOverview />);
         expect(!!wrapper).toBe(true);
       });
@@ -112,7 +120,9 @@ xdescribe('Tests of Render Tests', () => {
     describe('ImageGallery to ThumbnailsBar', () => {
 
       it('renders one <ThumbnailsBar /> component mount', () => {
-        const wrapper = mount(<ImageGallery />);
+        const wrapper = mount (<ImageGallery />);
+        wrapper.update();
+        console.log('1', wrapper.debug({ ignoreProps: true }));
         expect(wrapper.contains(ThumbnailsBar)).toEqual(true);
       });
 
@@ -121,7 +131,7 @@ xdescribe('Tests of Render Tests', () => {
         expect(wrapper.find(ThumbnailsBar)).toHaveLength(1);
       });
       //works
-      it('renders one <ThumbnailsBar /> component mount', () => {
+      xit('renders one <ThumbnailsBar /> component mount', () => {
         const wrapper = mount(<ImageGallery />);
         expect(!!wrapper).toBe(true);
       });
@@ -140,7 +150,7 @@ xdescribe('Tests of Render Tests', () => {
         expect(wrapper.find(Thumbnail)).toHaveLength(5);
       });
       //works
-      test('renders five <Thumbnail /> components mount', () => {
+      xtest('renders five <Thumbnail /> components mount', () => {
         const wrapper = mount(<ThumbnailsBar />);
         expect(!!wrapper).toBe(true);
       });
@@ -156,86 +166,92 @@ xdescribe('Tests of Render Tests', () => {
 
 
   describe('render test testing', () => {
-    test('renders one <ImageGallery /> component render', () => {
-      act(() => {
-        render(<ProductOverview />, container);
+    describe('PO to ImageGallery', () => {
+      test('renders one <ImageGallery /> component render', () => {
+        act(() => {
+          render(<ProductOverview />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(component.length).toEqual(1);
       });
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(component.length).toEqual(1);
+
+      test('renders one <ImageGallery /> component render', () => {
+        act(() => {
+          render(<ProductOverview />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(component).toHaveLength(1);
+      });
+      //works
+      xtest('renders one <ImageGallery /> component render', () => {
+        act(() => {
+          render(<ProductOverview />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(!!component).toBe(true);
+      });
+
     });
 
-    test('renders one <ImageGallery /> component render', () => {
-      act(() => {
-        render(<ProductOverview />, container);
+
+
+
+    describe('ImageGallery to ThumbnailsBar', () => {
+
+      //works
+      it('renders one <ThumbnailsBar /> component mount', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(component.length).toEqual(1);
       });
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(component).toHaveLength(1);
-    });
-    //works
-    test('renders one <ImageGallery /> component render', () => {
-      act(() => {
-        render(<ProductOverview />, container);
+
+      it('renders one <ThumbnailsBar /> component mount', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(component).toHaveLength(1);
       });
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(!!component).toBe(true);
+      //works
+      xit('renders one <ThumbnailsBar /> component mount', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('image_gallery_po');
+        expect(!!component).toBe(true);
+      });
     });
 
+
+    describe('ThumbnailsBar to Thumbnail', () => {
+      it('renders five <Thumbnail /> components render', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('thumbnail_po');
+        expect(component.length).toEqual(5);
+      });
+      //works
+      it('renders five <Thumbnail /> components render', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('thumbnail_po');
+        expect(component).toHaveLength(5);
+      });
+      //works
+      xit('renders five <Thumbnail /> components render', () => {
+        act(() => {
+          render(<ThumbnailsBar />, container);
+        });
+        const component = document.getElementsByClassName('thumbnail_po');
+        expect(!!component).toBe(true);
+      });
+
+    });
   });
-
-
-
-
-  describe('ImageGallery to ThumbnailsBar', () => {
-
-    //works
-    it('renders one <ThumbnailsBar /> component mount', () => {
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(component.length).toEqual(1);
-    });
-
-    it('renders one <ThumbnailsBar /> component mount', () => {
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(component).toHaveLength(1);
-    });
-    //works
-    it('renders one <ThumbnailsBar /> component mount', () => {
-      const component = document.getElementsByClassName('image_gallery_po');
-      expect(!!component).toBe(true);
-    });
-  });
-
-
-
-
-
-
-  describe('ThumbnailsBar to Thumbnail', () => {
-    it('renders five <Thumbnail /> components render', () => {
-      act(() => {
-        render(<ThumbnailsBar />, container);
-      });
-      const component = document.getElementsByClassName('thumbnail_po');
-      expect(component.length).toEqual(5);
-    });
-    //works
-    it('renders five <Thumbnail /> components render', () => {
-      act(() => {
-        render(<ThumbnailsBar />, container);
-      });
-      const component = document.getElementsByClassName('thumbnail_po');
-      expect(component).toHaveLength(5);
-    });
-    //works
-    it('renders five <Thumbnail /> components render', () => {
-      act(() => {
-        render(<ThumbnailsBar />, container);
-      });
-      const component = document.getElementsByClassName('thumbnail_po');
-      expect(!!component).toBe(true);
-    });
-
-  });
-
 });
 
 
