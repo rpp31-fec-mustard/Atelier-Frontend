@@ -10,7 +10,7 @@ const Related = (props) => {
   const [outfitList, setOutfitList] = useState([]);
 
   useEffect(() => {
-    axios.post('/related', { product: props.productId })
+    axios.post('/related', { productId: props.productId })
       .then((result) => {
         setRelatedProducts(result.data);
       })

@@ -21,8 +21,9 @@ app.get('/product', (req, res) => {
     });
 });
 
-app.get('/product/styles', (req, res) => {
-  let productId = req.query.productId;
+app.post('/product/styles', (req, res) => {
+  let productId = req.body.productId;
+  // console.log({productId});
   api.getProductStyles(productId)
     .then((result) => {
       res.status(200).send(result);
@@ -43,7 +44,7 @@ app.get('/getReviews', (req, res) => {
 });
 
 app.post('/related', (req, res) => {
-  api.getRelated(req.body.product)
+  api.getRelated(req.body.productId)
     .then((relatedList) => {
       // console.log({relatedList});
       res.status(200).send(relatedList);

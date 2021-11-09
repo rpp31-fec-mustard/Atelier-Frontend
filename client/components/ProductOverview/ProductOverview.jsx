@@ -26,11 +26,7 @@ const ProductOverview = ({product, id}) => {
 
   const getProductStyles = (productId) => {
     mlog('this.props.product.id :', productId);
-    axios.get('/product/styles', {
-      params: {
-        productId: id
-      }
-    })
+    axios.post('/product/styles', { productId: id })
       .then((res) => {
         mlog('@client PO res product/styles:', res.data);
         setStyles(res.data);
@@ -45,10 +41,22 @@ const ProductOverview = ({product, id}) => {
   //   getProductStyles(productId);
   // }, []);
 
-
   useEffect((productId) => {
-    getProductStyles(productId);
-  }, [id]);
+    axios.post('/product/styles', { productId: id })
+      .then((res) => {
+        mlog('@client PO res product/styles:', res.data);
+        console.log(res.data);
+        setStyles(res.data);
+      })
+      .catch((err) => {
+        console.log('Error retrieving product/styles: ', err);
+      });
+  });
+
+
+//   useEffect((productId) => {
+//     getProductStyles(productId);
+//   }, [id]);
 
 
   if (styles !== undefined) {
