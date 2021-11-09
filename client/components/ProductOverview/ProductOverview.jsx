@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export const DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -77,12 +77,20 @@ const ProductOverview = ({product, id}) => {
         <div className='top01'>
           <ImageGallery photos={styles.results[styleIndex].photos} />
           <div className='right02'>
-            <div className='stars_po'><Stars productId={product.id}/></div>
+            <div className='stars_po'>
+              <Stars productId={product.id}/>
+              <a className='read_reviews_po'
+                onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
+            </div>
             <div className='name_block_po'>
               {category}
               <p id='name_po'>{name}</p>
+              {/* <p id='name_po'>first line second line</p> */}
+            </div>
+            <div className='price_po'>
               {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-              ${default_price}
+              <Price salePrice={styles.results[styleIndex].sale_price}
+                originalPrice={styles.results[styleIndex].original_price}/>
             </div>
             <StyleSelector styles={styles.results} styleIndex={styleIndex}/>
             <AddToCart styles={styles}/>
