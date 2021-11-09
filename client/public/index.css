@@ -636,6 +636,13 @@ textarea {
 .reviewBody .reviewThumbnail {
   height: 50px;
   width: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reviewThumbnail:hover {
+  transform: scale(1.5) ;
 }
 
 .reviewButtons {
@@ -783,7 +790,6 @@ progress::-webkit-progress-value {
 
 .numStar:hover {
  background-color: lightskyblue;
- font-size: 15px;
 }
 
 
@@ -828,6 +834,12 @@ border: none;
   font-size: 10px;
 }
 
+.reviewThumbnailContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+
 .img_modal {
   position: fixed;
   display: flex;
@@ -844,11 +856,16 @@ border: none;
 }
 
 .exitModal {
+  position: absolute;
+  top: 55px;
+  right: 373px;
   background-color: white;
   font-weight: bolder;
   text-align: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .img_modal .largeImg {

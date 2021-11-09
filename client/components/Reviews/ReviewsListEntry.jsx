@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import Thumbnail from './ReviewThumbnail.jsx';
+import ImgModal from './ImgModal.jsx';
 
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpful: this.props.review.helpfulness
+      helpful: this.props.review.helpfulness,
+      img: ''
     };
   }
 
@@ -32,7 +35,8 @@ class ReviewsListEntry extends React.Component {
 
   showModal(e) {
     this.setState({
-      modal: true
+      modal: true,
+      img: e.target.src
     });
   }
 
@@ -52,6 +56,14 @@ class ReviewsListEntry extends React.Component {
         <section className='summary'> {this.props.review.summary} </section>
         <section className='recommend'> {this.wouldRecommend()} </section>
         <section className='reviewBody'> {this.props.review.body}
+          <section className='reviewThumbnailContainer'>
+            {this.props.review.photos.map((photo, i) => {
+              return (
+                <Thumbnail key={i} photo={photo} close={this.closeModal.bind(this)} show={this.state.modal} onClick={this.showModal.bind(this)} />
+              );
+            })}
+            <ImgModal show={this.state.modal} close={this.closeModal.bind(this)} url={this.state.img} />
+          </section>
         </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>
