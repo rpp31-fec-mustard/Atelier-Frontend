@@ -14,8 +14,8 @@ html {
   scroll-behavior: smooth;
 }
 
-#index {
-  width: 1040px;
+#app {
+  width: 60%;
 }
 
 #outlines {
@@ -348,7 +348,6 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: nowrap;
   border: none;
   width: 100%;
 }

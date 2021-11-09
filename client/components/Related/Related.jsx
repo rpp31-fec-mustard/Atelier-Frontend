@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 
 import RelatedProducts from './RelatedProducts.jsx';
 import Outfit from './Outfit.jsx';
 
 const Related = (props) => {
-  const [productId, setProductId] = useState(props.productId);
-  const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfitList, setOutfitList] = useState([]);
+  const [productId, setProductId] = React.useState(props.productId);
+  const [relatedProducts, setRelatedProducts] = React.useState([]);
+  const [outfitList, setOutfitList] = React.useState([]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     axios.post('/related', { productId: props.productId })
       .then((result) => {
         setRelatedProducts(result.data);

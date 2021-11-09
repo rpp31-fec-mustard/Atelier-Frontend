@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ProductCard from './ProductCard.jsx';
 import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';

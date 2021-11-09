@@ -1,10 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import ProductCard from './ProductCard.jsx';
 import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
   // console.log(props);
+  const cardsWrapper = React.useRef(null);
+
   const productCards = props.relatedProducts.map((item, i) => {
     return (
       <ProductCard
@@ -22,7 +24,7 @@ const RelatedProducts = (props) => {
       <h3>RELATED PRODUCTS</h3>
       <div className="prod-cards-container">
         <LeftButton />
-        <section className="prod-cards-wrapper">
+        <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {productCards}
         </section>
         <RightButton />
