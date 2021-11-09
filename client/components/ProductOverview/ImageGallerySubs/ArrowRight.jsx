@@ -5,6 +5,8 @@ import FullScreen from './FullScreen.jsx';
 
 const ArrowRight = ({index, indexMax, imageRightClick}) => {
 
+  let rightIcon = <i className="ri-arrow-right-s-line"></i>;
+
   if (index === undefined) {
     return (<div></div>);
   } else {
@@ -15,7 +17,7 @@ const ArrowRight = ({index, indexMax, imageRightClick}) => {
         </div>
         {(() => {
           if (index < indexMax) {
-            return <p className='arrow_right_po' onClick={imageRightClick}>R</p>;
+            return <p className='arrow_right_po' onClick={imageRightClick}>{rightIcon}</p>;
           }
         })()}
         <div className='arrow_space_po'></div>

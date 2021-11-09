@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -15,13 +15,14 @@ import Price from '../Global/Price.jsx';
 
 
 const ProductOverview = ({product, id}) => {
-  mlog('PO product :', product);
-  mlog('PO id :', id);
+  // mlog('PO product :', product);
+  // mlog('PO id :', id);
   const [productId, setProductId] = useState(id);
-  const [styleIndex, setIndex] = useState(0);
+  const [currentStyleIndex, setIndex] = useState(0);
   const [styles, setStyles] = useState();
   mlog('PO styles:', styles);
   mlog('PO productId:', productId);
+  mlog('PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = (productId) => {
@@ -40,21 +41,23 @@ const ProductOverview = ({product, id}) => {
       });
   };
 
-  // useEffect((productId) => {
-  //   mlog('use effect on load', productId);
-  //   getProductStyles(productId);
-  // }, []);
-
-
   useEffect((productId) => {
     getProductStyles(productId);
+    setIndex(0);
   }, [id]);
+
+  const handleStyleOnClick = (selectedStyleIndex) => {
+    // mlog('PO handleStyleOnClick setIndex', styleIndex);
+    setIndex(selectedStyleIndex);
+  };
+
+
+
 
 
   if (styles !== undefined) {
 
     // mlog('PO:', );
-  //   // const product = this.props.product;
     const {
       description,
       name,
@@ -63,19 +66,13 @@ const ProductOverview = ({product, id}) => {
       slogan
     } = product;
 
-    // const {
-    //   results,
-    // } = styles;
-  //   mlog('PO results:', results)
 
     mlog(styles);
-  // if (styles !== undefined) {
+
     return (
-      // <div id='product_overview_main' className='module_container'>
       <div className='module_container' id='product_overview_main' >
-        {/* <div className='product_overview_main module_container'> */}
         <div className='top01'>
-          <ImageGallery photos={styles.results[styleIndex].photos} />
+          <ImageGallery photos={styles.results[currentStyleIndex].photos} />
           <div className='right02'>
             <div className='stars_po'>
               <Stars productId={product.id}/>
@@ -89,10 +86,12 @@ const ProductOverview = ({product, id}) => {
             </div>
             <div className='price_po'>
               {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-              <Price salePrice={styles.results[styleIndex].sale_price}
-                originalPrice={styles.results[styleIndex].original_price}/>
+              <Price salePrice={styles.results[currentStyleIndex].sale_price}
+                originalPrice={styles.results[currentStyleIndex].original_price}/>
             </div>
-            <StyleSelector styles={styles.results} styleIndex={styleIndex}/>
+            <StyleSelector styles={styles.results}
+              currentStyleIndex={currentStyleIndex}
+              handleStyleOnClick={handleStyleOnClick}/>
             <AddToCart styles={styles}/>
           </div>
         </div>
@@ -101,10 +100,9 @@ const ProductOverview = ({product, id}) => {
           <div className='highlights_po'>Highlights</div>
         </div>
       </div>
-
     );
   } else {
-    mlog('props load delayed');
+    mlog('state undefined: props load delayed');
     return <div>props load delayed</div>;
   }
 };
