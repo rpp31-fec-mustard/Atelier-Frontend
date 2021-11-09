@@ -12,6 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       // productId: '59601',  //testing
+      //bad data: 59669
       productId: '59553', //testing
       product: {},
       randomizerCb: this.randomizerCb.bind(this)
