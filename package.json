@@ -13,9 +13,8 @@
     "url": "https://github.com/rpp31-fec-mustard/fec/issues"
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
-
   "scripts": {
-    "test": "jest --silent; exit 0",
+    "test": "jest --coverage",
     "start": "nodemon server/server.js --watch",
     "lint": "eslint ./",
     "build": "webpack --mode development --watch"
