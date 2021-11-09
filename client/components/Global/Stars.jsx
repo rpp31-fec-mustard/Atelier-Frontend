@@ -36,8 +36,10 @@ const Stars = (props) => {
         .catch((err) => {
           console.log('Client unable to get rating', err);
         });
+    } else if (props.rating) {
+      setRating(props.rating);
     }
-  }, [props.productId]);
+  }, [props.productId, props.rating]);
 
   let roundedRating = roundRating(rating) / 5 * 100;
   let width = `${roundedRating}%`;
