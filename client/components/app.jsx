@@ -11,9 +11,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601',  //testing
-      //bad data: 59669
-      productId: '59553', //testing
+      productId: '59601', //testing
+      // productId: '59553',  //testing
       product: {},
       randomizerCb: this.randomizerCb.bind(this)
     };
@@ -61,13 +60,13 @@ class App extends React.Component {
 
   render () {
     return (
-      <div id="index">
+      <React.Fragment>
         <TempTopBanner randomizerCb={this.state.randomizerCb}/>
         <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews productId={this.state.productId} />
-      </div>
+      </React.Fragment>
     );
   }
 }
