@@ -24,7 +24,7 @@ const StyleSelector = ({styles, styleIndex}) => {
               mlog('i', style);
               mlog('id', style.style_id);
               return (
-                <StyleThumbnail style={style} styleId={style.style_id}/>
+                <StyleThumbnail key={style.style_id} style={style} styleId={style.style_id}/>
               );
             })
           }
