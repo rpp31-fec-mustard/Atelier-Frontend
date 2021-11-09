@@ -5,7 +5,7 @@ import { shallow, mount } from 'enzyme';
 import { withHooks } from 'jest-react-hooks-shallow';
 import axios from 'axios';
 
-import App from '../client/components/app.jsx';
+// import App from '../client/components/app.jsx';
 import Reviews from '../client/components/Reviews/Reviews.jsx';
 import Ratings from '../client/components/Reviews/Ratings.jsx';
 import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
@@ -60,7 +60,7 @@ describe('Reviews Component', () => {
 
   test('checks reviews api get call', () => {
     const spy = jest.spyOn(Reviews.prototype, 'get');
-    const wrapper = mount( < Reviews / > );
+    const wrapper = mount( < Reviews productId={'59553'}/ > );
     expect(spy).toHaveBeenCalled();
     spy.mockReset();
     spy.mockRestore();
@@ -68,7 +68,7 @@ describe('Reviews Component', () => {
 
   test('checks reviews componentDidMount', () => {
     const spy = jest.spyOn(Reviews.prototype, 'get');
-    const wrapper = mount( < Reviews / > );
+    const wrapper = mount( < Reviews productId={'59553'} / > );
     expect(spy).toHaveBeenCalled();
     spy.mockReset();
     spy.mockRestore();

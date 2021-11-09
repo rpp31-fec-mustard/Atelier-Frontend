@@ -7,9 +7,9 @@ const auth = { headers: {Authorization: `${config.key}`} };
 const getProduct = (productId, cb) => {
   // console.log('productId :', typeof productId, productId);
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
     .then((result) => {
-      cb(null, result.data);
+      return result.data;
     })
     .catch((error) => {
       console.log('API Helper getProduct error: ', error);
@@ -19,9 +19,9 @@ const getProduct = (productId, cb) => {
 
 const getProductStyles = (productId, cb) => {
 
-  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
+  return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((result) => {
-      cb(null, result.data);
+      return result.data;
     })
     .catch((error) => {
       console.log('API Helper getProductStyles error: ', error);
@@ -78,7 +78,8 @@ const getRelated = (productId) => {
                 const defaultPrice = productInfo.data.default_price;
                 const originalPrice = styleInfo.original_price;
                 const salePrice = styleInfo.sale_price;
-                return { id, category, name, features, thumbnailUrl, defaultPrice, originalPrice, salePrice};
+                const starred = false;
+                return { id, category, name, features, thumbnailUrl, defaultPrice, originalPrice, salePrice, starred};
               }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {
