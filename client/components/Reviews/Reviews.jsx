@@ -59,17 +59,18 @@ class Reviews extends React.Component {
       };
       this.get(options).then((result) => {
         if (this.state.starFilter.length === 0) {
-          this.setState({
-            allReviews: result.reviewsArr,
-            displayedReviews: result.reviewsArr
-          });
+          if (result) {
+            this.setState({
+              allReviews: result.reviewsArr,
+              displayedReviews: result.reviewsArr
+            });
+          }
         } else {
           this.filterReviews(result.reviewsArr, this.state.starFilter);
         }
-      })
-        .catch((err) => {
-          throw err;
-        });
+      }).catch((err) => {
+        throw err;
+      });
     });
   }
 
@@ -178,4 +179,3 @@ class Reviews extends React.Component {
 }
 
 export default Reviews;
-
