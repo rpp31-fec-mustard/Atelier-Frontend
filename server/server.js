@@ -1,11 +1,12 @@
 const express = require('express');
 const parser = require('body-parser');
+var compression = require('compression');
 const api = require('./apiHelpers.js');
 const app = express();
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(parser.json());
-
+app.use(compression());
 
 
 app.get('/product', (req, res) => {
