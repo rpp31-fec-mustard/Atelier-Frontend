@@ -762,7 +762,6 @@ progress::-webkit-progress-value {
   font-weight: 900;
 }
 
-
 .filter {
   border: none;
   display: flex;
@@ -792,10 +791,10 @@ progress::-webkit-progress-value {
  background-color: lightskyblue;
 }
 
-
 .charRatingEntry {
   border: none;
 }
+
 .pBreakdownScale {
 position: relative;
 display: flex;
@@ -824,6 +823,7 @@ border: none;
   width: 100%;
   table-layout: fixed;
 }
+
 .ratingMeaning section {
   display: table-cell;
   text-align: center;
@@ -839,7 +839,6 @@ border: none;
   flex-direction: row;
 }
 
-
 .img_modal {
   position: fixed;
   display: flex;
@@ -853,6 +852,7 @@ border: none;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 2;
 }
 
 .exitModal {
@@ -869,6 +869,7 @@ border: none;
 }
 
 .img_modal .largeImg {
+  position: absolute;
   height:500px;
   width:600px;
 }
