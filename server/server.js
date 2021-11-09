@@ -12,27 +12,24 @@ app.use(compression());
 app.get('/product', (req, res) => {
 
   let productId = req.query.productId;
-  api.getProduct(productId, (err, result) => {
-    if (err) {
+  api.getProduct(productId)
+    .then((result) => {
+      res.status(200).send(result);
+    }).catch((err) => {
       console.log('Server error');
       res.status(500).send(err);
-    } else {
-      res.status(200).send(result);
-    }
-  });
+    });
 });
 
 app.get('/product/styles', (req, res) => {
-
   let productId = req.query.productId;
-  api.getProductStyles(productId, (err, result) => {
-    if (err) {
+  api.getProductStyles(productId)
+    .then((result) => {
+      res.status(200).send(result);
+    }).catch((err) => {
       console.log('Server error');
       res.status(500).send(err);
-    } else {
-      res.status(200).send(result);
-    }
-  });
+    });
 });
 
 app.get('/getReviews', (req, res) => {

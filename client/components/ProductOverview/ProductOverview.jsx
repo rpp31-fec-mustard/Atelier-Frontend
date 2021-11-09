@@ -3,9 +3,8 @@
 export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 
-
-import React, {useState, useEffect} from 'react';
-import ReactDOM from 'react-dom';
+import React, {useRef, useState, useEffect} from 'react';
+// import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
@@ -15,57 +14,44 @@ import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 
 
-// class ProductOverview extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       styles: {},
-//       styleNo: 0
-//     };
-//     //grab from global?
-//   }
-
-//set style at this level
-
 const ProductOverview = ({product, id}) => {
   mlog('PO product :', product);
   mlog('PO id :', id);
+  const [productId, setProductId] = useState(id);
   const [styleIndex, setIndex] = useState(0);
   const [styles, setStyles] = useState();
-  mlog('PO styles :', styles);
+  mlog('PO styles:', styles);
+  mlog('PO productId:', productId);
 
 
-  // componentDidMount();
-
-  useEffect(() => {
-    getProductStyles(id);
-  }, []);
-
-
-  useEffect(() => {
-    getProductStyles(id);
-  }, [id]);
-
-
-  const getProductStyles = (id) => {
-    mlog('this.props.product.id :', id);
+  const getProductStyles = (productId) => {
+    mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
         productId: id
       }
     })
-      .then(res => {
+      .then((res) => {
         mlog('@client PO res product/styles:', res.data);
         setStyles(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
       });
   };
 
+  // useEffect((productId) => {
+  //   mlog('use effect on load', productId);
+  //   getProductStyles(productId);
+  // }, []);
 
-  if (styles && product.id ) {
 
+  useEffect((productId) => {
+    getProductStyles(productId);
+  }, [id]);
+
+
+  if (styles !== undefined) {
 
     // mlog('PO:', );
   //   // const product = this.props.product;
@@ -82,19 +68,21 @@ const ProductOverview = ({product, id}) => {
     // } = styles;
   //   mlog('PO results:', results)
 
-
-
+    mlog(styles);
+  // if (styles !== undefined) {
     return (
-      <div id='product_overview_main' className='module_container'>
+      // <div id='product_overview_main' className='module_container'>
+      <div className='module_container' id='product_overview_main' >
+        {/* <div className='product_overview_main module_container'> */}
         <div className='top01'>
           <ImageGallery photos={styles.results[styleIndex].photos} />
           <div className='right02'>
-            <div className='stars_po' ><Stars productId={product.id}/></div>
+            <div className='stars_po'><Stars productId={product.id}/></div>
             <div className='name_block_po'>
               {category}
               <p id='name_po'>{name}</p>
-              {/* <Price /> */}
-              ${default_price}   {/* eslint-disable-line camelcase, no-multi-spaces*/}
+              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
+              ${default_price}
             </div>
             <StyleSelector styles={styles.results} styleIndex={styleIndex}/>
             <AddToCart styles={styles}/>
@@ -105,14 +93,45 @@ const ProductOverview = ({product, id}) => {
           <div className='highlights_po'>Highlights</div>
         </div>
       </div>
+
     );
   } else {
     mlog('props load delayed');
-    return <div></div>;
+    return <div>props load delayed</div>;
   }
 };
 
+
 export default ProductOverview;
+
+
+
+// componentDidMount() {
+  //   getProductStyles(id);
+  // };
+
+  // const useDidMount = () => {
+  //   const didMountRef = useRef(true);
+
+  //   useEffect(() => {
+  //     didMountRef.current = false;
+  //   }, []);
+  //   return didMountRef.current;
+  // };
+
+  // const didMount = useDidMount();
+  // const [state, setState] = useState(0);
+
+  // useEffect(() => {
+  //   if (didMount) {
+  //     console.log('mounted');
+  //   } else {
+  //     console.log('state updated');
+  //   }
+  // }, [state, didMount]);
+
+
+
 
 
 /*/example data

@@ -15,8 +15,12 @@ const order = (star) => {
 };
 
 const getAveragePercent = (num, avg) => {
-  let percent = (num / avg) * 100;
-  return Math.floor(percent);
+  if (num && avg) {
+    let percent = (num / avg) * 100;
+    return Math.floor(percent);
+  } else {
+    return 0;
+  }
 };
 
 const StarAverageEntry = (props) => {
