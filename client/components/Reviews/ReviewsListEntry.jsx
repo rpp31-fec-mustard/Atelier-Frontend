@@ -10,6 +10,9 @@ class ReviewsListEntry extends React.Component {
     super(props);
     this.state = {
       helpful: this.props.review.helpfulness,
+      body: '',
+      addShowButton: false,
+      showMore: false,
       img: ''
     };
   }
@@ -46,7 +49,61 @@ class ReviewsListEntry extends React.Component {
       modal: false
     });
   }
+
+  renderStars() {
+    if (this.props.rating) {
+      return <Stars rating={this.props.rating} />;
+    }
+  }
+
+  showMore(e) {
+    e.preventDefault();
+    this.setState({
+      body: this.props.review.body,
+      showMore: true
+    });
+  }
+
+  showLess(e) {
+    e.preventDefault();
+    let newBody = this.props.review.body.substring(0, 250);
+    this.setState({
+      body: newBody,
+      addShowButton: true,
+      showMore: false
+    });
+  }
+
+  reviewListBody(body) {
+    if (body.length > 250) {
+      let newBody = body.substring(0, 250);
+      this.setState({
+        body: newBody,
+        addShowButton: true
+      });
+    } else {
+      this.setState({
+        body: body
+      });
+    }
+  }
+
+  displayButton() {
+    if (!this.state.showMore) {
+      return (
+        <a href='/' onClick={this.showMore.bind(this)}> show more </a>
+        // <button onClick={this.showMore.bind(this)}> show more </button>
+      );
+    } else {
+      return (
+        <a href='/' onClick={this.showLess.bind(this)}> show less </a>
+        // <button onClick={this.showLess.bind(this)} >show less</button>
+      );
+    }
+  }
+
   componentDidMount() {
+    this.reviewListBody(this.props.review.body);
     this.setState({
       rating: this.props.review.rating
     });
@@ -60,11 +117,6 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
-  renderStars() {
-    if (this.props.rating) {
-      return <Stars rating={this.props.rating} />;
-    }
-  }
 
   render() {
     return (
@@ -73,9 +125,12 @@ class ReviewsListEntry extends React.Component {
         <section className='username'> {this.props.review.reviewer_name} </section>
         <section className='date'> {this.convertDate(this.props.review.date)} </section>
         <section className='rating'>Rating: {this.props.review.rating}</section>
-        <section className='summary'> {this.props.review.summary} </section>
+        <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='recommend'> {this.wouldRecommend()} </section>
-        <section className='reviewBody'> {this.props.review.body}
+        <section className='reviewBody'> {this.state.body}
+          <section className='bodyDisplayButton'>
+            {this.state.addShowButton ? this.displayButton() : null}
+          </section>
           <section className='reviewThumbnailContainer'>
             {this.props.review.photos.map((photo, i) => {
               return (
