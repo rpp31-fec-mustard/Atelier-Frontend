@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import Thumbnail from './ReviewThumbnail.jsx';
+import ImgModal from './ImgModal.jsx';
+import Stars from '../Global/Stars.jsx';
 
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpful: this.props.review.helpfulness
+      helpful: this.props.review.helpfulness,
+      img: ''
     };
   }
 
@@ -32,7 +36,8 @@ class ReviewsListEntry extends React.Component {
 
   showModal(e) {
     this.setState({
-      modal: true
+      modal: true,
+      img: e.target.src
     });
   }
 
@@ -41,17 +46,44 @@ class ReviewsListEntry extends React.Component {
       modal: false
     });
   }
+  componentDidMount() {
+    this.setState({
+      rating: this.props.review.rating
+    });
+  }
 
+  componentDidUpdate() {
+    if (this.state.rating !== this.props.review.rating) {
+      this.setState({
+        rating: this.props.review.rating
+      });
+    }
+  }
+
+  renderStars() {
+    if (this.props.rating) {
+      return <Stars rating={this.props.rating} />;
+    }
+  }
 
   render() {
     return (
       <div className='entry'>
+        <section className='starRating'> {this.renderStars()} </section>
         <section className='username'> {this.props.review.reviewer_name} </section>
         <section className='date'> {this.convertDate(this.props.review.date)} </section>
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='summary'> {this.props.review.summary} </section>
         <section className='recommend'> {this.wouldRecommend()} </section>
         <section className='reviewBody'> {this.props.review.body}
+          <section className='reviewThumbnailContainer'>
+            {this.props.review.photos.map((photo, i) => {
+              return (
+                <Thumbnail key={i} photo={photo} close={this.closeModal.bind(this)} show={this.state.modal} onClick={this.showModal.bind(this)} />
+              );
+            })}
+            <ImgModal show={this.state.modal} close={this.closeModal.bind(this)} url={this.state.img} />
+          </section>
         </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>

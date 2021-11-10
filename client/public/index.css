@@ -1,4 +1,4 @@
-html, body, #app, #index {
+html, body, #app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ html {
   scroll-behavior: smooth;
 }
 
-#index {
+#app {
   width: 1040px;
 }
 
@@ -45,7 +45,7 @@ button {
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
   --prod-img-background-color: rgb(180, 180, 180);
-  --comparison-width: 420px;
+  --comparison-width: 500px;
 
    /* PRODUCT OVERVIEW */
   --po-info-margin: 0px 20px;
@@ -360,8 +360,7 @@ button {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow: auto;
   border: none;
   width: 90%;
 }
@@ -375,6 +374,10 @@ button {
   height: var(--prod-card-height);
   margin: var(--prod-card-margins);
   flex: 0 0 auto;
+}
+
+.prod-card:hover {
+  background: var(--mustard);
 }
 
 .prod-card-wrapper {
@@ -396,6 +399,7 @@ button {
   align-items: flex-start;
   justify-content: space-between;
 }
+
 
 .prod-card-info-wrapper {
   margin: 5px;
@@ -500,22 +504,15 @@ button {
   align-self: center;
 }
 
-.prod-comparison-container {
-  border: 0px;
-  position: absolute;
-  top: 50px;
-  left: -50px;
-}
-
 .prod-comparison-wrapper {
-  position: sticky;
+  position: fixed;
   width: var(--comparison-width);
-  z-index: 2;
+  z-index: 1;
 
-  background-color: #ffffffcd;
+  background-color: rgba(255, 255, 255, 0.804);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   text-align: center;
+  pointer-events: none;
 }
 table {
   border-collapse: collapse;
@@ -690,6 +687,13 @@ textarea {
 .reviewBody .reviewThumbnail {
   height: 50px;
   width: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reviewThumbnail:hover {
+  transform: scale(1.5) ;
 }
 
 .reviewButtons {
@@ -809,7 +813,6 @@ progress::-webkit-progress-value {
   font-weight: 900;
 }
 
-
 .filter {
   border: none;
   display: flex;
@@ -837,13 +840,12 @@ progress::-webkit-progress-value {
 
 .numStar:hover {
  background-color: lightskyblue;
- font-size: 15px;
 }
-
 
 .charRatingEntry {
   border: none;
 }
+
 .pBreakdownScale {
 position: relative;
 display: flex;
@@ -872,6 +874,7 @@ border: none;
   width: 100%;
   table-layout: fixed;
 }
+
 .ratingMeaning section {
   display: table-cell;
   text-align: center;
@@ -880,6 +883,11 @@ border: none;
 
 .percentRecommend {
   font-size: 10px;
+}
+
+.reviewThumbnailContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 .img_modal {
@@ -895,17 +903,24 @@ border: none;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 2;
 }
 
 .exitModal {
+  position: absolute;
+  top: 55px;
+  right: 373px;
   background-color: white;
   font-weight: bolder;
   text-align: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .img_modal .largeImg {
+  position: absolute;
   height:500px;
   width:600px;
 }
