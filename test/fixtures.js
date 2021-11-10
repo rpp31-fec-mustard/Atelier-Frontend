@@ -152,7 +152,208 @@ const fixtures = {
       Comfort: { id: 199847, value: '5.0000000000000000' },
       Quality: { id: 199848, value: '4.8181818181818182' }
     }
-  }
+  },
+  questions: [
+    {
+      "question_id": 513729,
+      "question_body": "What fabric is the bottom made of?",
+      "question_date": "2018-02-18T00:00:00.000Z",
+      "asker_name": "iluvcatz",
+      "question_helpfulness": 6,
+      "reported": false,
+      "answers": {
+        "4811908": {
+          "id": 4811908,
+          "body": "Some kind of recycled rubber, works great!",
+          "date": "2018-03-18T00:00:00.000Z",
+          "answerer_name": "iluvdogz",
+          "helpfulness": 3,
+          "photos": []
+        },
+        "4811931": {
+          "id": 4811931,
+          "body": "Rubber",
+          "date": "2018-03-18T00:00:00.000Z",
+          "answerer_name": "iluvdogz",
+          "helpfulness": 8,
+          "photos": [
+            "https://images.unsplash.com/photo-1477823986828-5aff156284aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80"
+          ]
+        },
+        "4811934": {
+          "id": 4811934,
+          "body": "Its a rubber sole",
+          "date": "2018-03-18T00:00:00.000Z",
+          "answerer_name": "iluvbirds",
+          "helpfulness": 1,
+          "photos": [
+            "https://images.unsplash.com/photo-1528318269466-69d920af5dad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+          ]
+        },
+        "4811961": {
+          "id": 4811961,
+          "body": "The rubber on the bottom wears thin quickly",
+          "date": "2018-02-18T00:00:00.000Z",
+          "answerer_name": "iluvdogz",
+          "helpfulness": 46,
+          "photos": []
+        }
+      }
+    },
+    {
+      "question_id": 513725,
+      "question_body": "Why is this product cheaper here than other sites?",
+      "question_date": "2018-11-28T00:00:00.000Z",
+      "asker_name": "jbilas",
+      "question_helpfulness": 6,
+      "reported": false,
+      "answers": {}
+    },
+    {
+      "question_id": 513735,
+      "question_body": "What fabric is the top made of?",
+      "question_date": "2018-11-08T00:00:00.000Z",
+      "asker_name": "wonderwoman",
+      "question_helpfulness": 5,
+      "reported": false,
+      "answers": {
+        "4811919": {
+          "id": 4811919,
+          "body": "Something pretty soft but I can't be sure",
+          "date": "2018-01-08T00:00:00.000Z",
+          "answerer_name": "superman",
+          "helpfulness": 5,
+          "photos": []
+        },
+        "4811977": {
+          "id": 4811977,
+          "body": "Suede",
+          "date": "2018-11-08T00:00:00.000Z",
+          "answerer_name": "Seller",
+          "helpfulness": 8,
+          "photos": []
+        },
+        "4811990": {
+          "id": 4811990,
+          "body": "Its the best! Seriously magic fabric",
+          "date": "2018-11-08T00:00:00.000Z",
+          "answerer_name": "superman",
+          "helpfulness": 4,
+          "photos": []
+        },
+        "4811991": {
+          "id": 4811991,
+          "body": "Supposedly suede, but I think its synthetic",
+          "date": "2018-12-08T00:00:00.000Z",
+          "answerer_name": "superman",
+          "helpfulness": 5,
+          "photos": []
+        }
+      }
+    },
+    {
+      "question_id": 513733,
+      "question_body": "What fabric is the back made of?",
+      "question_date": "2018-04-12T00:00:00.000Z",
+      "asker_name": "wildchild",
+      "question_helpfulness": 5,
+      "reported": false,
+      "answers": {}
+    },
+    {
+      "question_id": 513724,
+      "question_body": "Can I wash it?",
+      "question_date": "2018-07-06T00:00:00.000Z",
+      "asker_name": "jbilas",
+      "question_helpfulness": 5,
+      "reported": false,
+      "answers": {
+        "4811924": {
+          "id": 4811924,
+          "body": "I wouldn't machine wash it",
+          "date": "2018-08-06T00:00:00.000Z",
+          "answerer_name": "dschulman",
+          "helpfulness": 1,
+          "photos": []
+        },
+        "4811925": {
+          "id": 4811925,
+          "body": "Only if you want to ruin it!",
+          "date": "2018-08-06T00:00:00.000Z",
+          "answerer_name": "dschulman",
+          "helpfulness": 2,
+          "photos": []
+        },
+        "4811926": {
+          "id": 4811926,
+          "body": "I've thrown it in the wash and it seems fine",
+          "date": "2018-08-06T00:00:00.000Z",
+          "answerer_name": "dschulman",
+          "helpfulness": 3,
+          "photos": []
+        },
+        "4811927": {
+          "id": 4811927,
+          "body": "It says not to",
+          "date": "2018-08-06T00:00:00.000Z",
+          "answerer_name": "dschulman",
+          "helpfulness": 4,
+          "photos": []
+        },
+        "4811949": {
+          "id": 4811949,
+          "body": "Yes",
+          "date": "2018-09-06T00:00:00.000Z",
+          "answerer_name": "dschulman",
+          "helpfulness": 6,
+          "photos": []
+        }
+      }
+    },
+    {
+      "question_id": 513736,
+      "question_body": "Why is this product cheaper here than other sites?",
+      "question_date": "2018-07-28T00:00:00.000Z",
+      "asker_name": "l33tgamer",
+      "question_helpfulness": 4,
+      "reported": false,
+      "answers": {
+        "4812008": {
+          "id": 4812008,
+          "body": "This site is awesome!",
+          "date": "2018-09-28T00:00:00.000Z",
+          "answerer_name": "n00bgamer",
+          "helpfulness": 7,
+          "photos": []
+        },
+        "4812009": {
+          "id": 4812009,
+          "body": "I can't find it cheaper anywhere else?",
+          "date": "2018-09-28T00:00:00.000Z",
+          "answerer_name": "n00bgamer",
+          "helpfulness": 8,
+          "photos": []
+        },
+        "4812010": {
+          "id": 4812010,
+          "body": "The other sites are marking it up!",
+          "date": "2018-09-28T00:00:00.000Z",
+          "answerer_name": "Seller",
+          "helpfulness": 9,
+          "photos": []
+        }
+      }
+    },
+    {
+      "question_id": 513726,
+      "question_body": "What fabric is the front made of?",
+      "question_date": "2018-11-08T00:00:00.000Z",
+      "asker_name": "internethistorian",
+      "question_helpfulness": 1,
+      "reported": false,
+      "answers": {}
+    },
+  ]
 };
 
 export default fixtures;
