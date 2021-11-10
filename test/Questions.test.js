@@ -11,7 +11,7 @@ import Search from '../client/components/QA/Search.jsx';
 import Question from '../client/components/QA/Question.jsx';
 import Answer from '../client/components/QA/Answer.jsx';
 import QuestionList from '../client/components/QA/QuestionList.jsx';
-import MockedModal from '../client/components/QA/AnswerModal.jsx';
+import AnswerList from '../client/components/QA/AnswerList.jsx';
 import fixtures from './fixtures.js';
 
 
@@ -70,57 +70,49 @@ describe('Q&A Module: render tests', () => {
     expect(component.length).toBe(1);
   });
 
-});
-
-describe('Q&A Module: integration tests', () => {
-
-
-  // test('shouold render question', () => {
-  //   act(() => {
-  //     render(<QuestionList question="Does this work?" helpfulness="5" name="test shoes"/>, container);
-  //   });
-  //   const questionEntry = document.getElementsByClassName('questionEntry');
-  //   const questionHelpful = container.querySelector('questionHelpful');
-  //   // expect(questionEntry.textContent).toEqual('Does this work?');
-  //   // expect(questionHelpful.textContent).toEqual('Helpful? Yes(5) |');
-  //   expect(container.textConent).toContain('5');
-
-  jest.mock('../client/components/QA/AnswerModal.jsx', () => {
-    return function DummyModal(props) {
-      return (
-        <div data-testid="modal">
-          {props.name}
-        </div>
-      )
-    }
+  test('renders AnswerList', () => {
+    act(() => {
+      render(<AnswerList />, container);
+    });
+    const component = document.getElementsByClassName('answer');
+    expect(component.length).toBe(1);
   });
 
-  let container = null;
-beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement('div');
-  document.body.appendChild(container);
+  test('renders QA Component', () => {
+    act(() => {
+      render(<QA />, container);
+    });
+    const component = document.getElementsByClassName('module_container');
+    expect(component.length).toBe(1);
+  });
+
+  test('renders QuestionList Component', () => {
+    act(() => {
+      render(<QuestionList />, container);
+    });
+    const component = document.getElementsByClassName('questionEntry');
+    expect(component.length).toBe(1);
+  });
+
+  // test('renders AnswerModal Component', () => {
+  //   act(() => {
+  //     render(<Answer />, container);
+  //   });
+  //   const component = document.getElementsByClassName('singleAnswer');
+  //   expect(component.length).toBe(1);
+  // });
+
+  // test('renders QuestionModal Component', () => {
+  //   act(() => {
+  //     render(<Answer />, container);
+  //   });
+  //   const component = document.getElementsByClassName('singleAnswer');
+  //   expect(component.length).toBe(1);
+  // });
+
 });
 
-afterEach(() => {
-  // cleanup on exiting
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
 
-test('loads dummy data', () => {
-  const name = "test shoes"
-  act(() => {
-    render (
-      <QuestionList question="Does this work?" helpfulness="5" name={name}/>, container
-    )
-  })
-  expect(container.querySelector('questionEntry').textContent).toContain('Does this work?')
-})
-
-
-});
 
 
 
