@@ -60,18 +60,28 @@ const Related = (props) => {
     }
   };
 
+  const handleLeftScroll = (event) => {
+    console.log('left scroll');
+  };
+
+  const handleRightScroll = (event) => {
+    console.log('right scroll');
+  };
+
   return (
     <div id="related-main" className="module_container">
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
         handleAction={handleAction}
+        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
         homeProduct={props.homeProduct}
         renderRelated={props.renderRelated}
       />
       <Outfit
         outfitList={outfitList}
         handleAction={handleAction}
+        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
         renderRelated={props.renderRelated}
       />
     </div>

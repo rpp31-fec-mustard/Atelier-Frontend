@@ -4,8 +4,11 @@ import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
-  // console.log(props);
   const cardsWrapper = React.useRef(null);
+  const {rButtonVisible, lButtonVisible} = React.useState({
+    lButtonVisible: true,
+    rButtonVisible: true
+  });
 
   const productCards = props.relatedProducts.map((item, i) => {
     return (
@@ -23,11 +26,15 @@ const RelatedProducts = (props) => {
     <div id="related-products" className="related-submodule">
       <h3>RELATED PRODUCTS</h3>
       <div className="prod-cards-container">
-        <LeftButton cardsWrapper={cardsWrapper}/>
+        <div className="lbutton-container">
+          <LeftButton cardsWrapper={cardsWrapper} handleLeftScroll={props.handleScroll.handleLeftScroll}/>
+        </div>
         <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {productCards}
         </section>
-        <RightButton cardsWrapper={cardsWrapper}/>
+        <div className="rbutton-container">
+          <RightButton cardsWrapper={cardsWrapper} handleRightScroll={props.handleScroll.handleRightScroll}/>
+        </div>
       </div>
     </div>
   );

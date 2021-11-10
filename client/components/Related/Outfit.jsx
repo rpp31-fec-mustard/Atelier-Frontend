@@ -33,11 +33,15 @@ const Outfit = (props) => {
     <div id="your-outfit" className="related-submodule">
       <h3>YOUR OUTFIT</h3>
       <div className="prod-cards-container">
-        <LeftButton cardsWrapper={cardsWrapper}/>
+        <div className="lbutton-container">
+          <LeftButton cardsWrapper={cardsWrapper} handleLeftScroll={props.handleScroll.handleLeftScroll}/>
+        </div>
         <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {outfitProducts}
         </section>
-        <RightButton cardsWrapper={cardsWrapper}/>
+        <div className="rbutton-container">
+          <RightButton cardsWrapper={cardsWrapper} handleRightScroll={props.handleScroll.handleRightScroll}/>
+        </div>
       </div>
     </div>
   );
