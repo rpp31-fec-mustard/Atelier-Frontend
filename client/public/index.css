@@ -1,4 +1,4 @@
-html, body, #app, #index {
+html, body, #app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,8 +10,17 @@ html, body, #app, #index {
   font-family: 'Zen Maru Gothic', sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 #index {
   width: 1040px;
+}
+
+#outlines {
+  position: sticky;
+  top: 0;
 }
 
 div {
@@ -36,7 +45,7 @@ button {
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
   --prod-img-background-color: rgb(180, 180, 180);
-  --comparison-width: 420px;
+  --comparison-width: 500px;
 
    /* PRODUCT OVERVIEW */
   --po-info-margin: 0px 20px;
@@ -65,6 +74,7 @@ button {
   align-items: center;
   width: 100%;
 }
+
 #top_bar {
   display: flex;
   align-items: center;
@@ -73,6 +83,10 @@ button {
   width: 100%;
   color: white;
   background-color: #555555;
+}
+
+.top_text {
+  margin: 0px 10px;
 }
 
 #announcements {
@@ -129,11 +143,20 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   width: 50px;
   height: 15px;
-  margin: 5px 0px;
+  margin: 0px;
   overflow: hidden;
+}
+
+#arrow_up_po {
+  margin: 20px 0px 5px;
+}
+
+.ri-arrow-up-s-fill, .ri-arrow-down-s-fill {
+  color: white;
+  font-size: 24px;
 }
 
 .arrow_po {
@@ -142,6 +165,11 @@ button {
   justify-content: space-between;
   align-items: center;
   width: 5%;
+}
+
+.ri-arrow-left-s-line, .ri-arrow-right-s-line {
+  color: white;
+  font-size: 36px;
 }
 
 .arrow_space_po {
@@ -173,13 +201,20 @@ button {
 
 /** stars **/
 .stars_po {
+  display: flex;
+  flex-direction: row;
   height: 10%;
   margin: var(--po-info-margin);
+  align-items: end;
+}
+
+.read_reviews_po {
+  margin: 0px 10px;
 }
 
 /** product name **/
 .name_block_po {
-  height: 30%;
+  height: 25%;
   margin: var(--po-info-margin);
 }
 
@@ -188,7 +223,12 @@ button {
   /* font-family: 'Fascinate', cursive; */
   font-weight: 800;
   font-size: 40px;
-  margin: 5px;
+  margin: 0px;
+}
+
+.price_po {
+  height: 5%;
+  margin: var(--po-info-margin);
 }
 
 /** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
@@ -208,11 +248,12 @@ button {
 }
 
 .style_row_thumbnail_po {
-  height: 120px;
-  width: 260px;
+  height: 125px;
+  width: 270px;
   display: flex;
   flex-direction: row;
   flex-flow: wrap;
+  overflow: overlay;
 }
 
 .style_thumbnail_po {
@@ -317,8 +358,7 @@ button {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  overflow: auto;
   border: none;
   width: 90%;
 }
@@ -332,6 +372,10 @@ button {
   height: var(--prod-card-height);
   margin: var(--prod-card-margins);
   flex: 0 0 auto;
+}
+
+.prod-card:hover {
+  background: var(--mustard);
 }
 
 .prod-card-wrapper {
@@ -353,6 +397,7 @@ button {
   align-items: flex-start;
   justify-content: space-between;
 }
+
 
 .prod-card-info-wrapper {
   margin: 5px;
@@ -457,22 +502,15 @@ button {
   align-self: center;
 }
 
-.prod-comparison-container {
-  border: 0px;
-  position: absolute;
-  top: 50px;
-  left: -50px;
-}
-
 .prod-comparison-wrapper {
-  position: sticky;
+  position: fixed;
   width: var(--comparison-width);
-  z-index: 2;
+  z-index: 1;
 
-  background-color: #ffffffcd;
+  background-color: rgba(255, 255, 255, 0.804);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   text-align: center;
+  pointer-events: none;
 }
 table {
   border-collapse: collapse;
@@ -647,6 +685,13 @@ textarea {
 .reviewBody .reviewThumbnail {
   height: 50px;
   width: 50px;
+  margin: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reviewThumbnail:hover {
+  transform: scale(1.5) ;
 }
 
 .reviewButtons {
@@ -766,7 +811,6 @@ progress::-webkit-progress-value {
   font-weight: 900;
 }
 
-
 .filter {
   border: none;
   display: flex;
@@ -794,13 +838,12 @@ progress::-webkit-progress-value {
 
 .numStar:hover {
  background-color: lightskyblue;
- font-size: 15px;
 }
-
 
 .charRatingEntry {
   border: none;
 }
+
 .pBreakdownScale {
 position: relative;
 display: flex;
@@ -829,6 +872,7 @@ border: none;
   width: 100%;
   table-layout: fixed;
 }
+
 .ratingMeaning section {
   display: table-cell;
   text-align: center;
@@ -837,6 +881,11 @@ border: none;
 
 .percentRecommend {
   font-size: 10px;
+}
+
+.reviewThumbnailContainer {
+  display: flex;
+  flex-direction: row;
 }
 
 .img_modal {
@@ -852,17 +901,24 @@ border: none;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 2;
 }
 
 .exitModal {
+  position: absolute;
+  top: 55px;
+  right: 373px;
   background-color: white;
   font-weight: bolder;
   text-align: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .img_modal .largeImg {
+  position: absolute;
   height:500px;
   width:600px;
 }
