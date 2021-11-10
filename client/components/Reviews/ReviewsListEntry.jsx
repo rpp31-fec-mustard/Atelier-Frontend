@@ -65,7 +65,9 @@ class ReviewsListEntry extends React.Component {
   }
 
   showLess(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     let newBody = this.props.review.body.substring(0, 250);
     this.setState({
       body: newBody,
@@ -76,11 +78,7 @@ class ReviewsListEntry extends React.Component {
 
   reviewListBody(body) {
     if (body.length > 250) {
-      let newBody = body.substring(0, 250);
-      this.setState({
-        body: newBody,
-        addShowButton: true
-      });
+      this.showLess();
     } else {
       this.setState({
         body: body
@@ -92,12 +90,10 @@ class ReviewsListEntry extends React.Component {
     if (!this.state.showMore) {
       return (
         <a href='/' onClick={this.showMore.bind(this)}> show more </a>
-        // <button onClick={this.showMore.bind(this)}> show more </button>
       );
     } else {
       return (
         <a href='/' onClick={this.showLess.bind(this)}> show less </a>
-        // <button onClick={this.showLess.bind(this)} >show less</button>
       );
     }
   }
@@ -127,7 +123,8 @@ class ReviewsListEntry extends React.Component {
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='recommend'> {this.wouldRecommend()} </section>
-        <section className='reviewBody'> {this.state.body}
+        <section className='reviewBody'>
+          {this.state.body}
           <section className='bodyDisplayButton'>
             {this.state.addShowButton ? this.displayButton() : null}
           </section>
