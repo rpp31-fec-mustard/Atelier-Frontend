@@ -2,7 +2,6 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import sinon from 'sinon';
 
 import App from '../client/components/app.jsx';
 import QA from '../client/components/QA/QA.jsx';
@@ -10,6 +9,10 @@ import Q_A from '../client/components/QA/Q_A.jsx';
 import Search from '../client/components/QA/Search.jsx';
 import Question from '../client/components/QA/Question.jsx';
 import Answer from '../client/components/QA/Answer.jsx';
+import AnswerList from '../client/components/QA/AnswerList.jsx';
+import QuestionList from '../client/components/QA/QuestionList.jsx';
+import QuestionModal from '../client/components/QA/QuestionModal.jsx';
+import AnswerModal from '../client/components/QA/AnswerModal.jsx';
 
 
 let container = null;
@@ -26,13 +29,13 @@ afterEach(() => {
   container = null;
 });
 
-test('Four module_containers should be rendering', () => {
-  act(() => {
-    render(<App />, container);
-  });
-  const modules = document.getElementsByClassName('module_container');
-  expect(modules.length).toBe(4);
-});
+// test('Four module_containers should be rendering', () => {
+//   act(() => {
+//     render(<App />, container);
+//   });
+//   const modules = document.getElementsByClassName('module_container');
+//   expect(modules.length).toBe(4);
+// });
 
 describe('Q&A Module: render tests', () => {
   test('renders Search Component', () => {
@@ -66,6 +69,48 @@ describe('Q&A Module: render tests', () => {
     const component = document.getElementsByClassName('singleAnswer');
     expect(component.length).toBe(1);
   });
+
+  test('renders AnswerList Component', () => {
+    act(() => {
+      render(<AnswerList displayAnswers={['testing render of answer list']} />, container);
+    });
+    const component = document.getElementsByClassName('answer');
+    expect(component.length).toBe(1);
+  });
+
+
+  test('renders QuestionList Component', () => {
+    act(() => {
+      render(<QuestionList />, container);
+    });
+    const component = document.getElementsByClassName('questionEntry');
+    expect(component.length).toBe(1);
+  });
+
+  test('renders QuestionModal Component', () => {
+    act(() => {
+      render(<QuestionModal show={true}/>, container);
+    });
+    const component = document.getElementsByClassName('add-question-body');
+    expect(component.length).toBe(1);
+  });
+
+  test('renders AnswerModal Component', () => {
+    act(() => {
+      render(<AnswerModal show={true}/>, container);
+    });
+    const component = document.getElementsByClassName('add-answer-body');
+    expect(component.length).toBe(1);
+  });
+
+  test('renders QA Component', () => {
+    act(() => {
+      render(<QA product='testing' productInfo='testing'/>, container);
+    });
+    const component = document.getElementsByClassName('module_container');
+    expect(component.length).toBe(1);
+  });
+
 
 });
 
