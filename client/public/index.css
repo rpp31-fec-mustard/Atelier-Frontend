@@ -322,7 +322,9 @@ button {
 
 .highlights_po {
   display: flex;
+  flex-direction: column;
   width: 40%;
+  padding: 30px 10px;
 
 }
 

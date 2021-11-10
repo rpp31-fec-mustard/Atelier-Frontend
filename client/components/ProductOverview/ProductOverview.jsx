@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export const DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -15,25 +15,25 @@ import Price from '../Global/Price.jsx';
 
 
 const ProductOverview = ({product, id}) => {
-  // mlog('PO product :', product);
-  // mlog('PO id :', id);
   const [productId, setProductId] = useState(id);
-  const [currentStyleIndex, setIndex] = useState(0);
+  const [currentStyleIndex, setIndex] = useState();
   const [styles, setStyles] = useState();
+  mlog('PO product :', product);
+  // mlog('PO id :', id);
   mlog('PO styles:', styles);
   mlog('PO productId:', productId);
   mlog('PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = (productId) => {
-    mlog('this.props.product.id :', productId);
+    // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
         productId: id
       }
     })
       .then((res) => {
-        mlog('@client PO res product/styles:', res.data);
+        // mlog('@client PO res product/styles:', res.data);
         setStyles(res.data);
       })
       .catch((err) => {
@@ -56,18 +56,19 @@ const ProductOverview = ({product, id}) => {
 
 
   if (styles !== undefined) {
-
+    mlog('state defined: component load executed');
     // mlog('PO:', );
     const {
       description,
       name,
       category,
       default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-      slogan
+      slogan,
+      features
     } = product;
+    mlog('features', features);
 
-
-    mlog(styles);
+    // mlog(styles);
 
     return (
       <div className='module_container' id='product_overview_main' >
@@ -96,13 +97,25 @@ const ProductOverview = ({product, id}) => {
           </div>
         </div>
         <div className='bottom01'>
-          <div className='product_desc_po'><h2>{slogan}</h2><br/>{description}</div>
-          <div className='highlights_po'>Highlights</div>
+          <div className='product_desc_po'>
+            <h2>{slogan}</h2><br/>
+            {description}
+          </div>
+          <div className='highlights_po'>
+            Highlights:<br/>
+            {
+              features.map((feature) => {
+                mlog('feature', feature);
+                return (
+                  <div>{feature.value} {feature.feature}</div>);
+              })
+            }
+          </div>
         </div>
       </div>
     );
   } else {
-    mlog('state undefined: props load delayed');
+    mlog('state undefined: props not correct. component load delayed');
     return <div>props load delayed</div>;
   }
 };
