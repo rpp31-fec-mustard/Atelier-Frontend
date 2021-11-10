@@ -123,7 +123,7 @@ class ReviewsListEntry extends React.Component {
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='recommend'>
-          <i class="fas fa-check"></i> {this.wouldRecommend()}
+          <i className="fas fa-check"></i> {this.wouldRecommend()}
         </section>
         <section className='reviewBody'>
           {this.state.body}
