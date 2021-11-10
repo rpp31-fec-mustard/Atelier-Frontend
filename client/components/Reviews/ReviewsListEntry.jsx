@@ -122,7 +122,9 @@ class ReviewsListEntry extends React.Component {
         <section className='date'> {this.convertDate(this.props.review.date)} </section>
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='reviewSummary'> {this.props.review.summary} </section>
-        <section className='recommend'> {this.wouldRecommend()} </section>
+        <section className='recommend'>
+          <i class="fas fa-check"></i> {this.wouldRecommend()}
+        </section>
         <section className='reviewBody'>
           {this.state.body}
           <section className='bodyDisplayButton'>
