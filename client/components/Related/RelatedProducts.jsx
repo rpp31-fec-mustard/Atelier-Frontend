@@ -5,10 +5,6 @@ import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
   const cardsWrapper = React.useRef(null);
-  const {rButtonVisible, lButtonVisible} = React.useState({
-    lButtonVisible: true,
-    rButtonVisible: true
-  });
 
   const productCards = props.relatedProducts.map((item, i) => {
     return (
@@ -27,13 +23,21 @@ const RelatedProducts = (props) => {
       <h3>RELATED PRODUCTS</h3>
       <div className="prod-cards-container">
         <div className="lbutton-container">
-          <LeftButton cardsWrapper={cardsWrapper} handleLeftScroll={props.handleScroll.handleLeftScroll}/>
+          <LeftButton
+            cardsWrapper={cardsWrapper}
+            handleLeftScroll={props.handleScroll.handleLeftScroll}
+            // scrollPosition={scrollPosition}
+          />
         </div>
         <section className="prod-cards-wrapper" ref={cardsWrapper}>
           {productCards}
         </section>
         <div className="rbutton-container">
-          <RightButton cardsWrapper={cardsWrapper} handleRightScroll={props.handleScroll.handleRightScroll}/>
+          <RightButton
+            cardsWrapper={cardsWrapper}
+            handleRightScroll={props.handleScroll.handleRightScroll}
+            // scrollPosition={scrollPosition}
+          />
         </div>
       </div>
     </div>

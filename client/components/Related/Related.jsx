@@ -60,11 +60,24 @@ const Related = (props) => {
     }
   };
 
-  const handleLeftScroll = (event) => {
+  const handleLeftScroll = (scrollRef, lButtonRef, scrollPosition) => {
+    const cardsWrapper = scrollRef.current;
+    cardsWrapper.scrollBy({
+      top: 0,
+      left: -230,
+      behavior: 'smooth'
+    });
+
     console.log('left scroll');
   };
 
-  const handleRightScroll = (event) => {
+  const handleRightScroll = (scrollRef) => {
+    const cardsWrapper = scrollRef.current;
+    cardsWrapper.scrollBy({
+      top: 0,
+      left: 230,
+      behavior: 'smooth'
+    });
     console.log('right scroll');
   };
 

@@ -485,8 +485,9 @@ button {
   height: var(--prod-card-height);
   box-sizing: border-box;
   padding: 10px;
-  margin: 0;
+  margin: var(--prod-card-margins);
 
+  text-align: center;
   font-size: 24px;
   color: white;
   background: var(--prod-img-background-color);
@@ -511,10 +512,10 @@ button {
   cursor: pointer;
   font-size: 25px;
 }
-/*
+
 .lbutton-container .nav-button {
   color: rgb(0, 0, 0, 0);
-} */
+}
 
 
 .prod-comparison-wrapper {

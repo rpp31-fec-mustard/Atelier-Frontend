@@ -2,12 +2,12 @@ import * as React from 'react';
 
 const RightButton = (props) => {
   const rButton = React.useRef(null);
+  // debugger;
 
   return (
     <React.Fragment>
       <button className="nav-button" onClick={(event) => {
-
-        props.handleRightScroll(event);
+        props.handleRightScroll(props.cardsWrapper);
         // const cardsWrapper = props.cardsWrapper.current;
         // // debugger;
         // cardsWrapper.scrollBy({

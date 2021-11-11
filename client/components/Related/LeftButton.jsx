@@ -2,11 +2,15 @@ import * as React from 'react';
 
 const LeftButton = (props) => {
   const lButton = React.useRef(null);
+  // const [scrollPosition, setScrollPosition] = React.useState(Math.floor(props.cardsWrapper.scrollLeft));
+  // debugger;
+  // console.log({scrollPosition});
+
 
   return (
     <React.Fragment>
       <button className="nav-button" ref={lButton} onClick={(event) => {
-        props.handleLeftScroll(event);
+        props.handleLeftScroll(props.cardsWrapper, lButton);
         // const cardsWrapper = props.cardsWrapper.current;
         // cardsWrapper.scrollBy({
         //   top: 0,
