@@ -11,7 +11,8 @@ test/coverage
 TestFolder
 __snapshots__
 TestOfTests*
-
+fetch.js
+*TestLib.test.*
 
 ## API Keys ##
 API_paths.txt

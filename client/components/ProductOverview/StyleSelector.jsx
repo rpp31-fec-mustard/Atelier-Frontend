@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 // import {DEBUG} from './ProductOverview.jsx';
 import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 
-const StyleSelector = ({styles, currentStyleIndex, handleStyleOnClick}) => {
-  const DEBUG = false;
+const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnClick}) => {
+  const DEBUG = true;
   var mlog = (DEBUG) ? console.log : () => {};
 
   mlog('SS styleSelector:', styles);
@@ -28,6 +28,7 @@ const StyleSelector = ({styles, currentStyleIndex, handleStyleOnClick}) => {
               return (
                 <StyleThumbnail style={style}
                   styleId={style.style_id}
+                  productName={productName}
                   styleIndex={styleIndex}
                   handleStyleOnClick={handleStyleOnClick}/>
               );

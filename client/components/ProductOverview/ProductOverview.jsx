@@ -41,6 +41,8 @@ const ProductOverview = ({product, id}) => {
       });
   };
 
+  //check to see if data is the same?
+  //if so, do not pass to productStyles?
   useEffect((productId) => {
     getProductStyles(productId);
     setIndex(0);
@@ -92,6 +94,7 @@ const ProductOverview = ({product, id}) => {
             </div>
             <StyleSelector styles={styles.results}
               currentStyleIndex={currentStyleIndex}
+              productName={name}
               handleStyleOnClick={handleStyleOnClick}/>
             <AddToCart styles={styles}/>
           </div>

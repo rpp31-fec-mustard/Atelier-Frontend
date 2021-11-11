@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 
-import App from '../client/components/app.jsx';
+// import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
@@ -38,14 +38,14 @@ describe('Render Tests', () => {
     // };
   });
 
-  test('Product Overview should render', () => {
-    act(() => {
-      render(<App />, container);
+  test('Product Overview should render', async () => {
+    // act(() => {
+      render(<ProductOverview />, container);
 
-    });
+    // });
 
     const component = document.getElementsByClassName('product_overview_main');
-    expect(!!component).toBe(true);
+    await expect(component.length).toBe(1);
     // };
   });
 });
@@ -88,28 +88,27 @@ xdescribe('<ProductOverview /> full rendering', () => {
 describe('Image Gallery Module', () => {
   xit('renders all modules', () => {
   });
-  test('Image Gallery should render', () => {
-    act(() => {
-      render(<App />, container);
-    });
-    //journal entry
-    const component = document.getElementsByClassName('image_gallery_po');
-    expect(!!component).toBe(true);
-  });
-
-  it('left arrow should render', ()=> {
-    act(() => {
-      render(<App />, container);
-    });
-    const component = document.getElementsByClassName('arrow_left_po');
-    expect(!!component).toBe(true);
-  });
-
-  xit('right arrow should render', ()=> {
+  it('renders Image Gallery', () => {
     act(() => {
       render(<ImageGallery />, container);
     });
-    //journ
+    //journal entry
+    const component = document.getElementsByClassName('image_gallery_po');
+    expect(component.length).toBe(1);
+  });
+
+  it('renders left arrow', ()=> {
+    act(() => {
+      render(<ArrowLeft />, container);
+    });
+    const component = document.getElementsByClassName('arrow_left_po');
+    expect(component.length).toBe(1);
+  });
+
+  it('renders right arrow', ()=> {
+    act(() => {
+      render(<ArrowRight />, container);
+    });
     const component = document.getElementsByClassName('arrow_right_po');
     expect(component.length).toBe(1);
   });
@@ -117,7 +116,7 @@ describe('Image Gallery Module', () => {
   xit('style thumbnails should render', () => {
     // let count =
     const wrapper = shallow(<StyleSelector />);
-    expect(wrapper.find(StyleThumbnail)).toHave(6);
+    expect(wrapper.find(StyleThumbnail)).toHave(5);
   });
 
   // test('renders five <Thumbnail /> components shallow', () => {

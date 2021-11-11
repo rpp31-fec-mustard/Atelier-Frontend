@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 import { withHooks } from 'jest-react-hooks-shallow';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 
 import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
@@ -42,11 +42,6 @@ describe('Tests of Render Tests', () => {
         console.log(wrapper.debug({ ignoreProps: true }));
         expect(wrapper.find(ImageGallery)).toHaveLength(1);
       });
-      //works
-      xit('renders one <ImageGallery /> component shallow', () => {
-        const wrapper = shallow(<ProductOverview />);
-        expect(!!wrapper).toBe(true);
-      });
     });
 
 
@@ -62,11 +57,6 @@ describe('Tests of Render Tests', () => {
         console.log(wrapper.debug({ ignoreProps: true }));
         expect(wrapper.find(ThumbnailsBar)).toHaveLength(1);
       });
-      //works
-      xit('renders one <ThumbnailsBar /> component shallow', () => {
-        const wrapper = shallow(<ImageGallery />);
-        expect(!!wrapper).toBe(true);
-      });
     });
 
 
@@ -80,16 +70,8 @@ describe('Tests of Render Tests', () => {
       //works
       test('renders five <Thumbnail /> components shallow', () => {
         const wrapper = shallow(<ThumbnailsBar />);
-        expect(wrapper.find(Thumbnail)).toHaveLength(5);
-      });
-      test('renders five <Thumbnail /> components shallow', () => {
-        const wrapper = shallow(<ThumbnailsBar />);
         console.log(wrapper.debug({ ignoreProps: true }));
         expect(wrapper.find(Thumbnail)).toHaveLength(5);
-      });
-      xtest('renders five <Thumbnail /> components shallow', () => {
-        const wrapper = shallow(<ThumbnailsBar />);
-        expect(!!wrapper).toBe(true);
       });
     });
   });
@@ -110,11 +92,6 @@ describe('Tests of Render Tests', () => {
         const wrapper = mount(<ProductOverview />);
         expect(wrapper.find(ImageGallery)).toHaveLength(1);
       });
-      //works
-      xit('renders one <ImageGallery /> component mount', () => {
-        const wrapper = mount(<ProductOverview />);
-        expect(!!wrapper).toBe(true);
-      });
     });
 
     describe('ImageGallery to ThumbnailsBar', () => {
@@ -130,11 +107,6 @@ describe('Tests of Render Tests', () => {
         const wrapper = mount(<ImageGallery />);
         expect(wrapper.find(ThumbnailsBar)).toHaveLength(1);
       });
-      //works
-      xit('renders one <ThumbnailsBar /> component mount', () => {
-        const wrapper = mount(<ImageGallery />);
-        expect(!!wrapper).toBe(true);
-      });
     });
 
 
@@ -148,11 +120,6 @@ describe('Tests of Render Tests', () => {
       test('renders five <Thumbnail /> components mount', () => {
         const wrapper = mount(<ThumbnailsBar />);
         expect(wrapper.find(Thumbnail)).toHaveLength(5);
-      });
-      //works
-      xtest('renders five <Thumbnail /> components mount', () => {
-        const wrapper = mount(<ThumbnailsBar />);
-        expect(!!wrapper).toBe(true);
       });
     });
   });
@@ -182,15 +149,6 @@ describe('Tests of Render Tests', () => {
         const component = document.getElementsByClassName('image_gallery_po');
         expect(component).toHaveLength(1);
       });
-      //works
-      xtest('renders one <ImageGallery /> component render', () => {
-        act(() => {
-          render(<ProductOverview />, container);
-        });
-        const component = document.getElementsByClassName('image_gallery_po');
-        expect(!!component).toBe(true);
-      });
-
     });
 
 
@@ -214,14 +172,6 @@ describe('Tests of Render Tests', () => {
         const component = document.getElementsByClassName('image_gallery_po');
         expect(component).toHaveLength(1);
       });
-      //works
-      xit('renders one <ThumbnailsBar /> component mount', () => {
-        act(() => {
-          render(<ThumbnailsBar />, container);
-        });
-        const component = document.getElementsByClassName('image_gallery_po');
-        expect(!!component).toBe(true);
-      });
     });
 
 
@@ -241,15 +191,6 @@ describe('Tests of Render Tests', () => {
         const component = document.getElementsByClassName('thumbnail_po');
         expect(component).toHaveLength(5);
       });
-      //works
-      xit('renders five <Thumbnail /> components render', () => {
-        act(() => {
-          render(<ThumbnailsBar />, container);
-        });
-        const component = document.getElementsByClassName('thumbnail_po');
-        expect(!!component).toBe(true);
-      });
-
     });
   });
 });

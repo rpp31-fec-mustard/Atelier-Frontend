@@ -15,8 +15,8 @@ class App extends React.Component {
       // productId: '59553',  //testing
 
       product: {},
-      randomizerCb: this.randomizerCb.bind(this)
     };
+    this.randomizerCb = this.randomizerCb.bind(this);
   }
 
 
@@ -62,7 +62,7 @@ class App extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <TempTopBanner randomizerCb={this.state.randomizerCb}/>
+        <TempTopBanner randomizerCb={this.randomizerCb}/>
         <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
