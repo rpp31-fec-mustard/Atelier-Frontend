@@ -934,3 +934,52 @@ border: none;
   height:500px;
   width:600px;
 }
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(87, 59, 59, 0.938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.modal_input {
+  border: none;
+}
+.modal_content {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  border: none;
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  overflow-y: scroll;
+}
+.selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modal_characteristics {
+  display: flex;
+  flex-direction: row;
+  margin: 7px;
+  justify-content: center;
+}
+
+.test {
+  width: 25%;
+  margin-right: 10px;
+  text-align: center;
+}
+
+p {
+  font-size: 12px;
+}
