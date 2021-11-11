@@ -1,15 +1,99 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import {unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
+//for React Testing Library
+import {rest} from 'msw';
+import {setupServer} from 'msw/node';
+import {render, fireEvent, waitFor, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-// import App from '../client/components/app.jsx';
+
+import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
+import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
-import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
-import StyleThumbnail from '../client/components/ProductOverview/StyleCartSubs/StyleThumbnail.jsx';
+
+// fixtures
+import fixtures from './fixtures.js';
+
+
+
+
+
+describe('My Tests', () => {
+
+  xtest ('renders Product Overview component', () => {
+    render(<ProductOverview />);
+
+    screen.debug();
+  });
+});
+
+
+
+describe('Style Selector', () => {
+  test ('renders Style Selector component', () => {
+    const productName = 'The Product';
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByText(/STYLE/)).toBeInTheDocument();
+  });
+
+  test ('renders default style name', () => {
+    //search expression from fixture
+    const productName = 'The Product';
+    const regex = new RegExp(fixtures.styles.results[0].name);
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByText(regex)).toBeInTheDocument();
+  });
+
+  test ('renders img with alt text', () => {
+    const productName = 'The Product';
+    //search expression from fixture
+    const regex = new RegExp(fixtures.styles.results[0].name);
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByAltText(regex)).toBeInTheDocument();
+  });
+
+  test ('renders correct number of thumbnails', () => {
+    const productName = 'The Product';
+    //search expression from fixture
+    const count = fixtures.styles.results.length;
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getAllByRole('img')).toHaveLength(count);
+  });
+
+  xtest('renders five <Thumbnail /> components shallow', () => {
+    render(<ThumbnailsBar />);
+    console.log('screen', screen);
+    expect(screen.getAllBy(Thumbnail)).toHaveLength(5);
+  });
+
+
+});
+
+
 
 let container = null;
 
@@ -26,29 +110,29 @@ afterEach(() => {
   container = null;
 });
 
-describe('Render Tests', () => {
-  xtest('Four module_containers should be rendering', () => {
-    act(() => {
-      render(<App />, container);
-    });
-    const modules = document.getElementsByClassName('module_container');
-    // console.log('modules count render test', modules)
-    // window.onLoad = ()=> {
-    expect(modules.length).toBe(4);
-    // };
-  });
+// xdescribe('Render Tests', () => {
+//   xtest('Four module_containers should be rendering', () => {
+//     act(() => {
+//       render(<App />, container);
+//     });
+//     const modules = document.getElementsByClassName('module_container');
+//     // console.log('modules count render test', modules)
+//     // window.onLoad = ()=> {
+//     expect(modules.length).toBe(4);
+//     // };
+//   });
 
-  test('Product Overview should render', async () => {
-    // act(() => {
-      render(<ProductOverview />, container);
+//   test('Product Overview should render', async () => {
+//     // act(() => {
+//       render(<ProductOverview />, container);
 
-    // });
+//     // });
 
-    const component = document.getElementsByClassName('product_overview_main');
-    await expect(component.length).toBe(1);
-    // };
-  });
-});
+//     const component = document.getElementsByClassName('product_overview_main');
+//     await expect(component.length).toBe(1);
+//     // };
+//   });
+// });
 
 
 
@@ -85,7 +169,7 @@ xdescribe('<ProductOverview /> full rendering', () => {
 
 
 
-describe('Image Gallery Module', () => {
+xdescribe('Image Gallery Module', () => {
   xit('renders all modules', () => {
   });
   it('renders Image Gallery', () => {
@@ -134,23 +218,6 @@ describe('Image Gallery Module', () => {
   });
 
   xit('right arrow changed to next image', () => {
-  });
-});
-
-describe('Style Module', () => {
-  xit('renders all modules', () => {
-  });
-  test('Style Selector should render', () => {
-    act(() => {
-      render(<App />, container);
-    });
-    //journal entry
-
-    const component = document.getElementsByClassName('style_po');
-    expect(!!component).toBe(true);
-
-  });
-  xit('interacts correctly', () => {
   });
 });
 

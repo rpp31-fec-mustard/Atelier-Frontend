@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 
 const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnClick}) => {
-  const DEBUG = true;
+  const DEBUG = false;
   var mlog = (DEBUG) ? console.log : () => {};
 
   mlog('SS styleSelector:', styles);
@@ -38,7 +38,11 @@ const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnCli
       </div>
     );
   } else {
+    mlog('state undefined: props not correct. component load delayed');
+    return <div>props load delayed</div>;
   }
 };
 
 export default StyleSelector;
+
+// npm test -- ReactTestLib.test.js --coverage --collectCoverageFrom='../client/components/ProductOverview/StyleSelector.jsx'
