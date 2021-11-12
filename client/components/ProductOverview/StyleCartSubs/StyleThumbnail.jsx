@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DEBUG = true;
+const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 
 const StyleThumbnail = ({style, styleIndex, productName, handleStyleOnClick}) => {

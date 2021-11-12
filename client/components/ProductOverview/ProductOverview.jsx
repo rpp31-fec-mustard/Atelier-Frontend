@@ -14,10 +14,79 @@ import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 
 
+const styleOnLoad = {
+  'product_id': 59648,
+  results: [
+    {
+      'style_id': 365413,
+      name: 'Forest Green & Black',
+      'original_price': '140.00',
+      'sale_price': null,
+      'default?': true,
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        },
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
+        },
+      ],
+      skus: {
+        '2122777': {
+          quantity: 8,
+          size: 'XS'
+        },
+        '2122778': {
+          quantity: 16,
+          size: 'S'
+        },
+        '2122779': {
+          quantity: 17,
+          size: 'M'
+        },
+        '2122780': {
+          quantity: 10,
+          size: 'L'
+        },
+        '2122781': {
+          quantity: 15,
+          size: 'XL'
+        },
+        '2122782': {
+          quantity: 4,
+          size: 'XL'
+        }
+      }
+    },
+    {
+      name: 'Style Two',
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        }
+      ]
+    },
+    {
+      name: 'Style Three',
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        }
+      ]
+    }
+  ]
+};
+
+
+
 const ProductOverview = ({product, id}) => {
   const [productId, setProductId] = useState(id);
-  const [currentStyleIndex, setIndex] = useState();
-  const [styles, setStyles] = useState();
+  const [currentStyleIndex, setIndex] = useState(0);
+  const [styles, setStyles] = useState(styleOnLoad);
   mlog('PO product :', product);
   // mlog('PO id :', id);
   mlog('PO styles:', styles);
@@ -33,8 +102,11 @@ const ProductOverview = ({product, id}) => {
       }
     })
       .then((res) => {
-        // mlog('@client PO res product/styles:', res.data);
+        mlog('@client PO res product/styles:', res.data);
+        // if (JSON.stringify(res.data) !== JSON.stringify(styles)) {
+
         setStyles(res.data);
+        // }
       })
       .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
@@ -57,9 +129,9 @@ const ProductOverview = ({product, id}) => {
 
 
 
-  if (styles !== undefined) {
-    mlog('state defined: component load executed');
-    // mlog('PO:', );
+  // if (styles !== undefined) {
+    // mlog('state defined: component load executed');
+    mlog('PO product destructure:', product );
     const {
       description,
       name,
@@ -117,10 +189,10 @@ const ProductOverview = ({product, id}) => {
         </div>
       </div>
     );
-  } else {
-    mlog('state undefined: props not correct. component load delayed');
-    return <div>props load delayed</div>;
-  }
+  // } else {
+  //   mlog('state undefined: props not correct. component load delayed');
+  //   return <div>props load delayed</div>;
+  // }
 };
 
 

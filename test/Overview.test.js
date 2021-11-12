@@ -24,13 +24,46 @@ import fixtures from './fixtures.js';
 
 
 describe('My Tests', () => {
-
+  //does not work due to conditional
   xtest ('renders Product Overview component', () => {
     render(<ProductOverview />);
 
     screen.debug();
   });
 });
+
+describe('Product Overview', () => {
+  test ('renders Product Overview component', () => {
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    // screen.debug();
+    const result = screen.getByText('Camo Onesie');
+    expect(result).toBeInTheDocument;
+  });
+
+  test ('renders correct item name', () => {
+    const productName = fixtures.product.name;
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    // screen.debug();
+    const result = screen.getByText(productName);
+    expect(result).toBeInTheDocument;
+  });
+
+  xtest ('renders correct description', () => {
+
+  });
+
+  test ('renders correct highlights', () => {
+    const highlight = `${fixtures.product.features[0].value} ${fixtures.product.features[0].feature}`;
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    screen.debug();
+    const result = screen.getByText(highlight);
+    expect(result).toBeInTheDocument;
+  });
+});
+
 
 
 
@@ -90,11 +123,12 @@ describe('Style Selector', () => {
     expect(screen.getAllBy(Thumbnail)).toHaveLength(5);
   });
 
-
 });
 
 
 
+
+/*/
 let container = null;
 
 beforeEach(() => {
@@ -110,38 +144,38 @@ afterEach(() => {
   container = null;
 });
 
-// xdescribe('Render Tests', () => {
-//   xtest('Four module_containers should be rendering', () => {
-//     act(() => {
-//       render(<App />, container);
-//     });
-//     const modules = document.getElementsByClassName('module_container');
-//     // console.log('modules count render test', modules)
-//     // window.onLoad = ()=> {
-//     expect(modules.length).toBe(4);
-//     // };
-//   });
+xdescribe('Render Tests', () => {
+  xtest('Four module_containers should be rendering', () => {
+    act(() => {
+      render(<App />, container);
+    });
+    const modules = document.getElementsByClassName('module_container');
+    // console.log('modules count render test', modules)
+    // window.onLoad = ()=> {
+    expect(modules.length).toBe(4);
+    // };
+  });
 
-//   test('Product Overview should render', async () => {
-//     // act(() => {
-//       render(<ProductOverview />, container);
+  test('Product Overview should render', async () => {
+    // act(() => {
+      render(<ProductOverview />, container);
 
-//     // });
+    // });
 
-//     const component = document.getElementsByClassName('product_overview_main');
-//     await expect(component.length).toBe(1);
-//     // };
-//   });
-// });
-
-
-
+    const component = document.getElementsByClassName('product_overview_main');
+    await expect(component.length).toBe(1);
+    // };
+  });
+});
+//*/
 
 
 
 
 
 
+
+/*/
 xdescribe('<ProductOverview /> full rendering', () => {
   it('renders one <ImageGallery /> component', () => {
     act(() => {
@@ -166,9 +200,9 @@ xdescribe('<ProductOverview /> full rendering', () => {
 
   });
 });
+//*/
 
-
-
+/*/
 xdescribe('Image Gallery Module', () => {
   xit('renders all modules', () => {
   });
@@ -235,3 +269,5 @@ xdescribe('Cart Interaction Module', () => {
   xit('interacts correctly', () => {
   });
 });
+
+//*/

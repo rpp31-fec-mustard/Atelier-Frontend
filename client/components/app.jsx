@@ -7,6 +7,30 @@ import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 
+const productOnLoad = {
+  "id": 59553,
+  "campus": "hr-rpp",
+  "name": "Camo Onesie",
+  "slogan": "Blend in to your crowd",
+  "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+  "category": "Jackets",
+  "default_price": "140.00",
+  "created_at": "2021-10-18T22:50:41.839Z",
+  "updated_at": "2021-10-18T22:50:41.839Z",
+  "features": [
+      {
+          "feature": "Fabric",
+          "value": "Canvas"
+      },
+      {
+          "feature": "Buttons",
+          "value": "Brass"
+      }
+  ]
+}
+
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +38,7 @@ class App extends React.Component {
       productId: '59601', //testing
       // productId: '59553',  //testing
 
-      product: {},
+      product: productOnLoad,
     };
     this.randomizerCb = this.randomizerCb.bind(this);
   }
