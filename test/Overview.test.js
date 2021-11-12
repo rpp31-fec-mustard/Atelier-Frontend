@@ -1,16 +1,134 @@
 import React from 'react';
-import { render, unmountComponentAtNode } from 'react-dom';
+import {unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
+//for React Testing Library
+import {rest} from 'msw';
+import {setupServer} from 'msw/node';
+import {render, fireEvent, waitFor, screen} from '@testing-library/react';
+import '@testing-library/jest-dom';
+
 
 import App from '../client/components/app.jsx';
 import ProductOverview from '../client/components/ProductOverview/ProductOverview.jsx';
 import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx';
+import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
-import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
-import StyleThumbnail from '../client/components/ProductOverview/StyleCartSubs/StyleThumbnail.jsx';
 
+// fixtures
+import fixtures from './fixtures.js';
+
+
+
+
+
+describe('My Tests', () => {
+  //does not work due to conditional
+  xtest ('renders Product Overview component', () => {
+    render(<ProductOverview />);
+
+    screen.debug();
+  });
+});
+
+describe('Product Overview', () => {
+  test ('renders Product Overview component', () => {
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    // screen.debug();
+    const result = screen.getByText('Camo Onesie');
+    expect(result).toBeInTheDocument;
+  });
+
+  test ('renders correct item name', () => {
+    const productName = fixtures.product.name;
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    // screen.debug();
+    const result = screen.getByText(productName);
+    expect(result).toBeInTheDocument;
+  });
+
+  xtest ('renders correct description', () => {
+
+  });
+
+  test ('renders correct highlights', () => {
+    const highlight = `${fixtures.product.features[0].value} ${fixtures.product.features[0].feature}`;
+    render(<ProductOverview
+      product={fixtures.product} productId={fixtures.product.id}/>);
+    screen.debug();
+    const result = screen.getByText(highlight);
+    expect(result).toBeInTheDocument;
+  });
+});
+
+
+
+
+describe('Style Selector', () => {
+  test ('renders Style Selector component', () => {
+    const productName = 'The Product';
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByText(/STYLE/)).toBeInTheDocument();
+  });
+
+  test ('renders default style name', () => {
+    //search expression from fixture
+    const productName = 'The Product';
+    const regex = new RegExp(fixtures.styles.results[0].name);
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByText(regex)).toBeInTheDocument();
+  });
+
+  test ('renders img with alt text', () => {
+    const productName = 'The Product';
+    //search expression from fixture
+    const regex = new RegExp(fixtures.styles.results[0].name);
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getByAltText(regex)).toBeInTheDocument();
+  });
+
+  test ('renders correct number of thumbnails', () => {
+    const productName = 'The Product';
+    //search expression from fixture
+    const count = fixtures.styles.results.length;
+
+    render(<StyleSelector
+      styles={fixtures.styles.results}
+      currentStyleIndex={0}
+      productName={productName}/>);
+
+    expect(screen.getAllByRole('img')).toHaveLength(count);
+  });
+
+  xtest('renders five <Thumbnail /> components shallow', () => {
+    render(<ThumbnailsBar />);
+    console.log('screen', screen);
+    expect(screen.getAllBy(Thumbnail)).toHaveLength(5);
+  });
+
+});
+
+
+
+
+/*/
 let container = null;
 
 beforeEach(() => {
@@ -26,7 +144,7 @@ afterEach(() => {
   container = null;
 });
 
-describe('Render Tests', () => {
+xdescribe('Render Tests', () => {
   xtest('Four module_containers should be rendering', () => {
     act(() => {
       render(<App />, container);
@@ -38,17 +156,18 @@ describe('Render Tests', () => {
     // };
   });
 
-  test('Product Overview should render', () => {
-    act(() => {
-      render(<App />, container);
+  test('Product Overview should render', async () => {
+    // act(() => {
+      render(<ProductOverview />, container);
 
-    });
+    // });
 
     const component = document.getElementsByClassName('product_overview_main');
-    expect(!!component).toBe(true);
+    await expect(component.length).toBe(1);
     // };
   });
 });
+//*/
 
 
 
@@ -56,8 +175,7 @@ describe('Render Tests', () => {
 
 
 
-
-
+/*/
 xdescribe('<ProductOverview /> full rendering', () => {
   it('renders one <ImageGallery /> component', () => {
     act(() => {
@@ -82,34 +200,33 @@ xdescribe('<ProductOverview /> full rendering', () => {
 
   });
 });
+//*/
 
-
-
-describe('Image Gallery Module', () => {
+/*/
+xdescribe('Image Gallery Module', () => {
   xit('renders all modules', () => {
   });
-  test('Image Gallery should render', () => {
-    act(() => {
-      render(<App />, container);
-    });
-    //journal entry
-    const component = document.getElementsByClassName('image_gallery_po');
-    expect(!!component).toBe(true);
-  });
-
-  it('left arrow should render', ()=> {
-    act(() => {
-      render(<App />, container);
-    });
-    const component = document.getElementsByClassName('arrow_left_po');
-    expect(!!component).toBe(true);
-  });
-
-  xit('right arrow should render', ()=> {
+  it('renders Image Gallery', () => {
     act(() => {
       render(<ImageGallery />, container);
     });
-    //journ
+    //journal entry
+    const component = document.getElementsByClassName('image_gallery_po');
+    expect(component.length).toBe(1);
+  });
+
+  it('renders left arrow', ()=> {
+    act(() => {
+      render(<ArrowLeft />, container);
+    });
+    const component = document.getElementsByClassName('arrow_left_po');
+    expect(component.length).toBe(1);
+  });
+
+  it('renders right arrow', ()=> {
+    act(() => {
+      render(<ArrowRight />, container);
+    });
     const component = document.getElementsByClassName('arrow_right_po');
     expect(component.length).toBe(1);
   });
@@ -117,7 +234,7 @@ describe('Image Gallery Module', () => {
   xit('style thumbnails should render', () => {
     // let count =
     const wrapper = shallow(<StyleSelector />);
-    expect(wrapper.find(StyleThumbnail)).toHave(6);
+    expect(wrapper.find(StyleThumbnail)).toHave(5);
   });
 
   // test('renders five <Thumbnail /> components shallow', () => {
@@ -138,23 +255,6 @@ describe('Image Gallery Module', () => {
   });
 });
 
-describe('Style Module', () => {
-  xit('renders all modules', () => {
-  });
-  test('Style Selector should render', () => {
-    act(() => {
-      render(<App />, container);
-    });
-    //journal entry
-
-    const component = document.getElementsByClassName('style_po');
-    expect(!!component).toBe(true);
-
-  });
-  xit('interacts correctly', () => {
-  });
-});
-
 xdescribe('Add to Cart Module', () => {
   xit('renders all modules', () => {
   });
@@ -169,3 +269,5 @@ xdescribe('Cart Interaction Module', () => {
   xit('interacts correctly', () => {
   });
 });
+
+//*/
