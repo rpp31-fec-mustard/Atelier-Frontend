@@ -21,13 +21,13 @@ const Outfit = (props) => {
       );
     });
   } else {
-    outfitProducts = (
-      <div className="add-product">Add a product here
+    outfitProducts = [
+      <div key={'add-product'} className="add-product">Add a product here
         <br></br>
         <br></br>
         <i className="ri-add-line"></i>
       </div>
-    );
+    ];
   }
 
   return (
@@ -35,13 +35,24 @@ const Outfit = (props) => {
       <h3>YOUR OUTFIT</h3>
       <div className="prod-cards-container">
         <div className="lbutton-container">
-          <LeftButton cardsWrapper={cardsWrapper} handleLeftScroll={props.handleScroll.handleLeftScroll}/>
+          <LeftButton
+            cardsWrapper={cardsWrapper}
+            handleLeftScroll={props.handleScroll.handleLeftScroll}
+          />
         </div>
-        <section className="prod-cards-wrapper" ref={cardsWrapper}>
+        <section className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
+          (event) => {
+            debugger;
+            props.checkScrollPosition(cardsWrapper.current);
+          }
+        }>
           {outfitProducts}
         </section>
         <div className="rbutton-container">
-          <RightButton cardsWrapper={cardsWrapper} handleRightScroll={props.handleScroll.handleRightScroll}/>
+          <RightButton
+            cardsWrapper={cardsWrapper}
+            handleRightScroll={props.handleScroll.handleRightScroll}
+          />
         </div>
       </div>
     </div>

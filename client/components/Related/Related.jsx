@@ -78,8 +78,6 @@ const Related = (props) => {
       left: -230,
       behavior: 'smooth'
     });
-
-    console.log('left scroll');
   };
 
   const handleRightScroll = (scrollRef) => {
@@ -89,7 +87,25 @@ const Related = (props) => {
       left: 230,
       behavior: 'smooth'
     });
-    console.log('right scroll');
+  };
+
+  const checkScrollPosition = (cardsWrapperRef, cardsWrapperLength) => {
+    const wrapperScrollPosition = Math.floor(cardsWrapperRef.scrollLeft);
+    const wrapperMaxScrollPosition = cardsWrapperRef.scrollWidth - cardsWrapperRef.clientWidth;
+    const submodule = event.target.closest('.related-submodule').id;
+    // handle left button
+    const lButton = submodule === 'related-products' ?
+      document.getElementsByClassName('nav-button')[0] :
+      document.getElementsByClassName('nav-button')[2];
+
+    lButton.style.color = wrapperScrollPosition > 0 ? 'black' : 'transparent';
+
+    // handle right button
+    const rButton = submodule === 'related-products' ?
+      document.getElementsByClassName('nav-button')[1] :
+      document.getElementsByClassName('nav-button')[2];
+
+    rButton.style.color = wrapperScrollPosition === wrapperMaxScrollPosition ? 'transparent' : 'black';
   };
 
   return (
@@ -99,6 +115,7 @@ const Related = (props) => {
         relatedProducts={relatedProducts}
         handleAction={handleAction}
         handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+        checkScrollPosition={checkScrollPosition}
         homeProduct={props.homeProduct}
         renderRelated={props.renderRelated}
       />
@@ -106,6 +123,7 @@ const Related = (props) => {
         outfitList={outfitList}
         handleAction={handleAction}
         handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+        checkScrollPosition={checkScrollPosition}
         renderRelated={props.renderRelated}
       />
     </div>

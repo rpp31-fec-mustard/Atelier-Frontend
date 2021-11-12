@@ -26,17 +26,17 @@ const RelatedProducts = (props) => {
           <LeftButton
             cardsWrapper={cardsWrapper}
             handleLeftScroll={props.handleScroll.handleLeftScroll}
-            // scrollPosition={scrollPosition}
           />
         </div>
-        <section className="prod-cards-wrapper" ref={cardsWrapper}>
+        <section className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
+          (event) => { props.checkScrollPosition(cardsWrapper.current); }
+        }>
           {productCards}
         </section>
         <div className="rbutton-container">
           <RightButton
             cardsWrapper={cardsWrapper}
             handleRightScroll={props.handleScroll.handleRightScroll}
-            // scrollPosition={scrollPosition}
           />
         </div>
       </div>
