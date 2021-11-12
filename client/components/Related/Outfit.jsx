@@ -15,6 +15,7 @@ const Outfit = (props) => {
           key={item.id}
           product={item}
           handleAction={props.handleAction}
+          renderRelated={props.renderRelated}
           outfit={true}
         />
       );
