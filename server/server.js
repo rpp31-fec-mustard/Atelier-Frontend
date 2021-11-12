@@ -2,6 +2,7 @@ const express = require('express');
 const parser = require('body-parser');
 var compression = require('compression');
 const api = require('./apiHelpers.js');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(express.static(__dirname + '/../client/public'));
@@ -23,7 +24,6 @@ app.get('/product', (req, res) => {
 
 app.post('/product/styles', (req, res) => {
   let productId = req.body.productId;
-  // console.log({productId});
   api.getProductStyles(productId)
     .then((result) => {
       res.status(200).send(result);
@@ -54,6 +54,11 @@ app.post('/related', (req, res) => {
     });
 });
 
+app.post('/outfit', (req, res) => {
+  console.log(req.body.outfitList);
+  console.log('Cookies: ', req.cookies);
+});
+
 app.post('/getRating', (req, res) => {
   api.getRating(req.body.productId)
     .then((rating) => {
@@ -62,7 +67,6 @@ app.post('/getRating', (req, res) => {
       res.sendStatus(500).end();
     });
 });
-
 
 app.get('/questions', (req, res) => {
   api.getQuestions(req.query.productId)

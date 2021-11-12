@@ -19,6 +19,17 @@ const Related = (props) => {
       });
   }, [props.productId]);
 
+  React.useEffect(() => {
+    // send outfit list to server every time outfit list changes
+    axios.post('/outfit', { outfitList })
+      .then((result) => {
+        console.log({result});
+      })
+      .catch((error) => {
+        console.log('Client unable to send outfit list to server', error);
+      });
+  }, [outfitList]);
+
   const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
     const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
@@ -29,7 +40,7 @@ const Related = (props) => {
         const productId = product.id.toString(10);
         if (productId === targetProductId) {
           product['starred'] = true;
-          // TODO: check that product not already in outfit list
+          // updateState with outfit list
           setOutfitList(outfitList.concat([product]));
           return product;
         } else {

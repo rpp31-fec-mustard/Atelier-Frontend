@@ -513,10 +513,9 @@ button {
   font-size: 25px;
 }
 
-.lbutton-container .nav-button {
+/* .lbutton-container .nav-button {
   color: rgb(0, 0, 0, 0);
-}
-
+} */
 
 .prod-comparison-wrapper {
   position: fixed;

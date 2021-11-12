@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --silent; exit 0",
     "start": "nodemon server/server.js --watch",
     "lint": "eslint ./",
     "build": "webpack --mode development --watch"
@@ -28,6 +28,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "axios": "^0.23.0",
     "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
     "enzyme": "^3.11.0",
     "express": "^4.17.1",
     "install": "^0.13.0",
