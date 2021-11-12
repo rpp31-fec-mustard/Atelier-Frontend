@@ -43,7 +43,7 @@ const ImageGallery = ({photos}) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
-        <ThumbnailsBar />
+        <ThumbnailsBar photos={photos}/>
         <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
         <div className='space01_po'>Image Gallery</div>
         <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
@@ -51,7 +51,7 @@ const ImageGallery = ({photos}) => {
     );
   } else {
     return (
-      <div></div>
+      <div>image gallery did not render</div>
     );
   }
 };

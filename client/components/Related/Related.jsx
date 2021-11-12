@@ -12,6 +12,7 @@ const Related = (props) => {
   useEffect(() => {
     axios.post('/related', { product: props.productId })
       .then((result) => {
+        console.log('relatedProducts:', relatedProducts)
         setRelatedProducts(result.data);
       })
       .catch((error) => {

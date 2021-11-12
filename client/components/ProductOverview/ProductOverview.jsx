@@ -87,6 +87,7 @@ const ProductOverview = ({product, id}) => {
   const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setIndex] = useState(0);
   const [styles, setStyles] = useState(styleOnLoad);
+  // const [product, setProduct] = useState(styleOnLoad);
   mlog('PO product :', product);
   // mlog('PO id :', id);
   mlog('PO styles:', styles);
@@ -123,6 +124,22 @@ const ProductOverview = ({product, id}) => {
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
     setIndex(selectedStyleIndex);
+  };
+
+
+//get productId route
+  const getProductId = (id) => {
+    axios.get('/product', {
+      params: {
+        productId: id
+      }
+    })
+      .then((res) => {
+        this.setState({product: res.data});
+      })
+      .catch((error) => {
+        console.log('Error retrieving product/all: ', error);
+      });
   };
 
 

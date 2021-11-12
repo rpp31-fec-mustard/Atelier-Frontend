@@ -128,13 +128,17 @@ button {
   width: 10%;
 }
 
-.thumbnail_po {
-  background-image: url('https://d2cdo4blch85n8.cloudfront.net/wp-content/uploads/2019/07/Hasbro-Full-sized-Replica-Cookie-Monster-image-1.jpg');
-  background-size: 75px;
-  background-position: 50% 20%;
+.thumbnail_frame_po {
+  display: flex;
+  align-items: center;
   width: 50px;
   height: 50px;
   margin: 5px 0px;
+  overflow: hidden;
+}
+
+.thumbnail_box_po {
+  max-width: 100%;
 }
 
 #arrow_up_po, #arrow_down_po {
