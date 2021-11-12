@@ -66,7 +66,7 @@ class App extends React.Component {
         <ProductOverview product={this.state.product} id={this.state.productId}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
-        <Reviews productId={this.state.productId} />
+        <Reviews productId={this.state.productId} productInfo={this.state.product}/>
       </React.Fragment>
     );
   }

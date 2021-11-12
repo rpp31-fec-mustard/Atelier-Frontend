@@ -706,13 +706,6 @@ textarea {
  font-weight: bold;
 }
 
-/* .reviewBody {
-  display:inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 124ch;
-} */
-
 
 .overall {
   display: flex;
@@ -954,7 +947,7 @@ border: none;
 .modal_content {
   display: flex;
   flex-direction:column;
-  align-items: center;
+  /* align-items: center; */
   border: none;
   width: 60%;
   height: 60%;
@@ -982,4 +975,26 @@ border: none;
 
 p {
   font-size: 12px;
+}
+
+.addedImage {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}
+
+.uploadedImages {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.modalStars {
+  display: flex;
+  flex-direction: row;
+  border: none;
+}
+
+.starRadio {
+  display: none;
 }
