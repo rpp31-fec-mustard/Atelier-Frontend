@@ -8,6 +8,7 @@ const questionModal = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
+          <div className="close-modal-button" onClick={()=> props.hide()}>X</div>
           <h4 className="modal-title">Ask Your Question</h4>
           <h5 className="modal-subtitle">About the {props.name}</h5>
         </div>
