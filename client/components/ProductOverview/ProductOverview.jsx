@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -148,64 +148,65 @@ const ProductOverview = ({product, id}) => {
 
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
-    mlog('PO product destructure:', product );
-    const {
-      description,
-      name,
-      category,
-      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-      slogan,
-      features
-    } = product;
-    mlog('features', features);
+  mlog('PO product destructure:', product );
+  const {
+    description,
+    name,
+    category,
+    default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
+    slogan,
+    features
+  } = product;
+  mlog('features', features);
 
     // mlog(styles);
 
-    return (
-      <div className='module_container' id='product_overview_main' >
-        <div className='top01'>
-          <ImageGallery photos={styles.results[currentStyleIndex].photos} />
-          <div className='right02'>
-            <div className='stars_po'>
-              <Stars productId={product.id}/>
-              <a className='read_reviews_po'
-                onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
-            </div>
-            <div className='name_block_po'>
-              {category}
-              <p id='name_po'>{name}</p>
-              {/* <p id='name_po'>first line second line</p> */}
-            </div>
-            <div className='price_po'>
-              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-              <Price salePrice={styles.results[currentStyleIndex].sale_price}
-                originalPrice={styles.results[currentStyleIndex].original_price}/>
-            </div>
-            <StyleSelector styles={styles.results}
-              currentStyleIndex={currentStyleIndex}
-              productName={name}
-              handleStyleOnClick={handleStyleOnClick}/>
-            <AddToCart styles={styles}/>
+  return (
+    <div className='module_container' id='product_overview_main' >
+      <div className='top01'>
+        <ImageGallery photos={styles.results[currentStyleIndex].photos}
+          productId={productId} />
+        <div className='right02'>
+          <div className='stars_po'>
+            <Stars productId={product.id}/>
+            <a className='read_reviews_po'
+              onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
           </div>
-        </div>
-        <div className='bottom01'>
-          <div className='product_desc_po'>
-            <h2>{slogan}</h2><br/>
-            {description}
+          <div className='name_block_po'>
+            {category}
+            <p id='name_po'>{name}</p>
+            {/* <p id='name_po'>first line second line</p> */}
           </div>
-          <div className='highlights_po'>
-            Highlights:<br/>
-            {
-              features.map((feature) => {
-                mlog('feature', feature);
-                return (
-                  <div>{feature.value} {feature.feature}</div>);
-              })
-            }
+          <div className='price_po'>
+            {/* eslint-disable-next-line camelcase, no-multi-spaces */}
+            <Price salePrice={styles.results[currentStyleIndex].sale_price}
+              originalPrice={styles.results[currentStyleIndex].original_price}/>
           </div>
+          <StyleSelector styles={styles.results}
+            currentStyleIndex={currentStyleIndex}
+            productName={name}
+            handleStyleOnClick={handleStyleOnClick}/>
+          <AddToCart styles={styles}/>
         </div>
       </div>
-    );
+      <div className='bottom01'>
+        <div className='product_desc_po'>
+          <h2>{slogan}</h2><br/>
+          {description}
+        </div>
+        <div className='highlights_po'>
+          Highlights:<br/>
+          {
+            features.map((feature) => {
+              mlog('feature', feature);
+              return (
+                <div>{feature.value} {feature.feature}</div>);
+            })
+          }
+        </div>
+      </div>
+    </div>
+  );
   // } else {
   //   mlog('state undefined: props not correct. component load delayed');
   //   return <div>props load delayed</div>;

@@ -7,6 +7,9 @@ import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 
+//! START TEMPORARY TEST BLOCK
+//! testing error - do not remove
+/* eslint-disable */
 const productOnLoad = {
   "id": 59553,
   "campus": "hr-rpp",
@@ -28,15 +31,15 @@ const productOnLoad = {
       }
   ]
 }
-
-
+/* eslint-enable */
+//! END TEMPORARY TEST BLOCK
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601', //testing
-      productId: '59553',  //testing
+      productId: '59601', //testing
+      // productId: '59553',  //testing
 
       product: productOnLoad,
     };
@@ -71,7 +74,7 @@ class App extends React.Component {
       }
     })
       .then((res) => {
-          this.setState({product: res.data});
+        this.setState({product: res.data});
         // }
       })
       .catch((error) => {

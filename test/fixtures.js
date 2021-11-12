@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const fixtures = {
   product: {
     "id": 59553,
