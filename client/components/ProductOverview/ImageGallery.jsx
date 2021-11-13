@@ -1,23 +1,25 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
 import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
 import FullScreen from './ImageGallerySubs/FullScreen.jsx';
-import {DEBUG} from './ProductOverview.jsx';
 
 
 
 
-const ImageGallery = ({photos}) => {
+const ImageGallery = ({photos, productId}) => {
+  const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
 
   mlog('photos', photos);
+  mlog('IG productId', productId);
 
   const [index, setIndex] = useState(0);
   const [indexMax, setIndexMax] = useState(0);
+
 
 
   const imageLeftClick = () => {
@@ -32,7 +34,21 @@ const ImageGallery = ({photos}) => {
     }
   };
 
-  if (photos) {
+  const handleThumbnailClick = (index) => {
+    setIndex(index);
+  };
+
+
+  // useEffect(() => {
+  //   mlog('IG useEffect');
+  //   setIndex(0);
+  // }, [productId]);
+
+
+  //needed because useEffect above is not resolved in time
+  //when productId changes and new product is fetched, seems like the render below is resolved
+  //before useEffect resets the index to 0.
+  if (photos[index]) {
     let node = document.getElementsByClassName('image_gallery_po').style;
     mlog('node', node);
 
@@ -43,15 +59,19 @@ const ImageGallery = ({photos}) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
-        <ThumbnailsBar />
+        <ThumbnailsBar photos={photos}
+          handleThumbnailClick={handleThumbnailClick}/>
         <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
-        <div className='space01_po'>Image Gallery</div>
+        <div className='space01_po'></div>
         <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
       </div>
     );
   } else {
+    //needed to set index to 0 if this conditional
+    setIndex(0);
     return (
-      <div></div>
+      <div>image gallery did not render</div>
+
     );
   }
 };

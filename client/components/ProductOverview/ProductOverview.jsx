@@ -14,19 +14,89 @@ import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 
 
+const styleOnLoad = {
+  'product_id': 59648,
+  results: [
+    {
+      'style_id': 365413,
+      name: 'Forest Green & Black',
+      'original_price': '140.00',
+      'sale_price': null,
+      'default?': true,
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        },
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
+        },
+      ],
+      skus: {
+        '2122777': {
+          quantity: 8,
+          size: 'XS'
+        },
+        '2122778': {
+          quantity: 16,
+          size: 'S'
+        },
+        '2122779': {
+          quantity: 17,
+          size: 'M'
+        },
+        '2122780': {
+          quantity: 10,
+          size: 'L'
+        },
+        '2122781': {
+          quantity: 15,
+          size: 'XL'
+        },
+        '2122782': {
+          quantity: 4,
+          size: 'XL'
+        }
+      }
+    },
+    {
+      name: 'Style Two',
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        }
+      ]
+    },
+    {
+      name: 'Style Three',
+      photos: [
+        {
+          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+        }
+      ]
+    }
+  ]
+};
+
+
+
 const ProductOverview = ({product, id}) => {
-  // mlog('PO product :', product);
-  // mlog('PO id :', id);
   const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setIndex] = useState(0);
-  const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState(styleOnLoad);
+  // const [product, setProduct] = useState(styleOnLoad);
+  mlog('PO product :', product);
+  // mlog('PO id :', id);
   mlog('PO styles:', styles);
   mlog('PO productId:', productId);
   mlog('PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = (productId) => {
-    mlog('this.props.product.id :', productId);
+    // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
         productId: id
@@ -34,13 +104,18 @@ const ProductOverview = ({product, id}) => {
     })
       .then((res) => {
         mlog('@client PO res product/styles:', res.data);
+        // if (JSON.stringify(res.data) !== JSON.stringify(styles)) {
+
         setStyles(res.data);
+        // }
       })
       .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
       });
   };
 
+  //check to see if data is the same?
+  //if so, do not pass to productStyles?
   useEffect((productId) => {
     getProductStyles(productId);
     setIndex(0);
@@ -52,59 +127,90 @@ const ProductOverview = ({product, id}) => {
   };
 
 
+//get productId route
+  const getProductId = (id) => {
+    axios.get('/product', {
+      params: {
+        productId: id
+      }
+    })
+      .then((res) => {
+        this.setState({product: res.data});
+      })
+      .catch((error) => {
+        console.log('Error retrieving product/all: ', error);
+      });
+  };
 
 
 
-  if (styles !== undefined) {
-
-    // mlog('PO:', );
-    const {
-      description,
-      name,
-      category,
-      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-      slogan
-    } = product;
 
 
-    mlog(styles);
+  // if (styles !== undefined) {
+    // mlog('state defined: component load executed');
+  mlog('PO product destructure:', product );
+  const {
+    description,
+    name,
+    category,
+    default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
+    slogan,
+    features
+  } = product;
+  mlog('features', features);
 
-    return (
-      <div className='module_container' id='product_overview_main' >
-        <div className='top01'>
-          <ImageGallery photos={styles.results[currentStyleIndex].photos} />
-          <div className='right02'>
-            <div className='stars_po'>
-              <Stars productId={product.id}/>
-              <a className='read_reviews_po'
-                onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
-            </div>
-            <div className='name_block_po'>
-              {category}
-              <p id='name_po'>{name}</p>
-              {/* <p id='name_po'>first line second line</p> */}
-            </div>
-            <div className='price_po'>
-              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-              <Price salePrice={styles.results[currentStyleIndex].sale_price}
-                originalPrice={styles.results[currentStyleIndex].original_price}/>
-            </div>
-            <StyleSelector styles={styles.results}
-              currentStyleIndex={currentStyleIndex}
-              handleStyleOnClick={handleStyleOnClick}/>
-            <AddToCart styles={styles}/>
+    // mlog(styles);
+
+  return (
+    <div className='module_container' id='product_overview_main' >
+      <div className='top01'>
+        <ImageGallery photos={styles.results[currentStyleIndex].photos}
+          productId={productId} />
+        <div className='right02'>
+          <div className='stars_po'>
+            <Stars productId={product.id}/>
+            <a className='read_reviews_po'
+              onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
           </div>
-        </div>
-        <div className='bottom01'>
-          <div className='product_desc_po'><h2>{slogan}</h2><br/>{description}</div>
-          <div className='highlights_po'>Highlights</div>
+          <div className='name_block_po'>
+            {category}
+            <p id='name_po'>{name}</p>
+            {/* <p id='name_po'>first line second line</p> */}
+          </div>
+          <div className='price_po'>
+            {/* eslint-disable-next-line camelcase, no-multi-spaces */}
+            <Price salePrice={styles.results[currentStyleIndex].sale_price}
+              originalPrice={styles.results[currentStyleIndex].original_price}/>
+          </div>
+          <StyleSelector styles={styles.results}
+            currentStyleIndex={currentStyleIndex}
+            productName={name}
+            handleStyleOnClick={handleStyleOnClick}/>
+          <AddToCart styles={styles}/>
         </div>
       </div>
-    );
-  } else {
-    mlog('state undefined: props load delayed');
-    return <div>props load delayed</div>;
-  }
+      <div className='bottom01'>
+        <div className='product_desc_po'>
+          <h2>{slogan}</h2><br/>
+          {description}
+        </div>
+        <div className='highlights_po'>
+          Highlights:<br/>
+          {
+            features.map((feature) => {
+              mlog('feature', feature);
+              return (
+                <div>{feature.value} {feature.feature}</div>);
+            })
+          }
+        </div>
+      </div>
+    </div>
+  );
+  // } else {
+  //   mlog('state undefined: props not correct. component load delayed');
+  //   return <div>props load delayed</div>;
+  // }
 };
 
 
