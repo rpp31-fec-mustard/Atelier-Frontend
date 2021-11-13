@@ -17,8 +17,15 @@ import fixtures from './fixtures.js';
 
 describe('Reviews Component', () => {
   beforeEach(() => {
+    const reviews = shallow(<Reviews key={'59553'} productId={'59553'}/>);
     jest.spyOn(Reviews.prototype, 'get').mockImplementation((options) => {
-      return Promise.resolve({ data: fixtures.reviews });
+      return Promise.resolve(
+        reviews.setState({
+          allReviews: fixtures.reviews,
+          displayedReviews: fixtures.reviews,
+          reviewMeta: fixtures.meta,
+        })
+      );
     });
 
     jest.spyOn(axios, 'get').mockImplementation((endpoint, options) => {
@@ -42,28 +49,28 @@ describe('Reviews Component', () => {
     });
   });
 
-  test('Reviews Async check', () => {
-    withHooks(() => {
-      window.onload = () => {
-        const reviews = shallow(<Reviews key={'59553'} productId={'59553'}/>);
-        return Promise.resolve().then(() => {
-          expect(reviews.find(ReviewsList).props().list).toBe(fixtures.reviews);
-        });
-      };
-    });
-  });
-
-  test('checks get', () => {
-    const wrapper = shallow( < Reviews productId={'59553'}/>);
+  test('checks if state is passed to Ratings Component', (done) => {
+    const wrapper = mount( < Reviews productId={'59553'}/>);
     wrapper.instance().get().then((result) => {
-      expect(result.data.length).toBe(4);
+      expect(result.find(Ratings).props().meta).toBe(fixtures.meta);
+      done();
     }).catch(err => ( console.log(err) ) );
   });
 
+  test('checks if state is passed to ReviewList Component', (done) => {
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
+    wrapper.instance().get().then((result) => {
+      expect(result.find(ReviewsList).props().list).toEqual(fixtures.reviews);
+      done();
+    }).catch(err => ( console.log(err) ) );
+  });
 
   test('checks reviews component', () => {
     const wrapper = shallow( < Reviews productId={'59553'}/ > );
     expect(wrapper).toHaveLength(1);
+    expect(wrapper.find('.reviewsTitle')).toHaveLength(1);
+    expect(wrapper.find(Ratings)).toHaveLength(1);
+    expect(wrapper.find(ReviewsList)).toHaveLength(1);
   });
 
   test('checks reviews api get call', () => {
@@ -91,8 +98,51 @@ describe('Reviews Component', () => {
     wrapper.instance().filterReviews(fixtures.reviews, ['4']);
     expect(wrapper.state('displayedReviews').length).toEqual(1);
   });
-});
 
+  test('checks handleStarChange function', () => {
+    let clicked = { target: {innerText: '4'} };
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
+    wrapper.setState({
+      allReviews: fixtures.reviews,
+      starFilter: []
+    });
+    wrapper.instance().handleStarChange(clicked);
+    expect(wrapper.state('displayedReviews').length).toEqual(1);
+  });
+
+  test('checks handleStarChange function', () => {
+    let clicked = { target: {innerText: '4'} };
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
+    wrapper.setState({
+      allReviews: fixtures.reviews,
+      starFilter: ['4']
+    });
+    wrapper.instance().handleStarChange(clicked);
+    expect(wrapper.state('displayedReviews').length).toEqual(4);
+  });
+
+  test('checks handleStarChange function', () => {
+    let clicked = { target: {innerText: '3'} };
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
+    wrapper.setState({
+      allReviews: fixtures.reviews,
+      starFilter: []
+    });
+    wrapper.instance().handleStarChange(clicked);
+    expect(wrapper.state('displayedReviews').length).toEqual(0);
+  });
+
+  test('checks handleStarChange function', () => {
+    let clicked = { target: {innerText: '5'} };
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
+    wrapper.setState({
+      allReviews: fixtures.reviews,
+      starFilter: ['4']
+    });
+    wrapper.instance().handleStarChange(clicked);
+    expect(wrapper.state('displayedReviews').length).toEqual(4);
+  });
+});
 
 
 describe('ReviewsList Component', () => {
