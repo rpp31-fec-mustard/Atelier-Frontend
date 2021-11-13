@@ -2,7 +2,6 @@ const express = require('express');
 const parser = require('body-parser');
 var compression = require('compression');
 const api = require('./apiHelpers.js');
-const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(express.static(__dirname + '/../client/public'));
@@ -52,11 +51,6 @@ app.post('/related', (req, res) => {
     .catch((error) => {
       res.status(500).send(error).end();
     });
-});
-
-app.post('/outfit', (req, res) => {
-  console.log(req.body.outfitList);
-  console.log('Cookies: ', req.cookies);
 });
 
 app.post('/getRating', (req, res) => {

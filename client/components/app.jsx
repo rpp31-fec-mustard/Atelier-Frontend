@@ -27,7 +27,7 @@ class App extends React.Component {
       resolve();
     })
       .then(() => {
-        this.getProductId(this.state.productId);
+        this.getProduct(this.state.productId);
       })
       .catch(error => {
         console.log(error);
@@ -36,11 +36,11 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.getProductId(this.state.productId);
+    Promise.resolve(this.getProduct(this.state.productId));
   }
 
 
-  getProductId(id) {
+  getProduct(id) {
     axios.get('/product', {
       params: {
         productId: id
