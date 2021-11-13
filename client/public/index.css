@@ -710,6 +710,10 @@ textarea {
  font-weight: bold;
 }
 
+.reviewBody {
+  font-size: 15px;
+}
+
 
 .overall {
   display: flex;

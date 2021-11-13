@@ -15,9 +15,9 @@ const displayMeaning = (char) => {
     if (char === storedChar) {
       return (
         <section className='ratingMeaning'>
-          <section>{charMeanings[char][0]}</section>
-          <section>{charMeanings[char][1]}</section>
-          <section>{charMeanings[char][2]}</section>
+          <section>{charMeanings[char][0]} </section>
+          <section>{charMeanings[char][1]} </section>
+          <section>{charMeanings[char][2]} </section>
         </section>
       );
     }
