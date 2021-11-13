@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 // import {DEBUG} from './ProductOverview.jsx';
 import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 
-const StyleSelector = ({styles, currentStyleIndex, handleStyleOnClick}) => {
+const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnClick}) => {
   const DEBUG = false;
   var mlog = (DEBUG) ? console.log : () => {};
 
@@ -26,8 +26,10 @@ const StyleSelector = ({styles, currentStyleIndex, handleStyleOnClick}) => {
               mlog('id', style.style_id);
               styleIndex++;
               return (
-                <StyleThumbnail style={style}
+                <StyleThumbnail key={style.style_id}
+                  style={style}
                   styleId={style.style_id}
+                  productName={productName}
                   styleIndex={styleIndex}
                   handleStyleOnClick={handleStyleOnClick}/>
               );
@@ -37,7 +39,11 @@ const StyleSelector = ({styles, currentStyleIndex, handleStyleOnClick}) => {
       </div>
     );
   } else {
+    mlog('state undefined: props not correct. component load delayed');
+    return <div>props load delayed</div>;
   }
 };
 
 export default StyleSelector;
+
+// npm test -- ReactTestLib.test.js --coverage --collectCoverageFrom='../client/components/ProductOverview/StyleSelector.jsx'
