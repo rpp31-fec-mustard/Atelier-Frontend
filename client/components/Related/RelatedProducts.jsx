@@ -22,20 +22,21 @@ const RelatedProducts = (props) => {
     <div id="related-products" className="related-submodule">
       <h3>RELATED PRODUCTS</h3>
       <div className="prod-cards-container">
-        <div className="lbutton-container">
+        <div className="button-container">
           <LeftButton
             cardsWrapper={cardsWrapper}
             handleLeftScroll={props.handleScroll.handleLeftScroll}
           />
         </div>
-        <section className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
+        <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
           (event) => { props.checkScrollPosition(cardsWrapper.current); }
         }>
           {productCards}
-        </section>
-        <div className="rbutton-container">
+        </div>
+        <div className="button-container">
           <RightButton
             cardsWrapper={cardsWrapper}
+            cardsWrapperLength={productCards.length}
             handleRightScroll={props.handleScroll.handleRightScroll}
           />
         </div>

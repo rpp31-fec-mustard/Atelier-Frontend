@@ -497,14 +497,9 @@ button {
   background: var(--prod-img-background-color);
 }
 
-.lbutton-container {
-  border: none;
+.button-container {
   align-self: center;
-}
-
-.rbutton-container {
   border: none;
-  align-self: center;
 }
 
 .nav-button {

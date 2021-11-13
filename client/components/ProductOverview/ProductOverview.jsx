@@ -96,17 +96,12 @@ const ProductOverview = ({product, id}) => {
 
 
   const getProductStyles = (productId) => {
-<<<<<<< HEAD
-    mlog('this.props.product.id :', productId);
-    axios.post('/product/styles', { productId: id })
-=======
     // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
         productId: id
       }
     })
->>>>>>> main
       .then((res) => {
         mlog('@client PO res product/styles:', res.data);
         // if (JSON.stringify(res.data) !== JSON.stringify(styles)) {
@@ -131,46 +126,6 @@ const ProductOverview = ({product, id}) => {
     setIndex(selectedStyleIndex);
   };
 
-<<<<<<< HEAD
-  if (styles !== undefined) {
-
-    // mlog('PO:', );
-    const {
-      description,
-      name,
-      category,
-      default_price,   /* eslint-disable-line camelcase, no-multi-spaces*/
-      slogan
-    } = product;
-
-
-    mlog(styles);
-
-    return (
-      <div className='module_container' id='product_overview_main' >
-        <div className='top01'>
-          <ImageGallery photos={styles.results[currentStyleIndex].photos} />
-          <div className='right02'>
-            <div className='stars_po'>
-              <Stars productId={product.id}/>
-              <a className='read_reviews_po'
-                onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
-            </div>
-            <div className='name_block_po'>
-              {category}
-              <p id='name_po'>{name}</p>
-              {/* <p id='name_po'>first line second line</p> */}
-            </div>
-            <div className='price_po'>
-              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-              <Price salePrice={styles.results[currentStyleIndex].sale_price}
-                originalPrice={styles.results[currentStyleIndex].original_price}/>
-            </div>
-            <StyleSelector styles={styles.results}
-              currentStyleIndex={currentStyleIndex}
-              handleStyleOnClick={handleStyleOnClick}/>
-            <AddToCart styles={styles}/>
-=======
 
 //get productId route
   const getProductId = (id) => {
@@ -186,10 +141,6 @@ const ProductOverview = ({product, id}) => {
         console.log('Error retrieving product/all: ', error);
       });
   };
-
-
-
-
 
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
@@ -216,7 +167,6 @@ const ProductOverview = ({product, id}) => {
             <Stars productId={product.id}/>
             <a className='read_reviews_po'
               onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
->>>>>>> main
           </div>
           <div className='name_block_po'>
             {category}

@@ -34,7 +34,7 @@ const Outfit = (props) => {
     <div id="your-outfit" className="related-submodule">
       <h3>YOUR OUTFIT</h3>
       <div className="prod-cards-container">
-        <div className="lbutton-container">
+        <div className="button-container">
           <LeftButton
             cardsWrapper={cardsWrapper}
             handleLeftScroll={props.handleScroll.handleLeftScroll}
@@ -42,16 +42,17 @@ const Outfit = (props) => {
         </div>
         <section className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
           (event) => {
-            debugger;
             props.checkScrollPosition(cardsWrapper.current);
           }
         }>
           {outfitProducts}
         </section>
-        <div className="rbutton-container">
+        <div className="button-container">
           <RightButton
             cardsWrapper={cardsWrapper}
+            cardsWrapperLength={props.outfitList.length}
             handleRightScroll={props.handleScroll.handleRightScroll}
+            outfit={true}
           />
         </div>
       </div>

@@ -60,7 +60,7 @@ const Related = (props) => {
     }
   };
 
-  const handleLeftScroll = (scrollRef, lButtonRef, scrollPosition) => {
+  const handleLeftScroll = (scrollRef) => {
     const cardsWrapper = scrollRef.current;
     cardsWrapper.scrollBy({
       top: 0,
@@ -84,21 +84,21 @@ const Related = (props) => {
     const submodule = event.target.closest('.related-submodule').id;
     // handle left button
     const lButton = submodule === 'related-products' ?
-      document.getElementsByClassName('nav-button')[0] :
-      document.getElementsByClassName('nav-button')[2];
+      document.getElementsByClassName('left nav-button')[0] :
+      document.getElementsByClassName('left nav-button')[1];
 
     lButton.style.color = wrapperScrollPosition > 0 ? 'black' : 'transparent';
 
     // handle right button
     const rButton = submodule === 'related-products' ?
-      document.getElementsByClassName('nav-button')[1] :
-      document.getElementsByClassName('nav-button')[2];
+      document.getElementsByClassName('right nav-button')[0] :
+      document.getElementsByClassName('right nav-button')[1];
 
     rButton.style.color = wrapperScrollPosition === wrapperMaxScrollPosition ? 'transparent' : 'black';
   };
 
   return (
-    <div id="related-main" className="module_container">
+    <section id="related-main" className="module_container">
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
@@ -115,7 +115,7 @@ const Related = (props) => {
         checkScrollPosition={checkScrollPosition}
         renderRelated={props.renderRelated}
       />
-    </div>
+    </section>
   );
 };
 
