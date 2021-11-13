@@ -693,17 +693,32 @@ td {
 .modal-content {
   font-size: 15px;
   width: 700px;
+  height: 700px;
   background-color: white;
 }
 
 .modal-header {
-
   flex-direction: row;
   padding: 10px;
 }
 
 .modal-footer {
+  /* display: flex;
+  flex-direction: row; */
   padding: 10px;
+}
+
+.modal-footer-button {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  width: 50%;
+  background-color: white;
+  padding: 0px;
+}
+
+.answer-thumbnail {
+  height: 50px;
 }
 
 .modal-title {

@@ -9,7 +9,7 @@ const Search = (props) => {
 
   return (
     <div className="search">
-      <textarea onChange={(e) => performSearch(e)} type="text" cols="144" maxlength="200" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></textarea>
+      <textarea onChange={(e) => performSearch(e)} type="text" cols="144" maxLength="200" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."></textarea>
     </div>
   );
 

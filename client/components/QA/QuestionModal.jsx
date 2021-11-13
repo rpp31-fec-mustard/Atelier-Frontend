@@ -1,6 +1,8 @@
 import React from 'react';
 
 const questionModal = (props) => {
+
+
   if (!props.show) {
     return null;
   }
@@ -16,7 +18,7 @@ const questionModal = (props) => {
           <form>
             <div className="add-question-body">
               <label>Your Question<sup>*</sup></label>
-              <div><textarea maxLength="1000" rows="3" cols="70" required></textarea></div>
+              <div><textarea maxLength="1000" rows="3" cols="100" required></textarea></div>
             </div>
             <div className="add-question-nickname">
               <label>Your Username<sup>*</sup>: </label>
@@ -31,7 +33,7 @@ const questionModal = (props) => {
           </form>
         </div>
         <div className="modal-footer">
-          <button onClick={() => props.hide()}>Close or Submit Button</button>
+          <button onClick={() => props.hide()}>Submit Question</button>
         </div>
       </div>
     </div>
