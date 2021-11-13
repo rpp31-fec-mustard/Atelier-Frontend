@@ -710,12 +710,9 @@ textarea {
  font-weight: bold;
 }
 
-/* .reviewBody {
-  display:inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 124ch;
-} */
+.reviewBody {
+  font-size: 15px;
+}
 
 
 .overall {
