@@ -23,7 +23,7 @@ import fixtures from './fixtures.js';
 
 
 
-describe('My Tests', () => {
+xdescribe('My Tests', () => {
   //does not work due to conditional
   xtest ('renders Product Overview component', () => {
     render(<ProductOverview />);
@@ -35,8 +35,10 @@ describe('My Tests', () => {
 describe('Product Overview', () => {
   test ('renders Product Overview component', () => {
     render(<ProductOverview
-      product={fixtures.product} productId={fixtures.product.id}/>);
-    // screen.debug();
+      product={fixtures.product}
+      // productId={fixtures.product.id}
+    />);
+    screen.debug();
     const result = screen.getByText('Camo Onesie');
     expect(result).toBeInTheDocument;
   });
@@ -51,6 +53,7 @@ describe('Product Overview', () => {
   });
 
   xtest ('renders correct description', () => {
+    // const descriptionName
 
   });
 
@@ -76,7 +79,10 @@ describe('Style Selector', () => {
       currentStyleIndex={0}
       productName={productName}/>);
 
+    // screen.debug()
+    // screen.getByAltText(/Product/)
     expect(screen.getByText(/STYLE/)).toBeInTheDocument();
+    // expect(screen.queryByText('/STYLE/')).not.toBeInTheDocument();
   });
 
   test ('renders default style name', () => {
@@ -96,11 +102,12 @@ describe('Style Selector', () => {
     const productName = 'The Product';
     //search expression from fixture
     const regex = new RegExp(fixtures.styles.results[0].name);
+    console.log(regex);
     render(<StyleSelector
       styles={fixtures.styles.results}
       currentStyleIndex={0}
       productName={productName}/>);
-
+    // screen.debug()
     expect(screen.getByAltText(regex)).toBeInTheDocument();
   });
 
@@ -108,6 +115,7 @@ describe('Style Selector', () => {
     const productName = 'The Product';
     //search expression from fixture
     const count = fixtures.styles.results.length;
+
 
     render(<StyleSelector
       styles={fixtures.styles.results}

@@ -11,7 +11,7 @@ import Reviews from './Reviews/Reviews.jsx';
 //! testing error - do not remove
 /* eslint-disable */
 const productOnLoad = {
-  "id": 59553,
+  "id": '59553',
   "campus": "hr-rpp",
   "name": "Camo Onesie",
   "slogan": "Blend in to your crowd",

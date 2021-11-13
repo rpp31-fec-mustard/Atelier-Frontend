@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
+
 const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
-  const DEBUG = true;
+  const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
 

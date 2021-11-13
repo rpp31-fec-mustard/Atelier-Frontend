@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -10,16 +10,15 @@ import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 
 
 const styleOnLoad = {
-  'product_id': 59648,
+  'product_id': '59648',
   results: [
     {
-      'style_id': 365413,
+      'style_id': '365413',
       name: 'Forest Green & Black',
       'original_price': '140.00',
       'sale_price': null,
@@ -88,6 +87,7 @@ const ProductOverview = ({product, id}) => {
   const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setIndex] = useState(0);
   const [styles, setStyles] = useState(styleOnLoad);
+  // const [styles, setStyles] = useState();
   // const [product, setProduct] = useState(styleOnLoad);
   mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
@@ -188,7 +188,6 @@ const ProductOverview = ({product, id}) => {
             currentStyleIndex={currentStyleIndex}
             productName={name}
             handleStyleOnClick={handleStyleOnClick}/>
-          <AddToCart styles={styles}/>
         </div>
       </div>
       <div className='bottom01'>

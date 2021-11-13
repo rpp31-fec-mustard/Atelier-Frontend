@@ -6,12 +6,14 @@ import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
 import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
 import FullScreen from './ImageGallerySubs/FullScreen.jsx';
+import {DEBUG} from './ProductOverview.jsx';
+
 
 
 
 
 const ImageGallery = ({currentStyle, productId, productName}) => {
-  const DEBUG = true;
+  // const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
