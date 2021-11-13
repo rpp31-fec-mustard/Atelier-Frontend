@@ -18,6 +18,7 @@ const ProductCard = (props) => {
       src={props.product.thumbnailUrl}
       className="prod-card-img"
       alt={props.product.name}
+      loading="lazy"
     ></img>
   ) : (
     <div className="prod-card-no-img">No image</div>

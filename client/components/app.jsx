@@ -63,7 +63,7 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    this.getProduct(this.state.productId);
+    Promise.resolve(this.getProduct(this.state.productId));
   }
 
 

@@ -5,7 +5,12 @@ const entry = __dirname + '/client/components/index.jsx';
 
 module.exports = {
   mode: 'development',
-  plugins: [new CompressionPlugin()],
+  optimization: {
+    usedExports: true,
+  },
+  plugins: [new CompressionPlugin({
+    compressionOptions: {level: 9}
+  })],
   entry: ['regenerator-runtime/runtime.js', entry],
   module: {
     rules: [
