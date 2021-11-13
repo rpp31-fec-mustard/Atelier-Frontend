@@ -2,8 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
-const ThumbnailsBar = ({photos, handleThumbnailClick}) => {
-  console.log('TB photos:', photos);
+const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
+  const DEBUG = true;
+  var mlog = DEBUG ? console.log : () => {};
+  var logC = '\x1b[36m';
+
+  mlog(logC + ' TB photos:', photos);
+  mlog(logC + ' TB altText:', altText);
+
   let upIcon = <i className="ri-arrow-up-s-fill"></i>;
   let downIcon = <i className="ri-arrow-down-s-fill"></i>;
   let counter = -1;
@@ -14,9 +20,11 @@ const ThumbnailsBar = ({photos, handleThumbnailClick}) => {
       {
         photos.map((photo) => {
           counter++;
+          mlog(logC + ' TB altText:', altText, counter);
           return ( <Thumbnail
             photo={photo.url}
             counter={counter}
+            altText={altText}
             handleThumbnailClick={handleThumbnailClick}/> );
         })
       }

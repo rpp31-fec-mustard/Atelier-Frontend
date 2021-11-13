@@ -38,8 +38,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59601', //testing
-      // productId: '59553',  //testing
+      // productId: '59601', //testing
+      productId: '59553',  //testing
 
       product: productOnLoad,
     };

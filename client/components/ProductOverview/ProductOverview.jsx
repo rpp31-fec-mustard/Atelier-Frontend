@@ -1,7 +1,8 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export const DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
+var logC = '\x1b[33m';
 
 import React, {useRef, useState, useEffect} from 'react';
 // import ReactDOM from 'react-dom';
@@ -88,11 +89,11 @@ const ProductOverview = ({product, id}) => {
   const [currentStyleIndex, setIndex] = useState(0);
   const [styles, setStyles] = useState(styleOnLoad);
   // const [product, setProduct] = useState(styleOnLoad);
-  mlog('PO product :', product);
+  mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
-  mlog('PO styles:', styles);
-  mlog('PO productId:', productId);
-  mlog('PO styleIndex:', currentStyleIndex);
+  mlog(logC + ' PO styles:', styles);
+  mlog(logC + ' PO productId:', productId);
+  mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = (productId) => {
@@ -127,20 +128,20 @@ const ProductOverview = ({product, id}) => {
   };
 
 
-//get productId route
-  const getProductId = (id) => {
-    axios.get('/product', {
-      params: {
-        productId: id
-      }
-    })
-      .then((res) => {
-        this.setState({product: res.data});
-      })
-      .catch((error) => {
-        console.log('Error retrieving product/all: ', error);
-      });
-  };
+//get product route
+  // const getProduct = (id) => {
+  //   axios.get('/product', {
+  //     params: {
+  //       productId: id
+  //     }
+  //   })
+  //     .then((res) => {
+  //       this.setState({product: res.data});
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error retrieving product/all: ', error);
+  //     });
+  // };
 
 
 
@@ -148,7 +149,7 @@ const ProductOverview = ({product, id}) => {
 
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
-  mlog('PO product destructure:', product );
+  mlog(logC + ' PO product destructure:', product );
   const {
     description,
     name,
@@ -157,15 +158,16 @@ const ProductOverview = ({product, id}) => {
     slogan,
     features
   } = product;
-  mlog('features', features);
+  mlog(logC + ' features', features);
 
     // mlog(styles);
 
   return (
     <div className='module_container' id='product_overview_main' >
       <div className='top01'>
-        <ImageGallery photos={styles.results[currentStyleIndex].photos}
-          productId={productId} />
+        <ImageGallery currentStyle={styles.results[currentStyleIndex]}
+          productId={productId}
+          productName={product.name} />
         <div className='right02'>
           <div className='stars_po'>
             <Stars productId={product.id}/>
@@ -198,7 +200,7 @@ const ProductOverview = ({product, id}) => {
           Highlights:<br/>
           {
             features.map((feature) => {
-              mlog('feature', feature);
+              mlog(logC + 'feature', feature);
               return (
                 <div>{feature.value} {feature.feature}</div>);
             })
