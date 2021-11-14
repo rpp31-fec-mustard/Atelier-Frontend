@@ -354,14 +354,14 @@ button {
   flex-direction: row;
   justify-content: space-between;
   border: none;
-  width: inherit;
+  width: 100%;
 }
 
 .prod-cards-container {
   display: flex;
   flex-direction: column;
   border: none;
-  width: inherit;
+  width: 100%;
 }
 
 .prod-cards-wrapper {

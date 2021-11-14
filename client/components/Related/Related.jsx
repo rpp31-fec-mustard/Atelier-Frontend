@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 import * as React from 'react';
 import axios from 'axios';
 
@@ -7,7 +8,29 @@ import Outfit from './Outfit.jsx';
 const Related = (props) => {
   const [productId, setProductId] = React.useState(props.productId);
   const [relatedProducts, setRelatedProducts] = React.useState([]);
-  const [outfitList, setOutfitList] = React.useState([]);
+
+  let outfitStorage;
+  // initialize localStorage for outfitList
+  if (!localStorage.getItem('outfitList')) {
+    outfitStorage = [];
+  } else {
+    // set outfitStorage with localStorage outfitList
+    outfitStorage = JSON.parse(localStorage.getItem('outfitList'));
+    // star all products in relatedProducts present in outfitList
+    Promise.resolve(
+      relatedProducts.map((relProduct) => {
+        const relProductId = relProduct.id;
+        outfitStorage.forEach((outfitProduct) => {
+          const outfitProdId = outfitProduct.id;
+          if (relProductId === outfitProdId) {
+            relProduct['starred'] = true;
+          }
+        });
+      })
+    );
+  }
+
+  const [outfitList, setOutfitList] = React.useState(outfitStorage);
 
   React.useEffect(() => {
     axios.post('/related', { productId: props.productId })
@@ -30,7 +53,11 @@ const Related = (props) => {
         if (productId === targetProductId) {
           product['starred'] = true;
           // updateState with outfit list
-          setOutfitList(outfitList.concat([product]));
+          const newOutfitList = outfitList.concat([product]);
+          Promise.resolve(setOutfitList(newOutfitList))
+            .then(() => {
+              localStorage.setItem('outfitList', JSON.stringify(outfitList));
+            });
           return product;
         } else {
           return product;
@@ -45,6 +72,12 @@ const Related = (props) => {
         return productId !== targetProductId;
       });
 
+      Promise.resolve(setOutfitList(newOutfitList))
+        .then(() => {
+          localStorage.setItem('outfitList', JSON.stringify(outfitList));
+        });
+
+
       const newRelatedProducts = relatedProducts.map((product) => {
         const productId = product.id.toString(10);
         if (productId === targetProductId) {
@@ -55,7 +88,6 @@ const Related = (props) => {
         }
       });
 
-      setOutfitList(newOutfitList);
       setRelatedProducts(newRelatedProducts);
     }
   };
