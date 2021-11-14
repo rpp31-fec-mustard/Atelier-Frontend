@@ -171,7 +171,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
-          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} meta={this.state.reviewMeta} productInfo={this.props.productInfo} />
         </div>
       </div>
     );
