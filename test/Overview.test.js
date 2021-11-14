@@ -15,6 +15,7 @@ import ImageGallery from '../client/components/ProductOverview/ImageGallery.jsx'
 import StyleSelector from '../client/components/ProductOverview/StyleSelector.jsx';
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
+import SelectSizeMenu from '../client/components/ProductOverview/StyleCartSubs/SelectSizeMenu.jsx';
 
 // fixtures
 import fixtures from './fixtures.js';
@@ -27,7 +28,6 @@ xdescribe('My Tests', () => {
   //does not work due to conditional
   xtest ('renders Product Overview component', () => {
     render(<ProductOverview />);
-
     screen.debug();
   });
 });
@@ -47,7 +47,6 @@ describe('Product Overview', () => {
     const productName = fixtures.product.name;
     render(<ProductOverview
       product={fixtures.product} productId={fixtures.product.id}/>);
-    // screen.debug();
     const result = screen.getByText(productName);
     expect(result).toBeInTheDocument;
   });
@@ -61,7 +60,6 @@ describe('Product Overview', () => {
     const highlight = `${fixtures.product.features[0].value} ${fixtures.product.features[0].feature}`;
     render(<ProductOverview
       product={fixtures.product} productId={fixtures.product.id}/>);
-    screen.debug();
     const result = screen.getByText(highlight);
     expect(result).toBeInTheDocument;
   });
@@ -73,14 +71,10 @@ describe('Product Overview', () => {
 describe('Style Selector', () => {
   test ('renders Style Selector component', () => {
     const productName = 'The Product';
-
     render(<StyleSelector
       styles={fixtures.styles.results}
       currentStyleIndex={0}
       productName={productName}/>);
-
-    screen.debug();
-    // screen.getByText('medium')
     expect(screen.getByText(/STYLE/)).toBeInTheDocument();
     // expect(screen.queryByText('/STYLE/')).not.toBeInTheDocument();
   });
@@ -101,13 +95,13 @@ describe('Style Selector', () => {
   test ('renders img with alt text', () => {
     const productName = 'The Product';
     //search expression from fixture
+    //needed for regex search term that utilizes variable
     const regex = new RegExp(fixtures.styles.results[0].name);
-    console.log(regex);
+    // console.log(regex);
     render(<StyleSelector
       styles={fixtures.styles.results}
       currentStyleIndex={0}
       productName={productName}/>);
-    // screen.debug()
     expect(screen.getByAltText(regex)).toBeInTheDocument();
   });
 
@@ -116,22 +110,99 @@ describe('Style Selector', () => {
     //search expression from fixture
     const count = fixtures.styles.results.length;
 
-
     render(<StyleSelector
       styles={fixtures.styles.results}
       currentStyleIndex={0}
       productName={productName}/>);
-
     expect(screen.getAllByRole('img')).toHaveLength(count);
   });
+});
 
-  xtest('renders five <Thumbnail /> components shallow', () => {
-    render(<ThumbnailsBar />);
-    console.log('screen', screen);
-    expect(screen.getAllBy(Thumbnail)).toHaveLength(5);
+
+
+
+describe('Add to Cart', () => {
+  describe('Select Size Menu', () => {
+
+    test('renders Size Menu component', () => {
+      render(<SelectSizeMenu skus={fixtures.styles.results[0].skus}/>);
+      expect(screen.getByRole('option', {name: /Select Size/})).toBeInTheDocument();
+    });
+    test('renders size options', () => {
+      render(<SelectSizeMenu skus={fixtures.styles.results[0].skus}/>);
+      screen.debug();
+      expect(screen.getByRole('option', {name: 'x-small'})).toBeInTheDocument();
+      expect(screen.getByRole('option', {name: 'small'})).toBeInTheDocument();
+      expect(screen.getByRole('option', {name: 'medium'})).toBeInTheDocument();
+      expect(screen.getByRole('option', {name: 'large'})).toBeInTheDocument();
+      expect(screen.getByRole('option', {name: 'x-large'})).toBeInTheDocument();
+    });
+    test('renders OUT OF STOCK', () => {
+      render(<SelectSizeMenu skus={fixtures.styles.results[2].skus}/>);
+      expect(screen.getByRole('option', {name: 'OUT OF STOCK'})).toBeInTheDocument();
+
+    });
+    xtest('renders something', () => {
+
+    });
+    xtest('renders something', () => {
+
+    });
   });
 
+  xdescribe('Select Quantity Menu', () => {
+
+    xtest('renders Quantity Menu component', () => {
+      console.log('path test', path);
+      render(<Comp props={path}/>);
+      screen.debug();
+      expect(screen.getByRole( )).toBeInTheDocument();
+
+    });
+    xtest('renders default', () => {
+
+    });
+    xtest('renders correct number', () => {
+
+    });
+    xtest('renders out', () => {
+
+    });
+    xtest('renders something', () => {
+
+    });
+  });
+
+
+
+
 });
+
+
+// xdescribe('Test Group', () => {
+//   xtest('renders component', () => {
+
+//   });
+//   xtest('renders default', () => {
+
+//   });
+//   xtest('renders correct number', () => {
+
+//   });
+//   xtest('renders something', () => {
+
+//   });
+//   xtest('renders something', () => {
+
+//   });
+// });
+
+
+
+
+
+
+
 
 
 

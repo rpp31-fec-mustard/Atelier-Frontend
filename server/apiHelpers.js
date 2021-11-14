@@ -4,7 +4,7 @@ const config = require('../config.js');
 const auth = { headers: {Authorization: `${config.key}`} };
 
 
-const getProduct = (productId, cb) => {
+const getProduct = (productId) => {
   // console.log('productId :', typeof productId, productId);
 
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
@@ -17,7 +17,7 @@ const getProduct = (productId, cb) => {
     });
 };
 
-const getProductStyles = (productId, cb) => {
+const getProductStyles = (productId) => {
 
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}/styles`, auth)
     .then((result) => {
