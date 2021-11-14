@@ -64,23 +64,20 @@ const Q_A = (props) => {
     }
   });
 
-
-
   if (sortedQuestions.length > 0) {
     addQuestion();
   }
 
-
   if (displayQuestions.length === 0) {
     return (
-      <div className="questionButton">
-        <button onClick={() => setShow(true)}>Add Questions +</button>
+      <div className="questionButtonContainer">
+        <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
         <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
       </div>
     );
   } else if (displayQuestions.length !== sortedQuestions.length) {
     return (
-      <div>
+      <div className="questionDisplay">
         <div className="questionList">
           {displayQuestions.map((question, answer) =>
             <Question
@@ -91,16 +88,16 @@ const Q_A = (props) => {
               name={props.productInfo.name}/>
           )}
         </div>
-        <div className="questionButton">
-          <button onClick={() => setCount(count + 2)}>More Questions</button>
-          <button onClick={() => setShow(true)}>Add Questions +</button>
+        <div className="questionButtonContainer">
+          <button className="questionButton" onClick={() => setCount(count + 2)}>More Questions</button>
+          <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
           <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
         </div>
       </div>
     );
   } else {
     return (
-      <div>
+      <div className="questionDisplay">
         <div className="questionList">
           {displayQuestions.map((question, answer) =>
             <Question
@@ -111,8 +108,8 @@ const Q_A = (props) => {
               name={props.productInfo.name}/>
           )}
         </div>
-        <div className="questionButton">
-          <button onClick={() => setShow(true)}>Add Questions +</button>
+        <div className="questionButtonContainer">
+          <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
           <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
         </div>
       </div>

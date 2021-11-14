@@ -52,10 +52,16 @@ class QA extends React.Component {
 
   render () {
     return (
-      <div className="module_container">
-        <h1>QUESTIONS & ANSWERS</h1>
-        <Search searchQuestions={this.searchQuestions.bind(this)}/>
-        <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo} filter={this.state.search}/>
+      <div id="qa-module" className="module_container">
+        <div className="qa-title">
+          <h3>QUESTIONS & ANSWERS</h3>
+        </div>
+        <div className="qa-search">
+          <Search searchQuestions={this.searchQuestions.bind(this)}/>
+        </div>
+        <div className="qa-list">
+          <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo} filter={this.state.search}/>
+        </div>
       </div>
     );
   }
