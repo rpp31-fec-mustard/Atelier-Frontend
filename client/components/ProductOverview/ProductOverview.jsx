@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export const DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -12,91 +12,27 @@ import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
+import defaultOnLoad from '../defaultOnLoad.jsx';
 
 
-const styleOnLoad = {
-  'product_id': '59648',
-  results: [
-    {
-      'style_id': '365413',
-      name: 'Forest Green & Black',
-      'original_price': '140.00',
-      'sale_price': null,
-      'default?': true,
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        },
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
-        },
-      ],
-      skus: {
-        '2122777': {
-          quantity: 8,
-          size: 'XS'
-        },
-        '2122778': {
-          quantity: 16,
-          size: 'S'
-        },
-        '2122779': {
-          quantity: 17,
-          size: 'M'
-        },
-        '2122780': {
-          quantity: 10,
-          size: 'L'
-        },
-        '2122781': {
-          quantity: 15,
-          size: 'XL'
-        },
-        '2122782': {
-          quantity: 4,
-          size: 'XL'
-        }
-      }
-    },
-    {
-      name: 'Style Two',
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        }
-      ]
-    },
-    {
-      name: 'Style Three',
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        }
-      ]
-    }
-  ]
-};
+
 
 
 
 const ProductOverview = ({product, id}) => {
-  const [productId, setProductId] = useState(id);
-  const [currentStyleIndex, setIndex] = useState(0);
-  const [styles, setStyles] = useState(styleOnLoad);
+  // const [productId, setProductId] = useState(id);
+  const [currentStyleIndex, setStyleIndex] = useState(0);
+  const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad);
   // const [styles, setStyles] = useState();
   // const [product, setProduct] = useState(styleOnLoad);
   mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
   mlog(logC + ' PO styles:', styles);
-  mlog(logC + ' PO productId:', productId);
+  mlog(logC + ' PO productId:', id);
   mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
-  const getProductStyles = (productId) => {
+  const getProductStyles = () => {
     // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
@@ -105,10 +41,7 @@ const ProductOverview = ({product, id}) => {
     })
       .then((res) => {
         mlog('@client PO res product/styles:', res.data);
-        // if (JSON.stringify(res.data) !== JSON.stringify(styles)) {
-
         setStyles(res.data);
-        // }
       })
       .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
@@ -117,34 +50,16 @@ const ProductOverview = ({product, id}) => {
 
   //check to see if data is the same?
   //if so, do not pass to productStyles?
-  useEffect((productId) => {
-    getProductStyles(productId);
-    setIndex(0);
+  useEffect(async () => {
+    mlog(logC + ' useEffect triggered by id change', id)
+    await getProductStyles(id);
+    setStyleIndex(0);
   }, [id]);
 
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
-    setIndex(selectedStyleIndex);
+    setStyleIndex(selectedStyleIndex);
   };
-
-
-//get product route
-  // const getProduct = (id) => {
-  //   axios.get('/product', {
-  //     params: {
-  //       productId: id
-  //     }
-  //   })
-  //     .then((res) => {
-  //       this.setState({product: res.data});
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error retrieving product/all: ', error);
-  //     });
-  // };
-
-
-
 
 
   // if (styles !== undefined) {
@@ -166,7 +81,7 @@ const ProductOverview = ({product, id}) => {
     <div className='module_container' id='product_overview_main' >
       <div className='top01'>
         <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-          productId={productId}
+          productId={id}
           productName={product.name} />
         <div className='right02'>
           <div className='stars_po'>

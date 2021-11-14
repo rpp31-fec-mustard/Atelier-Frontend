@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
-
 const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
   const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};

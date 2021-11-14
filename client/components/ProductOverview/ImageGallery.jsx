@@ -45,10 +45,10 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
   };
 
 
-  // useEffect(() => {
-  //   mlog('IG useEffect');
-  //   setIndex(0);
-  // }, [productId]);
+  useEffect(() => {
+    mlog('IG useEffect to set index to 0');
+    setIndex(0);
+  }, [productId]);
 
 
   //needed because useEffect above is not resolved in time

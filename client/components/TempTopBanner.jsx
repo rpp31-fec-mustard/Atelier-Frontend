@@ -8,12 +8,13 @@ const getRandomIntInclusive = (min, max) => {
   return productId;
 };
 
-const TempTopBanner = ({randomizerCb}) => {
-
+const TempTopBanner = (props) => {
+  // console.log('TempTop:', props)
   const [borderShow, setBorderShow] = useState(true);
 
-  const clickHandler = () => {
-    randomizerCb(getRandomIntInclusive(59553, 59700).toString());
+  const clickHandlerRandom = () => {
+    // console.log('Random:', props)
+    props.sendNumber(getRandomIntInclusive(59553, 59700).toString());
   };
 
   const clickHandlerBorder = () => {
@@ -34,8 +35,10 @@ const TempTopBanner = ({randomizerCb}) => {
   return (
     <div id='top_banner'>
       <div id='top_bar'>
-        <h3 className='top_text'>STORE LOGOTYPE</h3><p id='outlines' onClick={clickHandlerBorder}>outlines</p>
-        <h3 className='top_text' onClick={clickHandler}>SEARCH</h3>
+        <h3 className='top_text'>STORE LOGOTYPE</h3>
+        <p id='outlines' onClick={clickHandlerBorder}>outlines</p>
+        <p id='product_59553' onClick={() => { props.sendNumber('59553'); }}>59553</p>
+        <h3 className='top_text' onClick={clickHandlerRandom}>SEARCH</h3>
       </div>
       <p id='announcements'>
         announcements *** Click outlines to toggle outlines! Click search to change product! *** announcements

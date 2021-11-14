@@ -79,8 +79,8 @@ describe('Style Selector', () => {
       currentStyleIndex={0}
       productName={productName}/>);
 
-    // screen.debug()
-    // screen.getByAltText(/Product/)
+    screen.debug()
+    // screen.getByText('medium')
     expect(screen.getByText(/STYLE/)).toBeInTheDocument();
     // expect(screen.queryByText('/STYLE/')).not.toBeInTheDocument();
   });

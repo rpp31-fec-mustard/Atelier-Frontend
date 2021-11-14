@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import {DEBUG} from '../ProductOverview.jsx';
 
 
-const SelectStyleButton = ({skus}) => {
+const SelectSizeMenu = ({skus, handleSetSize}) => {
 
   const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
@@ -22,14 +22,15 @@ const SelectStyleButton = ({skus}) => {
     M: 'medium',
     L: 'large',
     XL: 'x-large',
-    XXL: 'xx-large'
+    XXL: 'xx-large',
+    'One Size': 'One Size'
   };
 
 
 
   return (
     <React.Fragment>
-      <select name='size' className='size_select_po'>
+      <select name='size' className='size_select_po' onChange={handleSetSize}>
         <option value=''>Select Size</option>
         {
           skuList.map((sku)=> {
@@ -48,4 +49,4 @@ const SelectStyleButton = ({skus}) => {
   );
 };
 
-export default SelectStyleButton;
+export default SelectSizeMenu;

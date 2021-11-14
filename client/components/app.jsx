@@ -6,49 +6,24 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
+import defaultOnLoad from './defaultOnLoad.jsx';
 
-//! START TEMPORARY TEST BLOCK
-//! testing error - do not remove
-/* eslint-disable */
-const productOnLoad = {
-  "id": '59553',
-  "campus": "hr-rpp",
-  "name": "Camo Onesie",
-  "slogan": "Blend in to your crowd",
-  "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-  "category": "Jackets",
-  "default_price": "140.00",
-  "created_at": "2021-10-18T22:50:41.839Z",
-  "updated_at": "2021-10-18T22:50:41.839Z",
-  "features": [
-      {
-          "feature": "Fabric",
-          "value": "Canvas"
-      },
-      {
-          "feature": "Buttons",
-          "value": "Brass"
-      }
-  ]
-}
-/* eslint-enable */
-//! END TEMPORARY TEST BLOCK
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601', //testing
-      productId: '59553',  //testing
+      productId: '59601', //testing
+      // productId: '59553',  //testing
+      product: defaultOnLoad.productOnLoad,
 
-      product: productOnLoad,
     };
-    this.randomizerCb = this.randomizerCb.bind(this);
+    this.sendNumber = this.sendNumber.bind(this);
   }
 
-
-  randomizerCb(id) {
-    // console.log('id :', id);
+  //! testing only
+  sendNumber(id) {
+    console.log('app id :', id);
     new Promise((resolve, notResolve) => {
       this.setState({productId: id});
       resolve();
@@ -61,10 +36,11 @@ class App extends React.Component {
       });
   }
 
+  //! do not need if default data populates all states
+  // componentDidMount() {
+  //   this.getProduct(this.state.productId);
+  // }
 
-  componentDidMount() {
-    this.getProduct(this.state.productId);
-  }
 
 
   getProduct(id) {
@@ -91,7 +67,7 @@ class App extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <TempTopBanner randomizerCb={this.randomizerCb}/>
+        <TempTopBanner sendNumber={this.sendNumber}/>
         <ProductOverview id={this.state.productId} product={this.state.product}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
