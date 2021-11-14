@@ -14,7 +14,8 @@
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "test": "jest --silent; exit 0",
+    "test-main": "jest --silent; exit 0",
+    "test": "jest --coverage",
     "test-watch": "jest --watch",
     "start": "nodemon server/server.js --watch",
     "lint": "eslint ./",
