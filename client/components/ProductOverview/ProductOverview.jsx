@@ -142,10 +142,6 @@ const ProductOverview = ({product, id}) => {
       });
   };
 
-
-
-
-
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
   mlog('PO product destructure:', product );

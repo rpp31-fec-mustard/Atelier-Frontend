@@ -43,9 +43,8 @@ app.get('/getReviews', (req, res) => {
 });
 
 app.post('/related', (req, res) => {
-  api.getRelated(req.body.product)
+  api.getRelated(req.body.productId)
     .then((relatedList) => {
-      // console.log({relatedList});
       res.status(200).send(relatedList);
     })
     .catch((error) => {
@@ -61,7 +60,6 @@ app.post('/getRating', (req, res) => {
       res.sendStatus(500).end();
     });
 });
-
 
 app.get('/questions', (req, res) => {
   api.getQuestions(req.query.productId)

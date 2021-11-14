@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
 const ThumbnailsBar = ({photos, handleThumbnailClick}) => {
-  console.log('TB photos:', photos);
+  // console.log('TB photos:', photos);
   let upIcon = <i className="ri-arrow-up-s-fill"></i>;
   let downIcon = <i className="ri-arrow-down-s-fill"></i>;
   let counter = -1;
