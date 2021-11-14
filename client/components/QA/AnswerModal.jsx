@@ -26,6 +26,9 @@ const answerModal = (props) => {
     if (errorMessage.length > 0) {
       setError('You must enter the following: ' + errorMessage.join(', '));
     }
+    if (errorMesage.length === 0) {
+      setError([]);
+    }
 
   };
 
@@ -84,7 +87,7 @@ const answerModal = (props) => {
                 <AnswerModalThumbnail key={i} src={src} />
               )}
             </div>
-            <div className="error">{error}</div>
+            <div id="error" className="error">{error}</div>
             <button className="modal-footer-button"onClick={() => validateForm()}>Submit Answer</button>
           </div>
         </div>
@@ -124,7 +127,7 @@ const answerModal = (props) => {
             </form>
           </div>
           <div className="modal-footer">
-            <div className="error">{error}</div>
+            <div id="error" className="error">{error}</div>
             <button className="modal-footer-button"onClick={() => validateForm()}>Submit Answer</button>
           </div>
         </div>
