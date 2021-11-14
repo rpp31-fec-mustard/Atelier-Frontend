@@ -40,7 +40,7 @@ button {
   --global-border-color: rgb(125, 125, 125);
 
   /* RELATED PRODUCTS */
-  --prod-card-width: 22.5%;
+  --prod-card-width: 22%;
   --prod-card-height: 300px;
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
@@ -364,7 +364,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   border: none;
-  width: 90%;
+  width: 100%;
 }
 
 /* change width if needed */
@@ -498,11 +498,12 @@ button {
 }
 
 .button-container {
-  align-self: center;
+  position: static;
   border: none;
 }
 
 .nav-button {
+  align-self: center;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: none;
@@ -512,9 +513,33 @@ button {
   font-size: 25px;
 }
 
-/* .lbutton-container .nav-button {
-  color: rgb(0, 0, 0, 0);
-} */
+.left-gradient {
+  position: relative;
+  border: none;
+  /* left: 100%;
+  width: 100%;
+  height: calc(100% - 17px);
+  background: linear-gradient(90deg, white 60%, transparent); */
+}
+
+.left-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
+}
+
+.right-gradient {
+  position: relative;
+  border: none;
+  /* left: -150%; */
+  /* width: 150%; */
+  /* height: calc(100% - 17px); */
+  /* background: linear-gradient(270deg, white 60%, transparent); */
+}
+
+.right-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
+}
 
 .prod-comparison-wrapper {
   position: fixed;
