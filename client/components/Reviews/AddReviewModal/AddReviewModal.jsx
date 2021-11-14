@@ -47,6 +47,10 @@ class Modal extends React.Component {
     });
   }
 
+  // isValidReview() {
+  //   if ()
+  // }
+
   handleSubmit(e, images) {
     e.preventDefault();
     let result = {};
@@ -98,15 +102,17 @@ class Modal extends React.Component {
             <h2 className='modal_title'>Write Your Review</h2>
             <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
             <section className='modal_rating'>
-              <StarRating getRating={this.getRating.bind(this)} />
+              Overall Rating:<sup>*</sup>
+              <StarRating getRating={this.getRating.bind(this)} required />
             </section>
-            <ReviewRecommend onChange={this.onRecommendChange.bind(this)} recommend={this.state.recommend} />
+            <ReviewRecommend onChange={this.onRecommendChange.bind(this)} recommend={this.state.recommend} required/>
             {Object.keys(this.props.meta.characteristics).map((key, i) => {
               return (
                 <CharacteristicReview
                   key={i}
                   characteristic={key}
                   meta={this.props.meta.characteristics[key]}
+                  required
                 />
               );
             })}
@@ -117,11 +123,9 @@ class Modal extends React.Component {
               </section>
             </section>
             <section className="addReviewBody">
-
               <label>Your Review:<sup>*</sup></label>
               <section>
-                {/* minLength="50" */}
-                <textarea name='body' onChange={this.handleChange.bind(this)} maxLength="1000" rows="3" cols="70" placeholder="Why did you like the product or not?" ></textarea>
+                <textarea name='body' onChange={this.handleChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
                 {this.display()}
               </section>
               {this.state.allImages.length === 5 ? null : <input type="file" name="photos" onChange={this.onImageChange.bind(this)} />}
@@ -134,20 +138,20 @@ class Modal extends React.Component {
               </section>
             </section>
             <section className="reviewNickName">
-              <label>Nickname: </label>
+              <label>Nickname:<sup>*</sup> </label>
               <section>
-                <textarea name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!"></textarea>
+                <textarea name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!" required></textarea>
                 <p>For privacy reasons, do not use your full name or email address</p>
               </section>
             </section>
             <section className="reviewEmail">
-              <label>Email: </label>
+              <label>Email:<sup>*</sup> </label>
               <section>
-                <textarea name='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com"></textarea>
+                <textarea name='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com" required></textarea>
                 <p>For authentication reasons, you will not be emailed</p>
               </section>
             </section>
-            <button>Submit</button>
+            <button >Submit</button>
           </form>
         </div>
       );

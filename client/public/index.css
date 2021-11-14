@@ -1004,5 +1004,5 @@ p {
 }
 
 .starRadio {
-  display: none;
+  opacity: 0;
 }

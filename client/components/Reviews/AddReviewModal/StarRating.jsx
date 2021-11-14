@@ -23,7 +23,7 @@ class StarRating extends React.Component {
         {[...Array(5)].map((star, i) => {
           return (
             <label key={i} >
-              <input className='starRadio' type='radio' value={i + 1} onClick={this.handleClick.bind(this)} >
+              <input className='starRadio' name='rating' type='radio' value={i + 1} onClick={this.handleClick.bind(this)} required>
               </input>
               <i className="fas fa-star"
                 style={i + 1 <= (this.state.hover || this.state.rating) ? {color: 'black'} : {color: 'lightgray'}}

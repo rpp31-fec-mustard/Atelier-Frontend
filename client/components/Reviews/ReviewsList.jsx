@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 import SortBy from './SortBy.jsx';
-import AddReviewModal from './AddReviewModal.jsx';
+import AddReviewModal from './AddReviewModal/AddReviewModal.jsx';
 
 
 class ReviewsList extends React.Component {

@@ -21,11 +21,9 @@ class CharacteristicReview extends React.Component {
       <div className='modal_input'>
         <section className='selected'> {this.state.selected} </section>
         <div className='modal_characteristics'>
-
-          {this.props.characteristic}
-
+          {this.props.characteristic}<sup>*</sup>
           <section className='test'>
-            <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} /> 1
+            <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} required/> 1
             <p>a size too small</p>
           </section>
           <section className=''>
@@ -45,7 +43,6 @@ class CharacteristicReview extends React.Component {
             <p>A size too wide</p>
           </section>
         </div>
-
       </div>
     );
   }
