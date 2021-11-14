@@ -1,8 +1,9 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import _, { every } from 'underscore';
+import $ from 'jquery';
 import {DEBUG} from '../ProductOverview.jsx';
 
 
@@ -27,13 +28,29 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
     'One Size': 'One Size'
   };
 
-  // useEffect(() => {
 
-  // }, [skus]);
+  const loaded = useRef(false);
+
+  useEffect(() => {
+    if (loaded.current) {
+      mlog(logC + ' RESET SELECT SIZE');
+
+      // console.log(document.getElementsByClassName('menu_po')) //.selectedIndex = 0;
+      document.getElementById('menu1_po').selectedIndex = 0;
+      document.getElementById('menu2_po').selectedIndex = 0;
+
+        // this.selectedIndex = 0;
+      // });
+    } else {
+      loaded.current = true;
+    }
+  }, [skus]);
 
 
 
-  //render
+
+  //render component
+  //if every sku quantity is 0
   if (_.every(skus, (sku) => {
     return sku.quantity === 0;
   })) {
@@ -47,8 +64,8 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
   } else {
     return (
       <React.Fragment>
-        <select name='size' className='size_select_po' onChange={handleSetSize}>
-          <option value=''>Select Size</option>
+        <select name='size' className='size_select_po' id='menu1_po' onChange={handleSetSize}>
+          <option value='no_selection'>Select Size</option>
           {
             skuList.map((sku)=> {
               if (skus[sku].quantity > 0) {
@@ -67,3 +84,7 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
 };
 
 export default SelectSizeMenu;
+
+
+
+// how to disable menu

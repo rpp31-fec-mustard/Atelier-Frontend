@@ -32,7 +32,7 @@ const AddtoCart = ({style}) => {
     mlog(logC + ' ATC handler quantity', style.skus[sku].quantity);
     setSize(event.target.value);
     setQuantity(style.skus[sku].quantity);
-
+    document.getElementById('menu2_po').selectedIndex = 1;
 
   };
 
