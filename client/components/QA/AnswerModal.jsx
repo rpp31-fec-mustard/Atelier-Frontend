@@ -26,7 +26,7 @@ const answerModal = (props) => {
     if (errorMessage.length > 0) {
       setError('You must enter the following: ' + errorMessage.join(', '));
     }
-    if (errorMesage.length === 0) {
+    if (errorMessage.length === 0) {
       setError([]);
     }
 

@@ -21,8 +21,6 @@ const questionModal = (props) => {
       errorMessage.push('Email is invalid');
     }
 
-    console.log('error message', errorMessage);
-
     if (errorMessage.length > 0) {
       setError('You must enter the following: ' + errorMessage.join(', '));
     }
