@@ -1,5 +1,14 @@
 import React from 'react';
 
+const meanings = {
+  Size: ['A size too small', '½ a size too small', 'perfect', '½ a size too big', 'a size too wide'],
+  Width: ['too narrow', 'sligtly narrow', 'perfect', 'slightly wide', 'too wide'],
+  Comfort: ['uncomfortable', 'slightly uncomfortable', 'ok', 'comfortable', 'perfect'],
+  Quality: ['poor', 'below', 'what I expected', 'pretty great', 'great'],
+  Length: ['runs short', 'runs slightly short', 'perfect', 'runs slightly long', 'too long'],
+  Fit: ['runs tight', 'runs slightly tight', 'perfect', 'runs slightly long', 'too long']
+};
+
 class CharacteristicReview extends React.Component {
   constructor(props) {
     super(props);
@@ -9,38 +18,65 @@ class CharacteristicReview extends React.Component {
     };
   }
 
+  displayMeaning(char, rating) {
+    return meanings[char][rating - 1];
+  }
+
   onCharacteristicChange(e) {
+    console.log(e.target.title);
     this.setState({
       rating: e.target.value,
-      selected: ''
+      selected: e.target.title
     });
   }
 
   render() {
+    let characteristic = this.props.characteristic;
+    let meaningFor1 = this.displayMeaning(characteristic, 1);
+    let meaningFor2 = this.displayMeaning(characteristic, 2);
+    let meaningFor3 = this.displayMeaning(characteristic, 3);
+    let meaningFor4 = this.displayMeaning(characteristic, 4);
+    let meaningFor5 = this.displayMeaning(characteristic, 5);
+
     return (
       <div className='modal_input'>
         <section className='selected'> {this.state.selected} </section>
         <div className='modal_characteristics'>
-          {this.props.characteristic}<sup>*</sup>
-          <section className='test'>
-            <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} required/> 1
-            <p>a size too small</p>
+          {characteristic}<sup>*</sup>
+          <section className='ratingSelection'>
+            <section className='ratingButton'>
+              <p>1</p>
+              <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} title= {meaningFor1} />
+            </section>
+            <p>{meaningFor1}</p>
           </section>
-          <section className=''>
-            <input className='charInput' type="radio" value="2" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '2'} /> 2
-            <p>½ a size too small</p>
+          <section className='ratingSelection'>
+            <section className='ratingButton'>
+              <p>2</p>
+              <input className='charInput' type="radio" value="2" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '2'} title= {meaningFor2} />
+            </section>
+            <p>{meaningFor2}</p>
           </section>
-          <section className='test'>
-            <input className='charInput' type="radio" value="3" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '3'} /> 3
-            <p>Perfect</p>
+          <section className='ratingSelection'>
+            <section className='ratingButton'>
+              <p>3</p>
+              <input className='charInput' type="radio" value="3" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '3'} title= {meaningFor3} />
+            </section>
+            <p>{meaningFor3}</p>
           </section>
-          <section className='test'>
-            <input className='charInput' type="radio" value="4" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '4'} /> 4
-            <p>½ a size too big</p>
+          <section className='ratingSelection'>
+            <section className='ratingButton'>
+              <p>4</p>
+              <input className='charInput' type="radio" value="4" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '4'} title= {meaningFor4} />
+            </section>
+            <p>{meaningFor4}</p>
           </section>
-          <section className='test'>
-            <input className='charInput' type="radio" value="5" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '5'} /> 5
-            <p>A size too wide</p>
+          <section className='ratingSelection'>
+            <section className='ratingButton'>
+              <p>5</p>
+              <input className='charInput' type="radio" value="5" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '5'} title= {meaningFor5} />
+            </section>
+            <p>{meaningFor5}</p>
           </section>
         </div>
       </div>

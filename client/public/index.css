@@ -986,11 +986,17 @@ border: none;
   justify-content: center;
 }
 
-.test {
+.ratingSelection {
+  display: flex;
+  flex-direction: column;
   width: 25%;
-  margin-right: 10px;
+  margin-right: 5px;
   text-align: center;
 }
+
+/* .ratingButton {
+display: inline-block;
+} */
 
 p {
   font-size: 12px;
