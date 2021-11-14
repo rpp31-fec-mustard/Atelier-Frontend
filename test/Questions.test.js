@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
-import App from '../client/components/app.jsx';
+// import App from '../client/components/app.jsx';
 import QA from '../client/components/QA/QA.jsx';
 import Q_A from '../client/components/QA/Q_A.jsx';
 import Search from '../client/components/QA/Search.jsx';
