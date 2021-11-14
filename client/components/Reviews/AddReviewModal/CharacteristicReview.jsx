@@ -12,7 +12,7 @@ class CharacteristicReview extends React.Component {
   onCharacteristicChange(e) {
     this.setState({
       rating: e.target.value,
-      selected: e.target.name
+      selected: ''
     });
   }
 
