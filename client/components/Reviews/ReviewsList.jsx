@@ -52,7 +52,7 @@ class ReviewsList extends React.Component {
         <div className='reviewButtons'>
           {this.moreReviewsButton()}
           <button onClick={this.showModal.bind(this)}>Add a Review</button>
-          <AddReviewModal meta={this.props.meta} close={this.closeModal.bind(this)} show={this.state.modal} productInfo={this.props.productInfo} />
+          <AddReviewModal meta={this.props.meta} close={this.closeModal.bind(this)} show={this.state.modal} productInfo={this.props.productInfo} post={this.props.post} sort={this.props.sort}/>
         </div>
       </div>
     );

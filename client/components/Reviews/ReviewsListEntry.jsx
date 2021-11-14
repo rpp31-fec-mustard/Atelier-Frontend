@@ -9,7 +9,8 @@ class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      helpful: this.props.review.helpfulness,
+      rating: 0,
+      helpful: 0,
       body: '',
       addShowButton: false,
       showMore: false,
@@ -101,14 +102,16 @@ class ReviewsListEntry extends React.Component {
   componentDidMount() {
     this.reviewListBody(this.props.review.body);
     this.setState({
-      rating: this.props.review.rating
+      rating: this.props.review.rating,
+      helpful: this.props.review.helpfulness
     });
   }
 
   componentDidUpdate() {
-    if (this.state.rating !== this.props.review.rating) {
+    if ((this.state.rating !== this.props.review.rating) || (this.state.helpful !== this.props.review.helpfulness)) {
       this.setState({
-        rating: this.props.review.rating
+        rating: this.props.review.rating,
+        helpful: this.props.review.helpfulness
       });
     }
   }

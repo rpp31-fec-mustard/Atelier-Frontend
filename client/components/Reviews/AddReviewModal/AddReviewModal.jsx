@@ -13,7 +13,7 @@ class Modal extends React.Component {
       charsLeft: '50',
       allImages: [],
       selectedImg: '',
-      rating: ''
+      rating: '',
     };
   }
 
@@ -47,22 +47,19 @@ class Modal extends React.Component {
     });
   }
 
-  // isValidReview() {
-  //   if ()
-  // }
-
   handleSubmit(e, images) {
     e.preventDefault();
     let result = {};
     let characteristics = {};
-    result['product_id'] = this.state.productId;
-    result['rating'] = this.state.rating;
+    result['product_id'] = Number(this.state.productId);
+    result['sort'] = this.props.sort;
+    result['rating'] = Number(this.state.rating);
     for (var i = 0; i < e.target.elements.length; i++) {
       if (e.target.elements[i].name) {
         if (e.target.elements[i].type === 'radio' && e.target.elements[i].checked) {
           let name = e.target.elements[i].name;
-          if (name !== 'recommend') {
-            characteristics[name] = e.target.elements[i].value;
+          if (name !== 'recommend' && name !== 'rating') {
+            characteristics[name] = Number(e.target.elements[i].value);
             result.characteristics = characteristics;
           } else {
             result[name] = e.target.elements[i].value;
@@ -76,7 +73,8 @@ class Modal extends React.Component {
         }
       }
     }
-    console.log(result);
+    this.props.post(result);
+    this.props.close;
   }
 
   componentDidUpdate() {

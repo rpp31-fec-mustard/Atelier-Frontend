@@ -42,6 +42,18 @@ app.get('/getReviews', (req, res) => {
   });
 });
 
+app.post('/postReview', (req, res) => {
+  api.postReview(req.query).then((result) => {
+    let id = req.query.product_id;
+    let sort = req.query.sort;
+    api.getReviews(id, sort).then((result) => {
+      res.status(200).send(result);
+    });
+  }).catch((err) => {
+    res.sendStatus(500).end();
+  });
+});
+
 app.post('/related', (req, res) => {
   api.getRelated(req.body.productId)
     .then((relatedList) => {
