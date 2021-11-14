@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
 import axios from 'axios';
 
 import RelatedProducts from './RelatedProducts.jsx';
 import Outfit from './Outfit.jsx';
 
 const Related = (props) => {
-  const [productId, setProductId] = useState(props.productId);
-  const [relatedProducts, setRelatedProducts] = useState([]);
-  const [outfitList, setOutfitList] = useState([]);
+  const [productId, setProductId] = React.useState(props.productId);
+  const [relatedProducts, setRelatedProducts] = React.useState([]);
+  const [outfitList, setOutfitList] = React.useState([]);
 
-  useEffect(() => {
-    axios.post('/related', { product: props.productId })
+  React.useEffect(() => {
+    axios.post('/related', { productId: props.productId })
       .then((result) => {
         setRelatedProducts(result.data);
       })
@@ -29,7 +29,7 @@ const Related = (props) => {
         const productId = product.id.toString(10);
         if (productId === targetProductId) {
           product['starred'] = true;
-          // TODO: check that product not already in outfit list
+          // updateState with outfit list
           setOutfitList(outfitList.concat([product]));
           return product;
         } else {
@@ -60,21 +60,62 @@ const Related = (props) => {
     }
   };
 
+  const handleLeftScroll = (scrollRef) => {
+    const cardsWrapper = scrollRef.current;
+    cardsWrapper.scrollBy({
+      top: 0,
+      left: -230,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleRightScroll = (scrollRef) => {
+    const cardsWrapper = scrollRef.current;
+    cardsWrapper.scrollBy({
+      top: 0,
+      left: 230,
+      behavior: 'smooth'
+    });
+  };
+
+  const checkScrollPosition = (cardsWrapperRef, cardsWrapperLength) => {
+    const wrapperScrollPosition = Math.floor(cardsWrapperRef.scrollLeft);
+    const wrapperMaxScrollPosition = cardsWrapperRef.scrollWidth - cardsWrapperRef.clientWidth;
+    const submodule = event.target.closest('.related-submodule').id;
+    // handle left button
+    const lButton = submodule === 'related-products' ?
+      document.getElementsByClassName('left nav-button')[0] :
+      document.getElementsByClassName('left nav-button')[1];
+
+    lButton.style.color = wrapperScrollPosition > 0 ? 'black' : 'transparent';
+
+    // handle right button
+    const rButton = submodule === 'related-products' ?
+      document.getElementsByClassName('right nav-button')[0] :
+      document.getElementsByClassName('right nav-button')[1];
+
+    rButton.style.color = wrapperScrollPosition === wrapperMaxScrollPosition ? 'transparent' : 'black';
+  };
+
   return (
-    <div id="related-main" className="module_container">
+    <section id="related-main" className="module_container">
       <RelatedProducts
         productId={productId}
         relatedProducts={relatedProducts}
         handleAction={handleAction}
+        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+        checkScrollPosition={checkScrollPosition}
         homeProduct={props.homeProduct}
         renderRelated={props.renderRelated}
       />
       <Outfit
         outfitList={outfitList}
         handleAction={handleAction}
+        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+        checkScrollPosition={checkScrollPosition}
         renderRelated={props.renderRelated}
       />
-    </div>
+    </section>
   );
 };
 

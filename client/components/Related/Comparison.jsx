@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 const hasMetric = (product, metric) => {
   for (let i = 0; i < product.features.length; i++) {

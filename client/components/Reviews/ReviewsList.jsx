@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 import SortBy from './SortBy.jsx';
+import AddReviewModal from './AddReviewModal/AddReviewModal.jsx';
 
 
 class ReviewsList extends React.Component {
@@ -8,6 +9,7 @@ class ReviewsList extends React.Component {
     super(props);
     this.state = {
       showing: 2,
+      modal: false
     };
   }
 
@@ -21,6 +23,18 @@ class ReviewsList extends React.Component {
     if (this.state.showing !== this.props.list.length && (this.state.showing - 1) !== this.props.list.length) {
       return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
     }
+  }
+
+  showModal(e) {
+    this.setState({
+      modal: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      modal: false
+    });
   }
 
   render() {
@@ -37,7 +51,8 @@ class ReviewsList extends React.Component {
         </div>
         <div className='reviewButtons'>
           {this.moreReviewsButton()}
-          <button>Add a Review</button>
+          <button onClick={this.showModal.bind(this)}>Add a Review</button>
+          <AddReviewModal meta={this.props.meta} close={this.closeModal.bind(this)} show={this.state.modal} productInfo={this.props.productInfo} />
         </div>
       </div>
     );

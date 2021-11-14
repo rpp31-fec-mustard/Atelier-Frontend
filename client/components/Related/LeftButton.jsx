@@ -1,12 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 
 const LeftButton = (props) => {
+
   return (
-    <div className="lbutton-container">
-      <button className="lbutton" aria-label="Left button">
-        <i className="fas fa-caret-left"></i>
+    <React.Fragment>
+      <button className="left nav-button" style={{color: 'transparent'}} onClick={(event) => {
+        props.handleLeftScroll(props.cardsWrapper);
+      }}>
+        <i className="ri-arrow-left-circle-line"></i>
       </button>
-    </div>
+    </React.Fragment>
   );
 };
 
