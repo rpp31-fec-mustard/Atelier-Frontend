@@ -372,11 +372,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   border: none;
-<<<<<<< HEAD
-  width: inherit;
-=======
   width: 100%;
->>>>>>> main
 }
 
 /* change width if needed */
@@ -761,7 +757,6 @@ textarea {
 .reviewBody {
   font-size: 15px;
 }
-
 
 .overall {
   display: flex;
