@@ -16,9 +16,6 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 
 
 
-
-
-
 const ProductOverview = ({product, id}) => {
   // const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setStyleIndex] = useState(0);
@@ -48,13 +45,23 @@ const ProductOverview = ({product, id}) => {
       });
   };
 
+const loaded = useRef(false);
+
+
   //check to see if data is the same?
   //if so, do not pass to productStyles?
   useEffect(async () => {
-    mlog(logC + ' useEffect triggered by id change', id)
-    await getProductStyles(id);
-    setStyleIndex(0);
+    if (loaded.current) {
+      mlog(logC + ' useEffect triggered by id change', id);
+      await getProductStyles(id);
+      setStyleIndex(0);
+    } else {
+      loaded.current = true;
+    }
   }, [id]);
+
+
+
 
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);

@@ -5,8 +5,8 @@ const defaultOnLoad = {
   productOnLoad: {
     "id": '59553',
     "campus": "hr-rpp",
-    "name": "Camo Onesie",
-    "slogan": "Blend in to your crowd",
+    "name": "Default Data",
+    "slogan": "Blend in to default data",
     "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
     "category": "Jackets",
     "default_price": "140.00",
@@ -24,11 +24,11 @@ const defaultOnLoad = {
     ]
   },
   styleOnLoad: {
-    'product_id': '59648',
+    'product_id': '59553',
     results: [
       {
         'style_id': '365413',
-        name: 'Forest Green & Black',
+        name: 'Default Forest Green & Black',
         'original_price': '140.00',
         'sale_price': null,
         'default?': true,
@@ -48,7 +48,7 @@ const defaultOnLoad = {
             size: 'XS'
           },
           '2122778': {
-            quantity: 16,
+            quantity: 0,
             size: 'S'
           },
           '2122779': {
@@ -60,12 +60,12 @@ const defaultOnLoad = {
             size: 'L'
           },
           '2122781': {
-            quantity: 15,
+            quantity: 0,
             size: 'XL'
           },
           '2122782': {
             quantity: 4,
-            size: 'XL'
+            size: 'XXL'
           }
         }
       },
