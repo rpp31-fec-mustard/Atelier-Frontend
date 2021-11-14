@@ -563,14 +563,52 @@ td {
 
 /* *** QUESTIONS/ANSWER *** */
 
+.qa-title {
+  width: 100%;
+  margin-left: 0px;
+  font-size: 18px;
+}
+
+.qa-search {
+  width: 100%;
+  margin-left: 0px;
+}
+
+.qa-list {
+  display: flex;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.search {
+  margin-left: 0px;
+  height: 50px;
+  width: 100%;
+}
+
 .questionsAndAnswers {
   width: 100%;
   border: none;
 }
 
-.questionButton {
+.questionButtonContainer {
   display: flex;
-  flex: auto;
+  width: 50%;
+
+}
+
+.questionButton {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50px;
+  background-color: white;
+  padding: 0px;
+}
+
+.questionDisplay {
+  width: 100%;
 }
 
 .questionList {
@@ -580,23 +618,69 @@ td {
   border: none;
 }
 
+.singleQuestion {
+  width: 700px;
+}
+
 .questionEntry {
   display: flex;
   flex: auto;
   font-weight: bold;
   font-size: 20px;
   border: none;
+  width: 100%;
+}
+
+.question-meta {
+  display: flex;
+  font-size: 13px;
+  margin-left: 10px;
 }
 
 .questionHelpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
   display: flex;
   flex: auto;
+  border: none;
+  background-color: white;
+  text-align: right;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.addAnswer {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  display: flex;
+  flex: auto;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.answer-meta-helpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 110px;
+}
+.answer-meta-report {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 50px;
 }
 
 .answer {
   display: flex;
   width: 100%;
-  /* flex-direction: row; */
   font-weight: bold;
   font-size: 20px;
   border: none;
@@ -616,6 +700,15 @@ td {
   font-weight: normal;
   font-size: 18px;
   border: none;
+}
+
+.answer-meta {
+  display: flex;
+  font-size: 13px;
+}
+
+.seller {
+  font-weight: bold;
 }
 
 .expandCollapseAnswers {
@@ -638,20 +731,58 @@ td {
 }
 
 .modal-content {
-  width: 500px;
+  font-size: 15px;
+  width: 700px;
+  height: 700px;
   background-color: white;
 }
 
 .modal-header {
+  flex-direction: row;
   padding: 10px;
 }
 
 .modal-footer {
+  /* display: flex;
+  flex-direction: row; */
   padding: 10px;
+}
+
+.modal-footer-button {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  width: 50%;
+  background-color: white;
+  padding: 0px;
+}
+
+.answer-thumbnail {
+  height: 50px;
+}
+
+.error {
+  color: red;
 }
 
 .modal-title {
   margin: 0;
+}
+
+.modal-subtitle {
+  margin: 0;
+}
+
+.close-modal-button {
+  margin-left: 650px;
+  display: flex;
+  background-color: white;
+  font-weight: bolder;
+  text-align: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .modal-body {
@@ -662,6 +793,8 @@ td {
 
 textarea {
   font-family: 'Zen Maru Gothic', sans-serif;
+  resize: none;
+  overflow: auto;
 }
 
 .add-question-body {
