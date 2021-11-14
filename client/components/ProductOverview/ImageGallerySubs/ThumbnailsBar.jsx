@@ -18,10 +18,11 @@ const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
     <div className='thumbnails_po'>
       <div id='arrow_up_po'>{upIcon}</div>
       {
-        photos.map((photo) => {
+        photos.map((photo, index) => {
           counter++;
           mlog(logC + ' TB altText:', altText, counter);
           return ( <Thumbnail
+            key={`TN${index}`}
             photo={photo.url}
             counter={counter}
             altText={altText}

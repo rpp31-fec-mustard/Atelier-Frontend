@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -45,9 +45,9 @@ const ProductOverview = ({product, id}) => {
       });
   };
 
-const loaded = useRef(false);
 
 
+  const loaded = useRef(false);
   //check to see if data is the same?
   //if so, do not pass to productStyles?
   useEffect(async () => {
@@ -120,10 +120,10 @@ const loaded = useRef(false);
         <div className='highlights_po'>
           Highlights:<br/>
           {
-            features.map((feature) => {
+            features.map((feature, index) => {
               mlog(logC + 'feature', feature);
               return (
-                <div>{feature.value} {feature.feature}</div>);
+                <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
             })
           }
         </div>

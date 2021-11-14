@@ -6,7 +6,7 @@ import {DEBUG} from '../ProductOverview.jsx';
 
 const SelectQuantityMenu = ({size, quantity}) => {
 
-  const DEBUG = true;
+  // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
 
@@ -25,7 +25,7 @@ const SelectQuantityMenu = ({size, quantity}) => {
       <option value='' default>---</option>
       {
         qtyArray.map((i) => {
-          return (<option value={i}>{i}</option>);
+          return (<option key={`A${i}`} value={i}>{i}</option>);
         })
       }
     </select>

@@ -1,15 +1,15 @@
 
 
 
-category:
-defaultPrices:
-features: [],
-id:
-name:
-originalPrice:
-salePrice:
-starred: true,
-thumbnailUrl:
+// category:
+// defaultPrices:
+// features: [],
+// id:
+// name:
+// originalPrice:
+// salePrice:
+// starred: true,
+// thumbnailUrl:
 
 
 //every reload will check to see if product is on outfit list

@@ -9,7 +9,7 @@ import {DEBUG} from '../ProductOverview.jsx';
 
 const SelectSizeMenu = ({skus, handleSetSize}) => {
 
-  const DEBUG = true;
+  // var DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
@@ -34,13 +34,8 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
   useEffect(() => {
     if (loaded.current) {
       mlog(logC + ' RESET SELECT SIZE');
-
-      // console.log(document.getElementsByClassName('menu_po')) //.selectedIndex = 0;
       document.getElementById('menu1_po').selectedIndex = 0;
       document.getElementById('menu2_po').selectedIndex = 0;
-
-        // this.selectedIndex = 0;
-      // });
     } else {
       loaded.current = true;
     }
@@ -72,7 +67,7 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
                 const size = skus[sku].size;
                 mlog(logC + ' size test', sizeTable[size]);
                 return (
-                  <option value={skus[sku].size} sku={sku}>{sizeTable[size] ? sizeTable[size] : size }</option>
+                  <option key={sku.toString()} value={skus[sku].size} sku={sku}>{sizeTable[size] ? sizeTable[size] : size }</option>
                 );
               }
             })

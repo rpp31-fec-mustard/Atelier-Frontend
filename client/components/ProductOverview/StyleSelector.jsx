@@ -28,7 +28,7 @@ const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnCli
                 mlog('id', style.style_id);
                 styleIndex++;
                 return (
-                  <StyleThumbnail key={style.style_id}
+                  <StyleThumbnail key={`ST${styleIndex}`}
                     style={style}
                     styleId={style.style_id}
                     productName={productName}
