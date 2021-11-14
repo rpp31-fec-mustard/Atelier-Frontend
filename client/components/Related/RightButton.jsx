@@ -1,12 +1,25 @@
-import React from 'react';
+import * as React from 'react';
 
 const RightButton = (props) => {
+
+  React.useEffect(() => {
+    const rButton = props.outfit ?
+      document.getElementsByClassName('right nav-button')[1] :
+      document.getElementsByClassName('right nav-button')[0];
+    if (props.cardsWrapperLength > 4) {
+      rButton.style.color = 'black';
+    }
+  }, [props.cardsWrapperLength]);
+
   return (
-    <div className="rbutton-container">
-      <button className="rbutton" aria-label="Right button">
-        <i className="fas fa-caret-right"></i>
+    <React.Fragment>
+      <div className="right-gradient"></div>
+      <button className="right nav-button" style={{color: 'transparent'}} onClick={(event) => {
+        props.handleRightScroll(props.cardsWrapper);
+      }}>
+        <i className="ri-arrow-right-circle-line"></i>
       </button>
-    </div>
+    </React.Fragment>
   );
 };
 

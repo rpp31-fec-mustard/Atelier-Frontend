@@ -1,9 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import ProductCard from './ProductCard.jsx';
 import LeftButton from './LeftButton.jsx';
 import RightButton from './RightButton.jsx';
 
 const Outfit = (props) => {
+  const cardsWrapper = React.useRef(null);
+
   let outfitProducts;
 
   if (props.outfitList.length) {
@@ -13,29 +15,46 @@ const Outfit = (props) => {
           key={item.id}
           product={item}
           handleAction={props.handleAction}
+          renderRelated={props.renderRelated}
           outfit={true}
         />
       );
     });
   } else {
-    outfitProducts = (
-      <div className="add-product">Add a product here
+    outfitProducts = [
+      <div key={'add-product'} className="add-product">Add a product
         <br></br>
         <br></br>
         <i className="ri-add-line"></i>
       </div>
-    );
+    ];
   }
 
   return (
     <div id="your-outfit" className="related-submodule">
-      <h3>YOUR OUTFIT</h3>
-      <div className="prod-cards-container">
-        <LeftButton />
-        <section className="prod-cards-wrapper">
-          {outfitProducts}
-        </section>
-        <RightButton />
+      <div className="related-submodule-content">
+        <div className="button-container">
+          <LeftButton
+            cardsWrapper={cardsWrapper}
+            handleLeftScroll={props.handleScroll.handleLeftScroll}
+          />
+        </div>
+        <div className="prod-cards-container">
+          <h3>YOUR OUTFIT</h3>
+          <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
+            (event) => { props.checkScrollPosition(cardsWrapper.current); }
+          }>
+            {outfitProducts}
+          </div>
+        </div>
+        <div className="button-container">
+          <RightButton
+            cardsWrapper={cardsWrapper}
+            cardsWrapperLength={props.outfitList.length}
+            handleRightScroll={props.handleScroll.handleRightScroll}
+            outfit={true}
+          />
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ html {
 }
 
 #app {
-  width: 1040px;
+  width: 60%;
 }
 
 #outlines {
@@ -40,7 +40,7 @@ button {
   --global-border-color: rgb(125, 125, 125);
 
   /* RELATED PRODUCTS */
-  --prod-card-width: 22.5%;
+  --prod-card-width: 22%;
   --prod-card-height: 300px;
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
@@ -342,8 +342,9 @@ button {
 
 /* *** RELATED *** */
 
-#related-main h3{
+#related-main h3 {
   align-self: flex-start;
+  margin-left: 10px;
   border-style: none;
   color: var(--global-border-color);
 }
@@ -358,11 +359,17 @@ button {
   width: 100%;
 }
 
-.prod-cards-container {
+.related-submodule-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  flex-wrap: nowrap;
+  border: none;
+  width: 100%;
+}
+
+.prod-cards-container {
+  display: flex;
+  flex-direction: column;
   border: none;
   width: 100%;
 }
@@ -372,9 +379,10 @@ button {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  overflow: auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
   border: none;
-  width: 90%;
+  width: 100%;
 }
 
 /* change width if needed */
@@ -459,7 +467,7 @@ button {
 .prod-card-img {
   width: 100%;
   height: 100%;
-  object-fit: none;
+  object-fit: cover;
   border: none;
 }
 
@@ -499,21 +507,56 @@ button {
   height: var(--prod-card-height);
   box-sizing: border-box;
   padding: 10px;
-  margin: 0;
+  margin: var(--prod-card-margins);
 
+  text-align: center;
   font-size: 24px;
   color: white;
   background: var(--prod-img-background-color);
 }
 
-.lbutton-container {
+.button-container {
+  position: static;
   border: none;
-  align-self: center;
 }
 
-.rbutton-container {
-  border: none;
+.nav-button {
   align-self: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  fill: none;
+  border-style: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.left-gradient {
+  position: relative;
+  border: none;
+  /* left: 100%;
+  width: 100%;
+  height: calc(100% - 17px);
+  background: linear-gradient(90deg, white 60%, transparent); */
+}
+
+.left-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
+}
+
+.right-gradient {
+  position: relative;
+  border: none;
+  /* left: -150%; */
+  /* width: 150%; */
+  /* height: calc(100% - 17px); */
+  /* background: linear-gradient(270deg, white 60%, transparent); */
+}
+
+.right-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
 }
 
 .prod-comparison-wrapper {
@@ -526,6 +569,7 @@ button {
   text-align: center;
   pointer-events: none;
 }
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -537,14 +581,52 @@ td {
 
 /* *** QUESTIONS/ANSWER *** */
 
+.qa-title {
+  width: 100%;
+  margin-left: 0px;
+  font-size: 18px;
+}
+
+.qa-search {
+  width: 100%;
+  margin-left: 0px;
+}
+
+.qa-list {
+  display: flex;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.search {
+  margin-left: 0px;
+  height: 50px;
+  width: 100%;
+}
+
 .questionsAndAnswers {
   width: 100%;
   border: none;
 }
 
-.questionButton {
+.questionButtonContainer {
   display: flex;
-  flex: auto;
+  width: 50%;
+
+}
+
+.questionButton {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50px;
+  background-color: white;
+  padding: 0px;
+}
+
+.questionDisplay {
+  width: 100%;
 }
 
 .questionList {
@@ -554,23 +636,69 @@ td {
   border: none;
 }
 
+.singleQuestion {
+  width: 700px;
+}
+
 .questionEntry {
   display: flex;
   flex: auto;
   font-weight: bold;
   font-size: 20px;
   border: none;
+  width: 100%;
+}
+
+.question-meta {
+  display: flex;
+  font-size: 13px;
+  margin-left: 10px;
 }
 
 .questionHelpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
   display: flex;
   flex: auto;
+  border: none;
+  background-color: white;
+  text-align: right;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.addAnswer {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  display: flex;
+  flex: auto;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.answer-meta-helpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 110px;
+}
+.answer-meta-report {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 50px;
 }
 
 .answer {
   display: flex;
   width: 100%;
-  /* flex-direction: row; */
   font-weight: bold;
   font-size: 20px;
   border: none;
@@ -590,6 +718,15 @@ td {
   font-weight: normal;
   font-size: 18px;
   border: none;
+}
+
+.answer-meta {
+  display: flex;
+  font-size: 13px;
+}
+
+.seller {
+  font-weight: bold;
 }
 
 .expandCollapseAnswers {
@@ -612,20 +749,58 @@ td {
 }
 
 .modal-content {
-  width: 500px;
+  font-size: 15px;
+  width: 700px;
+  height: 700px;
   background-color: white;
 }
 
 .modal-header {
+  flex-direction: row;
   padding: 10px;
 }
 
 .modal-footer {
+  /* display: flex;
+  flex-direction: row; */
   padding: 10px;
+}
+
+.modal-footer-button {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  width: 50%;
+  background-color: white;
+  padding: 0px;
+}
+
+.answer-thumbnail {
+  height: 50px;
+}
+
+.error {
+  color: red;
 }
 
 .modal-title {
   margin: 0;
+}
+
+.modal-subtitle {
+  margin: 0;
+}
+
+.close-modal-button {
+  margin-left: 650px;
+  display: flex;
+  background-color: white;
+  font-weight: bolder;
+  text-align: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .modal-body {
@@ -636,6 +811,8 @@ td {
 
 textarea {
   font-family: 'Zen Maru Gothic', sans-serif;
+  resize: none;
+  overflow: auto;
 }
 
 .add-question-body {
@@ -720,13 +897,9 @@ textarea {
  font-weight: bold;
 }
 
-/* .reviewBody {
-  display:inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 124ch;
-} */
-
+.reviewBody {
+  font-size: 15px;
+}
 
 .overall {
   display: flex;
@@ -947,4 +1120,75 @@ border: none;
   position: absolute;
   height:500px;
   width:600px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(87, 59, 59, 0.938);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.modal_input {
+  border: none;
+}
+.modal_content {
+  display: flex;
+  flex-direction:column;
+  /* align-items: center; */
+  border: none;
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  overflow-y: scroll;
+}
+.selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.modal_characteristics {
+  display: flex;
+  flex-direction: row;
+  margin: 7px;
+  justify-content: center;
+}
+
+.test {
+  width: 25%;
+  margin-right: 10px;
+  text-align: center;
+}
+
+p {
+  font-size: 12px;
+}
+
+.addedImage {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}
+
+.uploadedImages {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.modalStars {
+  display: flex;
+  flex-direction: row;
+  border: none;
+}
+
+.starRadio {
+  opacity: 0;
 }

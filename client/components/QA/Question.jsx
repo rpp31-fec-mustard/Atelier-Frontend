@@ -19,15 +19,17 @@ const Question = (props) => {
   });
 
   var unsortedAnswers = _.sortBy(answers, 'helpfulness');
-  for (var i = 0; i < unsortedAnswers.length; i ++) {
+  for (let i = 0; i < unsortedAnswers.length; i ++) {
     if (unsortedAnswers[i].answerer_name === 'Seller') {
       unsortedAnswers.push(unsortedAnswers[i]);
       unsortedAnswers.splice(i, 1);
     }
   }
 
+
   var sortedAnswers = unsortedAnswers.reverse();
   var displayAnswers = [];
+
 
   const addAnswers = () => {
     for (let i = 0; i < count; i++) {

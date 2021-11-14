@@ -19,7 +19,8 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 const ProductOverview = ({product, id}) => {
   // const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setStyleIndex] = useState(0);
-  const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad);
+  // const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
   // const [styles, setStyles] = useState();
   // const [product, setProduct] = useState(styleOnLoad);
   mlog(logC + ' PO product :', product);
@@ -47,7 +48,8 @@ const ProductOverview = ({product, id}) => {
 
 
 
-  const loaded = useRef(false);
+  const loaded = useRef(true);
+  // const loaded = useRef(false);    //for testing
   //check to see if data is the same?
   //if so, do not pass to productStyles?
   useEffect(async () => {

@@ -13,7 +13,6 @@ const getProduct = (productId) => {
     })
     .catch((error) => {
       console.log('API Helper getProduct error: ', error);
-      cb(error);
     });
 };
 
@@ -25,9 +24,9 @@ const getProductStyles = (productId) => {
     })
     .catch((error) => {
       console.log('API Helper getProductStyles error: ', error);
-      cb(error);
     });
 };
+
 
 // returns a PROMISE that resolves in an average rating of a product
 const getRating = (productId) => {

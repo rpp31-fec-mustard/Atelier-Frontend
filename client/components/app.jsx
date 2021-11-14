@@ -13,9 +13,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601', //testing
-      productId: '59553', //testing
-      product: defaultOnLoad.productOnLoad,
+      productId: '59601', //testing
+      // product: {}
+      // productId: '59553', //testing
+      product: defaultOnLoad.productOnLoad, //testing
 
     };
     this.sendNumber = this.sendNumber.bind(this);
@@ -23,7 +24,7 @@ class App extends React.Component {
 
   //! testing only
   sendNumber(id) {
-    console.log('app id :', id);
+    // console.log('app id :', id);
     new Promise((resolve, notResolve) => {
       this.setState({productId: id});
       resolve();
@@ -36,11 +37,9 @@ class App extends React.Component {
       });
   }
 
-  //! do not need if default data populates all states
-  // componentDidMount() {
-  //   this.getProduct(this.state.productId);
-  // }
-
+  componentDidMount() {
+    Promise.resolve(this.getProduct(this.state.productId));
+  }
 
 
   getProduct(id) {
@@ -71,7 +70,7 @@ class App extends React.Component {
         <ProductOverview id={this.state.productId} product={this.state.product}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
-        <Reviews productId={this.state.productId} />
+        <Reviews productId={this.state.productId} productInfo={this.state.product}/>
       </React.Fragment>
     );
   }
