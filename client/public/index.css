@@ -334,6 +334,7 @@ button {
 
 #related-main h3 {
   align-self: flex-start;
+  margin-left: 10px;
   border-style: none;
   color: var(--global-border-color);
 }
@@ -348,12 +349,19 @@ button {
   width: 100%;
 }
 
-.prod-cards-container {
+.related-submodule-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border: none;
-  width: 100%;
+  width: inherit;
+}
+
+.prod-cards-container {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  width: inherit;
 }
 
 .prod-cards-wrapper {
@@ -364,7 +372,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   border: none;
-  width: 90%;
+  width: inherit;
 }
 
 /* change width if needed */
