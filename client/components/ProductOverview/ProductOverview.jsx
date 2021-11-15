@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export const DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -13,15 +13,16 @@ import StyleSelector from './StyleSelector.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
 import defaultOnLoad from '../defaultOnLoad.jsx';
-
+// fixtures
+import fixtures from '../../../test/fixtures.js';
 
 
 const ProductOverview = ({product, id}) => {
   // const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setStyleIndex] = useState(0);
   // const [styles, setStyles] = useState();
-  const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
-  // const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState(fixtures.styles); //testing
+  // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
   // const [product, setProduct] = useState(styleOnLoad);
   mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
@@ -48,10 +49,9 @@ const ProductOverview = ({product, id}) => {
 
 
 
-  const loaded = useRef(true);
-  // const loaded = useRef(false);    //for testing
-  //check to see if data is the same?
-  //if so, do not pass to productStyles?
+  // const loaded = useRef(true);
+  const loaded = useRef(false);    //for testing
+
   useEffect(async () => {
     if (loaded.current) {
       mlog(logC + ' useEffect triggered by id change', id);

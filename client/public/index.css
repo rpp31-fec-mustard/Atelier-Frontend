@@ -224,7 +224,7 @@ button {
   font-family: 'Bungee Shade', cursive;
   /* font-family: 'Fascinate', cursive; */
   font-weight: 800;
-  font-size: 40px;
+  font-size: 35px;
   margin: 0px;
 }
 
@@ -233,7 +233,7 @@ button {
   margin: var(--po-info-margin);
 }
 
-/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+
 /** product style **/
 .style_po {
   height: 35%;
@@ -266,7 +266,7 @@ button {
   border-radius: 13px;
   margin: 5px
 }
-
+/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 /** add to bag **/
 .add_to_bag_po {
   display: flex;

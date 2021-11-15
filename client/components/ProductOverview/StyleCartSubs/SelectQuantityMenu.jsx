@@ -19,17 +19,26 @@ const SelectQuantityMenu = ({size, quantity}) => {
   for (let i = 1; i < max + 1; i++) {
     qtyArray.push(i);
   }
+  if (quantity === 0) {
+    return (
+      <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
+        <option value='' default>---</option>
+      </select> );
+  } else {
 
-  return (
-    <select name='qty' className='qty_select_po menu_po' id='menu2_po'>
-      <option value='' default>---</option>
-      {
-        qtyArray.map((i) => {
-          return (<option key={`A${i}`} value={i}>{i}</option>);
-        })
-      }
-    </select>
-  );
+
+
+    return (
+      <select name='qty' className='qty_select_po menu_po' id='menu2_po'>
+        <option value='' default>---</option>
+        {
+          qtyArray.map((i) => {
+            return (<option key={`A${i}`} value={i}>{i}</option>);
+          })
+        }
+      </select>
+    );
+  }
 };
 
 export default SelectQuantityMenu;

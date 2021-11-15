@@ -4,7 +4,6 @@ import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-
 import SelectSizeMenu from './StyleCartSubs/SelectSizeMenu.jsx';
 import SelectQuantityMenu from './StyleCartSubs/SelectQuantityMenu.jsx';
 import {DEBUG} from './ProductOverview.jsx';
@@ -12,7 +11,7 @@ import {DEBUG} from './ProductOverview.jsx';
 
 const AddtoCart = ({style}) => {
 
-  // const DEBUG = true;
+  const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
@@ -43,8 +42,13 @@ const AddtoCart = ({style}) => {
 
   useEffect(() => {
     mlog(logC + ' ATC state', size, quantity);
-  }, [quantity]);
+    setQuantity(0);
+  }, [style, size]);
 
+
+  //disable flag
+  //when quantity is zero, disable
+  //when select size, disable
 
 
   return (
