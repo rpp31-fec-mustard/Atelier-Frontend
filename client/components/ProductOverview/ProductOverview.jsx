@@ -1,6 +1,7 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = false;
+export var DEBUG = false;
+DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -24,6 +25,7 @@ const ProductOverview = ({product, id}) => {
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
   // const [product, setProduct] = useState(styleOnLoad);
+  const [review, setReview] = useState(false);
   mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
   mlog(logC + ' PO styles:', styles);
@@ -39,11 +41,27 @@ const ProductOverview = ({product, id}) => {
       }
     })
       .then((res) => {
-        mlog('@client PO res product/styles:', res.data);
+        mlog(logC + ' PO res product/styles:', res.data);
         setStyles(res.data);
       })
       .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
+      });
+  };
+
+  const getProductReviews = () => {
+    // mlog('this.props.product.id :', productId);
+    axios.get('/getReviews', {
+      params: {
+        productId: id
+      }
+    })
+      .then((res) => {
+        mlog(logC + ' PO res product/reviews:', res.data);
+        setReview(!!res.data.reviewsArr.length);
+      })
+      .catch((err) => {
+        console.log('Error retrieving product/reviews: ', err);
       });
   };
 
@@ -56,11 +74,14 @@ const ProductOverview = ({product, id}) => {
     if (loaded.current) {
       mlog(logC + ' useEffect triggered by id change', id);
       await getProductStyles(id);
+      await getProductReviews(id);
       setStyleIndex(0);
     } else {
       loaded.current = true;
     }
   }, [id]);
+
+
 
 
 
@@ -95,8 +116,16 @@ const ProductOverview = ({product, id}) => {
         <div className='right02'>
           <div className='stars_po'>
             <Stars productId={product.id}/>
-            <a className='read_reviews_po'
-              onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a>
+
+            {/* making change this line here */}
+            { (() => {
+              if (review) {
+                return ( <a className='read_reviews_po'
+                  onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a> );
+              }
+            })()
+            }
+
           </div>
           <div className='name_block_po'>
             {category}
