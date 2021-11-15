@@ -2,6 +2,7 @@
 
 export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
+var logC = '\x1b[33m';
 
 import React, {useRef, useState, useEffect} from 'react';
 // import ReactDOM from 'react-dom';
@@ -9,93 +10,27 @@ import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
-import AddToCart from './AddToCart.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
-
-
-const styleOnLoad = {
-  'product_id': 59648,
-  results: [
-    {
-      'style_id': 365413,
-      name: 'Forest Green & Black',
-      'original_price': '140.00',
-      'sale_price': null,
-      'default?': true,
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        },
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
-        },
-      ],
-      skus: {
-        '2122777': {
-          quantity: 8,
-          size: 'XS'
-        },
-        '2122778': {
-          quantity: 16,
-          size: 'S'
-        },
-        '2122779': {
-          quantity: 17,
-          size: 'M'
-        },
-        '2122780': {
-          quantity: 10,
-          size: 'L'
-        },
-        '2122781': {
-          quantity: 15,
-          size: 'XL'
-        },
-        '2122782': {
-          quantity: 4,
-          size: 'XL'
-        }
-      }
-    },
-    {
-      name: 'Style Two',
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        }
-      ]
-    },
-    {
-      name: 'Style Three',
-      photos: [
-        {
-          'thumbnail_url': 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-          url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-        }
-      ]
-    }
-  ]
-};
+import defaultOnLoad from '../defaultOnLoad.jsx';
 
 
 
 const ProductOverview = ({product, id}) => {
-  const [productId, setProductId] = useState(id);
-  const [currentStyleIndex, setIndex] = useState(0);
-  const [styles, setStyles] = useState(styleOnLoad);
+  // const [productId, setProductId] = useState(id);
+  const [currentStyleIndex, setStyleIndex] = useState(0);
+  // const [styles, setStyles] = useState();
+  const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
+  // const [styles, setStyles] = useState();
   // const [product, setProduct] = useState(styleOnLoad);
-  mlog('PO product :', product);
+  mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
-  mlog('PO styles:', styles);
-  mlog('PO productId:', productId);
-  mlog('PO styleIndex:', currentStyleIndex);
+  mlog(logC + ' PO styles:', styles);
+  mlog(logC + ' PO productId:', id);
+  mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
-  const getProductStyles = (productId) => {
+  const getProductStyles = () => {
     // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
@@ -104,47 +39,41 @@ const ProductOverview = ({product, id}) => {
     })
       .then((res) => {
         mlog('@client PO res product/styles:', res.data);
-        // if (JSON.stringify(res.data) !== JSON.stringify(styles)) {
-
         setStyles(res.data);
-        // }
       })
       .catch((err) => {
         console.log('Error retrieving product/styles: ', err);
       });
   };
 
+
+
+  const loaded = useRef(true);
+  // const loaded = useRef(false);    //for testing
   //check to see if data is the same?
   //if so, do not pass to productStyles?
-  useEffect((productId) => {
-    getProductStyles(productId);
-    setIndex(0);
+  useEffect(async () => {
+    if (loaded.current) {
+      mlog(logC + ' useEffect triggered by id change', id);
+      await getProductStyles(id);
+      setStyleIndex(0);
+    } else {
+      loaded.current = true;
+    }
   }, [id]);
+
+
+
 
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
-    setIndex(selectedStyleIndex);
+    setStyleIndex(selectedStyleIndex);
   };
 
-
-//get productId route
-  const getProductId = (id) => {
-    axios.get('/product', {
-      params: {
-        productId: id
-      }
-    })
-      .then((res) => {
-        this.setState({product: res.data});
-      })
-      .catch((error) => {
-        console.log('Error retrieving product/all: ', error);
-      });
-  };
 
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
-  mlog('PO product destructure:', product );
+  mlog(logC + ' PO product destructure:', product );
   const {
     description,
     name,
@@ -153,15 +82,16 @@ const ProductOverview = ({product, id}) => {
     slogan,
     features
   } = product;
-  mlog('features', features);
+  mlog(logC + ' features', features);
 
     // mlog(styles);
 
   return (
     <div className='module_container' id='product_overview_main' >
       <div className='top01'>
-        <ImageGallery photos={styles.results[currentStyleIndex].photos}
-          productId={productId} />
+        <ImageGallery currentStyle={styles.results[currentStyleIndex]}
+          productId={id}
+          productName={product.name} />
         <div className='right02'>
           <div className='stars_po'>
             <Stars productId={product.id}/>
@@ -182,7 +112,6 @@ const ProductOverview = ({product, id}) => {
             currentStyleIndex={currentStyleIndex}
             productName={name}
             handleStyleOnClick={handleStyleOnClick}/>
-          <AddToCart styles={styles}/>
         </div>
       </div>
       <div className='bottom01'>
@@ -193,10 +122,10 @@ const ProductOverview = ({product, id}) => {
         <div className='highlights_po'>
           Highlights:<br/>
           {
-            features.map((feature) => {
-              mlog('feature', feature);
+            features.map((feature, index) => {
+              mlog(logC + 'feature', feature);
               return (
-                <div>{feature.value} {feature.feature}</div>);
+                <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
             })
           }
         </div>

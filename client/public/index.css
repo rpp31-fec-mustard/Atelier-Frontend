@@ -236,12 +236,14 @@ button {
 /** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 /** product style **/
 .style_po {
-  height: 30%;
+  height: 35%;
   margin: var(--po-info-margin);
 }
 
 .style_text_po {
-  height: 20px;
+  display: flex;
+  height: 35px;
+  align-items: center;
 }
 
 .text_po {
@@ -259,15 +261,19 @@ button {
 }
 
 .style_thumbnail_po {
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  margin: 10px
+  height: 50px;
+  width: 50px;
+  border-radius: 13px;
+  margin: 5px
 }
 
 /** add to bag **/
 .add_to_bag_po {
-  height: 30%;
+  display: flex;
+  flex-direction: column;
+  height: 22%;
+  width: 300px;
+  margin: var(--po-info-margin);
 }
 
 .add_to_bag_top_po {
@@ -275,15 +281,19 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
-.size_select {
-  width: 200px;
+.size_select_po {
+  width: 150px;
   height: 40px;
 }
 
-.qty_select {
+.dropdown_space_po {
+  width: 20px;
+}
+
+.qty_select_po {
   width: 75px;
   height: 40px;
 }
@@ -293,16 +303,16 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .add_to_bag_button_po {
-  width: 25%;
+  width: 130px;
   height: 50%;
 }
 
 .favorites_add_button_po {
-  width: 25%;
+  width: 95px;
   height: 50%;
 }
 

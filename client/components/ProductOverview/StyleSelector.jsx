@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {DEBUG} from './ProductOverview.jsx';
 import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
+import AddToCart from './AddToCart.jsx';
+import {DEBUG} from './ProductOverview.jsx';
 
 const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnClick}) => {
-  const DEBUG = false;
+  // const DEBUG = false;
   var mlog = (DEBUG) ? console.log : () => {};
 
   mlog('SS styleSelector:', styles);
@@ -15,28 +16,31 @@ const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnCli
     let styleIndex = -1;
 
     return (
-      <div className='style_po'>
-        <div className='style_text_po'>
-          <p className='text_po'>STYLE {'>'} {styles[currentStyleIndex].name}</p>
+      <React.Fragment>
+        <div className='style_po'>
+          <div className='style_text_po'>
+            <p className='text_po'>STYLE {'>'} {styles[currentStyleIndex].name}</p>
+          </div>
+          <div className='style_row_thumbnail_po'>
+            {
+              styles.map((style) => {
+                mlog('i', style);
+                mlog('id', style.style_id);
+                styleIndex++;
+                return (
+                  <StyleThumbnail key={`ST${styleIndex}`}
+                    style={style}
+                    styleId={style.style_id}
+                    productName={productName}
+                    styleIndex={styleIndex}
+                    handleStyleOnClick={handleStyleOnClick}/>
+                );
+              })
+            }
+          </div>
         </div>
-        <div className='style_row_thumbnail_po'>
-          {
-            styles.map((style) => {
-              mlog('i', style);
-              mlog('id', style.style_id);
-              styleIndex++;
-              return (
-                <StyleThumbnail key={style.style_id}
-                  style={style}
-                  styleId={style.style_id}
-                  productName={productName}
-                  styleIndex={styleIndex}
-                  handleStyleOnClick={handleStyleOnClick}/>
-              );
-            })
-          }
-        </div>
-      </div>
+        <AddToCart style={styles[currentStyleIndex]}/>
+      </React.Fragment>
     );
   } else {
     mlog('state undefined: props not correct. component load delayed');

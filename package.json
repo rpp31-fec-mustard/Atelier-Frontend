@@ -14,11 +14,12 @@
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "test": "jest --silent; exit 0",
-    "test-watch": "jest --watch",
     "start": "nodemon server/server.js --watch",
-    "lint": "eslint ./",
-    "build": "webpack --mode development --watch"
+    "build": "webpack --mode development --watch",
+    "test": "jest --silent; exit 0",
+    "test-log": "jest",
+    "test-watch": "jest --watch",
+    "lint": "eslint ./"
   },
   "pre-commit": [
     "lint",

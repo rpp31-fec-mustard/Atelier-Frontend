@@ -10,7 +10,6 @@ app.use(compression());
 
 
 app.get('/product', (req, res) => {
-
   let productId = req.query.productId;
   api.getProduct(productId)
     .then((result) => {
