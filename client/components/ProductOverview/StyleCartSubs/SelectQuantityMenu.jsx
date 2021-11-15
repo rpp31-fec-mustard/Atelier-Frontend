@@ -4,22 +4,25 @@ import React from 'react';
 import {DEBUG} from '../ProductOverview.jsx';
 
 //can remove size in production
-const SelectQuantityMenu = ({quantity, size}) => {
+const SelectQuantityMenu = ({quantityMax, size, handleOnChangeQty}) => {
 
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
 
-  mlog(logC + ' SQM ', quantity, size);
+  mlog(logC + ' SQM ', quantityMax, size);
 
 
-  let max = quantity < 15 ? quantity : 15;
+
+
+
+  let max = quantityMax < 15 ? quantityMax : 15;
   mlog(logC + ' SQM max', max);
   let qtyArray = [];
   for (let i = 1; i < max + 1; i++) {
     qtyArray.push(i);
   }
-  if (quantity === 0) {
+  if (quantityMax === 0) {
     return (
       <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
         <option value='' default>---</option>
@@ -29,7 +32,10 @@ const SelectQuantityMenu = ({quantity, size}) => {
 
 
     return (
-      <select name='qty' className='qty_select_po menu_po' id='menu2_po'>
+      <select name='qty'
+        className='qty_select_po menu_po'
+        id='menu2_po'
+        onChange={handleOnChangeQty} >
         <option value='' default>---</option>
         {
           qtyArray.map((i) => {
