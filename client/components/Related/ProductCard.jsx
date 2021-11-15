@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useTracking } from 'react-tracking';
+
 import ActionButton from './ActionButton.jsx';
 import ProductComparison from './Comparison.jsx';
 import Price from '../Global/Price.jsx';
 import Stars from '../Global/Stars.jsx';
 
 const ProductCard = (props) => {
+  const { trackEvent } = useTracking();
   const [{ isHovering, x, y }, setHoverState] = React.useState({
     isHovering: false,
     x: 0,
@@ -48,6 +51,11 @@ const ProductCard = (props) => {
             className={props.product.id}
             onClick={(event) => {
               props.renderRelated(event);
+              trackEvent({
+                time: new Date().toString(),
+                element: `product ${props.product.id} card`,
+                widget: 'Related Items & Comparison'
+              });
             }}
           >
             <div className="prod-card-img-wrapper">{image}</div>
