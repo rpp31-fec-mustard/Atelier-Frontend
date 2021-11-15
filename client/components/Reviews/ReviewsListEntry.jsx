@@ -20,7 +20,10 @@ class ReviewsListEntry extends React.Component {
 
   wouldRecommend() {
     if (this.props.review.recommend) {
-      return 'I would recommend this item!';
+      return (
+        <section>
+          <i className="fas fa-check"></i> I would recommend this item!
+        </section>);
     }
   }
 
@@ -126,7 +129,7 @@ class ReviewsListEntry extends React.Component {
         <section className='rating'>Rating: {this.props.review.rating}</section>
         <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='recommend'>
-          <i className="fas fa-check"></i> {this.wouldRecommend()}
+          {this.wouldRecommend()}
         </section>
         <section className='reviewBody'>
           {this.state.body}

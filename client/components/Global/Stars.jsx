@@ -39,7 +39,7 @@ const Stars = (props) => {
     } else if (props.rating) {
       setRating(props.rating);
     }
-  }, [props.productId, props.rating]);
+  }, [props.productId, props.rating], [props.total]);
 
   let roundedRating = roundRating(rating) / 5 * 100;
   let width = `${roundedRating}%`;

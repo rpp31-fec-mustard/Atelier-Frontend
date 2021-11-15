@@ -131,7 +131,7 @@ const postReview = (review) => {
     'photos': review.photos ? review.photos : [],
     'product_id': Number(review.product_id),
     'rating': Number(review.rating),
-    'recommend': (review.recommend === true),
+    'recommend': (review.recommend === 'true'),
     'summary': review.summary
   };
 
