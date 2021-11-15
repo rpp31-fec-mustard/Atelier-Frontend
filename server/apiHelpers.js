@@ -153,8 +153,8 @@ const postInteraction = (body) => {
     headers: auth.headers
   };
 
-  axios(options)
-    .then((response => response.status))
+  return axios(options)
+    .then((response) => { return response.data; })
     .catch((error) => {
       console.log('API Helper postInteraction error: ', error);
     });

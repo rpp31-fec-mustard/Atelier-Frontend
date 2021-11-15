@@ -16,9 +16,6 @@ const Related = (props) => {
         element: data.element,
         widget: data.widget
       })
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           console.log('Client unable to post interaction: ', error);
         });

@@ -45,7 +45,7 @@ app.get('/getReviews', (req, res) => {
 app.post('/related', (req, res) => {
   api.getRelated(req.body.productId)
     .then((relatedList) => {
-      res.status(200).send(relatedList);
+      res.send(relatedList);
     })
     .catch((error) => {
       console.log('Server error: post /related', error);
@@ -56,7 +56,7 @@ app.post('/related', (req, res) => {
 app.post('/getRating', (req, res) => {
   api.getRating(req.body.productId)
     .then((rating) => {
-      res.status(200).send(rating.toString());
+      res.send(rating.toString());
     }).catch((error) => {
       console.log('Server error: post /getRating', error);
       res.status(500).send(error).end();
@@ -76,8 +76,8 @@ app.get('/questions', (req, res) => {
 
 app.post('/interactions', (req, res) => {
   api.postInteraction(req.body)
-    .then((status) => {
-      res.send(status);
+    .then((data) => {
+      res.send(data);
     })
     .catch((error) => {
       console.log('Server error: post /interations', error);
