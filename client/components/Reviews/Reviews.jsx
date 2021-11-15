@@ -3,7 +3,10 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
+import track from 'react-tracking';
 
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => console.log(data) })
 class Reviews extends React.Component {
   constructor(props) {
     super(props);
@@ -51,6 +54,10 @@ class Reviews extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: `sort review list -${event.target.value}`
+  }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
@@ -91,6 +98,10 @@ class Reviews extends React.Component {
   }
 
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: `filter review list -${event.target.innerText[0]} star`
+  }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
     let allReviews = this.state.allReviews;

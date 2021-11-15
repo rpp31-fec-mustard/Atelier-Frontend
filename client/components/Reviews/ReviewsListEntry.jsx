@@ -4,7 +4,10 @@ import Thumbnail from './ReviewThumbnail.jsx';
 import ImgModal from './ImgModal.jsx';
 import Stars from '../Global/Stars.jsx';
 
+import track from 'react-tracking';
 
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => console.log(data) })
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +40,8 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  @track({time: new Date().toString(),
+    element: 'open image window'})
   showModal(e) {
     this.setState({
       modal: true,
@@ -44,6 +49,8 @@ class ReviewsListEntry extends React.Component {
     });
   }
 
+  @track({time: new Date().toString(),
+    element: 'close image window'})
   closeModal() {
     this.setState({
       modal: false
@@ -56,6 +63,8 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  @track({time: new Date().toString(),
+    element: 'show full review body'})
   showMore(e) {
     e.preventDefault();
     this.setState({

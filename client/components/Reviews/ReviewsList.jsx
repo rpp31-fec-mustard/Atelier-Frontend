@@ -3,7 +3,10 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 import SortBy from './SortBy.jsx';
 import AddReviewModal from './AddReviewModal/AddReviewModal.jsx';
 
+import track from 'react-tracking';
 
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => console.log(data) })
 class ReviewsList extends React.Component {
   constructor(props) {
     super(props);
@@ -13,24 +16,30 @@ class ReviewsList extends React.Component {
     };
   }
 
+  @track({time: new Date().toString(),
+    element: 'show more reviews'})
   getMoreReviews(e) {
     this.setState({
       showing: this.state.showing + 2
     });
   }
 
-  moreReviewsButton() {
+  moreReviewsButton(e) {
     if (this.state.showing !== this.props.list.length && (this.state.showing - 1) !== this.props.list.length) {
       return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
     }
   }
 
+  @track({time: new Date().toString(),
+    element: 'add review'})
   showModal(e) {
     this.setState({
       modal: true
     });
   }
 
+  @track({time: new Date().toString(),
+    element: 'exit add review window'})
   closeModal() {
     this.setState({
       modal: false
