@@ -43,7 +43,7 @@ app.get('/getReviews', (req, res) => {
 });
 
 app.post('/postHelpfulness', (req, res) => {
-  console.log('server', req.body.reviewId)
+  console.log('server', req.body.reviewId);
   api.putReviewHelpfulness(req.body.reviewId)
     .then(() => {
       res.status(201).end();
