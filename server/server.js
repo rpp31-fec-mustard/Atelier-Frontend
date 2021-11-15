@@ -14,9 +14,9 @@ app.get('/product', (req, res) => {
   api.getProduct(productId)
     .then((result) => {
       res.status(200).send(result);
-    }).catch((err) => {
-      console.log('Server error');
-      res.status(500).send(err);
+    }).catch((error) => {
+      console.log('Server error: get /product', error);
+      res.status(500).send(error).end();
     });
 });
 
@@ -25,9 +25,9 @@ app.get('/product/styles', (req, res) => {
   api.getProductStyles(productId)
     .then((result) => {
       res.status(200).send(result);
-    }).catch((err) => {
-      console.log('Server error');
-      res.status(500).send(err);
+    }).catch((error) => {
+      console.log('Server error: get /product/styles', error);
+      res.status(500).send(error).end();
     });
 });
 
@@ -36,8 +36,9 @@ app.get('/getReviews', (req, res) => {
   let sort = req.query.sort;
   api.getReviews(id, sort).then((result) => {
     res.status(200).send(result);
-  }).catch((err) => {
-    res.sendStatus(500).end();
+  }).catch((error) => {
+    console.log('Server error: get /getReviews', error);
+    res.status(500).send(error).end();
   });
 });
 
@@ -47,6 +48,7 @@ app.post('/related', (req, res) => {
       res.status(200).send(relatedList);
     })
     .catch((error) => {
+      console.log('Server error: post /related', error);
       res.status(500).send(error).end();
     });
 });
@@ -55,8 +57,9 @@ app.post('/getRating', (req, res) => {
   api.getRating(req.body.productId)
     .then((rating) => {
       res.status(200).send(rating.toString());
-    }).catch((err) => {
-      res.sendStatus(500).end();
+    }).catch((error) => {
+      console.log('Server error: post /getRating', error);
+      res.status(500).send(error).end();
     });
 });
 
@@ -65,8 +68,20 @@ app.get('/questions', (req, res) => {
     .then((results) => {
       res.send(results);
     })
-    .catch((err) => {
-      res.status(500).end();
+    .catch((error) => {
+      console.log('Server error: get /questions', error);
+      res.status(500).send(error).end();
+    });
+});
+
+app.post('/interactions', (req, res) => {
+  api.postInteraction(req.body)
+    .then((status) => {
+      res.send(status);
+    })
+    .catch((error) => {
+      console.log('Server error: post /interations', error);
+      res.status(500).send(error).end();
     });
 });
 

@@ -1,6 +1,7 @@
 /* eslint-disable func-style */
 import * as React from 'react';
 import axios from 'axios';
+import { useTracking } from 'react-tracking';
 
 import RelatedProducts from './RelatedProducts.jsx';
 import Outfit from './Outfit.jsx';
@@ -8,6 +9,20 @@ import Outfit from './Outfit.jsx';
 const Related = (props) => {
   const [productId, setProductId] = React.useState(props.productId);
   const [relatedProducts, setRelatedProducts] = React.useState([]);
+  const { Track, trackEvent } = useTracking({},
+    { dispatch: data => {
+      axios.post('/interactions', {
+        time: data.time,
+        element: data.element,
+        widget: data.widget
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log('Client unable to post interaction: ', error);
+        });
+    }});
 
   let outfitStorage;
   // initialize localStorage for outfitList
@@ -130,24 +145,26 @@ const Related = (props) => {
   };
 
   return (
-    <section id="related-main" className="module_container">
-      <RelatedProducts
-        productId={productId}
-        relatedProducts={relatedProducts}
-        handleAction={handleAction}
-        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
-        checkScrollPosition={checkScrollPosition}
-        homeProduct={props.homeProduct}
-        renderRelated={props.renderRelated}
-      />
-      <Outfit
-        outfitList={outfitList}
-        handleAction={handleAction}
-        handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
-        checkScrollPosition={checkScrollPosition}
-        renderRelated={props.renderRelated}
-      />
-    </section>
+    <Track>
+      <section id="related-main" className="module_container">
+        <RelatedProducts
+          productId={productId}
+          relatedProducts={relatedProducts}
+          handleAction={handleAction}
+          handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+          checkScrollPosition={checkScrollPosition}
+          homeProduct={props.homeProduct}
+          renderRelated={props.renderRelated}
+        />
+        <Outfit
+          outfitList={outfitList}
+          handleAction={handleAction}
+          handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
+          checkScrollPosition={checkScrollPosition}
+          renderRelated={props.renderRelated}
+        />
+      </section>
+    </Track>
   );
 };
 

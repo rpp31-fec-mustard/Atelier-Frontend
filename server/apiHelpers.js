@@ -140,8 +140,23 @@ const getQuestions = (productId) => {
     .then((results) => {
       return results.data.results;
     })
-    .catch((err) => {
+    .catch((error) => {
       console.log('API Helper getQuestions error: ', error);
+    });
+};
+
+const postInteraction = (body) => {
+  const options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    data: body,
+    headers: auth.headers
+  };
+
+  axios(options)
+    .then((response => response.status))
+    .catch((error) => {
+      console.log('API Helper postInteraction error: ', error);
     });
 };
 
@@ -153,4 +168,5 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
+  postInteraction: postInteraction
 };
