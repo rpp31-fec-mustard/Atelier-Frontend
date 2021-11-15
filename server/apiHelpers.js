@@ -1,7 +1,7 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-const auth = { headers: {Authorization: `${config.key}`} };
+const auth = {headers: {Authorization: `${config.key}`} };
 
 
 const getProduct = (productId) => {
@@ -123,12 +123,30 @@ const getReviews = (id, sort) => {
 };
 
 
+// const putReviewHelpfulness = (id) => {
+//   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
+//     .then((result) => {
+//       return result;
+//     })
+//     .catch((error) => {
+//       console.log('API Helper putReviewHelpfulness error: ', error);
+//     });
+// };
+
 const putReviewHelpfulness = (id) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
+  let options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
+    headers: auth.headers,
+    params: {
+      review_id: id,
+    },
+    method: 'put',
+  };
+  return axios.request(options)
     .then((result) => {
-      return result;
+      console.log('success');
     })
-    .catch((err) => {
+    .catch((error) => {
       console.log('API Helper putReviewHelpfulness error: ', error);
     });
 };
