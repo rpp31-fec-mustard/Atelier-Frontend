@@ -160,25 +160,25 @@ describe('Add to Cart', () => {
     });
     test('renders correct quantity', () => {
       // console.log('path test', path);
-      render(<SelectQuantityMenu quantity={9}/>);
+      render(<SelectQuantityMenu quantityMax={9}/>);
       // screen.debug();
       expect(screen.getByRole('option', {name: '9'} )).toBeInTheDocument();
       expect(screen.queryByRole('option', {name: '10'} )).toBeNull();
     });
     test('renders quanity up to 15', () => {
       // console.log('path test', path);
-      render(<SelectQuantityMenu quantity={18}/>);
+      render(<SelectQuantityMenu quantityMax={18}/>);
       // screen.debug();
       expect(screen.getByRole('option', {name: '15'} )).toBeInTheDocument();
       expect(screen.queryByRole('option', {name: '16'} )).toBeNull();
     });
     test('is disabled when quantity is 0', () => {
-      render(<SelectQuantityMenu quantity={0}/>);
+      render(<SelectQuantityMenu quantityMax={0}/>);
       // screen.debug();
       expect(screen.getByRole('combobox')).toBeDisabled;
     });
     test('is disabled after changing styles', () => {
-      render(<SelectQuantityMenu quantity={0}/>);
+      render(<SelectQuantityMenu quantityMax={0}/>);
       screen.debug();
       expect(screen.getByRole('combobox')).toBeDisabled;
 

@@ -4,7 +4,7 @@ import React from 'react';
 import {DEBUG} from '../ProductOverview.jsx';
 
 //can remove size in production
-const SelectQuantityMenu = ({quantityMax, size, handleOnChangeQty}) => {
+const SelectQuantityMenu = ({quantityMax, size, handleSetAddQty}) => {
 
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
@@ -35,7 +35,7 @@ const SelectQuantityMenu = ({quantityMax, size, handleOnChangeQty}) => {
       <select name='qty'
         className='qty_select_po menu_po'
         id='menu2_po'
-        onChange={handleOnChangeQty} >
+        onChange={handleSetAddQty} >
         <option value='' default>---</option>
         {
           qtyArray.map((i) => {

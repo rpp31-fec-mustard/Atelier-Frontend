@@ -310,6 +310,14 @@ button {
   justify-content: center;
 }
 
+.add_to_bag_bottom_left_po {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .add_to_bag_button_po {
   width: 130px;
   height: 50%;

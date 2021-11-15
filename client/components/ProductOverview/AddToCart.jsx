@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
+import _, { every } from 'underscore';
 import $ from 'jquery';
 
 import SelectSizeMenu from './StyleCartSubs/SelectSizeMenu.jsx';
@@ -19,7 +20,7 @@ const AddtoCart = ({style}) => {
   // mlog(logC + ' ATC skus', style.skus);
 
   const [size, setSize] = useState('');
-  const [quantityMax, setQuantityMax] = useState(0);
+  const [quantityMax, setQuantityMax] = useState(null);
   const [quantityAdd, setQuantityAdd] = useState(1);
   mlog(logC + ' ATC size', size);
 
@@ -43,7 +44,7 @@ const AddtoCart = ({style}) => {
 
   useEffect(() => {
     mlog(logC + ' ATC state', size, quantityMax);
-    setQuantityMax(0);
+    setQuantityMax(null);
   }, [style, size]);
 
 
@@ -51,7 +52,7 @@ const AddtoCart = ({style}) => {
   //when quantityMax is zero, disable
   //when select size, disable
 
-  const handleOnChangeQty = async (event) => {
+  const handleSetAddQty = async (event) => {
     await setQuantityAdd(event.target.value);
   };
 
@@ -69,10 +70,20 @@ const AddtoCart = ({style}) => {
         </div>
         <SelectQuantityMenu size={size}
           quantityMax={quantityMax}
-          handleOnChangeQty={handleOnChangeQty}/>
+          handleSetAddQty={handleSetAddQty}/>
       </div>
       <div className='add_to_bag_bottom_po'>
-        <button className='add_to_bag_button_po' onClick={addToCart}>add to bag</button>
+        <div className='add_to_bag_bottom_left_po'>
+          {(()=>{
+            if (!(_.every(style.skus, (sku) => {
+              return sku.quantity === 0;
+            }))) {
+              return ( <button className='add_to_bag_button_po'
+                onClick={addToCart}>add to bag</button>);
+            }
+          })()
+          }
+        </div>
         <div className='dropdown_space_po'>
         </div>
         <button className='favorites_add_button_po'>star</button>
