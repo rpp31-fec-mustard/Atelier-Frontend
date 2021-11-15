@@ -1,6 +1,7 @@
 /* eslint-disable */
-const defaultOnLoad = {
+//data that is loaded on first page load to save api call
 
+const defaultOnLoad = {
 
   product: {
     "id": '59553',

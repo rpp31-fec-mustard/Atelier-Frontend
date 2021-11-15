@@ -1,6 +1,6 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export const DEBUG = true;
+export const DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 

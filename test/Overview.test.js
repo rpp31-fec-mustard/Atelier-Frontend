@@ -16,6 +16,7 @@ import StyleSelector from '../client/components/ProductOverview/StyleSelector.js
 import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs/ThumbnailsBar.jsx';
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
 import SelectSizeMenu from '../client/components/ProductOverview/StyleCartSubs/SelectSizeMenu.jsx';
+import SelectQuantityMenu from '../client/components/ProductOverview/StyleCartSubs/SelectQuantityMenu.jsx';
 
 // fixtures
 import fixtures from './fixtures.js';
@@ -38,7 +39,6 @@ describe('Product Overview', () => {
       product={fixtures.product}
       // productId={fixtures.product.id}
     />);
-    screen.debug();
     const result = screen.getByText('Camo Onesie');
     expect(result).toBeInTheDocument;
   });
@@ -130,7 +130,7 @@ describe('Add to Cart', () => {
     });
     test('renders size options', () => {
       render(<SelectSizeMenu skus={fixtures.styles.results[0].skus}/>);
-      screen.debug();
+      // screen.debug();
       expect(screen.getByRole('option', {name: 'x-small'})).toBeInTheDocument();
       expect(screen.getByRole('option', {name: 'small'})).toBeInTheDocument();
       expect(screen.getByRole('option', {name: 'medium'})).toBeInTheDocument();
@@ -150,26 +150,44 @@ describe('Add to Cart', () => {
     });
   });
 
-  xdescribe('Select Quantity Menu', () => {
+  describe('Select Quantity Menu', () => {
+    test('renders Quantity Menu component', () => {
+      // console.log('path test', path);
+      render(<SelectQuantityMenu />);
+      // screen.debug();
+      expect(screen.getByRole('option', {name: '---'})).toBeInTheDocument();
+      //redo this one with alt text
+    });
+    test('renders correct quantity', () => {
+      // console.log('path test', path);
+      render(<SelectQuantityMenu quantity={9}/>);
+      // screen.debug();
+      expect(screen.getByRole('option', {name: '9'} )).toBeInTheDocument();
+      expect(screen.queryByRole('option', {name: '10'} )).toBeNull();
+    });
+    test('renders quanity up to 15', () => {
+      // console.log('path test', path);
+      render(<SelectQuantityMenu quantity={18}/>);
+      // screen.debug();
+      expect(screen.getByRole('option', {name: '15'} )).toBeInTheDocument();
+      expect(screen.queryByRole('option', {name: '16'} )).toBeNull();
+    });
+    test('is disabled when quantity is 0', () => {
+      render(<SelectQuantityMenu quantity={0}/>);
+      // screen.debug();
+      expect(screen.getByRole('combobox')).toBeDisabled;
+    });
+    test('is disabled after changing styles', () => {
+      render(<SelectQuantityMenu quantity={0}/>);
+      screen.debug();
+      expect(screen.getByRole('combobox')).toBeDisabled;
 
-    xtest('renders Quantity Menu component', () => {
+    });
+    xtest('is ', () => {
       console.log('path test', path);
       render(<Comp props={path}/>);
       screen.debug();
       expect(screen.getByRole( )).toBeInTheDocument();
-
-    });
-    xtest('renders default', () => {
-
-    });
-    xtest('renders correct number', () => {
-
-    });
-    xtest('renders out', () => {
-
-    });
-    xtest('renders something', () => {
-
     });
   });
 
@@ -181,7 +199,10 @@ describe('Add to Cart', () => {
 
 // xdescribe('Test Group', () => {
 //   xtest('renders component', () => {
-
+//     console.log('path test', path);
+//     render(<Comp props={''}/>);
+//     screen.debug();
+//     expect(screen.getByRole( )).toBeInTheDocument();
 //   });
 //   xtest('renders default', () => {
 

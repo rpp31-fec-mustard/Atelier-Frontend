@@ -3,14 +3,14 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import {DEBUG} from '../ProductOverview.jsx';
 
-
-const SelectQuantityMenu = ({size, quantity}) => {
+//can remove size in production
+const SelectQuantityMenu = ({quantity, size}) => {
 
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
 
-  mlog(logC + ' SQM ', size, quantity);
+  mlog(logC + ' SQM ', quantity, size);
 
 
   let max = quantity < 15 ? quantity : 15;

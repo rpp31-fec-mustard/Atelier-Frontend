@@ -48,7 +48,7 @@ button {
   --comparison-width: 500px;
 
    /* PRODUCT OVERVIEW */
-  --po-info-margin: 0px 20px;
+  --po-info-margin: 0px 0px 0px 20px;
 
 }
 
@@ -125,7 +125,7 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10%;
+  width: 14%;
 }
 
 .thumbnail_frame_po {
@@ -236,6 +236,9 @@ button {
 
 /** product style **/
 .style_po {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 35%;
   margin: var(--po-info-margin);
 }
@@ -243,6 +246,7 @@ button {
 .style_text_po {
   display: flex;
   height: 35px;
+  width: 100%;
   align-items: center;
 }
 
