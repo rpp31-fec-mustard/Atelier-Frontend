@@ -73,6 +73,7 @@ class Modal extends React.Component {
         }
       }
     }
+    console.log('sent', result);
     this.props.post(result).then((res) => {
       this.props.close();
     });

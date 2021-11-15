@@ -111,7 +111,9 @@ class ReviewsListEntry extends React.Component {
   }
 
   componentDidUpdate() {
+    console.log('bodyupdate ', this.props.review.body);
     if ((this.state.rating !== this.props.review.rating) || (this.state.helpful !== this.props.review.helpfulness)) {
+      this.reviewListBody(this.props.review.body);
       this.setState({
         rating: this.props.review.rating,
         helpful: this.props.review.helpfulness
@@ -121,6 +123,7 @@ class ReviewsListEntry extends React.Component {
 
 
   render() {
+    console.log()
     return (
       <div className='entry'>
         <section className='starRating'> {this.renderStars()} </section>

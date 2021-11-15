@@ -23,7 +23,6 @@ class CharacteristicReview extends React.Component {
   }
 
   onCharacteristicChange(e) {
-    console.log(e.target.title);
     this.setState({
       rating: e.target.value,
       selected: e.target.title
