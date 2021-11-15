@@ -14,8 +14,10 @@ html {
   scroll-behavior: smooth;
 }
 
+/* lock at set width to prevent app resizing when window is resized */
+/* currently at 1040px */
 #app {
-  width: 60%;
+  width: 1040px;
 }
 
 #outlines {
@@ -304,8 +306,8 @@ button {
 
 .add_to_bag_bottom_po {
   height: 50%;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 2fr 1fr 11fr;
   align-items: center;
   justify-content: center;
 }
