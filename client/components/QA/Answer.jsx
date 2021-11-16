@@ -17,7 +17,7 @@ const Answer = (props) => {
       answerId: props.id
     })
       .then(() => {
-        console.log('ANSWER HELPFUL UPDATED');
+        props.update();
       })
       .catch((err) => {
         console.log('ERROR ANSWER HELPFUL NOT UPDATED', err);
@@ -29,8 +29,8 @@ const Answer = (props) => {
       answerId: props.id
     })
       .then(() => {
-        console.log('Answer Reported');
         setReport('Reported');
+        props.update();
       })
       .catch((err) => {
         console.log('ERROR REPORTING ANSWER', err);

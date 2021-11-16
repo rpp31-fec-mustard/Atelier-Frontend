@@ -72,7 +72,7 @@ const Q_A = (props) => {
     return (
       <div className="questionButtonContainer">
         <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-        <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
+        <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
       </div>
     );
   } else if (displayQuestions.length !== sortedQuestions.length) {
@@ -86,13 +86,15 @@ const Q_A = (props) => {
               helpfulness={question.question_helpfulness}
               question={question.question_body}
               answer={[question.answers]}
-              name={props.productInfo.name}/>
+              name={props.productInfo.name}
+              update={props.update}
+            />
           )}
         </div>
         <div className="questionButtonContainer">
           <button className="questionButton" onClick={() => setCount(count + 2)}>More Questions</button>
           <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
+          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
         </div>
       </div>
     );
@@ -107,12 +109,14 @@ const Q_A = (props) => {
               helpfulness={question.question_helpfulness}
               question={question.question_body}
               answer={[question.answers]}
-              name={props.productInfo.name}/>
+              name={props.productInfo.name}
+              update={props.update}
+            />
           )}
         </div>
         <div className="questionButtonContainer">
           <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
+          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
         </div>
       </div>
     );

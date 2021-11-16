@@ -13,7 +13,7 @@ const QuestionList = (props) => {
       questionId: props.id
     })
       .then(() => {
-        console.log('UPDATED QUESTION HELPFUL');
+        props.update();
       })
       .catch((err) => {
         console.log('ERROR UPDATING QUESTION HELPFUL');
@@ -28,7 +28,7 @@ const QuestionList = (props) => {
       <div className="question-meta">
         <button onClick={() => questionHelpful()} className="questionHelpful">Helpful?&nbsp;<u>Yes({props.helpfulness})</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</button>
         <button className="addAnswer" onClick={() => setModal(true)}>Add Answer</button>
-        <AnswerModal show={modal} hide={hideModal} question={props.question} name ={props.name} id={props.id}/>
+        <AnswerModal show={modal} hide={hideModal} question={props.question} name ={props.name} id={props.id} update={props.update}/>
       </div>
     </div>
   );

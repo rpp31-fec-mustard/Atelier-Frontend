@@ -74,7 +74,6 @@ app.get('/questions', (req, res) => {
     });
 });
 
-//add question COMPLETE
 app.post('/addQuestion', (req, res) => {
   console.log('Add question req', req.body);
   api.postQuestion(req.body)
@@ -86,7 +85,6 @@ app.post('/addQuestion', (req, res) => {
     });
 });
 
-//add answer COMPLETE
 app.post('/addAnswer', (req, res) => {
   console.log(req.body);
   api.postAnswer(req.body)
@@ -98,7 +96,6 @@ app.post('/addAnswer', (req, res) => {
     });
 });
 
-//mark question as helpful
 app.put ('/questionHelpful', (req, res) => {
   api.questionHelpful(req.body.questionId)
     .then(() => {
@@ -110,7 +107,6 @@ app.put ('/questionHelpful', (req, res) => {
 
 });
 
-// mark answer as helpful
 app.put('/answerHelpful', (req, res) => {
   api.answerHelpful(req.body.answerId)
     .then(() => {
@@ -121,8 +117,6 @@ app.put('/answerHelpful', (req, res) => {
     });
 });
 
-
-//mark answer for report COMPLETE
 app.put('/reportAnswer', (req, res) => {
   api.reportAnswer(req.body.answerId)
     .then(() => {

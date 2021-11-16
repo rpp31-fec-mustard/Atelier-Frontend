@@ -46,7 +46,7 @@ const answerModal = (props) => {
         questionId: props.id
       })
         .then(() => {
-          console.log('SUCCESS POST ANSWER');
+          props.update();
         })
         .catch((err) => {
           console.log('ERROR POST ANSWER');

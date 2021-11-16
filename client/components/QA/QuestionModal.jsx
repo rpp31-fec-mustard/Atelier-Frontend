@@ -44,6 +44,7 @@ const questionModal = (props) => {
       })
         .then(() => {
           props.hide();
+          props.update();
         })
         .catch((err) => {
           console.log('ERROR in posting question');
