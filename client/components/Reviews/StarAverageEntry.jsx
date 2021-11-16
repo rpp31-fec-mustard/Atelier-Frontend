@@ -26,7 +26,7 @@ const getAveragePercent = (num, avg) => {
 const StarAverageEntry = (props) => {
   return (
     <div className='star'>
-      <div className='numStar' onClick={props.handleChange.bind(this)} > {order(props.star)} stars:
+      <div className='starBreakdownNum' onClick={props.handleChange.bind(this)} > {order(props.star)} stars:
       </div>
       <progress className="star_bar" max="100" value={getAveragePercent(props.average, props.total)}> </progress>
     </div>

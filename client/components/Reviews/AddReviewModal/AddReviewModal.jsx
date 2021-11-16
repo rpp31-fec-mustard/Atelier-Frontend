@@ -98,7 +98,7 @@ class Modal extends React.Component {
       return (
         <div className='modal'>
           <form className='modal_content' onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); } } >
-            <div onClick={this.props.close}>X</div>
+            <div className='closeAddReviewModal' onClick={this.props.close}>X</div>
             <h2 className='modal_title'>Write Your Review</h2>
             <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
             <section className='modal_rating'>

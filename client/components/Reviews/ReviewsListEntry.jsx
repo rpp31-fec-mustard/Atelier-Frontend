@@ -40,8 +40,12 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
-  @track({time: new Date().toString(),
-    element: 'open image window'})
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    productId: props.productId,
+    className: 'img_modal'
+  }))
+
   showModal(e) {
     this.setState({
       modal: true,
@@ -49,8 +53,6 @@ class ReviewsListEntry extends React.Component {
     });
   }
 
-  @track({time: new Date().toString(),
-    element: 'close image window'})
   closeModal() {
     this.setState({
       modal: false
@@ -63,8 +65,11 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
-  @track({time: new Date().toString(),
-    element: 'show full review body'})
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    productId: this.props.productId,
+    className: 'showBody'
+  }))
   showMore(e) {
     e.preventDefault();
     this.setState({
@@ -98,11 +103,11 @@ class ReviewsListEntry extends React.Component {
   displayButton() {
     if (!this.state.showMore) {
       return (
-        <a href='/' onClick={this.showMore.bind(this)}> show more </a>
+        <a className='showBody' href='/' onClick={this.showMore.bind(this)}> show more </a>
       );
     } else {
       return (
-        <a href='/' onClick={this.showLess.bind(this)}> show less </a>
+        <a href='/' className='hideBody' onClick={this.showLess.bind(this)}> show less </a>
       );
     }
   }

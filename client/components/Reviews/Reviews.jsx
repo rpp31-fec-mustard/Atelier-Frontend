@@ -56,7 +56,8 @@ class Reviews extends React.Component {
 
   @track((props, state, [event]) => ({
     time: new Date().toString(),
-    element: `sort review list -${event.target.value}`
+    className: 'sortBy',
+    productId: props.productId
   }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
@@ -100,7 +101,8 @@ class Reviews extends React.Component {
 
   @track((props, state, [event]) => ({
     time: new Date().toString(),
-    element: `filter review list -${event.target.innerText[0]} star`
+    className: 'starBreakdownNum',
+    productId: props.productId
   }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
@@ -168,8 +170,6 @@ class Reviews extends React.Component {
       });
     }
   }
-
-
 
   render() {
     return (

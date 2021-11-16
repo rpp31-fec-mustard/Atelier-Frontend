@@ -1029,7 +1029,7 @@ progress::-webkit-progress-value {
   position: relative;
 }
 
-.numStar {
+.starBreakdownNum {
   border: none;
   cursor: pointer;
   text-decoration: underline;
