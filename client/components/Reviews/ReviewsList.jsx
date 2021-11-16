@@ -39,13 +39,12 @@ class ReviewsList extends React.Component {
 
   render() {
     return (
-      <div className="reviews_container">
-        <h3>Review List</h3>
+      <div className="reviewsList_container">
         <SortBy list={this.props.list} onChange={this.props.onChange} />
         <div className="entry_container">
           {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
             return (
-              <ReviewsListEntry key={i} review={currReview} rating={currReview.rating}/>
+              <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} />
             );
           })}
         </div>

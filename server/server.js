@@ -42,6 +42,17 @@ app.get('/getReviews', (req, res) => {
   });
 });
 
+app.post('/postHelpfulness', (req, res) => {
+  api.putReviewHelpfulness(req.body.reviewId)
+    .then(() => {
+      res.status(201).end();
+    })
+    .catch((error) => {
+      console.log('Server error: post /related', error);
+      res.status(500).send(error).end();
+    });
+});
+
 app.post('/related', (req, res) => {
   api.getRelated(req.body.productId)
     .then((relatedList) => {
