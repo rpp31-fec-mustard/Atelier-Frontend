@@ -83,7 +83,7 @@ const questionModal = (props) => {
         </div>
         <div className="modal-footer">
           <div id="error" className="error">{error}</div>
-          <button onClick={() => validateForm()}>Submit Question</button>
+          <button className="modal-footer-button" onClick={() => validateForm()}>Submit Question</button>
         </div>
       </div>
     </div>
