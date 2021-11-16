@@ -14,8 +14,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // productId: '59601', //testing
-      productId: '59553', //testing
+      productId: '59601', //testing
+      // productId: '59553', //testing
       product: fixtures.product, //testing
       // product: defaultOnLoad.productOnLoad, //testing
 
@@ -39,9 +39,9 @@ class App extends React.Component {
   }
 
   //off for testing
-  // componentDidMount() {
-  //   Promise.resolve(this.getProduct(this.state.productId));
-  // }
+  componentDidMount() {
+    Promise.resolve(this.getProduct(this.state.productId));
+  }
 
 
   getProduct(id) {
