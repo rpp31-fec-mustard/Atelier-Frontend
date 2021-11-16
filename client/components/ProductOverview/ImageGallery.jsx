@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
 import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
-import FullScreen from './ImageGallerySubs/FullScreen.jsx';
+import FullScreenModal from './ImageGallerySubs/FullScreenModal.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 
@@ -25,6 +25,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
   const [index, setIndex] = useState(0);
   const [indexMax, setIndexMax] = useState(0);
+  const [show, setShow] = useState(false);
 
 
 
@@ -40,11 +41,14 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     }
   };
 
-  const handleThumbnailClick = (index) => {
-    setIndex(index);
-  };
+  // const handleThumbnailClick = (index) => {
+  //   setIndex(index);
+  // };
 
 
+
+
+//useLayoutEffect?
   useEffect(() => {
     mlog('IG useEffect to set index to 0');
     setIndex(0);
@@ -65,12 +69,28 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
-        <ThumbnailsBar photos={photos}
-          handleThumbnailClick={handleThumbnailClick}
+        <ThumbnailsBar
+          photos={photos}
+          handleThumbnailClick={(index) => { setIndex(index); }}
           altText = {altText} />
-        <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
+        <ArrowLeft
+          imageLeftClick={imageLeftClick}
+          index={index} />
         <div className='space01_po'></div>
-        <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
+        <FullScreenModal
+          currentStyle={currentStyle}
+          productName={productName}
+          index={index}
+          show={show}
+          onClose={() => setShow(false)}/>
+        <button
+          className='hover_fullscreen_button_po'
+          onClick={() => setShow(true)}>H</button>
+        <ArrowRight
+          imageRightClick={imageRightClick}
+          index={index}
+          indexMax={photos.length - 1}/>
+
       </div>
     );
   } else {

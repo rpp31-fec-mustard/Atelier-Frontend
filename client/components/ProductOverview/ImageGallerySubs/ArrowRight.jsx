@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FullScreen from './FullScreen.jsx';
+// import FullScreenModal from './FullScreenModal.jsx';
 
 
 const ArrowRight = ({index, indexMax, imageRightClick}) => {
@@ -13,7 +13,7 @@ const ArrowRight = ({index, indexMax, imageRightClick}) => {
     return (
       <div className='arrow_po'>
         <div className='arrow_space_po'>
-          <FullScreen />
+
         </div>
         {(() => {
           if (index < indexMax) {
