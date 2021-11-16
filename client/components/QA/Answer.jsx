@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const Answer = (props) => {
 
-  const [report, setReport] = useState('Report');
   const convertDate = (date) => {
     var updatedDate = new Date(date).toDateString();
     updatedDate = updatedDate.split(' ');
@@ -11,8 +10,6 @@ const Answer = (props) => {
     updatedDate[1] = updatedDate[1] + ', ';
     return updatedDate.join(' ');
   };
-
-
 
   const answerHelpful = () => {
     axios.put('/answerHelpful', {
