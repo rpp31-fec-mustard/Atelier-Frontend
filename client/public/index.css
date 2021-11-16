@@ -994,9 +994,6 @@ border: none;
   text-align: center;
 }
 
-/* .ratingButton {
-display: inline-block;
-} */
 
 p {
   font-size: 12px;
@@ -1022,4 +1019,15 @@ p {
 
 .starRadio {
   opacity: 0;
+}
+
+.selectedStar {
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.modal_recommend {
+  border: none;
 }

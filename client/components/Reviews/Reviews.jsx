@@ -43,7 +43,6 @@ class Reviews extends React.Component {
     };
 
     return axios.request(options).then((result) => {
-      console.log('got', result);
       this.setState({
         allReviews: result.data.reviewsArr,
         displayedReviews: result.data.reviewsArr,

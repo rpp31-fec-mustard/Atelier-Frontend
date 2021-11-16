@@ -122,7 +122,6 @@ class ReviewsListEntry extends React.Component {
 
 
   render() {
-    console.log()
     return (
       <div className='entry'>
         <section className='starRating'> {this.renderStars()} </section>
