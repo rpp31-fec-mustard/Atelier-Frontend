@@ -20,18 +20,20 @@ const RelatedProducts = (props) => {
 
   return (
     <div id="related-products" className="related-submodule">
-      <h3>RELATED PRODUCTS</h3>
-      <div className="prod-cards-container">
+      <div className="related-submodule-content">
         <div className="button-container">
           <LeftButton
             cardsWrapper={cardsWrapper}
             handleLeftScroll={props.handleScroll.handleLeftScroll}
           />
         </div>
-        <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
-          (event) => { props.checkScrollPosition(cardsWrapper.current); }
-        }>
-          {productCards}
+        <div className="prod-cards-container">
+          <h3>RELATED PRODUCTS</h3>
+          <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
+            (event) => { props.checkScrollPosition(cardsWrapper.current); }
+          }>
+            {productCards}
+          </div>
         </div>
         <div className="button-container">
           <RightButton

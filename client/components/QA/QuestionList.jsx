@@ -7,10 +7,15 @@ const QuestionList = (props) => {
     setModal(false);
   };
   return (
-    <div className="questionEntry">Q: {props.question}
-      <div className="questionHelpful">Helpful? Yes({props.helpfulness}) |</div>
-      <div className="addAnswer" onClick={() => setModal(true)}>Add Answer</div>
-      <AnswerModal show={modal} hide={hideModal} question={props.question} name ={props.name}/>
+    <div className="questionEntry">
+      <div className="singleQuestion">
+        Q: {props.question}
+      </div>
+      <div className="question-meta">
+        <button className="questionHelpful">Helpful?&nbsp;<u>Yes({props.helpfulness})</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</button>
+        <button className="addAnswer" onClick={() => setModal(true)}>Add Answer</button>
+        <AnswerModal show={modal} hide={hideModal} question={props.question} name ={props.name}/>
+      </div>
     </div>
   );
 };

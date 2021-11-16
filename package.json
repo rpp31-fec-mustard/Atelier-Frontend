@@ -14,12 +14,12 @@
   },
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
-    "test-main": "jest --silent; exit 0",
-    "test": "jest --coverage",
-    "test-watch": "jest --watch",
     "start": "nodemon server/server.js --watch",
-    "lint": "eslint ./",
-    "build": "webpack --mode development --watch"
+    "build": "webpack --mode development --watch",
+    "test": "jest --silent; exit 0",
+    "test-log": "jest",
+    "test-watch": "jest --watch",
+    "lint": "eslint ./"
   },
   "pre-commit": [
     "lint",
@@ -40,6 +40,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
+    "react-tracking": "^9.0.0",
     "regenerator-runtime": "^0.13.9",
     "underscore": "^1.13.1"
   },

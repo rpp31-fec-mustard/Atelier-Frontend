@@ -6,16 +6,22 @@ import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
 import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
 import FullScreen from './ImageGallerySubs/FullScreen.jsx';
+import {DEBUG} from './ProductOverview.jsx';
 
 
 
 
-const ImageGallery = ({photos, productId}) => {
-  const DEBUG = false;
+
+const ImageGallery = ({currentStyle, productId, productName}) => {
+  // const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
+  var logC = '\x1b[35m';
 
-  mlog('photos', photos);
-  mlog('IG productId', productId);
+  mlog(logC + ' current style', currentStyle);
+  mlog(logC + ' IG productId', productId);
+
+  const photos = currentStyle.photos;
+  const altText = `${productName} in ${currentStyle.name }`;
 
   const [index, setIndex] = useState(0);
   const [indexMax, setIndexMax] = useState(0);
@@ -39,10 +45,10 @@ const ImageGallery = ({photos, productId}) => {
   };
 
 
-  // useEffect(() => {
-  //   mlog('IG useEffect');
-  //   setIndex(0);
-  // }, [productId]);
+  useEffect(() => {
+    mlog('IG useEffect to set index to 0');
+    setIndex(0);
+  }, [productId]);
 
 
   //needed because useEffect above is not resolved in time
@@ -50,7 +56,7 @@ const ImageGallery = ({photos, productId}) => {
   //before useEffect resets the index to 0.
   if (photos[index]) {
     let node = document.getElementsByClassName('image_gallery_po').style;
-    mlog('node', node);
+    mlog(logC + ' node', node);
 
     return (
       <div className='image_gallery_po' style={{
@@ -60,7 +66,8 @@ const ImageGallery = ({photos, productId}) => {
         backgroundSize: 'cover'
       }}>
         <ThumbnailsBar photos={photos}
-          handleThumbnailClick={handleThumbnailClick}/>
+          handleThumbnailClick={handleThumbnailClick}
+          altText = {altText} />
         <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
         <div className='space01_po'></div>
         <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>

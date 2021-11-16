@@ -1,9 +1,11 @@
 import React from 'react';
+import {DEBUG} from '../ProductOverview.jsx';
 
-const DEBUG = false;
-var mlog = (DEBUG) ? console.log : () => {};
 
 const StyleThumbnail = ({style, styleIndex, productName, handleStyleOnClick}) => {
+  // var DEBUG = true;
+  var mlog = (DEBUG) ? console.log : () => {};
+
   mlog('TN', style.style_id);
   mlog('TN2', style);
   mlog('TN3', `${productName} in ${style.name}`);
@@ -13,7 +15,6 @@ const StyleThumbnail = ({style, styleIndex, productName, handleStyleOnClick}) =>
   return (
     <React.Fragment>
       <img className='style_thumbnail_po'
-        key={style.style_id}
         onClick={() => { handleStyleOnClick(styleIndex); }}
         src={style.photos[0].thumbnail_url}
         alt={altText}>

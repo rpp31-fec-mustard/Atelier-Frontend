@@ -40,7 +40,7 @@ button {
   --global-border-color: rgb(125, 125, 125);
 
   /* RELATED PRODUCTS */
-  --prod-card-width: 22.5%;
+  --prod-card-width: 22%;
   --prod-card-height: 300px;
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
@@ -236,12 +236,14 @@ button {
 /** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 /** product style **/
 .style_po {
-  height: 30%;
+  height: 35%;
   margin: var(--po-info-margin);
 }
 
 .style_text_po {
-  height: 20px;
+  display: flex;
+  height: 35px;
+  align-items: center;
 }
 
 .text_po {
@@ -259,15 +261,19 @@ button {
 }
 
 .style_thumbnail_po {
-  height: 40px;
-  width: 40px;
-  border-radius: 20px;
-  margin: 10px
+  height: 50px;
+  width: 50px;
+  border-radius: 13px;
+  margin: 5px
 }
 
 /** add to bag **/
 .add_to_bag_po {
-  height: 30%;
+  display: flex;
+  flex-direction: column;
+  height: 22%;
+  width: 300px;
+  margin: var(--po-info-margin);
 }
 
 .add_to_bag_top_po {
@@ -275,15 +281,19 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
-.size_select {
-  width: 200px;
+.size_select_po {
+  width: 150px;
   height: 40px;
 }
 
-.qty_select {
+.dropdown_space_po {
+  width: 20px;
+}
+
+.qty_select_po {
   width: 75px;
   height: 40px;
 }
@@ -293,16 +303,16 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .add_to_bag_button_po {
-  width: 25%;
+  width: 130px;
   height: 50%;
 }
 
 .favorites_add_button_po {
-  width: 25%;
+  width: 95px;
   height: 50%;
 }
 
@@ -334,6 +344,7 @@ button {
 
 #related-main h3 {
   align-self: flex-start;
+  margin-left: 10px;
   border-style: none;
   color: var(--global-border-color);
 }
@@ -348,10 +359,17 @@ button {
   width: 100%;
 }
 
-.prod-cards-container {
+.related-submodule-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border: none;
+  width: 100%;
+}
+
+.prod-cards-container {
+  display: flex;
+  flex-direction: column;
   border: none;
   width: 100%;
 }
@@ -364,7 +382,7 @@ button {
   overflow-x: scroll;
   overflow-y: hidden;
   border: none;
-  width: 90%;
+  width: 100%;
 }
 
 /* change width if needed */
@@ -498,11 +516,12 @@ button {
 }
 
 .button-container {
-  align-self: center;
+  position: static;
   border: none;
 }
 
 .nav-button {
+  align-self: center;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: none;
@@ -512,9 +531,33 @@ button {
   font-size: 25px;
 }
 
-/* .lbutton-container .nav-button {
-  color: rgb(0, 0, 0, 0);
-} */
+.left-gradient {
+  position: relative;
+  border: none;
+  /* left: 100%;
+  width: 100%;
+  height: calc(100% - 17px);
+  background: linear-gradient(90deg, white 60%, transparent); */
+}
+
+.left-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
+}
+
+.right-gradient {
+  position: relative;
+  border: none;
+  /* left: -150%; */
+  /* width: 150%; */
+  /* height: calc(100% - 17px); */
+  /* background: linear-gradient(270deg, white 60%, transparent); */
+}
+
+.right-button-container .nav-button {
+  height: var(--prod-card-height);
+  padding: 0;
+}
 
 .prod-comparison-wrapper {
   position: fixed;
@@ -538,14 +581,52 @@ td {
 
 /* *** QUESTIONS/ANSWER *** */
 
+.qa-title {
+  width: 100%;
+  margin-left: 0px;
+  font-size: 18px;
+}
+
+.qa-search {
+  width: 100%;
+  margin-left: 0px;
+}
+
+.qa-list {
+  display: flex;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.search {
+  margin-left: 0px;
+  height: 50px;
+  width: 100%;
+}
+
 .questionsAndAnswers {
   width: 100%;
   border: none;
 }
 
-.questionButton {
+.questionButtonContainer {
   display: flex;
-  flex: auto;
+  width: 50%;
+
+}
+
+.questionButton {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width: 50%;
+  height: 50px;
+  background-color: white;
+  padding: 0px;
+}
+
+.questionDisplay {
+  width: 100%;
 }
 
 .questionList {
@@ -555,23 +636,69 @@ td {
   border: none;
 }
 
+.singleQuestion {
+  width: 700px;
+}
+
 .questionEntry {
   display: flex;
   flex: auto;
   font-weight: bold;
   font-size: 20px;
   border: none;
+  width: 100%;
+}
+
+.question-meta {
+  display: flex;
+  font-size: 13px;
+  margin-left: 10px;
 }
 
 .questionHelpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
   display: flex;
   flex: auto;
+  border: none;
+  background-color: white;
+  text-align: right;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.addAnswer {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  display: flex;
+  flex: auto;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  width: 150px;
+}
+
+.answer-meta-helpful {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 110px;
+}
+.answer-meta-report {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  border: none;
+  background-color: white;
+  text-align: left;
+  margin-top: 0px;
+  padding: 0px;
+  width: 50px;
 }
 
 .answer {
   display: flex;
   width: 100%;
-  /* flex-direction: row; */
   font-weight: bold;
   font-size: 20px;
   border: none;
@@ -591,6 +718,15 @@ td {
   font-weight: normal;
   font-size: 18px;
   border: none;
+}
+
+.answer-meta {
+  display: flex;
+  font-size: 13px;
+}
+
+.seller {
+  font-weight: bold;
 }
 
 .expandCollapseAnswers {
@@ -613,20 +749,58 @@ td {
 }
 
 .modal-content {
-  width: 500px;
+  font-size: 15px;
+  width: 700px;
+  height: 700px;
   background-color: white;
 }
 
 .modal-header {
+  flex-direction: row;
   padding: 10px;
 }
 
 .modal-footer {
+  /* display: flex;
+  flex-direction: row; */
   padding: 10px;
+}
+
+.modal-footer-button {
+  font-family: 'Zen Maru Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  width: 50%;
+  background-color: white;
+  padding: 0px;
+}
+
+.answer-thumbnail {
+  height: 50px;
+}
+
+.error {
+  color: red;
 }
 
 .modal-title {
   margin: 0;
+}
+
+.modal-subtitle {
+  margin: 0;
+}
+
+.close-modal-button {
+  margin-left: 650px;
+  display: flex;
+  background-color: white;
+  font-weight: bolder;
+  text-align: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
 .modal-body {
@@ -637,6 +811,8 @@ td {
 
 textarea {
   font-family: 'Zen Maru Gothic', sans-serif;
+  resize: none;
+  overflow: auto;
 }
 
 .add-question-body {
@@ -724,7 +900,6 @@ textarea {
 .reviewBody {
   font-size: 15px;
 }
-
 
 .overall {
   display: flex;
