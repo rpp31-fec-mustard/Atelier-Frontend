@@ -60,7 +60,13 @@ class QA extends React.Component {
           <Search searchQuestions={this.searchQuestions.bind(this)}/>
         </div>
         <div className="qa-list">
-          <Q_A product={this.state.productId} questions={this.state.questions} productInfo={this.state.productInfo} filter={this.state.search}/>
+          <Q_A
+            product={this.state.productId}
+            questions={this.state.questions}
+            productInfo={this.state.productInfo}
+            filter={this.state.search}
+            update={this.componentDidMount.bind(this)}
+          />
         </div>
       </div>
     );

@@ -74,6 +74,60 @@ app.get('/questions', (req, res) => {
     });
 });
 
+app.post('/addQuestion', (req, res) => {
+  console.log('Add question req', req.body);
+  api.postQuestion(req.body)
+    .then(() => {
+      res.send('add question success');
+    })
+    .catch((error) => {
+      res.status(500).send(error).end();
+    });
+});
+
+app.post('/addAnswer', (req, res) => {
+  console.log(req.body);
+  api.postAnswer(req.body)
+    .then(() => {
+      res.send('add answer success');
+    })
+    .catch((error) => {
+      res.status(500).send(error).end();
+    });
+});
+
+app.put ('/questionHelpful', (req, res) => {
+  api.questionHelpful(req.body.questionId)
+    .then(() => {
+      res.send('question helpful updated');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
+
+});
+
+app.put('/answerHelpful', (req, res) => {
+  api.answerHelpful(req.body.answerId)
+    .then(() => {
+      res.send('answer helpful updated');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
+});
+
+app.put('/reportAnswer', (req, res) => {
+  api.reportAnswer(req.body.answerId)
+    .then(() => {
+      res.send('answer reported');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
+});
+
+
 app.post('/interactions', (req, res) => {
   api.postInteraction(req.body)
     .then((data) => {
