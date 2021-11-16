@@ -30,14 +30,6 @@ afterEach(() => {
   container = null;
 });
 
-// test('Four module_containers should be rendering', () => {
-//   act(() => {
-//     render(<App />, container);
-//   });
-//   const modules = document.getElementsByClassName('module_container');
-//   expect(modules.length).toBe(4);
-// });
-
 describe('Rendering Components', () => {
   test('renders QA Component', () => {
     act(() => {
@@ -131,9 +123,8 @@ describe('Integration Tests', () => {
       render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
     });
     const questionButton = document.getElementsByClassName('questionButton');
-    const questionList = document.getElementsByClassName('questionList');
-    expect(questionButton.length).toBe(1);
-    expect(questionList.length).toBe(1);
+    expect(questionButton.length).toBe(2);
+
   });
 
   test('renders only two questions and two answers per question on load', () => {
@@ -146,13 +137,6 @@ describe('Integration Tests', () => {
     expect(singleAnswer.length).toBe(4);
   });
 
-  // test('QA Functionality', () => {
-  //   act(() => {
-  //     render(<QA product={59554} productInfo={fixtures.product}/>, container);
-  //   });
-  //   const moduleContainer = document.getElementsByClassName('module_container');
-  //   expect(moduleContainer.length).toBe(1);
-  // });
 });
 
 

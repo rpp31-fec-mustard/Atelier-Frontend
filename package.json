@@ -16,6 +16,7 @@
   "scripts": {
     "start": "nodemon server/server.js --watch",
     "build": "webpack --mode development --watch",
+    "coverage": "jest --coverage",
     "test": "jest --silent; exit 0",
     "test-log": "jest",
     "test-watch": "jest --watch",
