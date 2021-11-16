@@ -1,8 +1,9 @@
 /* eslint-disable */
+//data that is loaded on first page load to save api call
+
 const defaultOnLoad = {
 
-
-  productOnLoad: {
+  product: {
     "id": '59553',
     "campus": "hr-rpp",
     "name": "Default Data",
@@ -23,7 +24,7 @@ const defaultOnLoad = {
         }
     ]
   },
-  styleOnLoad: {
+  style: {
     'product_id': '59553',
     results: [
       {

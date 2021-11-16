@@ -22,7 +22,7 @@ const fixtures = {
     ]
   },
   styles: {
-    'product_id': 59648,
+    'product_id': 59553,
     results: [
       {
         'style_id': 365413,
@@ -84,27 +84,27 @@ const fixtures = {
           },
         ],
         skus: {
-          '2122777': {
+          '2122783': {
             quantity: 8,
             size: 'XS'
           },
-          '2122778': {
-            quantity: 16,
+          '2122784': {
+            quantity: 0,
             size: 'S'
           },
-          '2122779': {
+          '2122785': {
             quantity: 17,
             size: 'M'
           },
-          '2122780': {
-            quantity: 10,
+          '2122786': {
+            quantity: 0,
             size: 'L'
           },
-          '2122781': {
+          '2122787': {
             quantity: 15,
             size: 'XL'
           },
-          '2122782': {
+          '2122788': {
             quantity: 4,
             size: 'XL'
           }
@@ -131,23 +131,23 @@ const fixtures = {
             quantity: 0,
             size: 'XS'
           },
-          '2122778': {
+          '2122789': {
             quantity: 0,
             size: 'S'
           },
-          '2122779': {
+          '2122790': {
             quantity: 0,
             size: 'M'
           },
-          '2122780': {
+          '2122791': {
             quantity: 0,
             size: 'L'
           },
-          '2122781': {
+          '2122792': {
             quantity: 0,
             size: 'XL'
           },
-          '2122782': {
+          '21227893': {
             quantity: 0,
             size: 'XL'
           }

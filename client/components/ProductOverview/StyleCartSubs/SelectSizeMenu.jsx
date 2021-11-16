@@ -9,14 +9,14 @@ import {DEBUG} from '../ProductOverview.jsx';
 
 const SelectSizeMenu = ({skus, handleSetSize}) => {
 
-  // var DEBUG = true;
+  // var DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
-  mlog(logC + ' ATC skus', skus);
+  mlog(logC + ' SSM skus', skus);
 
   let skuList = Object.keys(skus).sort();
-  mlog(logC + ' ATC skuList', skuList);
+  mlog(logC + ' SSM skuList', skuList);
 
   const sizeTable = {
     XS: 'x-small',
@@ -33,10 +33,12 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
 
   useEffect(() => {
     if (loaded.current) {
-      mlog(logC + ' RESET SELECT SIZE');
+      mlog(logC + 'SSM  RESET SELECT SIZE');
+      mlog(logC + 'SSM ', document.getElementById('menu1_po'));
       document.getElementById('menu1_po').selectedIndex = 0;
       document.getElementById('menu2_po').selectedIndex = 0;
     } else {
+      mlog(logC + 'SSM  SKIP ON LOAD');
       loaded.current = true;
     }
   }, [skus]);
@@ -51,7 +53,7 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
   })) {
     return (
       <React.Fragment>
-        <select>
+        <select className='size_select_po' id='menu1_po'>
           <option>OUT OF STOCK</option>
         </select>
       </React.Fragment>
@@ -65,7 +67,7 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
             skuList.map((sku)=> {
               if (skus[sku].quantity > 0) {
                 const size = skus[sku].size;
-                mlog(logC + ' size test', sizeTable[size]);
+                mlog(logC + 'SSM  size test', sizeTable[size]);
                 return (
                   <option key={sku.toString()} value={skus[sku].size} sku={sku}>{sizeTable[size] ? sizeTable[size] : size }</option>
                 );

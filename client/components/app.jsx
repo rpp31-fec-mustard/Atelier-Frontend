@@ -7,16 +7,17 @@ import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import defaultOnLoad from './defaultOnLoad.jsx';
-
+// fixtures
+import fixtures from '../../test/fixtures.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       productId: '59601', //testing
-      // product: {}
       // productId: '59553', //testing
-      product: defaultOnLoad.productOnLoad, //testing
+      product: fixtures.product, //testing
+      // product: defaultOnLoad.productOnLoad, //testing
 
     };
     this.sendNumber = this.sendNumber.bind(this);
@@ -37,6 +38,7 @@ class App extends React.Component {
       });
   }
 
+  //off for testing
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
   }
