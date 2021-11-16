@@ -10,7 +10,7 @@ class ReviewsListEntry extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      helpful: 0,
+      helpful: this.props.review.helpfulness,
       body: '',
       addShowButton: false,
       showMore: false,
@@ -111,18 +111,24 @@ class ReviewsListEntry extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    if ((this.state.rating !== this.props.review.rating) || (this.state.helpful !== this.props.review.helpfulness)) {
-      this.reviewListBody(this.props.review.body);
-      this.setState({
-        rating: this.props.review.rating,
-        helpful: this.props.review.helpfulness
-      });
-    }
-  }
+  // componentDidUpdate() {
+  //   if ((this.state.rating !== this.props.review.rating) || (this.state.helpful !== this.props.review.helpfulness)) {
+  //     this.reviewListBody(this.props.review.body);
+  //     this.setState({
+  //       rating: this.props.review.rating,
+  //       helpful: this.props.review.helpfulness
+  //     });
+  //   }
+  // }
+  // componentDidUpdate() {
+  //   if (this.state.rating !== this.props.review.rating) {
+  //     this.reviewListBody(this.props.review.body);
+  //     this.setState({
+  //       rating: this.props.review.rating,
+  //     });
+  //   }
+  // }
 
-
-  //create post request that adjust data for item clicked.
   handleYesClick(e) {
     e.preventDefault();
     let num = this.state.helpful;
@@ -142,6 +148,7 @@ class ReviewsListEntry extends React.Component {
 
 
   render() {
+    console.log('body', this.props.review.body)
     return (
       <div className='entry'>
         <section className='wrapper_RT'>
