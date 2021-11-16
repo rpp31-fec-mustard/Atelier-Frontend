@@ -14,9 +14,9 @@ const order = (star) => {
   }
 };
 
-const getAveragePercent = (num, avg) => {
-  if (num && avg) {
-    let percent = (num / avg) * 100;
+const getAveragePercent = (num, total) => {
+  if (num && total) {
+    let percent = (num / total) * 100;
     return Math.floor(percent);
   } else {
     return 0;
@@ -26,9 +26,10 @@ const getAveragePercent = (num, avg) => {
 const StarAverageEntry = (props) => {
   return (
     <div className='star'>
-      <div className='numStar' onClick={props.handleChange.bind(this)} > {order(props.star)} stars:
+      <div className='numStar' onClick={props.handleChange.bind(this)}>{order(props.star)} stars:
       </div>
       <progress className="star_bar" max="100" value={getAveragePercent(props.average, props.total)}> </progress>
+      <section className='starTotalReviews'> ({props.average})</section>
     </div>
   );
 };

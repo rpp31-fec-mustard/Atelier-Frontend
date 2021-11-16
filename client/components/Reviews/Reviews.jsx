@@ -164,7 +164,7 @@ class Reviews extends React.Component {
     return (
       <div id='ratings_reviews' className='module_container'>
         <div className='reviewsTitle'>
-          <h1> Ratings and Reviews </h1>
+          <h3> Ratings and Reviews </h3>
         </div>
         <div className='filterMessage'>
           <FilterDisplay remove={this.onRemoveButton.bind(this)} filters={this.state.starFilter} />

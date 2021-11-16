@@ -123,29 +123,15 @@ const getReviews = (id, sort) => {
 };
 
 
-// const putReviewHelpfulness = (id) => {
-//   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
-//     .then((result) => {
-//       return result;
-//     })
-//     .catch((error) => {
-//       console.log('API Helper putReviewHelpfulness error: ', error);
-//     });
-// };
-
 const putReviewHelpfulness = (id) => {
-  let options = {
-    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful',
-    headers: auth.headers,
-    params: {
-      'review_id': id,
-    },
+  const options = {
     method: 'put',
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful/`,
+    headers: auth.headers
   };
-  return axios.request(options)
-    .then((result) => {
-      console.log('success');
-    })
+
+  return axios(options)
+    .then(() => { return; })
     .catch((error) => {
       console.log('API Helper putReviewHelpfulness error: ', error);
     });

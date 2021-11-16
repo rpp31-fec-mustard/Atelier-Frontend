@@ -19,7 +19,11 @@ class ReviewsListEntry extends React.Component {
 
   wouldRecommend() {
     if (this.props.review.recommend) {
-      return 'I would recommend this item!';
+      return (
+        <section>
+          <i className="fas fa-check"></i> I would recommend this item!
+        </section>
+      );
     }
   }
 
@@ -134,17 +138,16 @@ class ReviewsListEntry extends React.Component {
 
 
   render() {
-    console.log(this.props.review)
     return (
       <div className='entry'>
-        <section className='starRating'> {this.renderStars()} </section>
-        <section className='username'> {this.props.review.reviewer_name} </section>
-        <section className='date'> {this.convertDate(this.props.review.date)} </section>
-        <section className='rating'>Rating: {this.props.review.rating}</section>
-        <section className='reviewSummary'> {this.props.review.summary} </section>
-        <section className='recommend'>
-          <i className="fas fa-check"></i> {this.wouldRecommend()}
+        <section className='wrapper_RT'>
+          <section className='starRating'> {this.renderStars()} </section>
+          <section className='name_date_RT'>
+            <section className='username'> {this.props.review.reviewer_name} </section>
+            <section className='date'> , {this.convertDate(this.props.review.date)} </section>
+          </section>
         </section>
+        <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='reviewBody'>
           {this.state.body}
           <section className='bodyDisplayButton'>
@@ -158,6 +161,9 @@ class ReviewsListEntry extends React.Component {
             })}
             <ImgModal show={this.state.modal} close={this.closeModal.bind(this)} url={this.state.img} />
           </section>
+        </section>
+        <section className='recommend'>
+          {this.wouldRecommend()}
         </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>
