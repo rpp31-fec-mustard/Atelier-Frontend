@@ -102,7 +102,6 @@ describe('Rendering Components', () => {
     const component = document.getElementsByClassName('singleAnswer');
     expect(component.length).toBe(1);
   });
-
 });
 
 
@@ -113,9 +112,8 @@ describe('Integration Tests', () => {
       render(<Q_A productInfo={fixtures.product} questions={[]}/>, container);
     });
     const questionButton = document.getElementsByClassName('questionButton');
-    const questionList = document.getElementsByClassName('questionList');
+    expect(questionButton[0].innerHTML).toBe('Add Questions +');
     expect(questionButton.length).toBe(1);
-    expect(questionList.length).toBe(0);
   });
 
   test('renders add question button and question list if questions exist', () => {
@@ -123,8 +121,9 @@ describe('Integration Tests', () => {
       render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
     });
     const questionButton = document.getElementsByClassName('questionButton');
+    expect(questionButton[0].innerHTML).toBe('More Questions');
+    expect(questionButton[1].innerHTML).toBe('Add Questions +');
     expect(questionButton.length).toBe(2);
-
   });
 
   test('renders only two questions and two answers per question on load', () => {
@@ -137,6 +136,93 @@ describe('Integration Tests', () => {
     expect(singleAnswer.length).toBe(4);
   });
 
+  test('loads two more questions when More Questions button is clicked', () => {
+    act(() => {
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
+    });
+    const questionButton = document.getElementsByClassName('questionButton');
+    const questionEntry = document.getElementsByClassName('singleQuestion');
+    expect(questionEntry.length).toBe(2);
+    expect(questionButton[0].innerHTML).toBe('More Questions');
+
+    act(() => {
+      questionButton[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(questionEntry.length).toBe(4);
+  });
+
+  test('answer modal should show when add answer is clicked', () => {
+    act(() => {
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
+    });
+    const addAnswerButton = document.getElementsByClassName('addAnswer');
+
+    act(() => {
+      addAnswerButton[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const modal = document.getElementsByClassName('add-answer-body');
+    expect(modal.length).toBe(1);
+
+  });
+
+  test('error message should show when answer modal requirements have not been met', () => {
+    act(() => {
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
+    });
+    const addAnswerButton = document.getElementsByClassName('addAnswer');
+
+    act(() => {
+      addAnswerButton[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const modal = document.getElementsByClassName('add-answer-body');
+    expect(modal.length).toBe(1);
+    const submitButton = document.getElementsByClassName('modal-footer-button');
+    expect(submitButton[0].innerHTML).toBe('Submit Answer');
+
+    act(() => {
+      submitButton[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const error = document.getElementsByClassName('error');
+    expect(error.length).toBe(1);
+    expect(error[0].innerHTML).toBe('You must enter the following: Answer field is required, Username is required, Email is invalid');
+  });
+
+  test('question modal should show when add question is clicked', () => {
+    act(() => {
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
+    });
+    const addQuestionButton = document.getElementsByClassName('questionButton');
+    expect(addQuestionButton[1].innerHTML).toBe('Add Questions +');
+
+    act(() => {
+      addQuestionButton[1].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const questionModal = document.getElementsByClassName('add-question-body');
+    expect(questionModal.length).toBe(1);
+  });
+
+  test('error message should how when question modal requirements have not been met', () => {
+    act(() => {
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
+    });
+    const addQuestionButton = document.getElementsByClassName('questionButton');
+    expect(addQuestionButton[1].innerHTML).toBe('Add Questions +');
+
+    act(() => {
+      addQuestionButton[1].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const questionModal = document.getElementsByClassName('add-question-body');
+    expect(questionModal.length).toBe(1);
+    const submitButton = document.getElementsByClassName('modal-footer-button');
+    expect(submitButton[0].innerHTML).toBe('Submit Question');
+
+    act(() => {
+      submitButton[0].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    const error = document.getElementsByClassName('error');
+    expect(error.length).toBe(1);
+    expect(error[0].innerHTML).toBe('You must enter the following: Question field is required, Username is required, Email is invalid');
+  });
 });
 
 
