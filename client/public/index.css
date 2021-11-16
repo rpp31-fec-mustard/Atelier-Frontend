@@ -728,6 +728,7 @@ td {
 
 .singleQuestion {
   width: 700px;
+  border: none;
 }
 
 .questionEntry {
@@ -813,6 +814,7 @@ td {
 .answer-meta {
   display: flex;
   font-size: 13px;
+  border: none;
 }
 
 .seller {
