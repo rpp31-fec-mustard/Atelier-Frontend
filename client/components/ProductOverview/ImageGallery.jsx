@@ -25,6 +25,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
   const [index, setIndex] = useState(0);
   const [indexMax, setIndexMax] = useState(0);
+  const [show, setShow] = useState(false);
 
 
 
@@ -40,9 +41,12 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     }
   };
 
-  const handleThumbnailClick = (index) => {
-    setIndex(index);
-  };
+  // const handleThumbnailClick = (index) => {
+  //   setIndex(index);
+  // };
+
+
+
 
 //useLayoutEffect?
   useEffect(() => {
@@ -65,14 +69,27 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover'
       }}>
-        <ThumbnailsBar photos={photos}
-          handleThumbnailClick={handleThumbnailClick}
+        <ThumbnailsBar
+          photos={photos}
+          handleThumbnailClick={(index) => { setIndex(index); }}
           altText = {altText} />
-        <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
+        <ArrowLeft
+          imageLeftClick={imageLeftClick}
+          index={index} />
         <div className='space01_po'></div>
-        <FullScreenModal currentStyle={currentStyle} productName={productName}/>
-        <button className='hover_fullscreen_button_po'>H</button>
-        <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
+        <FullScreenModal
+          currentStyle={currentStyle}
+          productName={productName}
+          index={index}
+          show={show}
+          onClose={() => setShow(false)}/>
+        <button
+          className='hover_fullscreen_button_po'
+          onClick={() => setShow(true)}>H</button>
+        <ArrowRight
+          imageRightClick={imageRightClick}
+          index={index}
+          indexMax={photos.length - 1}/>
 
       </div>
     );
