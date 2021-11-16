@@ -4,7 +4,6 @@ import axios from 'axios';
 const questionModal = (props) => {
 
   const [error, setError] = useState(null);
-  // const [productId, setProductId] = useState(props.productId);
   const validateForm = () => {
     const questionBody = document.getElementById('question-body');
     const questionUser = document.getElementById('question-username');

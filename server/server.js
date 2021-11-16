@@ -82,30 +82,55 @@ app.post('/addQuestion', (req, res) => {
       res.send('add question success');
     })
     .catch((error) => {
-      console.log('Server error: add question', error);
       res.status(500).send(error).end();
     });
 });
 
-//add answer
+//add answer COMPLETE
 app.post('/addAnswer', (req, res) => {
-  api.postAnswer
+  console.log(req.body);
+  api.postAnswer(req.body)
+    .then(() => {
+      res.send('add answer success');
+    })
+    .catch((error) => {
+      res.status(500).send(error).end();
+    });
 });
 
 //mark question as helpful
 app.put ('/questionHelpful', (req, res) => {
-  api.questionHelpful
+  api.questionHelpful(req.body.questionId)
+    .then(() => {
+      res.send('question helpful updated');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
+
 });
 
 // mark answer as helpful
 app.put('/answerHelpful', (req, res) => {
-  api.answerHelpful
+  api.answerHelpful(req.body.answerId)
+    .then(() => {
+      res.send('answer helpful updated');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
 });
 
 
-//mark answer for report
+//mark answer for report COMPLETE
 app.put('/reportAnswer', (req, res) => {
-  api.reportAnswer
+  api.reportAnswer(req.body.answerId)
+    .then(() => {
+      res.send('answer reported');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
 });
 
 

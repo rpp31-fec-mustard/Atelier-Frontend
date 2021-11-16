@@ -161,37 +161,61 @@ const postQuestion = (data) => {
     .catch((err) => {
       return err;
     });
-
-
 };
 
 
 
 //add answer
 const postAnswer = (data) => {
-  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`, auth)
-
+  let questionId = Number(data.questionId);
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`, {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    photos: data.photos
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST ANSWER IN API HELPER';
+    })
+    .catch((err) => {
+      return err;
+    });
 };
 
 //mark question as helpful
-const questionHelpful = () => {
-  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`, auth);
-
+const questionHelpful = (questionId) => {
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`, {}, auth)
+    .then((res) => {
+      return 'SUCCESS HELPFUL QUESTION UPDATE';
+    })
+    .catch((err) => {
+      return 'ERROR HELPFUL QUESTION UPDATE', err;
+    });
 };
 
 
 
 // mark answer as helpful
-const answerHelpful = () => {
-
-  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, auth)
+const answerHelpful = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, {}, auth)
+    .then(() => {
+      return 'SUCCESS UPDATING ANSEWR HELPFUL';
+    })
+    .catch((err) => {
+      return 'FAILED TO UPDATE ANSWER HELPFUL';
+    });
 };
 
 
 //mark answer for report
-const reportAnswer = () => {
-
-  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`, auth)
+const reportAnswer = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`, {}, auth)
+    .then(() => {
+      return 'Answer Reported';
+    })
+    .catch((err) => {
+      return 'FAILED TO report answer', err;
+    });
 };
 
 const postInteraction = (body) => {

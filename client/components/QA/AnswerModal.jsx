@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import AnswerModalThumbnail from './AnswerModalThumbnails.jsx';
 
 const answerModal = (props) => {
@@ -37,22 +38,34 @@ const answerModal = (props) => {
     }
     if (errorMessage.length === 0) {
       setError([]);
+      axios.post('/addAnswer', {
+        body: answerBody.value,
+        name: answerUser.value,
+        email: answerEmail.value,
+        photos: thumbnails,
+        questionId: props.id
+      })
+        .then(() => {
+          console.log('SUCCESS POST ANSWER');
+        })
+        .catch((err) => {
+          console.log('ERROR POST ANSWER');
+        });
     }
-
   };
 
   const photoThumbnail = () => {
-
     var file = document.querySelector('input[type=file').files[0];
     var reader = new FileReader();
 
     if (file) {
       reader.readAsDataURL(file);
+      const thumbnailURL = URL.createObjectURL(file);
+      console.log('thumbnail url', thumbnailURL);
+      reader.onloadend = () => {
+        setThumbnails(thumbnails.concat(thumbnailURL));
+      };
     }
-
-    reader.onloadend = () => {
-      setThumbnails(thumbnails.concat(reader.result));
-    };
   };
 
   if (!props.show) {

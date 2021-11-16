@@ -82,6 +82,7 @@ const Q_A = (props) => {
           {displayQuestions.map((question, answer) =>
             <Question
               key={question.question_id}
+              id={question.question_id}
               helpfulness={question.question_helpfulness}
               question={question.question_body}
               answer={[question.answers]}
@@ -102,6 +103,7 @@ const Q_A = (props) => {
           {displayQuestions.map((question, answer) =>
             <Question
               key={question.question_id}
+              id={question.question_id}
               helpfulness={question.question_helpfulness}
               question={question.question_body}
               answer={[question.answers]}
