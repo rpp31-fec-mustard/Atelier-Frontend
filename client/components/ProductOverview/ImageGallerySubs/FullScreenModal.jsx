@@ -28,7 +28,7 @@ const FullScreenModal = ({currentStyle, productName}) => {
 
 
   const handleOnMouseEnter = () => {
-    document.getElementsByClassName('main_image_exp_po')[0].style.transform = 'scale(2.5)';
+    document.getElementsByClassName('main_image_exp_po')[0].style.transform = 'scale(2.5)'
   };
 
   const handleOnMouseLeave = () => {
