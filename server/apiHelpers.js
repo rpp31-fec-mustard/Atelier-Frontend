@@ -1,7 +1,7 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-const auth = { headers: {Authorization: `${config.key}`} };
+const auth = {headers: {Authorization: `${config.key}`} };
 
 
 const getProduct = (productId) => {
@@ -153,12 +153,12 @@ const postReview = (review) => {
 
 
 const putReviewHelpfulness = (id) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
-    .then((result) => {
-      return result;
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful`, {}, auth)
+    .then((res) => {
+      return;
     })
     .catch((err) => {
-      console.log('API Helper putReviewHelpfulness error: ', error);
+      return 'error updated review helpfulness', err;
     });
 };
 
@@ -169,8 +169,96 @@ const getQuestions = (productId) => {
     .then((results) => {
       return results.data.results;
     })
+    .catch((error) => {
+      return error;
+    });
+};
+
+//add question
+const postQuestion = (data) => {
+  let productId = Number(data.productId);
+
+  return axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions', {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    product_id: productId
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST QUESTION IN API HELPER';
+    })
     .catch((err) => {
-      console.log('API Helper getQuestions error: ', error);
+      return err;
+    });
+};
+
+
+
+//add answer
+const postAnswer = (data) => {
+  let questionId = Number(data.questionId);
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`, {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    photos: data.photos
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST ANSWER IN API HELPER';
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+//mark question as helpful
+const questionHelpful = (questionId) => {
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`, {}, auth)
+    .then((res) => {
+      return 'SUCCESS HELPFUL QUESTION UPDATE';
+    })
+    .catch((err) => {
+      return 'ERROR HELPFUL QUESTION UPDATE', err;
+    });
+};
+
+
+
+// mark answer as helpful
+const answerHelpful = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, {}, auth)
+    .then(() => {
+      return 'SUCCESS UPDATING ANSEWR HELPFUL';
+    })
+    .catch((err) => {
+      return 'FAILED TO UPDATE ANSWER HELPFUL';
+    });
+};
+
+
+//mark answer for report
+const reportAnswer = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`, {}, auth)
+    .then(() => {
+      return 'Answer Reported';
+    })
+    .catch((err) => {
+      return 'FAILED TO report answer', err;
+    });
+};
+
+const postInteraction = (body) => {
+  const options = {
+    method: 'post',
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions',
+    data: body,
+    headers: auth.headers
+  };
+
+  return axios(options)
+    .then((response) => { return response.data; })
+    .catch((error) => {
+      console.log('API Helper postInteraction error: ', error);
     });
 };
 
@@ -182,5 +270,11 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
-  postReview: postReview
+  postReview: postReview,
+  postInteraction: postInteraction,
+  postQuestion: postQuestion,
+  postAnswer: postAnswer,
+  questionHelpful: questionHelpful,
+  answerHelpful: answerHelpful,
+  reportAnswer: reportAnswer
 };

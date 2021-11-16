@@ -32,6 +32,7 @@ describe('Related products module: render tests', () => {
     test('<RelatedProducts /> should receive a list of relatedProducts on render', () => {
       withHooks(() => {
         const related = shallow(<Related productId={'59601'}/>);
+        console.log(related.debug());
         return Promise.resolve().then(() => {
           expect(related.find(RelatedProducts).props().relatedProducts).toBe(fixtures.relatedProducts);
         });

@@ -23,7 +23,12 @@ class ReviewsListEntry extends React.Component {
       return (
         <section>
           <i className="fas fa-check"></i> I would recommend this item!
+<<<<<<< HEAD
         </section>);
+=======
+        </section>
+      );
+>>>>>>> main
     }
   }
 
@@ -121,9 +126,29 @@ class ReviewsListEntry extends React.Component {
   }
 
 
+  //create post request that adjust data for item clicked.
+  handleYesClick(e) {
+    e.preventDefault();
+    let num = this.state.helpful;
+    if (!localStorage.getItem(this.props.review.review_id)) {
+      localStorage.setItem(this.props.review.review_id, true);
+      this.setState({
+        helpful: num + 1
+      });
+
+      axios.post('/postHelpfulness', { reviewId: this.props.review.review_id })
+        .catch((err) => {
+          console.log('Client unable to post helpfulness', err);
+        });
+
+    }
+  }
+
+
   render() {
     return (
       <div className='entry'>
+<<<<<<< HEAD
         <section className='starRating'> {this.renderStars()} </section>
         <section className='username'> {this.props.review.reviewer_name} </section>
         <section className='date'> {this.convertDate(this.props.review.date)} </section>
@@ -131,7 +156,16 @@ class ReviewsListEntry extends React.Component {
         <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='recommend'>
           {this.wouldRecommend()}
+=======
+        <section className='wrapper_RT'>
+          <section className='starRating'> {this.renderStars()} </section>
+          <section className='name_date_RT'>
+            <section className='username'> {this.props.review.reviewer_name} </section>
+            <section className='date'> , {this.convertDate(this.props.review.date)} </section>
+          </section>
+>>>>>>> main
         </section>
+        <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='reviewBody'>
           {this.state.body}
           <section className='bodyDisplayButton'>
@@ -146,10 +180,13 @@ class ReviewsListEntry extends React.Component {
             <ImgModal show={this.state.modal} close={this.closeModal.bind(this)} url={this.state.img} />
           </section>
         </section>
+        <section className='recommend'>
+          {this.wouldRecommend()}
+        </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>
           Helpful?
-          <a href=''>
+          <a href='' onClick= {this.handleYesClick.bind(this)}>
             Yes({this.state.helpful})
           </a>
         </section>
