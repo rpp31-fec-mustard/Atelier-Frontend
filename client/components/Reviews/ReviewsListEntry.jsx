@@ -23,12 +23,8 @@ class ReviewsListEntry extends React.Component {
       return (
         <section>
           <i className="fas fa-check"></i> I would recommend this item!
-<<<<<<< HEAD
-        </section>);
-=======
         </section>
       );
->>>>>>> main
     }
   }
 
@@ -148,22 +144,12 @@ class ReviewsListEntry extends React.Component {
   render() {
     return (
       <div className='entry'>
-<<<<<<< HEAD
-        <section className='starRating'> {this.renderStars()} </section>
-        <section className='username'> {this.props.review.reviewer_name} </section>
-        <section className='date'> {this.convertDate(this.props.review.date)} </section>
-        <section className='rating'>Rating: {this.props.review.rating}</section>
-        <section className='reviewSummary'> {this.props.review.summary} </section>
-        <section className='recommend'>
-          {this.wouldRecommend()}
-=======
         <section className='wrapper_RT'>
           <section className='starRating'> {this.renderStars()} </section>
           <section className='name_date_RT'>
             <section className='username'> {this.props.review.reviewer_name} </section>
             <section className='date'> , {this.convertDate(this.props.review.date)} </section>
           </section>
->>>>>>> main
         </section>
         <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='reviewBody'>
