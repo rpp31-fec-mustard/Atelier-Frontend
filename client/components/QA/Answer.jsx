@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Answer = (props) => {
@@ -12,12 +12,15 @@ const Answer = (props) => {
     return updatedDate.join(' ');
   };
 
+
+
   const answerHelpful = () => {
     axios.put('/answerHelpful', {
       answerId: props.id
     })
       .then(() => {
         props.update();
+        localStorage.setItem(`${props.id} answer`, true);
       })
       .catch((err) => {
         console.log('ERROR ANSWER HELPFUL NOT UPDATED', err);
@@ -29,13 +32,31 @@ const Answer = (props) => {
       answerId: props.id
     })
       .then(() => {
-        setReport('Reported');
-        props.update();
+        var pressedReportButton = document.getElementById(`${props.id}report`);
+        pressedReportButton.innerHTML = 'Reported';
+        localStorage.setItem(`${props.id} report`, true);
       })
       .catch((err) => {
         console.log('ERROR REPORTING ANSWER', err);
       });
   };
+
+
+  useEffect(() => {
+    const answerButton = document.getElementById(`${props.id}answer`);
+    const reportButton = document.getElementById(`${props.id}report`);
+    if (localStorage.getItem(`${props.id} answer`)) {
+      answerButton.style.pointerEvents = 'none';
+    } else {
+      answerButton.style.pointerEvents = 'auto';
+
+    }
+    if (localStorage.getItem(`${props.id} report`)) {
+      reportButton.style.pointerEvents = 'none';
+    } else {
+      reportButton.style.pointerEvents = 'auto';
+    }
+  });
 
   if (props.name === 'Seller') {
     return (
@@ -44,8 +65,8 @@ const Answer = (props) => {
           <div className="answer-meta"> by
             <div className="seller">&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
-            <button onClick={() => answerHelpful()} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
-            <button onClick={() => reportAnswer()} className="answer-meta-report">&nbsp;<u>{report}</u></button>
+            <button onClick={() => answerHelpful()} id={props.id + 'answer'} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+            <button onClick={() => reportAnswer()} id={props.id + 'report'} className="answer-meta-report">&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>
@@ -57,8 +78,8 @@ const Answer = (props) => {
           <div className="answer-meta">by
             <div>&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
-            <button onClick={() => answerHelpful()} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
-            <button onClick={() => reportAnswer()} className="answer-meta-report">&nbsp;<u>{report}</u></button>
+            <button onClick={() => answerHelpful()} id={props.id + 'answer'} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+            <button onClick={() => reportAnswer()} id={props.id + 'report'} className="answer-meta-report">&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>

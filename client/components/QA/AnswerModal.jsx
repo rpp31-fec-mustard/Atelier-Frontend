@@ -46,6 +46,7 @@ const answerModal = (props) => {
         questionId: props.id
       })
         .then(() => {
+          props.hide();
           props.update();
         })
         .catch((err) => {
@@ -61,7 +62,6 @@ const answerModal = (props) => {
     if (file) {
       reader.readAsDataURL(file);
       const thumbnailURL = URL.createObjectURL(file);
-      console.log('thumbnail url', thumbnailURL);
       reader.onloadend = () => {
         setThumbnails(thumbnails.concat(thumbnailURL));
       };
