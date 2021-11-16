@@ -141,8 +141,57 @@ const getQuestions = (productId) => {
       return results.data.results;
     })
     .catch((error) => {
-      console.log('API Helper getQuestions error: ', error);
+      return error;
     });
+};
+
+//add question
+const postQuestion = (data) => {
+  let productId = Number(data.productId);
+
+  return axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions', {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    product_id: productId
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST QUESTION IN API HELPER';
+    })
+    .catch((err) => {
+      return err;
+    });
+
+
+};
+
+
+
+//add answer
+const postAnswer = (data) => {
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`, auth)
+
+};
+
+//mark question as helpful
+const questionHelpful = () => {
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`, auth);
+
+};
+
+
+
+// mark answer as helpful
+const answerHelpful = () => {
+
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, auth)
+};
+
+
+//mark answer for report
+const reportAnswer = () => {
+
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`, auth)
 };
 
 const postInteraction = (body) => {
@@ -168,5 +217,10 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
-  postInteraction: postInteraction
+  postInteraction: postInteraction,
+  postQuestion: postQuestion,
+  postAnswer: postAnswer,
+  questionHelpful: questionHelpful,
+  answerHelpful: answerHelpful,
+  reportAnswer: reportAnswer
 };

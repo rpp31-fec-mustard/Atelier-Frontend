@@ -72,7 +72,7 @@ const Q_A = (props) => {
     return (
       <div className="questionButtonContainer">
         <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-        <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
+        <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
       </div>
     );
   } else if (displayQuestions.length !== sortedQuestions.length) {
@@ -91,7 +91,7 @@ const Q_A = (props) => {
         <div className="questionButtonContainer">
           <button className="questionButton" onClick={() => setCount(count + 2)}>More Questions</button>
           <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
+          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
         </div>
       </div>
     );
@@ -110,7 +110,7 @@ const Q_A = (props) => {
         </div>
         <div className="questionButtonContainer">
           <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name}/>
+          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product}/>
         </div>
       </div>
     );

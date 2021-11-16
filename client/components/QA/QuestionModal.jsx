@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const questionModal = (props) => {
 
   const [error, setError] = useState(null);
+  // const [productId, setProductId] = useState(props.productId);
   const validateForm = () => {
     const questionBody = document.getElementById('question-body');
     const questionUser = document.getElementById('question-username');
@@ -13,12 +15,21 @@ const questionModal = (props) => {
     if (questionBody.value === '' || questionBody.value === null) {
       errorMessage.push('Question field is required');
     }
+    if (questionBody.value.length > 1000) {
+      errorMessage.push('1000 character limit exceeded');
+    }
     if (questionUser.value === '' || questionUser.value === null) {
       errorMessage.push('Username is required');
+    }
+    if (questionUser.value.length > 60) {
+      errorMessage.push('Username cannot exceed 60 characters');
     }
     var validateEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     if (!validateEmail.test(questionEmail.value)) {
       errorMessage.push('Email is invalid');
+    }
+    if (questionEmail.value.length > 60) {
+      errorMessage.push('Email cannot exceed 60 characters');
     }
 
     if (errorMessage.length > 0) {
@@ -26,8 +37,19 @@ const questionModal = (props) => {
     }
     if (errorMessage.length === 0) {
       setError([]);
+      axios.post('/addQuestion', {
+        body: questionBody.value,
+        name: questionUser.value,
+        email: questionEmail.value,
+        productId: props.productId
+      })
+        .then(() => {
+          props.hide();
+        })
+        .catch((err) => {
+          console.log('ERROR in posting question');
+        });
     }
-
   };
 
   if (!props.show) {

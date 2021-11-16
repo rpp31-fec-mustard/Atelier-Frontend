@@ -74,6 +74,41 @@ app.get('/questions', (req, res) => {
     });
 });
 
+//add question COMPLETE
+app.post('/addQuestion', (req, res) => {
+  console.log('Add question req', req.body);
+  api.postQuestion(req.body)
+    .then(() => {
+      res.send('add question success');
+    })
+    .catch((error) => {
+      console.log('Server error: add question', error);
+      res.status(500).send(error).end();
+    });
+});
+
+//add answer
+app.post('/addAnswer', (req, res) => {
+  api.postAnswer
+});
+
+//mark question as helpful
+app.put ('/questionHelpful', (req, res) => {
+  api.questionHelpful
+});
+
+// mark answer as helpful
+app.put('/answerHelpful', (req, res) => {
+  api.answerHelpful
+});
+
+
+//mark answer for report
+app.put('/reportAnswer', (req, res) => {
+  api.reportAnswer
+});
+
+
 app.post('/interactions', (req, res) => {
   api.postInteraction(req.body)
     .then((data) => {
