@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import ThumbnailsBar from './ImageGallerySubs/ThumbnailsBar.jsx';
 import ArrowLeft from './ImageGallerySubs/ArrowLeft.jsx';
 import ArrowRight from './ImageGallerySubs/ArrowRight.jsx';
-import FullScreen from './ImageGallerySubs/FullScreen.jsx';
+import FullScreenModal from './ImageGallerySubs/FullScreenModal.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 
@@ -44,7 +44,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     setIndex(index);
   };
 
-
+//useLayoutEffect?
   useEffect(() => {
     mlog('IG useEffect to set index to 0');
     setIndex(0);
@@ -70,7 +70,10 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
           altText = {altText} />
         <ArrowLeft imageLeftClick={imageLeftClick} index={index} />
         <div className='space01_po'></div>
+        <FullScreenModal currentStyle={currentStyle} productName={productName}/>
+        <button className='hover_fullscreen_button_po'>H</button>
         <ArrowRight imageRightClick={imageRightClick} index={index} indexMax={photos.length - 1}/>
+
       </div>
     );
   } else {
