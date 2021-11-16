@@ -20,11 +20,6 @@ html {
   width: 1040px;
 }
 
-#outlines {
-  position: sticky;
-  top: 0;
-}
-
 div {
   border: 1px solid var(--global-border-color);
 }
@@ -50,7 +45,8 @@ button {
   --comparison-width: 500px;
 
    /* PRODUCT OVERVIEW */
-  --po-info-margin: 0px 0px 0px 20px;
+  --po-info-margin: 0px 20px 0px 20px;
+  --po-info-text-padding: 0px 0px 0px 10px;
 
 }
 
@@ -209,6 +205,7 @@ button {
   flex-direction: row;
   height: 10%;
   margin: var(--po-info-margin);
+  padding: var(--po-info-text-padding);
   align-items: end;
 }
 
@@ -232,6 +229,7 @@ button {
 
 .price_po {
   height: 5%;
+  padding: var(--po-info-text-padding);
   margin: var(--po-info-margin);
 }
 
@@ -240,9 +238,10 @@ button {
 .style_po {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   height: 35%;
   margin: var(--po-info-margin);
+
 }
 
 .style_text_po {
@@ -254,7 +253,8 @@ button {
 
 .text_po {
   padding: 0px;
-  margin: 0px
+  margin: 0px;
+  padding: var(--po-info-text-padding);
 }
 
 .style_row_thumbnail_po {
@@ -264,6 +264,7 @@ button {
   flex-direction: row;
   flex-flow: wrap;
   overflow: overlay;
+  padding: 0px 10px;
 }
 
 .style_thumbnail_po {
@@ -279,7 +280,7 @@ button {
   flex-direction: column;
   height: 22%;
   width: 300px;
-  margin: var(--po-info-margin);
+  margin: 0px 5px;
 }
 
 .add_to_bag_top_po {
@@ -307,7 +308,7 @@ button {
 .add_to_bag_bottom_po {
   height: 50%;
   display: grid;
-  grid-template-columns: 2fr 1fr 11fr;
+  grid-template-columns: 10fr 1fr 8fr;
   align-items: center;
   justify-content: center;
 }
@@ -317,7 +318,8 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
+  /* padding: var(--po-info-text-padding); */
 }
 
 .add_to_bag_button_po {
