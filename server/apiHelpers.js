@@ -124,16 +124,12 @@ const getReviews = (id, sort) => {
 
 
 const putReviewHelpfulness = (id) => {
-  const options = {
-    method: 'put',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful/`,
-    headers: auth.headers
-  };
-
-  return axios(options)
-    .then(() => { return; })
-    .catch((error) => {
-      console.log('API Helper putReviewHelpfulness error: ', error);
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful`, {}, auth)
+    .then((res) => {
+      return;
+    })
+    .catch((err) => {
+      return 'error updated review helpfulness', err;
     });
 };
 
