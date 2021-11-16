@@ -916,24 +916,38 @@ textarea {
 
 
 /* *** RATINGS/REVIEWS *** */
+#ratings_reviews {
+align-items: flex-start;
+height: 600px;
+border: none;
+margin-top: 0px;
+}
 
 .reviews {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 400px;
+  height: 600px;
   margin-top: 0px;
   border: none;
+  text-align: left;
+  justify-content: left;
 }
 
-.reviews_container {
+.reviewsTitle {
+  border: none;
+  margin-top: 10px;
+  border-style: none;
+  color: var(--global-border-color);
+}
+
+.reviewsList_container {
   display: flex;
   flex-direction:column;
   align-items: center;
   width: 100%;
   height: 100%;
+  border: none;
 }
 
 .ratings_container {
@@ -954,11 +968,48 @@ textarea {
   border: none;
 }
 
-.entry_container {
-  width: 80%;
-  height: 60%;
-  overflow-y: scroll;
+.sortBy {
+  border: none;
+  font-weight: bolder;
 }
+
+.sortByButton {
+  border: none;
+  text-decoration: underline;
+}
+
+.entry {
+  border: none;
+  border-bottom: 1px solid;
+  margin-top: 7px;
+  margin-right: 7px;
+}
+
+.entry_container {
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+  border: none;
+}
+
+
+.wrapper_RT {
+  display: flex;
+  justify-content: space-between;
+}
+
+.starRating {
+  font-size: 12px;
+  color: var(--global-border-color);
+}
+
+.name_date_RT {
+  display: flex;
+  font-size: 11px;
+  color: rgb(179, 130, 130);
+}
+
+
 .reviewBody {
   display: flex;
   flex-direction: column;
@@ -984,12 +1035,28 @@ textarea {
 }
 
 .reviewSummary {
- font-weight: bold;
+  font-weight: bold;
+  margin: 20px 0px 20px 0px;
 }
 
 .reviewBody {
-  font-size: 15px;
+  font-size: 13px;
 }
+
+.bodyDisplayButton {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.recommend {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.helpful {
+  font-size: 13px;
+}
+
 
 .overall {
   display: flex;
@@ -997,9 +1064,9 @@ textarea {
   height: 50px;
   width: 80%;
   color: rgb(77, 63, 63);
- justify-content: center;
- align-items: center;
- border: none;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }
 
 .starScale {
@@ -1009,7 +1076,7 @@ textarea {
 .starBreakdown {
   margin-top: 10px;
   height: 110px;
-  width: 80%;
+  width: 90%;
   overflow-y: scroll;
   border: none;
 }
@@ -1018,25 +1085,17 @@ textarea {
   display: flex;
   flex-direction: column;
   height: 300px;
-  width: 80%;
+  width: 90%;
   font-size: 10px;
   border: none;
   overflow-y: scroll;
   font-size: 10px;
 }
 
-.star {
-  border: none;
-}
-
-.numReviews {
-  border: none;
-  margin: 10px;
-}
-
-.reviewsTitle {
-  border: none;
-  margin-top: 25px;
+.starTotalReviews {
+  font-size: 10px;
+  margin-left: 4px;
+  color: rgb(192, 159, 159);
 }
 
 .overallRating {
@@ -1056,15 +1115,24 @@ textarea {
   display: flex;
   flex-direction: row;
   border: none;
+  height: 15px;
+  justify-content: center;
+  text-align: center;
+  margin-top: 5px;
 }
 
 progress {
   border-radius: 7px;
   margin-top: 5px;
   margin-left: 5px;
-  height: 10px;
-  width: 75%;
+  height: 7px;
+  width: 55%;
 }
+
+.numReviews {
+  margin-bottom: 30px;
+}
+
 
 progress::-webkit-progress-bar {
   background-color: rgb(143, 143, 129);
@@ -1115,18 +1183,15 @@ progress::-webkit-progress-value {
   color: rgb(128, 124, 124);
 }
 
-.star {
-  position: relative;
-}
-
 .numStar {
   border: none;
   cursor: pointer;
   text-decoration: underline;
+  font-size: 10px;
 }
 
 .numStar:hover {
- background-color: lightskyblue;
+  background-color: lightskyblue;
 }
 
 .charRatingEntry {
@@ -1134,12 +1199,12 @@ progress::-webkit-progress-value {
 }
 
 .pBreakdownScale {
-position: relative;
-display: flex;
-flex-direction: row;
-width: 254px;
-margin: 4px 10px 0px 10px;
-border: none;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 254px;
+  margin: 4px 10px 0px 10px;
+  border: none;
 }
 
 .innerBar {
@@ -1210,6 +1275,7 @@ border: none;
   position: absolute;
   height:500px;
   width:600px;
+  object-fit: scale-down;
 }
 
 .modal {
@@ -1282,6 +1348,5 @@ p {
 .starRadio {
   opacity: 0;
 }
-
 
 
