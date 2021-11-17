@@ -46,6 +46,7 @@ const answerModal = (props) => {
         questionId: props.id
       })
         .then(() => {
+          setThumbnails([]);
           props.hide();
           props.update();
         })
@@ -57,15 +58,18 @@ const answerModal = (props) => {
 
   const photoThumbnail = () => {
     var file = document.querySelector('input[type=file').files[0];
-    var reader = new FileReader();
-
-    if (file) {
-      reader.readAsDataURL(file);
-      const thumbnailURL = URL.createObjectURL(file);
-      reader.onloadend = () => {
-        setThumbnails(thumbnails.concat(thumbnailURL));
-      };
-    }
+    // var reader = new FileReader();
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', 'mustardUpload');
+    axios.post('https://api.cloudinary.com/v1_1/mustard55/image/upload/', fd, { headers: { 'X-Requested-With': 'MLHttpRequest' } })
+      .then(res => {
+        let newUrl = res.data.secure_url;
+        setThumbnails(thumbnails.concat(newUrl));
+      })
+      .catch(err => {
+        console.log('error', err);
+      });
   };
 
   if (!props.show) {
