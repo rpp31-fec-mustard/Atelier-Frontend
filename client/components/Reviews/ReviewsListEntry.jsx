@@ -148,9 +148,7 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
-
   render() {
-    console.log(this.props.review.photos);
     return (
       <div className='entry'>
         <section className='wrapper_RT'>

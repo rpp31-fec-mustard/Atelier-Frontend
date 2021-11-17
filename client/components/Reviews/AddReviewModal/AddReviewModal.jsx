@@ -49,12 +49,12 @@ class Modal extends React.Component {
 
     axios.post('https://api.cloudinary.com/v1_1/mustard55/image/upload/', fd, { headers: { 'X-Requested-With': 'MLHttpRequest' } })
       .then(res => {
-        console.log('res', res.data.secure_url);
         let newUrl = res.data.secure_url;
         this.setState({
           selectedImg: newUrl,
           allImages: this.state.allImages.concat(newUrl)
         });
+        return this.state.allImages;
       })
       .catch(err => {
         console.log('error', err);
@@ -89,7 +89,7 @@ class Modal extends React.Component {
           } else {
             result[name] = e.target.elements[i].value;
           }
-        } else if (e.target.elements[i].type !== 'radio') {
+        } else if (e.target.elements[i].type !== 'radio' && e.target.elements[i].type !== 'file') {
           let name = e.target.elements[i].name;
           result[name] = e.target.elements[i].value;
         }
