@@ -118,62 +118,62 @@ class Modal extends React.Component {
     if (this.props.show) {
       return (
         <div className='modal'>
-          <form onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); } } >
+          <form onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); }} >
             <div className='modal_content' >
-            <div onClick={this.props.close}>X</div>
-            <h2 className='modal_title'>Write Your Review</h2>
-            <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
-            <section className='modal_rating'>
-              Overall Rating:<sup>*</sup>
-              <StarRating getRating={this.getRating.bind(this)} required />
-            </section>
-            <ReviewRecommend onChange={this.onRecommendChange.bind(this)} recommend={this.state.recommend} required/>
-            {Object.keys(this.props.meta.characteristics).map((key, i) => {
-              return (
-                <CharacteristicReview
-                  key={i}
-                  characteristic={key}
-                  meta={this.props.meta.characteristics[key]}
-                  required
-                />
-              );
-            })}
-            <section className="addReviewSummary">
-              <label>Review Summary: </label>
-              <section>
-                <textarea name='summary' maxLength="60" rows="2" cols="60" placeholder="Example: Best purchase ever!"></textarea>
+              <div onClick={this.props.close}>X</div>
+              <h2 className='modal_title'>Write Your Review</h2>
+              <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
+              <section className='modal_rating'>
+                Overall Rating:<sup>*</sup>
+                <StarRating getRating={this.getRating.bind(this)} required />
               </section>
-            </section>
-            <section className="addReviewBody">
-              <label>Your Review:<sup>*</sup></label>
-              <section>
-                <textarea name='body' onChange={this.handleBodyChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
-                {this.display()}
+              <ReviewRecommend onChange={this.onRecommendChange.bind(this)} recommend={this.state.recommend} required />
+              {Object.keys(this.props.meta.characteristics).map((key, i) => {
+                return (
+                  <CharacteristicReview
+                    key={i}
+                    characteristic={key}
+                    meta={this.props.meta.characteristics[key]}
+                    required
+                  />
+                );
+              })}
+              <section className="addReviewSummary">
+                <label>Review Summary: </label>
+                <section>
+                  <textarea name='summary' maxLength="60" rows="2" cols="60" placeholder="Example: Best purchase ever!"></textarea>
+                </section>
               </section>
-              {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.handleImageChange.bind(this)} />}
-              <section className='uploadedImages'>
-                {this.state.allImages.map((url, i) => {
-                  return (
-                    <AddReviewThumbnail key={i} url={url} removeImage={this.removeImage.bind(this)}/>
-                  );
-                })}
+              <section className="addReviewBody">
+                <label>Your Review:<sup>*</sup></label>
+                <section>
+                  <textarea name='body' onChange={this.handleBodyChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
+                  {this.display()}
+                </section>
+                {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.handleImageChange.bind(this)} />}
+                <section className='uploadedImages'>
+                  {this.state.allImages.map((url, i) => {
+                    return (
+                      <AddReviewThumbnail key={i} url={url} removeImage={this.removeImage.bind(this)} />
+                    );
+                  })}
+                </section>
               </section>
-            </section>
-            <section className="reviewNickName">
-              <label>Nickname:<sup>*</sup> </label>
-              <section>
-                <textarea name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!" required></textarea>
-                <p>For privacy reasons, do not use your full name or email address</p>
+              <section className="reviewNickName">
+                <label>Nickname:<sup>*</sup> </label>
+                <section>
+                  <textarea name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!" required></textarea>
+                  <p>For privacy reasons, do not use your full name or email address</p>
+                </section>
               </section>
-            </section>
-            <section className="reviewEmail">
-              <label>Email:<sup>*</sup> </label>
-              <section>
-                <textarea name='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com" required></textarea>
-                <p>For authentication reasons, you will not be emailed</p>
+              <section className="reviewEmail">
+                <label>Email:<sup>*</sup> </label>
+                <section>
+                  <textarea name='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com" required></textarea>
+                  <p>For authentication reasons, you will not be emailed</p>
+                </section>
               </section>
-            </section>
-            <button >Submit</button>
+              <button >Submit</button>
             </div>
           </form>
         </div>
