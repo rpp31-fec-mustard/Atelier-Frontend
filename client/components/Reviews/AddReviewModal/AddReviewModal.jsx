@@ -3,6 +3,7 @@ import ReviewRecommend from './ReviewRecommend.jsx';
 import CharacteristicReview from './CharacteristicReview.jsx';
 import AddReviewThumbnail from './AddReviewThumbnail.jsx';
 import StarRating from './StarRating.jsx';
+import axios from 'axios';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Modal extends React.Component {
     });
   }
 
-  handleChange(e) {
+  handleBodyChange(e) {
     if (e.target.value.length <= 50) {
       this.setState({
         charsLeft: 50 - e.target.value.length
@@ -39,13 +40,36 @@ class Modal extends React.Component {
     }
   }
 
-  onImageChange(e) {
-    let url = URL.createObjectURL(e.target.files[0]);
+  handleImageChange(e) {
+    let url = e.target.files[0];
+
+    const fd = new FormData();
+    fd.append('file', url);
+    fd.append('upload_preset', 'mustardUpload');
+
+    axios.post('https://api.cloudinary.com/v1_1/mustard55/image/upload/', fd, { headers: { 'X-Requested-With': 'MLHttpRequest' } })
+      .then(res => {
+        console.log('res', res.data.secure_url);
+        let newUrl = res.data.secure_url;
+        this.setState({
+          selectedImg: newUrl,
+          allImages: this.state.allImages.concat(newUrl)
+        });
+      })
+      .catch(err => {
+        console.log('error', err);
+      });
+  }
+
+  removeImage(url) {
+    let allImages = this.state.allImages;
+    let index = allImages.indexOf(url);
+    allImages.splice(index, 1);
     this.setState({
-      selectedImg: newUrl,
-      allImages: this.state.allImages.concat(newUrl)
+      allImages: allImages
     });
   }
+
 
   handleSubmit(e, images) {
     e.preventDefault();
@@ -54,6 +78,7 @@ class Modal extends React.Component {
     result['product_id'] = Number(this.state.productId);
     result['sort'] = this.props.sort;
     result['rating'] = Number(this.state.rating);
+    result['photos'] = images;
     for (var i = 0; i < e.target.elements.length; i++) {
       if (e.target.elements[i].name) {
         if (e.target.elements[i].type === 'radio' && e.target.elements[i].checked) {
@@ -64,9 +89,6 @@ class Modal extends React.Component {
           } else {
             result[name] = e.target.elements[i].value;
           }
-        } else if (e.target.elements[i].type === 'file') {
-          let name = e.target.elements[i].name;
-          result[name] = images;
         } else if (e.target.elements[i].type !== 'radio') {
           let name = e.target.elements[i].name;
           result[name] = e.target.elements[i].value;
@@ -75,7 +97,7 @@ class Modal extends React.Component {
     }
     this.props.post(result).then((res) => {
       this.props.close();
-    })
+    });
   }
 
   componentDidUpdate() {
@@ -124,14 +146,14 @@ class Modal extends React.Component {
             <section className="addReviewBody">
               <label>Your Review:<sup>*</sup></label>
               <section>
-                <textarea name='body' onChange={this.handleChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
+                <textarea name='body' onChange={this.handleBodyChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
                 {this.display()}
               </section>
-              {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.onImageChange.bind(this)} />}
+              {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.handleImageChange.bind(this)} />}
               <section className='uploadedImages'>
                 {this.state.allImages.map((url, i) => {
                   return (
-                    <AddReviewThumbnail key={i} url={url} />
+                    <AddReviewThumbnail key={i} url={url} removeImage={this.removeImage.bind(this)}/>
                   );
                 })}
               </section>
