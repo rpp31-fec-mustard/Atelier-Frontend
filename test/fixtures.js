@@ -1,4 +1,4 @@
-/* eslint-disable quotes */
+/* eslint-disable quotes, camelcase */
 const fixtures = {
   product: {
     id: 59553,

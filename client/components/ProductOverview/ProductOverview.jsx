@@ -5,8 +5,7 @@ export var DEBUG = false;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
-import React, {useRef, useState, useEffect} from 'react';
-// import ReactDOM from 'react-dom';
+import React, {useRef, useState, useEffect, useLayoutEffect} from 'react';
 import axios from 'axios';
 
 import ImageGallery from './ImageGallery.jsx';
@@ -19,18 +18,15 @@ import fixtures from '../../../test/fixtures.js';
 
 
 const ProductOverview = ({product, id}) => {
-  // const [productId, setProductId] = useState(id);
   const [currentStyleIndex, setStyleIndex] = useState(0);
-  // const [styles, setStyles] = useState();
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
-  // const [product, setProduct] = useState(styleOnLoad);
   const [review, setReview] = useState(false);
-  mlog(logC + ' PO product :', product);
+  // mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
-  mlog(logC + ' PO styles:', styles);
-  mlog(logC + ' PO productId:', id);
-  mlog(logC + ' PO styleIndex:', currentStyleIndex);
+  // mlog(logC + ' PO styles:', styles);
+  // mlog(logC + ' PO productId:', id);
+  // mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = () => {
@@ -41,7 +37,7 @@ const ProductOverview = ({product, id}) => {
       }
     })
       .then((res) => {
-        mlog(logC + ' PO res product/styles:', res.data);
+        // mlog(logC + ' PO res product/styles:', res.data);
         setStyles(res.data);
       })
       .catch((err) => {
@@ -57,7 +53,7 @@ const ProductOverview = ({product, id}) => {
       }
     })
       .then((res) => {
-        mlog(logC + ' PO res product/reviews:', res.data);
+        // mlog(logC + ' PO res product/reviews:', res.data);
         setReview(!!res.data.reviewsArr.length);
       })
       .catch((err) => {
@@ -67,12 +63,23 @@ const ProductOverview = ({product, id}) => {
 
 
 
-  const loaded = useRef(true);
-  // const loaded = useRef(false);    //for testing
+  const loaded = useRef(true); //testing
+  // const loaded = useRef(false);    //for testing Ml
+
+  // useLayoutEffect(() => {
+  //   if (loaded.current) {
+  //     mlog(logC + ' useEffect triggered by id change', id);
+  //     getProductStyles(id);
+  //     getProductReviews(id);
+  //     setStyleIndex(0);
+  //   } else {
+  //     loaded.current = true;
+  //   }
+  // }, [id]);
 
   useEffect(async () => {
     if (loaded.current) {
-      mlog(logC + ' useEffect triggered by id change', id);
+      // mlog(logC + ' useEffect triggered by id change', id);
       await getProductStyles(id);
       await getProductReviews(id);
       setStyleIndex(0);
@@ -94,7 +101,7 @@ const ProductOverview = ({product, id}) => {
 
   // if (styles !== undefined) {
     // mlog('state defined: component load executed');
-  mlog(logC + ' PO product destructure:', product );
+  // mlog(logC + ' PO product destructure:', product );
   const {
     description,
     name,
@@ -103,7 +110,7 @@ const ProductOverview = ({product, id}) => {
     slogan,
     features
   } = product;
-  mlog(logC + ' features', features);
+  // mlog(logC + ' features', features);
 
     // mlog(styles);
 
@@ -152,7 +159,7 @@ const ProductOverview = ({product, id}) => {
           Highlights:<br/>
           {
             features.map((feature, index) => {
-              mlog(logC + 'feature', feature);
+              // mlog(logC + 'feature', feature);
               return (
                 <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
             })
