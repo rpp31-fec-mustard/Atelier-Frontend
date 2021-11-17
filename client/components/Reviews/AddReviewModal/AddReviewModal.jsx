@@ -42,8 +42,8 @@ class Modal extends React.Component {
   onImageChange(e) {
     let url = URL.createObjectURL(e.target.files[0]);
     this.setState({
-      selectedImg: url,
-      allImages: this.state.allImages.concat(url)
+      selectedImg: newUrl,
+      allImages: this.state.allImages.concat(newUrl)
     });
   }
 
@@ -75,7 +75,7 @@ class Modal extends React.Component {
     }
     this.props.post(result).then((res) => {
       this.props.close();
-    });
+    })
   }
 
   componentDidUpdate() {
@@ -127,7 +127,7 @@ class Modal extends React.Component {
                 <textarea name='body' onChange={this.handleChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
                 {this.display()}
               </section>
-              {this.state.allImages.length === 5 ? null : <input type="file" name="photos" onChange={this.onImageChange.bind(this)} />}
+              {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.onImageChange.bind(this)} />}
               <section className='uploadedImages'>
                 {this.state.allImages.map((url, i) => {
                   return (

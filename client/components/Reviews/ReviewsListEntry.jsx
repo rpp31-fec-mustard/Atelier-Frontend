@@ -86,7 +86,8 @@ class ReviewsListEntry extends React.Component {
       this.showLess();
     } else {
       this.setState({
-        body: body
+        body: body,
+        addShowButton: false
       });
     }
   }
@@ -111,15 +112,17 @@ class ReviewsListEntry extends React.Component {
     });
   }
 
-  // componentDidUpdate() {
-  //   if ((this.state.rating !== this.props.review.rating) || (this.state.helpful !== this.props.review.helpfulness)) {
-  //     this.reviewListBody(this.props.review.body);
-  //     this.setState({
-  //       rating: this.props.review.rating,
-  //       helpful: this.props.review.helpfulness
-  //     });
-  //   }
-  // }
+  componentDidUpdate() {
+    let newBody = this.props.review.body.substring(0, 250);
+    let currBody = this.state.body.substring(0, 250);
+    if ((this.state.rating !== this.props.review.rating) || (currBody !== newBody)) {
+      this.reviewListBody(this.props.review.body);
+      this.setState({
+        rating: this.props.review.rating,
+        helpful: this.props.review.helpfulness
+      });
+    }
+  }
   // componentDidUpdate() {
   //   if (this.state.rating !== this.props.review.rating) {
   //     this.reviewListBody(this.props.review.body);
@@ -142,13 +145,12 @@ class ReviewsListEntry extends React.Component {
         .catch((err) => {
           console.log('Client unable to post helpfulness', err);
         });
-
     }
   }
 
 
   render() {
-    console.log('body', this.props.review.body)
+    console.log(this.props.review.photos);
     return (
       <div className='entry'>
         <section className='wrapper_RT'>
