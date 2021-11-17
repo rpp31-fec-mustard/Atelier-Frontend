@@ -33,7 +33,7 @@ xdescribe('My Tests', () => {
   });
 });
 
-describe('Product Overview', () => {
+xdescribe('Product Overview', () => {
   test ('renders Product Overview component', () => {
     render(<ProductOverview
       product={fixtures.product}
@@ -64,6 +64,37 @@ describe('Product Overview', () => {
     expect(result).toBeInTheDocument;
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+// describe('Image Gallery', () => {
+//   describe('renders thumbnails', () => {
+//     // render (<ImageGallery
+//     //   currentStyle={fixtures.styles.results[0]}
+//     //   productId={fixtures.product.id}
+//     //   productName={fixtures.product.name}/>);
+//     // screen.debug;
+//     expect(true).toBe(true);
+//   });
+//   describe('renders correct number of thumbnails', () => {
+
+//     expect(true).toBe(true);
+//   });
+// });
+
+
+
+
+
+
 
 
 
@@ -114,14 +145,15 @@ describe('Style Selector', () => {
       styles={fixtures.styles.results}
       currentStyleIndex={0}
       productName={productName}/>);
-    expect(screen.getAllByRole('img')).toHaveLength(count);
+    // screen.debug();
+    expect(screen.getAllByRole('img', {name: /The Product/})).toHaveLength(count);
   });
 });
 
 
 
 
-describe('Add to Cart', () => {
+xdescribe('Add to Cart', () => {
   describe('Select Size Menu', () => {
 
     test('renders Size Menu component', () => {
@@ -150,7 +182,7 @@ describe('Add to Cart', () => {
     });
   });
 
-  describe('Select Quantity Menu', () => {
+  xdescribe('Select Quantity Menu', () => {
     test('renders Quantity Menu component', () => {
       // console.log('path test', path);
       render(<SelectQuantityMenu />);
@@ -179,44 +211,83 @@ describe('Add to Cart', () => {
     });
     test('is disabled after changing styles', () => {
       render(<SelectQuantityMenu quantityMax={0}/>);
-      screen.debug();
+      // screen.debug();
       expect(screen.getByRole('combobox')).toBeDisabled;
 
     });
     xtest('is ', () => {
       console.log('path test', path);
       render(<Comp props={path}/>);
-      screen.debug();
+      // screen.debug();
       expect(screen.getByRole( )).toBeInTheDocument();
     });
   });
-
-
-
-
 });
 
 
-// xdescribe('Test Group', () => {
-//   xtest('renders component', () => {
-//     console.log('path test', path);
-//     render(<Comp props={''}/>);
-//     screen.debug();
-//     expect(screen.getByRole( )).toBeInTheDocument();
-//   });
-//   xtest('renders default', () => {
 
-//   });
-//   xtest('renders correct number', () => {
 
-//   });
-//   xtest('renders something', () => {
+//************************************************************************************ */
 
-//   });
-//   xtest('renders something', () => {
+describe('Image Gallery', () => {
+  describe('Thumbnail bar', () => {
+    test('renders thumbnail', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getByRole('img', {name: /Camo Onesie in First Green & Black 0/});
+      expect(result).toBeInTheDocument;
+    });
+    test('renders correct number of thumbnails', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getAllByRole('img', {name: /Camo Onesie/});
+      expect(result.length).toEqual(2);
 
-//   });
-// });
+    });
+    test('renders correct number of thumbnails', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getAllByRole('img', {name: /Camo Onesie/});
+      expect(result).toHaveLength(2);
+
+    });
+  });
+});
+
+
+//************************************************************************************ */
+
+
+
+xdescribe('Test Group', () => {
+  test('renders component', () => {
+    // console.log('path test', path);
+    // render(<Comp props={''}/>);
+    // screen.debug();
+    // expect(screen.getByRole( )).toBeInTheDocument();
+  });
+  test('renders default', () => {
+
+  });
+  xtest('renders correct number', () => {
+
+  });
+  xtest('renders something', () => {
+
+  });
+  xtest('renders something', () => {
+
+  });
+});
 
 
 

@@ -15,8 +15,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '59601', //testing
-      // productId: '59553', //testing
       product: fixtures.product, //testing
+
+      // productId: '59553', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
 
     };
@@ -38,7 +39,7 @@ class App extends React.Component {
       });
   }
 
-  //off for testing
+  //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
   }
