@@ -732,6 +732,7 @@ td {
 
 .singleQuestion {
   width: 700px;
+  border: none;
 }
 
 .questionEntry {
@@ -817,6 +818,7 @@ td {
 .answer-meta {
   display: flex;
   font-size: 13px;
+  border: none;
 }
 
 .seller {
@@ -916,6 +918,10 @@ textarea {
 .disclaimer {
   font-size: 13px;
   border: none;
+}
+
+.thumbnails {
+  display: flex;
 }
 
 
