@@ -54,7 +54,6 @@ class Modal extends React.Component {
           selectedImg: newUrl,
           allImages: this.state.allImages.concat(newUrl)
         });
-        return this.state.allImages;
       })
       .catch(err => {
         console.log('error', err);
