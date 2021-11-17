@@ -254,11 +254,15 @@ button {
   right: 0;
   bottom: 10%;
   left: 0;
-  font-size: 9px;
+  color: white;
+  font-size: 40px;
   line-height: 12px;
   text-align: center;
   cursor: default;
+  margin: 0px;
+  line-height: 38px;
 }
+
 
 .space01_po {
   width: 80%;
