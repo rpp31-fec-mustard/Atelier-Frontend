@@ -12,7 +12,7 @@ const getProduct = (productId) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getProduct error: ', error);
+      console.log('API Helper getProduct error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -23,7 +23,7 @@ const getProductStyles = (productId) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getProductStyles error: ', error);
+      console.log('API Helper getProductStyles error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -45,7 +45,7 @@ const getRating = (productId) => {
       return 0;
     })
     .catch((error) => {
-      console.log('API Helper getRating error: ', error);
+      console.log('API Helper getRating error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -56,7 +56,7 @@ const getPrimaryStyle = (productId) => {
       return primaryStyle;
     })
     .catch((error) => {
-      console.log('API Helper getPrimaryStyle error: ', error);
+      console.log('API Helper getPrimaryStyle error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -82,7 +82,7 @@ const getRelated = (productId) => {
               }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {
-              console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
+              console.log('API Helper getRelated error at step getPrimaryStyle: ', error.response.status, error.response.statusText);
             });
         })
       );
@@ -102,7 +102,7 @@ const getReviewMeta = (id) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getReviewMeta error: ', error);
+      console.log('API Helper getReviewMeta error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -118,7 +118,7 @@ const getReviews = (id, sort) => {
       });
     })
     .catch((error) => {
-      console.log('API Helper getReviews error: ', error);
+      console.log('API Helper getReviews error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -128,8 +128,8 @@ const putReviewHelpfulness = (id) => {
     .then((result) => {
       return result;
     })
-    .catch((err) => {
-      console.log('API Helper putReviewHelpfulness error: ', error);
+    .catch((error) => {
+      console.log('API Helper putReviewHelpfulness error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -141,7 +141,7 @@ const getQuestions = (productId) => {
       return results.data.results;
     })
     .catch((error) => {
-      console.log('API Helper getQuestions error: ', error);
+      console.log('API Helper getQuestions error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -156,7 +156,7 @@ const postInteraction = (body) => {
   return axios(options)
     .then((response) => { return response.data; })
     .catch((error) => {
-      console.log('API Helper postInteraction error: ', error);
+      console.log('API Helper postInteraction error: ', error.response.status, error.response.statusText);
     });
 };
 

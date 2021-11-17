@@ -42,6 +42,7 @@
     "react-scripts": "^4.0.3",
     "react-tracking": "^9.0.0",
     "regenerator-runtime": "^0.13.9",
+    "rxjs": "^7.4.0",
     "underscore": "^1.13.1"
   },
   "devDependencies": {
