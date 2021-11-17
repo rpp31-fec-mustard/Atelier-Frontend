@@ -16,6 +16,11 @@ class StarRating extends React.Component {
     this.props.getRating(e.target.value);
   }
 
+  displayMeaning(rating) {
+    let meanings = ['Poor', 'Fair', 'Average', 'Good', 'Great'];
+    return meanings[rating - 1];
+  }
+
   render() {
 
     return (
@@ -33,6 +38,9 @@ class StarRating extends React.Component {
             </label>
           );
         })}
+        <span className='selectedStar'>
+          {this.displayMeaning(this.state.rating)}
+        </span>
       </div>
     );
 
