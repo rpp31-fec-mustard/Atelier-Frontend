@@ -916,6 +916,7 @@ textarea {
 
 
 /* *** RATINGS/REVIEWS *** */
+
 #ratings_reviews {
 align-items: flex-start;
 height: 600px;
@@ -1286,6 +1287,7 @@ progress::-webkit-progress-value {
   bottom: 0;
   background-color: rgba(87, 59, 59, 0.938);
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   border: none;
@@ -1293,21 +1295,21 @@ progress::-webkit-progress-value {
 
 .modal_input {
   border: none;
+  width: 500px;
 }
+
 .modal_content {
   display: flex;
   flex-direction:column;
-  /* align-items: center; */
+  align-items: center;
   border: none;
-  width: 60%;
   height: 60%;
   background-color: white;
   overflow-y: scroll;
-}
-.selected {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  border: none;
+  margin: 15px;
+  height: 600px;
+  width: 800px;
 }
 
 .modal_characteristics {
@@ -1315,16 +1317,28 @@ progress::-webkit-progress-value {
   flex-direction: row;
   margin: 7px;
   justify-content: center;
+  border: none;
 }
 
 .ratingSelection {
   display: flex;
   flex-direction: column;
   width: 25%;
-  margin-right: 5px;
+  margin-right: 8px;
   text-align: center;
+  border: none;
 }
 
+.selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.modal_rating {
+  margin: 15px;
+}
 
 p {
   font-size: 12px;

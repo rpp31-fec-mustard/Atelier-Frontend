@@ -118,7 +118,8 @@ class Modal extends React.Component {
     if (this.props.show) {
       return (
         <div className='modal'>
-          <form className='modal_content' onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); } } >
+          <form onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); } } >
+            <div className='modal_content' >
             <div onClick={this.props.close}>X</div>
             <h2 className='modal_title'>Write Your Review</h2>
             <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
@@ -173,6 +174,7 @@ class Modal extends React.Component {
               </section>
             </section>
             <button >Submit</button>
+            </div>
           </form>
         </div>
       );
