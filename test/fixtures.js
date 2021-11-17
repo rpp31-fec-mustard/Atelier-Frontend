@@ -1,7 +1,7 @@
-/* eslint-disable quotes */
+/* eslint-disable quotes, camelcase */
 const fixtures = {
   product: {
-    "id": 59553,
+    id: 59553,
     "campus": "hr-rpp",
     "name": "Camo Onesie",
     "slogan": "Blend in to your crowd",
@@ -308,7 +308,162 @@ const fixtures = {
       Comfort: { id: 199847, value: '5.0000000000000000' },
       Quality: { id: 199848, value: '4.8181818181818182' }
     }
-  }
+  },
+  questions: [
+    {
+      questionId: 513717,
+      questionBody: "Where does this product ship from?",
+      questionDate: "2018-01-06T00:00:00.000Z",
+      askerName: "jbilas",
+      question_helpfulness: 25,
+      reported: false,
+      answers: {
+        4811928: {
+          id: 4811928,
+          body: "It ships from the facility in Tulsa",
+          date: "2018-01-06T00:00:00.000Z",
+          answererName: "dschulman",
+          helpfulness: 25,
+          photos: []
+        },
+        4811936: {
+          id: 4811936,
+          body: "Mine was delivered from Oklahoma",
+          date: "2018-01-06T00:00:00.000Z",
+          answererName: "dschulman",
+          helpfulness: 23,
+          photos: []
+        },
+        5087534: {
+          id: 5087534,
+          body: "Oklahoma",
+          date: "2021-11-06T00:00:00.000Z",
+          answererName: "jack533",
+          helpfulness: 0,
+          photos: []
+        }
+      }
+    },
+    {
+      questionId: 513719,
+      questionBody: "What fabric is the bottom made of?",
+      questionDate: "2019-02-18T00:00:00.000Z",
+      askerName: "cleopatra",
+      question_helpfulness: 8,
+      reported: false,
+      answers: {
+        4811907: {
+          id: 4811907,
+          body: "Some kind of recycled rubber, works great!",
+          date: "2019-03-18T00:00:00.000Z",
+          answererName: "marcanthony",
+          helpfulness: 2,
+          photos: []
+        },
+        4811921: {
+          id: 4811921,
+          body: "Rubber",
+          date: "2019-03-18T00:00:00.000Z",
+          answererName: "Seller",
+          helpfulness: 7,
+          photos: []
+        },
+        4811940: {
+          id: 4811940,
+          body: "Its a rubber sole",
+          date: "2019-03-18T00:00:00.000Z",
+          answererName: "marcanthony",
+          helpfulness: 7,
+          photos: []
+        },
+        4811952: {
+          id: 4811952,
+          body: "The rubber on the bottom wears thin quickly",
+          date: "2019-02-18T00:00:00.000Z",
+          answererName: "marcanthony",
+          helpfulness: 9,
+          photos: []
+        },
+        5087529: {
+          id: 5087529,
+          body: "rubber",
+          date: "2021-11-06T00:00:00.000Z",
+          answererName: "jack34",
+          helpfulness: 0,
+          photos: []
+        },
+        5087530: {
+          id: 5087530,
+          body: "rubber",
+          date: "2021-11-06T00:00:00.000Z",
+          answererName: "jack43",
+          helpfulness: 0,
+          photos: []
+        },
+        5087531: {
+          id: 5087531,
+          body: "rubber",
+          date: "2021-11-06T00:00:00.000Z",
+          answererName: "jack43",
+          helpfulness: 0,
+          photos: []
+        }
+      }
+    },
+    {
+      questionId: 513716,
+      questionBody: "Why is this product cheaper here than other sites?",
+      questionDate: "2018-04-24T00:00:00.000Z",
+      askerName: "toofast",
+      question_helpfulness: 6,
+      reported: false,
+      answers: {}
+    },
+    {
+      questionId: 513715,
+      questionBody: "I'm allergic to dye #17, does this product contain any?",
+      questionDate: "2019-01-24T00:00:00.000Z",
+      askerName: "l33tgamer",
+      question_helpfulness: 6,
+      reported: false,
+      answers: {
+        4811954: {
+          id: 4811954,
+          body: "Yes",
+          date: "2019-11-24T00:00:00.000Z",
+          answererName: "n00bgamer",
+          helpfulness: 3,
+          photos: []
+        }
+      }
+    },
+    {
+      questionId: 513718,
+      questionBody: "Does this product run big or small?",
+      questionDate: "2018-11-17T00:00:00.000Z",
+      askerName: "iluvcatz",
+      question_helpfulness: 2,
+      reported: false,
+      answers: {
+        4811938: {
+          id: 4811938,
+          body: "It fit fine for me",
+          date: "2018-01-17T00:00:00.000Z",
+          answererName: "iluvbirds",
+          helpfulness: 5,
+          photos: []
+        },
+        4811939: {
+          id: 4811939,
+          body: "Felt a little smaller than my usual size.",
+          date: "2018-12-17T00:00:00.000Z",
+          answererName: "iluvbirds",
+          helpfulness: 6,
+          photos: []
+        }
+      }
+    }
+  ]
 };
 
 export default fixtures;

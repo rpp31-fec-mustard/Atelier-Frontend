@@ -1,7 +1,9 @@
+/* eslint-disable camelcase */
+
 const axios = require('axios');
 const config = require('../config.js');
 
-const auth = { headers: {Authorization: `${config.key}`} };
+const auth = {headers: {Authorization: `${config.key}`} };
 
 
 const getProduct = (productId) => {
@@ -124,12 +126,12 @@ const getReviews = (id, sort) => {
 
 
 const putReviewHelpfulness = (id) => {
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/:review_id/helpful?review_id=${id}`, auth)
-    .then((result) => {
-      return result;
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful`, {}, auth)
+    .then((res) => {
+      return;
     })
-    .catch((error) => {
-      console.log('API Helper putReviewHelpfulness error: ', error.response.status, error.response.statusText);
+    .catch((err) => {
+      return 'error updated review helpfulness', err;
     });
 };
 
@@ -141,7 +143,80 @@ const getQuestions = (productId) => {
       return results.data.results;
     })
     .catch((error) => {
-      console.log('API Helper getQuestions error: ', error.response.status, error.response.statusText);
+      return error;
+    });
+};
+
+//add question
+const postQuestion = (data) => {
+  let productId = Number(data.productId);
+
+  return axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions', {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    product_id: productId
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST QUESTION IN API HELPER';
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+
+
+//add answer
+const postAnswer = (data) => {
+  let questionId = Number(data.questionId);
+  return axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/answers`, {
+    body: data.body,
+    name: data.name,
+    email: data.email,
+    photos: data.photos
+  }, auth)
+    .then(() => {
+      return 'SUCCESS POST ANSWER IN API HELPER';
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+//mark question as helpful
+const questionHelpful = (questionId) => {
+  return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${questionId}/helpful`, {}, auth)
+    .then((res) => {
+      return 'SUCCESS HELPFUL QUESTION UPDATE';
+    })
+    .catch((err) => {
+      return 'ERROR HELPFUL QUESTION UPDATE', err;
+    });
+};
+
+
+
+// mark answer as helpful
+const answerHelpful = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, {}, auth)
+    .then(() => {
+      return 'SUCCESS UPDATING ANSWER HELPFUL';
+    })
+    .catch((err) => {
+      return 'FAILED TO UPDATE ANSWER HELPFUL';
+    });
+};
+
+
+//mark answer for report
+const reportAnswer = (answerId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/report`, {}, auth)
+    .then(() => {
+      return 'Answer Reported';
+    })
+    .catch((err) => {
+      return 'FAILED TO report answer', err;
     });
 };
 
@@ -168,5 +243,10 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
-  postInteraction: postInteraction
+  postInteraction: postInteraction,
+  postQuestion: postQuestion,
+  postAnswer: postAnswer,
+  questionHelpful: questionHelpful,
+  answerHelpful: answerHelpful,
+  reportAnswer: reportAnswer
 };

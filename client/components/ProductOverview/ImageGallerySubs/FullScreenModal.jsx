@@ -105,9 +105,6 @@ const FullScreenModal = ({currentStyle, productName, index, show, onClose}) => {
             zoom ? setZoom(false) : setZoom(true);
           }}
           onMouseMove={moveMousePanImage}
-          // onMouseMove={() => {
-          //   console.log(mouseX, mouseY);
-          // }}
         />
       </div>
       <div className='image_side_po'

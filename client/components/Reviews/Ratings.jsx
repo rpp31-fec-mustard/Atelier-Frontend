@@ -87,7 +87,6 @@ class Ratings extends React.Component {
   render() {
     return (
       <div className='ratings_container'>
-        <h3> Ratings Breakdown </h3>
         <div className='ratingsContent'>
           <div className='overall'>
             <section className='overallRating'> {this.state.overallRating}
