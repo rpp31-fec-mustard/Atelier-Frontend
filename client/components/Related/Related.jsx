@@ -54,6 +54,11 @@ const Related = (props) => {
       });
   }, [props.productId]);
 
+  // update localStorage outfitList upon outfitList change
+  React.useEffect(() => {
+    localStorage.setItem('outfitList', JSON.stringify(outfitList));
+  }, [outfitList]);
+
   const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
     const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
@@ -66,10 +71,8 @@ const Related = (props) => {
           product['starred'] = true;
           // updateState with outfit list
           const newOutfitList = outfitList.concat([product]);
-          Promise.resolve(setOutfitList(newOutfitList))
-            .then(() => {
-              localStorage.setItem('outfitList', JSON.stringify(outfitList));
-            });
+
+          setOutfitList(newOutfitList);
           return product;
         } else {
           return product;
@@ -84,11 +87,7 @@ const Related = (props) => {
         return productId !== targetProductId;
       });
 
-      Promise.resolve(setOutfitList(newOutfitList))
-        .then(() => {
-          localStorage.setItem('outfitList', JSON.stringify(outfitList));
-        });
-
+      setOutfitList(newOutfitList);
 
       const newRelatedProducts = relatedProducts.map((product) => {
         const productId = product.id.toString(10);
