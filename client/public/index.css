@@ -916,6 +916,10 @@ textarea {
   border: none;
 }
 
+.thumbnails {
+  display: flex;
+}
+
 
 /* *** RATINGS/REVIEWS *** */
 #ratings_reviews {

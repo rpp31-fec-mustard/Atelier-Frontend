@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 import _ from 'underscore';
+import { useTracking } from 'react-tracking';
 
 const Q_A = (props) => {
 
@@ -16,6 +17,17 @@ const Q_A = (props) => {
   const closeModal = () => {
     setShow(false);
   };
+  const { Track, trackEvent } = useTracking({},
+    { dispatch: data => {
+      axios.post('/interactions', {
+        time: data.time,
+        element: data.element,
+        widget: data.widget
+      })
+        .catch((error) => {
+          console.log('Client unable to post interaction: ', error);
+        });
+    }});
 
   var checkFilter = (sortedQuestions) => {
     var splitFilter = [];
@@ -70,55 +82,61 @@ const Q_A = (props) => {
 
   if (displayQuestions.length === 0) {
     return (
-      <div className="questionButtonContainer">
-        <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-        <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
-      </div>
+      <Track>
+        <div className="questionButtonContainer">
+          <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
+          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
+        </div>
+      </Track>
     );
   } else if (displayQuestions.length !== sortedQuestions.length) {
     return (
-      <div className="questionDisplay">
-        <div className="questionList">
-          {displayQuestions.map((question, answer) =>
-            <Question
-              key={question.question_id}
-              id={question.question_id}
-              helpfulness={question.question_helpfulness}
-              question={question.question_body}
-              answer={[question.answers]}
-              name={props.productInfo.name}
-              update={props.update}
-            />
-          )}
+      <Track>
+        <div className="questionDisplay">
+          <div className="questionList">
+            {displayQuestions.map((question, answer) =>
+              <Question
+                key={question.question_id}
+                id={question.question_id}
+                helpfulness={question.question_helpfulness}
+                question={question.question_body}
+                answer={[question.answers]}
+                name={props.productInfo.name}
+                update={props.update}
+              />
+            )}
+          </div>
+          <div className="questionButtonContainer">
+            <button className="questionButton" onClick={() => setCount(count + 2)}>More Questions</button>
+            <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
+            <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
+          </div>
         </div>
-        <div className="questionButtonContainer">
-          <button className="questionButton" onClick={() => setCount(count + 2)}>More Questions</button>
-          <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
-        </div>
-      </div>
+      </Track>
     );
   } else {
     return (
-      <div className="questionDisplay">
-        <div className="questionList">
-          {displayQuestions.map((question, answer) =>
-            <Question
-              key={question.question_id}
-              id={question.question_id}
-              helpfulness={question.question_helpfulness}
-              question={question.question_body}
-              answer={[question.answers]}
-              name={props.productInfo.name}
-              update={props.update}
-            />
-          )}
+      <Track>
+        <div className="questionDisplay">
+          <div className="questionList">
+            {displayQuestions.map((question, answer) =>
+              <Question
+                key={question.question_id}
+                id={question.question_id}
+                helpfulness={question.question_helpfulness}
+                question={question.question_body}
+                answer={[question.answers]}
+                name={props.productInfo.name}
+                update={props.update}
+              />
+            )}
+          </div>
+          <div className="questionButtonContainer">
+            <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
+            <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
+          </div>
         </div>
-        <div className="questionButtonContainer">
-          <button className="questionButton" onClick={() => setShow(true)}>Add Questions +</button>
-          <QuestionModal show={show} hide={closeModal} name={props.productInfo.name} productId={props.product} update={props.update}/>
-        </div>
-      </div>
+      </Track>
     );
   }
 };

@@ -103,8 +103,7 @@ const answerModal = (props) => {
               <label>Attach Up To Five Photos</label>
               <input type="file" onChange={() => photoThumbnail()} accept="image/*" multiple></input>
             </div>
-            <div>
-              Attached Photos
+            <div className="thumbnails">
               {thumbnails.map((src, i) =>
                 <AnswerModalThumbnail key={i} src={src} />
               )}
@@ -140,8 +139,7 @@ const answerModal = (props) => {
                 <input id="answer-email" type="email" maxLength="60" placeholder="jack@email.com" required></input>
                 <div className="disclaimer"><label>For authentication reasons, you will not be emailed</label></div>
               </div>
-              <div>
-                Attached Photos
+              <div className="thumbnails">
                 {thumbnails.map((src, i) =>
                   <AnswerModalThumbnail key={i} src={src} />
                 )}
