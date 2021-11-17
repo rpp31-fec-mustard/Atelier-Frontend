@@ -9,6 +9,7 @@ class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rating: 0,
       helpful: this.props.review.helpfulness,
       body: '',
       addShowButton: false,
@@ -85,7 +86,8 @@ class ReviewsListEntry extends React.Component {
       this.showLess();
     } else {
       this.setState({
-        body: body
+        body: body,
+        addShowButton: false
       });
     }
   }
@@ -105,20 +107,31 @@ class ReviewsListEntry extends React.Component {
   componentDidMount() {
     this.reviewListBody(this.props.review.body);
     this.setState({
-      rating: this.props.review.rating
+      rating: this.props.review.rating,
+      helpful: this.props.review.helpfulness
     });
   }
 
   componentDidUpdate() {
-    if (this.state.rating !== this.props.review.rating) {
+    let newBody = this.props.review.body.substring(0, 250);
+    let currBody = this.state.body.substring(0, 250);
+    if ((this.state.rating !== this.props.review.rating) || (currBody !== newBody)) {
+      this.reviewListBody(this.props.review.body);
       this.setState({
-        rating: this.props.review.rating
+        rating: this.props.review.rating,
+        helpful: this.props.review.helpfulness
       });
     }
   }
+  // componentDidUpdate() {
+  //   if (this.state.rating !== this.props.review.rating) {
+  //     this.reviewListBody(this.props.review.body);
+  //     this.setState({
+  //       rating: this.props.review.rating,
+  //     });
+  //   }
+  // }
 
-
-  //create post request that adjust data for item clicked.
   handleYesClick(e) {
     e.preventDefault();
     let num = this.state.helpful;
@@ -132,10 +145,8 @@ class ReviewsListEntry extends React.Component {
         .catch((err) => {
           console.log('Client unable to post helpfulness', err);
         });
-
     }
   }
-
 
   render() {
     return (
