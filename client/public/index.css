@@ -18,6 +18,7 @@ html {
 /* currently at 1040px */
 #app {
   width: 1040px;
+  border: none;
 }
 
 div {
