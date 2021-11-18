@@ -4,7 +4,6 @@ const LeftButton = (props) => {
 
   return (
     <React.Fragment>
-      <div className="left-gradient"></div>
       <button className="left nav-button" style={{color: 'transparent'}} onClick={(event) => {
         props.handleLeftScroll(props.cardsWrapper);
       }}>

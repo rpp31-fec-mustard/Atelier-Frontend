@@ -25,11 +25,6 @@ div {
   border: 1px solid var(--global-border-color);
 }
 
-button {
-  width: 100%;
-  height: 100%;
-}
-
 /* GLOBAL VARIABLES */
 
 :root {
@@ -606,11 +601,6 @@ button {
   background: var(--prod-img-background-color);
 }
 
-.button-container {
-  position: static;
-  border: none;
-}
-
 .nav-button {
   align-self: center;
   -webkit-appearance: none;
@@ -620,34 +610,6 @@ button {
   border-style: none;
   cursor: pointer;
   font-size: 25px;
-}
-
-.left-gradient {
-  position: relative;
-  border: none;
-  /* left: 100%;
-  width: 100%;
-  height: calc(100% - 17px);
-  background: linear-gradient(90deg, white 60%, transparent); */
-}
-
-.left-button-container .nav-button {
-  height: var(--prod-card-height);
-  padding: 0;
-}
-
-.right-gradient {
-  position: relative;
-  border: none;
-  /* left: -150%; */
-  /* width: 150%; */
-  /* height: calc(100% - 17px); */
-  /* background: linear-gradient(270deg, white 60%, transparent); */
-}
-
-.right-button-container .nav-button {
-  height: var(--prod-card-height);
-  padding: 0;
 }
 
 .prod-comparison-wrapper {
