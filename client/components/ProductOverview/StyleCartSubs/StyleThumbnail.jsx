@@ -11,7 +11,7 @@ const StyleThumbnail = ({ style, styleIndex, productName, handleStyleOnClick,
   mlog('TN2', style);
   mlog('TN3', `${productName} in ${style.name}`);
 
-  let checkMark = <i class="ri-checkbox-circle-line"></i>;
+  let checkMark = <i className="ri-checkbox-circle-line"></i>;
   const altText = `${productName} in ${style.name}`;
 
   return (
