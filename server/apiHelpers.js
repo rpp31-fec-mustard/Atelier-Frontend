@@ -153,6 +153,7 @@ const postQuestion = (data) => {
     body: data.body,
     name: data.name,
     email: data.email,
+    // eslint-disable-next-line camelcase
     product_id: productId
   }, auth)
     .then(() => {

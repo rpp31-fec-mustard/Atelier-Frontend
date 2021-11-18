@@ -53,7 +53,10 @@ const ProductCard = (props) => {
               props.renderRelated(event);
               trackEvent({
                 time: new Date().toString(),
-                element: `product ${props.product.id} card`,
+                element: JSON.stringify({
+                  productId: props.product.id,
+                  className: 'product-card-wrapper'
+                }),
                 widget: 'Related Items & Comparison'
               });
             }}
