@@ -15,8 +15,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '59601', //testing
-      // productId: '59553', //testing
       product: fixtures.product, //testing
+      total: '0'
+
+      // productId: '59553', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
 
     };
@@ -38,7 +40,7 @@ class App extends React.Component {
       });
   }
 
-  //off for testing
+  //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
   }
@@ -65,14 +67,20 @@ class App extends React.Component {
     this.getProduct(this.state.productId);
   }
 
+  updateTotal(total) {
+    this.setState({
+      total: total
+    });
+  }
+
   render () {
     return (
       <React.Fragment>
         <TempTopBanner sendNumber={this.sendNumber}/>
-        <ProductOverview id={this.state.productId} product={this.state.product}/>
+        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} />
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
-        <Reviews productId={this.state.productId} productInfo={this.state.product}/>
+        <Reviews productId={this.state.productId} productInfo={this.state.product} updateTotal={this.updateTotal.bind(this)} />
       </React.Fragment>
     );
   }

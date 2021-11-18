@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 const axios = require('axios');
 const config = require('../config.js');
 
@@ -12,7 +14,7 @@ const getProduct = (productId) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getProduct error: ', error);
+      console.log('API Helper getProduct error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -23,7 +25,7 @@ const getProductStyles = (productId) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getProductStyles error: ', error);
+      console.log('API Helper getProductStyles error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -45,7 +47,7 @@ const getRating = (productId) => {
       return 0;
     })
     .catch((error) => {
-      console.log('API Helper getRating error: ', error);
+      console.log('API Helper getRating error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -56,7 +58,7 @@ const getPrimaryStyle = (productId) => {
       return primaryStyle;
     })
     .catch((error) => {
-      console.log('API Helper getPrimaryStyle error: ', error);
+      console.log('API Helper getPrimaryStyle error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -82,7 +84,7 @@ const getRelated = (productId) => {
               }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {
-              console.log('API Helper getRelated error at step getPrimaryStyle: ', error);
+              console.log('API Helper getRelated error at step getPrimaryStyle: ', error.response.status, error.response.statusText);
             });
         })
       );
@@ -102,7 +104,7 @@ const getReviewMeta = (id) => {
       return result.data;
     })
     .catch((error) => {
-      console.log('API Helper getReviewMeta error: ', error);
+      console.log('API Helper getReviewMeta error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -118,8 +120,37 @@ const getReviews = (id, sort) => {
       });
     })
     .catch((error) => {
-      console.log('API Helper getReviews error: ', error);
+      console.log('API Helper getReviews error: ', error.response.status, error.response.statusText);
     });
+};
+
+const postReview = (review) => {
+  let data = {
+    'characteristics': JSON.parse(review.characteristics),
+    'email': review.email,
+    'name': review.name,
+    'body': review.body,
+    'photos': review.photos ? review.photos : [],
+    'product_id': Number(review.product_id),
+    'rating': Number(review.rating),
+    'recommend': (review.recommend === 'true'),
+    'summary': review.summary
+  };
+
+  let options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/',
+    headers: {
+      'Authorization': `${config.key}`
+    },
+    data: data,
+    method: 'post',
+  };
+
+  return axios.request(options).then((result) => {
+    return result;
+  }).catch((err) => {
+    console.log('API Helper postReviews error: ', err);
+  });
 };
 
 
@@ -200,7 +231,7 @@ const questionHelpful = (questionId) => {
 const answerHelpful = (answerId) => {
   return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answerId}/helpful`, {}, auth)
     .then(() => {
-      return 'SUCCESS UPDATING ANSEWR HELPFUL';
+      return 'SUCCESS UPDATING ANSWER HELPFUL';
     })
     .catch((err) => {
       return 'FAILED TO UPDATE ANSWER HELPFUL';
@@ -230,7 +261,7 @@ const postInteraction = (body) => {
   return axios(options)
     .then((response) => { return response.data; })
     .catch((error) => {
-      console.log('API Helper postInteraction error: ', error);
+      console.log('API Helper postInteraction error: ', error.response.status, error.response.statusText);
     });
 };
 
@@ -242,6 +273,7 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
+  postReview: postReview,
   postInteraction: postInteraction,
   postQuestion: postQuestion,
   postAnswer: postAnswer,

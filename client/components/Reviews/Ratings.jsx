@@ -10,7 +10,8 @@ class Ratings extends React.Component {
       productId: '',
       overallRating: '0',
       starAverages: [],
-      characteristics: []
+      characteristics: [],
+      total: '0'
     };
   }
 
@@ -57,8 +58,7 @@ class Ratings extends React.Component {
     });
   }
 
-  orderCharRatings() {
-    let char = this.props.meta.characteristics;
+  orderCharRatings(char) {
     let ratingStorage = [];
     for (var key in char) {
       let ratingEntry = {};
@@ -73,14 +73,20 @@ class Ratings extends React.Component {
   componentDidMount() {
     if (this.state.productId) {
       this.orderRatings();
-      this.orderCharRatings();
+      this.orderCharRatings(this.props.meta.characteristics);
+      this.setState({
+        total: this.props.total
+      });
     }
   }
 
   componentDidUpdate() {
-    if (this.state.productId !== this.props.meta.product_id) {
-      this.orderCharRatings();
+    if ((this.state.productId !== this.props.meta.product_id) || this.state.total !== this.props.total) {
+      this.orderCharRatings(this.props.meta.characteristics);
       this.orderRatings();
+      this.setState({
+        total: this.props.total
+      });
     }
   }
 
@@ -91,7 +97,7 @@ class Ratings extends React.Component {
           <div className='overall'>
             <section className='overallRating'> {this.state.overallRating}
               <section className='starScale'>
-                <Stars getRating={this.getOverallRating.bind(this)} productId={this.state.productId} />
+                <Stars getRating={this.getOverallRating.bind(this)} productId={this.state.productId} total={this.state.total} />
               </section>
             </section>
             <section className='percentRecommend'>{this.getPercentRecommend()}</section>
