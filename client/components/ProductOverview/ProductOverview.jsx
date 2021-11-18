@@ -86,7 +86,7 @@ const ProductOverview = ({product, id, total}) => {
     } else {
       loaded.current = true;
     }
-  }, [id], [total]);
+  }, [id]);
 
 
 

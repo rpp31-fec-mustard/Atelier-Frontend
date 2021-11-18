@@ -14,9 +14,7 @@ const displayMeaning = (char, num) => {
   for (var storedChar in charMeanings) {
     if (char === storedChar) {
       return (
-
-          <section>{charMeanings[char][num]} </section>
-
+        <section>{charMeanings[char][num]} </section>
       );
     }
   }
