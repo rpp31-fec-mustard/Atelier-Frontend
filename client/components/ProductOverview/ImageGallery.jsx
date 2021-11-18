@@ -22,7 +22,6 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
   const [index, setIndex] = useState(0);
   const [indexMax, setIndexMax] = useState(0);
-  const [show, setShow] = useState(false);
 
   const imageLeftClick = () => {
     if (index > 0) {
@@ -36,6 +35,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     }
   };
 
+  const [show, setShow] = useState(false);
 //useLayoutEffect?
   useLayoutEffect(() => {
     mlog('IG useEffect to set index to 0');
@@ -46,7 +46,15 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     setShow(true);
   };
 
+  const handleThumbnailClick = (index) => {
+    console.log('htc', index);
+    setIndex(index);
+    // document.getElementsByClassName(`image_icon_${index}`)[0].style.backgroundColor = 'white'
+  };
 
+  // const handleIconClick = (index) => {
+  //   setIndex(index);
+  // };
   //needed because useEffect above is not resolved in time
   //when productId changes and new product is fetched, seems like the render below is resolved
   //before useEffect resets the index to 0.
@@ -65,7 +73,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
           <div className='image_gallery_po'>
             <ThumbnailsBar
               photos={photos}
-              handleThumbnailClick={(index) => { setIndex(index); }}
+              handleThumbnailClick={handleThumbnailClick}
               altText = {altText} />
             <div className='arrow_po'>
               <div className='arrow_space_po' onClick={handleClickImage}></div>
@@ -80,13 +88,13 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
               productName={productName}
               index={index}
               show={show}
+              imageLeftClick={imageLeftClick}
+              imageRightClick={imageRightClick}
+              handleThumbnailClick={handleThumbnailClick}
+              indexMax={photos.length - 1}
               onClose={() => setShow(false)}/>
             <div className='arrow_po'>
-              <div className='arrow_space_po' onClick={handleClickImage}>
-                {/* <button
-              className='hover_fullscreen_button_po'
-              onClick={handleClickImage}>H</button> */}
-              </div>
+              <div className='arrow_space_po' onClick={handleClickImage}></div>
               <ArrowRight
                 imageRightClick={imageRightClick}
                 index={index}

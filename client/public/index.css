@@ -242,24 +242,32 @@ button {
 
 }
 
+/** expanded image **/
 
 .main_image_exp_po {
   background-image: '';
-  /* width: 100%;
-  height: 100%; */
   height: 100%;
-  /* position: relative; */
-  /* transform-origin: 0 0; */
-  /* display: flex;
-  flex-direction: column-reverse; */
-  /* background-repeat: no-repeat;
-  background-position: center; */
-  /* background-size: cover; */
-  cursor: zoom-in;
+  /* careful with this attribute. messes up scroll position */
+  position: static;
+  display: flex;
+  flex-direction: row;
+ align-items: center;
   z-index: 4;
 }
 
+.arrow_box_exp_po {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 37px;
+  width: 20px;
+  position: relative;
+  z-index: 7;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .image_side_po {
+  position: relative;
   z-index: 3;
   height: 100%;
   width: 40%;
@@ -267,19 +275,35 @@ button {
 
 .inner_image_exp_po {
   height: 100%;
-  /* size: inherit; */
   z-index: 4;
 }
 
-.thumbnails_exp_po{
+.image_icons_exp_po{
+  color: white;
   position: absolute;
-  z-index: 5;
+  z-index: 10;
   right: 0;
   bottom: 10%;
   left: 0;
   background-color: rgb(0, 0, 0, .5);
   height: 10%;
   width:100%;
+}
+/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+.image_icon_bar_po {
+  /* background-color: yellowgreen; */
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+}
+
+.image_icon_po {
+  background-color: var(--mustard);
+  width: 20px;
+  height: 20px;
+  margin: 0px 10px;
 }
 
 .txt {
@@ -290,11 +314,10 @@ button {
   left: 0;
   color: white;
   font-size: 40px;
-  line-height: 12px;
   text-align: center;
   cursor: default;
   margin: 0px;
-  line-height: 38px;
+  line-height: 16px;
 }
 
 
@@ -378,7 +401,7 @@ button {
   overflow: overlay;
   padding: 0px 10px;
 }
-/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+
 .style_thumb_container_po {
 position: relative
 }
