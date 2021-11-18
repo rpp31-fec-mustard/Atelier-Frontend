@@ -29,17 +29,15 @@ const Related = (props) => {
     // set outfitStorage with localStorage outfitList
     outfitStorage = JSON.parse(localStorage.getItem('outfitList'));
     // star all products in relatedProducts present in outfitList
-    Promise.resolve(
-      relatedProducts.map((relProduct) => {
-        const relProductId = relProduct.id;
-        outfitStorage.forEach((outfitProduct) => {
-          const outfitProdId = outfitProduct.id;
-          if (relProductId === outfitProdId) {
-            relProduct['starred'] = true;
-          }
-        });
-      })
-    );
+    relatedProducts.map((relProduct) => {
+      const relProductId = relProduct.id;
+      outfitStorage.forEach((outfitProduct) => {
+        const outfitProdId = outfitProduct.id;
+        if (relProductId === outfitProdId) {
+          relProduct['starred'] = true;
+        }
+      });
+    });
   }
 
   const [outfitList, setOutfitList] = React.useState(outfitStorage);
