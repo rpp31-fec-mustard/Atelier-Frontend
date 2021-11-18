@@ -378,6 +378,20 @@ button {
   overflow: overlay;
   padding: 0px 10px;
 }
+/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+.style_thumb_container_po {
+position: relative
+}
+
+.style_selected_po {
+  height: 12px;
+  width: 12px;
+  border-radius: 6px;
+  background-color: var(--mustard);
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
 
 .style_thumbnail_po {
   height: 50px;
@@ -385,7 +399,15 @@ button {
   border-radius: 13px;
   margin: 5px
 }
-/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+
+.style_checkmark_po {
+  font-size: 18px;
+  position: relative;
+  top: -24px;
+  right: 3px;
+}
+
+
 /** add to bag **/
 .add_to_bag_po {
   display: flex;

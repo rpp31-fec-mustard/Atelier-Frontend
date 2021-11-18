@@ -16,67 +16,12 @@ const FullScreenModal = ({currentStyle, productName, index, show, onClose}) => {
     return null;
   }
 
-  const [zoom, setZoom] = useState(false);
   const photos = currentStyle.photos;
   const altText = `${productName} in ${currentStyle.name }`;
   mlog('FSM altText', altText);
 
-
-  // const useMousePosition = () => {
-  //   const [x, setX] = useState(null);
-  //   const [y, setY] = useState(null);
-
-  //   useEffect(() => {
-  //     const sub = fromEvent(document, 'mousemove')
-  //       .pipe(map(event => [event.clientX, event.clientY]))
-  //       .subscribe(([newX, newY]) => {
-  //         setX(newX);
-  //         setY(newY);
-  //       });
-
-  //     return () => {
-  //       sub.unsubscribe();
-  //     };
-  //   }, []);
-  //   return {mouseX: x, mouseY: y};
-  // };
-
-  // //throttle detection to 10x a sec
-  // const sub = fromEvent(document, 'mousemove').pipe(throttleTime(100),
-  //   map(event => [event.clientX, event.clientY])
-  // );
-
-  // const {mouseX, mouseY } = useMousePosition();
-
-
-
-  // console.log(x, y);
-
-  // console.log(mouseX, mouseY);
+  const [zoom, setZoom] = useState(false);
   const [panImage, setPanImage] = useState(false);
-
-  const moveMousePanImage = (e) => {
-    if (panImage) {
-      console.log(e.pageX, e.pageY);
-      let image = document.getElementsByClassName('main_image_exp_po')[0];
-
-      console.log(image);
-      console.log(image.offsetWidth, image.offsetHeight);
-      console.log(image.offsetLeft, image.offsetTop);
-
-      image.style.transformOrigin = ((e.pageX - image.offsetLeft) / image.offsetWidth) * 100 + '% ' +
-        ((e.pageY - image.offsetTop) / image.offsetHeight) * 100 + '% ';
-      // image.style.transformOrigin = ((e.pageX - image.offset().left) / image.width()) * 100 + '% ' +
-      //   ((e.pageY - image.offset().top) / image.height()) * 100 + '% ';
-
-
-
-    }
-  };
-
-  // .on('mousemove', function(e) {
-  //   $(this).css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 + '%'});
-
 
   useLayoutEffect(() => {
     if (zoom) {
@@ -91,6 +36,21 @@ const FullScreenModal = ({currentStyle, productName, index, show, onClose}) => {
 
     }
   }, [zoom]);
+
+  const moveMousePanImage = (e) => {
+    if (panImage) {
+      console.log(e.pageX, e.pageY);
+      let image = document.getElementsByClassName('main_image_exp_po')[0];
+      // console.log(image);
+      // console.log(image.offsetWidth, image.offsetHeight);
+      // console.log(image.offsetLeft, image.offsetTop);
+      image.style.transformOrigin = ((e.pageX - image.offsetLeft) / image.offsetWidth) * 100 + '% ' +
+        ((e.pageY - image.offsetTop) / image.offsetHeight) * 100 + '% ';
+    }
+  };
+
+
+
 
 
   return (

@@ -58,7 +58,10 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
       <React.Fragment>
 
         <div className='image_container_po'>
-          <img className='main_image_po' src={photos[index].url} alt='Main Image'/>
+          <img className='main_image_po'
+            src={photos[index].url}
+            alt={altText}
+            data-testid='main-image' />
           <div className='image_gallery_po'>
             <ThumbnailsBar
               photos={photos}

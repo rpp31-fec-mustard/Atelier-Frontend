@@ -33,6 +33,10 @@ xdescribe('My Tests', () => {
   });
 });
 
+
+
+// *** *** *** *** *** *** *** *** PRODUCT OVERVIEW *** *** *** *** *** *** *** *** //
+
 xdescribe('Product Overview', () => {
   test ('renders Product Overview component', () => {
     render(<ProductOverview
@@ -68,38 +72,56 @@ xdescribe('Product Overview', () => {
 
 
 
+// *** *** *** *** *** *** *** *** IMAGE GALLERY *** *** *** *** *** *** *** *** //
+
+describe('Image Gallery', () => {
+  test('renders main image', () => {
+    render(<ImageGallery
+      currentStyle={fixtures.styles.results[0]}
+      productId={fixtures.product.id}
+      productName={fixtures.product.name}/>);
+    // screen.debug();
+    let result = screen.getByTestId('main-image');
+    expect(result).toBeInTheDocument;
+  });
+  test('renders correct number of thumbnails', () => {
+    render(<ImageGallery
+      currentStyle={fixtures.styles.results[0]}
+      productId={fixtures.product.id}
+      productName={fixtures.product.name}/>);
+    // screen.debug();
+    let result = screen.getAllByRole('img', {name: /Thumbnail/});
+    expect(result.length).toEqual(2);
+
+    xtest('renders thumbnail', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getByRole('img', {name: /Camo Onesie in First Green & Black 0/});
+      expect(result).toBeInTheDocument;
+    });
+
+  });
+  xtest('renders correct number of thumbnails', () => {
+    render(<ImageGallery
+      currentStyle={fixtures.styles.results[0]}
+      productId={fixtures.product.id}
+      productName={fixtures.product.name}/>);
+    // screen.debug();
+    let result = screen.getAllByRole('img', {name: /Camo Onesie/});
+    expect(result).toHaveLength(2);
+
+  });
+
+});
 
 
 
+// *** *** *** *** *** *** *** *** STYLE SELECTOR *** *** *** *** *** *** *** *** //
 
-
-
-
-// describe('Image Gallery', () => {
-//   describe('renders thumbnails', () => {
-//     // render (<ImageGallery
-//     //   currentStyle={fixtures.styles.results[0]}
-//     //   productId={fixtures.product.id}
-//     //   productName={fixtures.product.name}/>);
-//     // screen.debug;
-//     expect(true).toBe(true);
-//   });
-//   describe('renders correct number of thumbnails', () => {
-
-//     expect(true).toBe(true);
-//   });
-// });
-
-
-
-
-
-
-
-
-
-
-describe('Style Selector', () => {
+xdescribe('Style Selector', () => {
   test ('renders Style Selector component', () => {
     const productName = 'The Product';
     render(<StyleSelector
@@ -151,7 +173,7 @@ describe('Style Selector', () => {
 });
 
 
-
+// *** *** *** *** *** *** *** *** *** ADD TO CART *** *** *** *** *** *** *** *** *** //
 
 xdescribe('Add to Cart', () => {
   describe('Select Size Menu', () => {
@@ -227,42 +249,6 @@ xdescribe('Add to Cart', () => {
 
 
 
-//************************************************************************************ */
-
-describe('Image Gallery', () => {
-  describe('Thumbnail bar', () => {
-    test('renders thumbnail', () => {
-      render(<ImageGallery
-        currentStyle={fixtures.styles.results[0]}
-        productId={fixtures.product.id}
-        productName={fixtures.product.name}/>);
-      // screen.debug();
-      let result = screen.getByRole('img', {name: /Camo Onesie in First Green & Black 0/});
-      expect(result).toBeInTheDocument;
-    });
-    test('renders correct number of thumbnails', () => {
-      render(<ImageGallery
-        currentStyle={fixtures.styles.results[0]}
-        productId={fixtures.product.id}
-        productName={fixtures.product.name}/>);
-      // screen.debug();
-      let result = screen.getAllByRole('img', {name: /Camo Onesie/});
-      expect(result.length).toEqual(2);
-
-    });
-    test('renders correct number of thumbnails', () => {
-      render(<ImageGallery
-        currentStyle={fixtures.styles.results[0]}
-        productId={fixtures.product.id}
-        productName={fixtures.product.name}/>);
-      // screen.debug();
-      let result = screen.getAllByRole('img', {name: /Camo Onesie/});
-      expect(result).toHaveLength(2);
-
-    });
-  });
-});
-
 
 //************************************************************************************ */
 
@@ -270,10 +256,10 @@ describe('Image Gallery', () => {
 
 xdescribe('Test Group', () => {
   test('renders component', () => {
-    // console.log('path test', path);
-    // render(<Comp props={''}/>);
-    // screen.debug();
-    // expect(screen.getByRole( )).toBeInTheDocument();
+    console.log('path test', path);
+    render(<Comp props={''}/>);
+    screen.debug();
+    expect(screen.getByRole( )).toBeInTheDocument();
   });
   test('renders default', () => {
 

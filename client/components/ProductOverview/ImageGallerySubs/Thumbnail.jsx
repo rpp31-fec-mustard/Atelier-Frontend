@@ -6,7 +6,7 @@ const Thumbnail = ({photo, counter, handleThumbnailClick, altText}) => (
     <div className='thumbnail_frame_po' key={`TF${counter}`}>
       <img className='thumbnail_box_po'
         src={photo}
-        alt={`${altText} ${counter}`}
+        alt={`${altText} ${counter} Thumbnail`}
         onClick={ () => { handleThumbnailClick(counter); }}/>
     </div>
   </React.Fragment>
