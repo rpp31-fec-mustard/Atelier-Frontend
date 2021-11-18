@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import AnswerModalThumbnails from './AnswerModalThumbnails.jsx';
 
 const Answer = (props) => {
 
@@ -59,6 +60,11 @@ const Answer = (props) => {
     return (
       <div className="singleAnswer">
         <div>{props.answer}
+          <div className="thumbnails">
+            {props.photos.map((photo, i) =>
+              <AnswerModalThumbnails key={i} src={photo}/>
+            )}
+          </div>
           <div className="answer-meta"> by
             <div className="seller">&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
@@ -72,6 +78,11 @@ const Answer = (props) => {
     return (
       <div className="singleAnswer">
         <div>{props.answer}
+          <div className="thumbnails">
+            {props.photos.map((photo, i) =>
+              <AnswerModalThumbnails key={i} src={photo}/>
+            )}
+          </div>
           <div className="answer-meta">by
             <div>&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
