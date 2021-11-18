@@ -21,7 +21,7 @@ class ReviewsList extends React.Component {
 
   moreReviewsButton() {
     if (this.state.showing !== this.props.list.length && (this.state.showing - 1) !== this.props.list.length) {
-      return <button onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
+      return <button className='reviewListButton' onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
     }
   }
 
@@ -40,7 +40,9 @@ class ReviewsList extends React.Component {
   render() {
     return (
       <div className="reviewsList_container">
-        <SortBy list={this.props.list} onChange={this.props.onChange} />
+        <section className='SortByWrapper'>
+          <SortBy list={this.props.list} onChange={this.props.onChange} />
+        </section>
         <div className="entry_container">
           {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
             return (
@@ -50,7 +52,7 @@ class ReviewsList extends React.Component {
         </div>
         <div className='reviewButtons'>
           {this.moreReviewsButton()}
-          <button onClick={this.showModal.bind(this)}>Add a Review</button>
+          <button className='reviewListButton' onClick={this.showModal.bind(this)}>Add a Review +</button>
           <AddReviewModal meta={this.props.meta} close={this.closeModal.bind(this)} show={this.state.modal} productInfo={this.props.productInfo} post={this.props.post} sort={this.props.sort}/>
         </div>
       </div>

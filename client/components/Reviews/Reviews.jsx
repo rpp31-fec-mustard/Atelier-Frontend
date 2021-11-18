@@ -29,6 +29,7 @@ class Reviews extends React.Component {
         displayedReviews: result.data.reviewsArr,
         reviewMeta: result.data.meta,
       });
+      this.props.updateTotal(result.data.reviewsArr.length);
     })
       .catch((err) => {
         console.log('Error Getting Reviews:');
@@ -48,6 +49,7 @@ class Reviews extends React.Component {
         displayedReviews: result.data.reviewsArr,
         reviewMeta: result.data.meta,
       });
+      this.props.updateTotal(result.data.reviewsArr.length);
     }).catch((err) => {
       console.log(err);
     });

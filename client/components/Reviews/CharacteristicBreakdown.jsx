@@ -10,22 +10,23 @@ const charMeanings = {
 };
 
 
-const displayMeaning = (char) => {
+const displayMeaning = (char, num) => {
   for (var storedChar in charMeanings) {
     if (char === storedChar) {
       return (
-        <section className='ratingMeaning'>
-          <section>{charMeanings[char][0]} </section>
-          <section>{charMeanings[char][1]} </section>
-          <section>{charMeanings[char][2]} </section>
-        </section>
+        <section>{charMeanings[char][num]} </section>
       );
     }
   }
 };
 
 const getRatingPercent = (rating) => {
-  return ((rating / 5) * 100) + '%';
+  let percent = (rating / 5) * 100;
+  if (percent < 5) {
+    return percent + '%';
+  } else {
+    return (percent - 5) + '%';
+  }
 };
 
 const CharacteristicBreakdown = (props) => {
@@ -38,12 +39,23 @@ const CharacteristicBreakdown = (props) => {
     <div className='charRatingEntry'>
       <section className='characteristicName'> {props.char} </section>
       <section className='pBreakdownScale'>
-        <section className='innerBar'></section>
-        <section className='innerBar'></section>
-        <section className='innerBar'></section>
+        <section className='innerBar'>
+          <section className='first meaning'>
+            {displayMeaning(props.char, 0)}
+          </section>
+        </section>
+        <section className='innerBar'>
+          <section className='second meaning'>
+            {displayMeaning(props.char, 1)}
+          </section>
+        </section>
+        <section className='innerBar'>
+          <section className='last meaning'>
+            {displayMeaning(props.char, 2)}
+          </section>
+        </section>
         <i className="fas fa-caret-down indicator" style={style}></i>
       </section>
-      {displayMeaning(props.char)}
     </div>
   );
 };
