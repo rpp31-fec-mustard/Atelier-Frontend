@@ -4,9 +4,9 @@ const ActionButton = (props) => {
   let icon;
 
   if (props.product.starred) {
-    icon = <i className="ri-close-fill" aria-label="Remove product"></i>;
+    icon = <i className="ri-close-fill"></i>;
   } else {
-    icon = <i className="ri-star-fill" aria-label="Add product"></i>;
+    icon = <i className="ri-star-fill"></i>;
   }
 
   return (

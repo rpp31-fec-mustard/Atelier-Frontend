@@ -69,7 +69,7 @@ const ProductCard = (props) => {
                 originalPrice={props.product.originalPrice}
                 salePrice={props.product.salePrice}
               />
-              <div className="rating">
+              <div className="prod-card-rating">
                 <Stars productId={props.product.id} />
               </div>
             </div>
