@@ -15,7 +15,7 @@
   "homepage": "https://github.com/rpp31-fec-mustard/fec#readme",
   "scripts": {
     "start": "nodemon server/server.js --watch",
-    "build": "webpack --mode development --watch",
+    "build": "webpack --watch",
     "coverage": "jest --coverage",
     "test": "jest --silent; exit 0",
     "test-log": "jest",
