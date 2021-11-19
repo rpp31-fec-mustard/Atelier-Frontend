@@ -2,8 +2,8 @@
 
 import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
+import _, { every } from 'underscore';
 import $ from 'jquery';
-
 
 import SelectSizeMenu from './StyleCartSubs/SelectSizeMenu.jsx';
 import SelectQuantityMenu from './StyleCartSubs/SelectQuantityMenu.jsx';
@@ -20,7 +20,8 @@ const AddtoCart = ({style}) => {
   // mlog(logC + ' ATC skus', style.skus);
 
   const [size, setSize] = useState('');
-  const [quantity, setQuantity] = useState(0);
+  const [quantityMax, setQuantityMax] = useState(null);
+  const [quantityAdd, setQuantityAdd] = useState(1);
   mlog(logC + ' ATC size', size);
 
 
@@ -33,18 +34,32 @@ const AddtoCart = ({style}) => {
     if (sku === undefined) {
       document.getElementById('menu2_po').selectedIndex = 0;
     } else {
-      mlog(logC + ' ATC handler quantity', style.skus[sku].quantity);
+      mlog(logC + ' ATC handler quantityMax', style.skus[sku].quantityMax);
       await setSize(event.target.value);
-      setQuantity(style.skus[sku].quantity);
+      setQuantityMax(style.skus[sku].quantityMax);
       document.getElementById('menu2_po').selectedIndex = 1;
     }
 
   };
 
   useEffect(() => {
-    mlog(logC + ' ATC state', size, quantity);
-  }, [quantity]);
+    mlog(logC + ' ATC state', size, quantityMax);
+    setQuantityMax(null);
+  }, [style, size]);
 
+
+  //disable flag
+  //when quantityMax is zero, disable
+  //when select size, disable
+
+  const handleSetAddQty = async (event) => {
+    await setQuantityAdd(event.target.value);
+  };
+
+
+  const addToCart = () => {
+    mlog(logC + 'ATC Add to Cart', style.style_id, size, quantityAdd);
+  };
 
 
   return (
@@ -53,10 +68,22 @@ const AddtoCart = ({style}) => {
         <SelectSizeMenu skus={style.skus} handleSetSize={handleSetSize}/>
         <div className='dropdown_space_po'>
         </div>
-        <SelectQuantityMenu size={size} quantity={quantity}/>
+        <SelectQuantityMenu size={size}
+          quantityMax={quantityMax}
+          handleSetAddQty={handleSetAddQty}/>
       </div>
       <div className='add_to_bag_bottom_po'>
-        <button className='add_to_bag_button_po'>add to bag</button>
+        <div className='add_to_bag_bottom_left_po'>
+          {(()=>{
+            if (!(_.every(style.skus, (sku) => {
+              return sku.quantity === 0;
+            }))) {
+              return ( <button className='add_to_bag_button_po'
+                onClick={addToCart}>add to bag</button>);
+            }
+          })()
+          }
+        </div>
         <div className='dropdown_space_po'>
         </div>
         <button className='favorites_add_button_po'>star</button>

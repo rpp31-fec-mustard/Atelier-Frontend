@@ -3,15 +3,19 @@ import axios from 'axios';
 import Thumbnail from './ReviewThumbnail.jsx';
 import ImgModal from './ImgModal.jsx';
 import Stars from '../Global/Stars.jsx';
-
+import trackPost from './trackPost.jsx';
 import track from 'react-tracking';
 
 
-@track({widget: 'Ratings and Reviews'}, { dispatch: data => console.log(data) })
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+  trackPost(data)
+ }})
+
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rating: 0,
       helpful: this.props.review.helpfulness,
       body: '',
       addShowButton: false,
@@ -22,7 +26,11 @@ class ReviewsListEntry extends React.Component {
 
   wouldRecommend() {
     if (this.props.review.recommend) {
-      return 'I would recommend this item!';
+      return (
+        <section>
+          <i className="fas fa-check"></i> I would recommend this item!
+        </section>
+      );
     }
   }
 
@@ -42,8 +50,10 @@ class ReviewsListEntry extends React.Component {
 
   @track((props, state, [event]) => ({
     time: new Date().toString(),
-    productId: props.productId,
-    className: 'img_modal'
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `showImgModal`
+    })
   }))
 
   showModal(e) {
@@ -67,8 +77,10 @@ class ReviewsListEntry extends React.Component {
 
   @track((props, state, [event]) => ({
     time: new Date().toString(),
-    productId: this.props.productId,
-    className: 'showBody'
+    element: JSON.stringify({
+      productId: props.productId,
+      className: 'showFullBody'
+    })
   }))
   showMore(e) {
     e.preventDefault();
@@ -95,7 +107,8 @@ class ReviewsListEntry extends React.Component {
       this.showLess();
     } else {
       this.setState({
-        body: body
+        body: body,
+        addShowButton: false
       });
     }
   }
@@ -112,33 +125,61 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+
+ @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: 'reviewHelpfulness'
+    })
+  }))
+  handleYesClick(e) {
+    e.preventDefault();
+    let num = this.state.helpful;
+    if (!localStorage.getItem(this.props.review.review_id)) {
+      localStorage.setItem(this.props.review.review_id, true);
+      this.setState({
+        helpful: num + 1
+      });
+
+      axios.post('/postHelpfulness', { reviewId: this.props.review.review_id })
+        .catch((err) => {
+          console.log('Client unable to post helpfulness', err);
+        });
+    }
+  }
+
   componentDidMount() {
     this.reviewListBody(this.props.review.body);
     this.setState({
-      rating: this.props.review.rating
+      rating: this.props.review.rating,
+      helpful: this.props.review.helpfulness
     });
   }
 
   componentDidUpdate() {
-    if (this.state.rating !== this.props.review.rating) {
+    let newBody = this.props.review.body.substring(0, 250);
+    let currBody = this.state.body.substring(0, 250);
+    if ((this.state.rating !== this.props.review.rating) || (currBody !== newBody)) {
+      this.reviewListBody(this.props.review.body);
       this.setState({
-        rating: this.props.review.rating
+        rating: this.props.review.rating,
+        helpful: this.props.review.helpfulness
       });
     }
   }
 
-
   render() {
     return (
       <div className='entry'>
-        <section className='starRating'> {this.renderStars()} </section>
-        <section className='username'> {this.props.review.reviewer_name} </section>
-        <section className='date'> {this.convertDate(this.props.review.date)} </section>
-        <section className='rating'>Rating: {this.props.review.rating}</section>
-        <section className='reviewSummary'> {this.props.review.summary} </section>
-        <section className='recommend'>
-          <i className="fas fa-check"></i> {this.wouldRecommend()}
+        <section className='wrapper_RT'>
+          <section className='starRating'> {this.renderStars()} </section>
+          <section className='name_date_RT'>
+            <section className='username'> {this.props.review.reviewer_name} </section>
+            <section className='date'> , {this.convertDate(this.props.review.date)} </section>
+          </section>
         </section>
+        <section className='reviewSummary'> {this.props.review.summary} </section>
         <section className='reviewBody'>
           {this.state.body}
           <section className='bodyDisplayButton'>
@@ -153,12 +194,18 @@ class ReviewsListEntry extends React.Component {
             <ImgModal show={this.state.modal} close={this.closeModal.bind(this)} url={this.state.img} />
           </section>
         </section>
+        <section className='recommend'>
+          {this.wouldRecommend()}
+        </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
         <section className='helpful'>
           Helpful?
-          <a href=''>
+          <a href='' onClick= {this.handleYesClick.bind(this)}>
             Yes({this.state.helpful})
           </a>
+        </section>
+        <section className='report'>
+          <a href='' >report </a>
         </section>
       </div>
     );

@@ -14,6 +14,8 @@ const AnswerList = (props) => {
             answer={answer.body}
             date={answer.date}
             helpfulness={answer.helpfulness}
+            update={props.update}
+            photos={answer.photos}
           />
         )}
       </div>

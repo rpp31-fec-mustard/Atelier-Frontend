@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import AnswerModalThumbnail from './AnswerModalThumbnails.jsx';
 
 const answerModal = (props) => {
@@ -15,12 +16,21 @@ const answerModal = (props) => {
     if (answerBody.value === '' || answerBody.value === null) {
       errorMessage.push('Answer field is required');
     }
+    if (answerBody.value.length > 1000) {
+      errorMessage.push('1000 character limit exceeded');
+    }
     if (answerUser.value === '' || answerUser.value === null) {
       errorMessage.push('Username is required');
+    }
+    if (answerUser.value.length > 60) {
+      errorMessage.push('Username cannot exceed 60 characters');
     }
     var validateEmail = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
     if (!validateEmail.test(answerEmail.value)) {
       errorMessage.push('Email is invalid');
+    }
+    if (answerEmail.value.length > 60) {
+      errorMessage.push('Email cannot exceed 60 characters');
     }
 
     if (errorMessage.length > 0) {
@@ -28,22 +38,38 @@ const answerModal = (props) => {
     }
     if (errorMessage.length === 0) {
       setError([]);
+      axios.post('/addAnswer', {
+        body: answerBody.value,
+        name: answerUser.value,
+        email: answerEmail.value,
+        photos: thumbnails,
+        questionId: props.id
+      })
+        .then(() => {
+          setThumbnails([]);
+          props.hide();
+          props.update();
+        })
+        .catch((err) => {
+          console.log('ERROR POST ANSWER');
+        });
     }
-
   };
 
   const photoThumbnail = () => {
-
     var file = document.querySelector('input[type=file').files[0];
-    var reader = new FileReader();
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-
-    reader.onloadend = () => {
-      setThumbnails(thumbnails.concat(reader.result));
-    };
+    // var reader = new FileReader();
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', 'mustardUpload');
+    axios.post('https://api.cloudinary.com/v1_1/mustard55/image/upload/', fd, { headers: { 'X-Requested-With': 'MLHttpRequest' } })
+      .then(res => {
+        let newUrl = res.data.secure_url;
+        setThumbnails(thumbnails.concat(newUrl));
+      })
+      .catch(err => {
+        console.log('error', err);
+      });
   };
 
   if (!props.show) {
@@ -81,8 +107,7 @@ const answerModal = (props) => {
               <label>Attach Up To Five Photos</label>
               <input type="file" onChange={() => photoThumbnail()} accept="image/*" multiple></input>
             </div>
-            <div>
-              Attached Photos
+            <div className="thumbnails">
               {thumbnails.map((src, i) =>
                 <AnswerModalThumbnail key={i} src={src} />
               )}
@@ -118,8 +143,7 @@ const answerModal = (props) => {
                 <input id="answer-email" type="email" maxLength="60" placeholder="jack@email.com" required></input>
                 <div className="disclaimer"><label>For authentication reasons, you will not be emailed</label></div>
               </div>
-              <div>
-                Attached Photos
+              <div className="thumbnails">
                 {thumbnails.map((src, i) =>
                   <AnswerModalThumbnail key={i} src={src} />
                 )}
