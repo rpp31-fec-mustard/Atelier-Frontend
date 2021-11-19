@@ -4,7 +4,12 @@ import CharacteristicReview from './CharacteristicReview.jsx';
 import AddReviewThumbnail from './AddReviewThumbnail.jsx';
 import StarRating from './StarRating.jsx';
 import axios from 'axios';
+import track from 'react-tracking';
+import trackPost from '../trackPost.jsx'
 
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+ trackPost(data)
+}})
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +45,14 @@ class Modal extends React.Component {
     }
   }
 
+
+ @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: state.productId,
+      className: 'uploadReviewImg'
+    })
+  }))
   handleImageChange(e) {
     let url = e.target.files[0];
 
@@ -99,6 +112,21 @@ class Modal extends React.Component {
     });
   }
 
+
+  getRating(rating) {
+    this.setState({
+      rating: rating
+    });
+  }
+
+  displayName(name) {
+    if ('The' === name.substring(0, 3)) {
+      return name.substring(4, name.length);
+    } else {
+      return name;
+    }
+  }
+
   componentDidUpdate() {
     if (this.state.productId !== this.props.meta.product_id) {
       this.setState({
@@ -107,21 +135,15 @@ class Modal extends React.Component {
     }
   }
 
-  getRating(rating) {
-    this.setState({
-      rating: rating
-    });
-  }
-
   render() {
     if (this.props.show) {
       return (
         <div className='modal'>
           <form onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); }} >
             <div className='modal_content' >
-              <div onClick={this.props.close}>X</div>
+              <div className='closeModal' onClick={this.props.close}>X</div>
               <h2 className='modal_title'>Write Your Review</h2>
-              <h4 className='subtitle'> About {this.props.productInfo.name}</h4>
+              <h4 className='subtitle'> About The {this.displayName(this.props.productInfo.name)}</h4>
               <section className='modal_rating'>
                 Overall Rating:<sup>*</sup>
                 <StarRating getRating={this.getRating.bind(this)} required />
@@ -149,7 +171,7 @@ class Modal extends React.Component {
                   <textarea name='body' onChange={this.handleBodyChange.bind(this)} maxLength="1000" minLength="50" rows="3" cols="70" placeholder="Why did you like the product or not?" required></textarea>
                   {this.display()}
                 </section>
-                {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" onChange={this.handleImageChange.bind(this)} />}
+                {this.state.allImages.length === 5 ? <section>limit reached</section> : <input type="file" name="photos" accept="image/png, image/gif, image/jpeg" onChange={this.handleImageChange.bind(this)} />}
                 <section className='uploadedImages'>
                   {this.state.allImages.map((url, i) => {
                     return (
@@ -161,14 +183,14 @@ class Modal extends React.Component {
               <section className="reviewNickName">
                 <label>Nickname:<sup>*</sup> </label>
                 <section>
-                  <textarea name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!" required></textarea>
+                  <input className='reviewInput' name='name' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11!" required></input>
                   <p>For privacy reasons, do not use your full name or email address</p>
                 </section>
               </section>
               <section className="reviewEmail">
                 <label>Email:<sup>*</sup> </label>
                 <section>
-                  <textarea name='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com" required></textarea>
+                  <input className='reviewInput' name='email' type='email' maxLength="60" rows="1" cols="40" placeholder="Example: jackson11@email.com" required></input>
                   <p>For authentication reasons, you will not be emailed</p>
                 </section>
               </section>

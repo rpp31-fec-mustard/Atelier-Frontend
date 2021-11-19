@@ -3,6 +3,12 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
+import track from 'react-tracking';
+import trackPost from './trackPost.jsx'
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+ trackPost(data)
+}})
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -29,6 +35,7 @@ class Reviews extends React.Component {
         displayedReviews: result.data.reviewsArr,
         reviewMeta: result.data.meta,
       });
+      this.props.updateTotal(result.data.reviewsArr.length);
     })
       .catch((err) => {
         console.log('Error Getting Reviews:');
@@ -48,6 +55,7 @@ class Reviews extends React.Component {
         displayedReviews: result.data.reviewsArr,
         reviewMeta: result.data.meta,
       });
+      this.props.updateTotal(result.data.reviewsArr.length);
     }).catch((err) => {
       console.log(err);
     });
@@ -69,6 +77,13 @@ class Reviews extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `sortBy: ${event.target.value}`
+    })
+  }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
@@ -109,6 +124,13 @@ class Reviews extends React.Component {
   }
 
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `reviewFilter: ${event.target.innerText}`
+    })
+  }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
     let allReviews = this.state.allReviews;
@@ -175,8 +197,6 @@ class Reviews extends React.Component {
       });
     }
   }
-
-
 
   render() {
     return (
