@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useTracking } from 'react-tracking';
 import axios from 'axios';
+import AnswerModalThumbnails from './AnswerModalThumbnails.jsx';
 
 const Answer = (props) => {
 
@@ -11,6 +13,7 @@ const Answer = (props) => {
     return updatedDate.join(' ');
   };
 
+  const { trackEvent } = useTracking();
   const answerHelpful = () => {
     axios.put('/answerHelpful', {
       answerId: props.id
@@ -18,6 +21,11 @@ const Answer = (props) => {
       .then(() => {
         props.update();
         localStorage.setItem(`${props.id} answer`, true);
+        trackEvent({
+          time: new Date().toString(),
+          element: `Answer ${props.id} helpful`,
+          widget: 'Question and Answer'
+        });
       })
       .catch((err) => {
         console.log('ERROR ANSWER HELPFUL NOT UPDATED', err);
@@ -32,6 +40,11 @@ const Answer = (props) => {
         var pressedReportButton = document.getElementById(`${props.id}report`);
         pressedReportButton.innerHTML = 'Reported';
         localStorage.setItem(`${props.id} report`, true);
+        trackEvent({
+          time: new Date().toString(),
+          element: `Answer ${props.id} reported`,
+          widget: 'Question and Answer'
+        });
       })
       .catch((err) => {
         console.log('ERROR REPORTING ANSWER', err);
@@ -59,6 +72,11 @@ const Answer = (props) => {
     return (
       <div className="singleAnswer">
         <div>{props.answer}
+          <div className="thumbnails">
+            {props.photos.map((photo, i) =>
+              <AnswerModalThumbnails key={i} src={photo}/>
+            )}
+          </div>
           <div className="answer-meta"> by
             <div className="seller">&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
@@ -72,6 +90,11 @@ const Answer = (props) => {
     return (
       <div className="singleAnswer">
         <div>{props.answer}
+          <div className="thumbnails">
+            {props.photos.map((photo, i) =>
+              <AnswerModalThumbnails key={i} src={photo}/>
+            )}
+          </div>
           <div className="answer-meta">by
             <div>&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
