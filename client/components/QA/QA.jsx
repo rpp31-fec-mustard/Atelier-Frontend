@@ -1,7 +1,13 @@
 import React from 'react';
+import axios from 'axios';
+// import track from 'react-tracking';
 import Search from './Search.jsx';
 import Q_A from './Q_A.jsx';
-import axios from 'axios';
+// import trackPost from '../Reviews/trackPost.jsx';
+
+// @track({widget: 'Question and Answers'}, { dispatch: data => {
+//   trackPost(data)
+// }})
 
 class QA extends React.Component {
   constructor(props) {
