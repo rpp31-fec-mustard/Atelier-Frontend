@@ -66,17 +66,6 @@ const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
   const loaded = useRef(true); //testing
   // const loaded = useRef(false);    //for testing Ml
 
-  // useLayoutEffect(() => {
-  //   if (loaded.current) {
-  //     mlog(logC + ' useEffect triggered by id change', id);
-  //     getProductStyles(id);
-  //     getProductReviews(id);
-  //     setStyleIndex(0);
-  //   } else {
-  //     loaded.current = true;
-  //   }
-  // }, [id]);
-
   useEffect(async () => {
     if (loaded.current) {
       // mlog(logC + ' useEffect triggered by id change', id);

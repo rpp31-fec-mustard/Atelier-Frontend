@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
-const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
+const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
   const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
@@ -24,6 +24,7 @@ const ThumbnailsBar = ({photos, handleThumbnailClick, altText}) => {
           return ( <Thumbnail
             key={`TN${index}`}
             photo={photo.url}
+            photoIndex = {photoIndex}
             counter={counter}
             altText={altText}
             handleThumbnailClick={handleThumbnailClick}/> );
