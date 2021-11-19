@@ -3,7 +3,7 @@ import * as React from 'react';
 const ActionButton = (props) => {
   let icon;
 
-  if (props.product.starred) {
+  if (props.product.starred === true) {
     icon = <i className="ri-close-fill"></i>;
   } else {
     icon = <i className="ri-star-fill"></i>;
