@@ -33,6 +33,7 @@ const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnCli
                     styleId={style.style_id}
                     productName={productName}
                     styleIndex={styleIndex}
+                    currentStyleIndex={currentStyleIndex}
                     handleStyleOnClick={handleStyleOnClick}/>
                 );
               })
