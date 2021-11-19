@@ -40,6 +40,10 @@ const Related = (props) => {
     });
   }
 
+  React.useEffect(() => {
+    // console.log('LISTENS TO LOCALSTORAGE', localStorage.outfitList);
+  }, [localStorage.outfitList]);
+
   const [outfitList, setOutfitList] = React.useState(outfitStorage);
 
   React.useEffect(() => {

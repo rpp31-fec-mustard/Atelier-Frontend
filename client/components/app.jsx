@@ -73,11 +73,21 @@ class App extends React.Component {
     });
   }
 
+  toggleToOutfitList(event) {
+    const label = event.target.innerHTML;
+    const homeProduct = this.state.product;
+    if (label === 'star') {
+      console.log('add to product list');
+    } else {
+      console.log('remove product list');
+    }
+  }
+
   render () {
     return (
       <React.Fragment>
         <TempTopBanner sendNumber={this.sendNumber}/>
-        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} />
+        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} toggleToOutfitList={this.toggleToOutfitList.bind(this)}/>
         <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews productId={this.state.productId} productInfo={this.state.product} updateTotal={this.updateTotal.bind(this)} />
