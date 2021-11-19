@@ -20,7 +20,8 @@ class ReviewsListEntry extends React.Component {
       body: '',
       addShowButton: false,
       showMore: false,
-      img: ''
+      img: '',
+      reported: false
     };
   }
 
@@ -149,6 +150,40 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `reportReview`
+    })
+  }))
+  handleReportClick(e) {
+    e.preventDefault();
+      axios.put('/reportReview', {
+        reviewId: this.props.review.review_id
+      })
+        .then(() => {
+         this.setState({
+           reported: true
+         })
+        })
+        .catch((err) => {
+          console.log('error reporting review', err);
+        });
+  }
+
+  displayReported() {
+    if (!this.state.reported) {
+      return (
+        <a href='' onClick={this.handleReportClick.bind(this)} >report </a>
+      )
+    } else {
+      return (
+        <section>reported</section>
+      )
+    }
+  }
+
   componentDidMount() {
     this.reviewListBody(this.props.review.body);
     this.setState({
@@ -198,14 +233,16 @@ class ReviewsListEntry extends React.Component {
           {this.wouldRecommend()}
         </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
+        <section className='footerWrapper'>
         <section className='helpful'>
           Helpful?
           <a href='' onClick= {this.handleYesClick.bind(this)}>
             Yes({this.state.helpful})
           </a>
-        </section>
+        </section> |
         <section className='report'>
-          <a href='' >report </a>
+          {this.displayReported()}
+        </section>
         </section>
       </div>
     );

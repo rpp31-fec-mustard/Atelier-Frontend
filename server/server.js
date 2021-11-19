@@ -65,6 +65,16 @@ app.post('/postHelpfulness', (req, res) => {
     });
 });
 
+app.put('/reportReview', (req, res) => {
+  api.reportReview(req.body.reviewId)
+    .then(() => {
+      res.send('review reported');
+    })
+    .catch((err) => {
+      res.status(500).send(err).end();
+    });
+});
+
 app.post('/related', (req, res) => {
   api.getRelated(req.body.productId)
     .then((relatedList) => {
