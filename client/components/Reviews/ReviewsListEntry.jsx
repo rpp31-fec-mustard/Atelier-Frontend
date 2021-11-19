@@ -159,6 +159,9 @@ class ReviewsListEntry extends React.Component {
   }))
   handleReportClick(e) {
     e.preventDefault();
+    let name = this.props.review.review_id + ' review'
+    if (!localStorage.getItem(name)) {
+      localStorage.setItem(name, true);
       axios.put('/reportReview', {
         reviewId: this.props.review.review_id
       })
@@ -170,10 +173,12 @@ class ReviewsListEntry extends React.Component {
         .catch((err) => {
           console.log('error reporting review', err);
         });
+    }
   }
 
   displayReported() {
-    if (!this.state.reported) {
+    let name = this.props.review.review_id + ' review'
+    if (!localStorage.getItem(name)) {
       return (
         <a href='' onClick={this.handleReportClick.bind(this)} >report </a>
       )
