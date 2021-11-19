@@ -65,10 +65,10 @@ describe('Rendering Components', () => {
 
   test('renders Question Component', () => {
     act(() => {
-      render(<Question key="1" helpfulness="5" question="Does this test work?" answer={['I hope so']}/>, container);
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
     });
     const component = document.getElementsByClassName('questionEntry');
-    expect(component.length).toBe(1);
+    expect(component.length).toBe(2);
   });
 
   test('renders QuestionList Component', () => {
@@ -81,10 +81,10 @@ describe('Rendering Components', () => {
 
   test('renders AnswerList Component', () => {
     act(() => {
-      render(<AnswerList displayAnswers={['testing render of answer list']} />, container);
+      render(<Q_A productInfo={fixtures.product} questions={fixtures.questions} filter=''/>, container);
     });
     const component = document.getElementsByClassName('answer');
-    expect(component.length).toBe(1);
+    expect(component.length).toBe(2);
   });
 
   test('renders AnswerModal Component', () => {
@@ -97,7 +97,7 @@ describe('Rendering Components', () => {
 
   test('renders Answer Component', () => {
     act(() => {
-      render(<Answer />, container);
+      render(<Answer photos={[]}/>, container);
     });
     const component = document.getElementsByClassName('singleAnswer');
     expect(component.length).toBe(1);
