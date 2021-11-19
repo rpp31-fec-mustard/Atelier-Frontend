@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AnswerModal from './AnswerModal.jsx';
 import axios from 'axios';
+import { useTracking } from 'react-tracking';
 
 const QuestionList = (props) => {
+  const { trackEvent } = useTracking();
   const [modal, setModal] = useState(false);
   const hideModal = () => {
     setModal(false);
@@ -15,6 +17,11 @@ const QuestionList = (props) => {
       .then(() => {
         props.update();
         localStorage.setItem(`${props.id} helpful`, true);
+        trackEvent({
+          time: new Date().toString(),
+          element: `Question ${props.id} helpful`,
+          widget: 'Question and Answer'
+        });
       })
       .catch((err) => {
         console.log('ERROR UPDATING QUESTION HELPFUL');

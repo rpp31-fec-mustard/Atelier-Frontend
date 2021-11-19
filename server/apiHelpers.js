@@ -164,6 +164,16 @@ const putReviewHelpfulness = (id) => {
     });
 };
 
+const reportReview = (reviewId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/reviews/${reviewId}/report`, {}, auth)
+    .then(() => {
+      return;
+    })
+    .catch((err) => {
+      return 'error reporting review', err;
+    });
+};
+
 
 const getQuestions = (productId) => {
 
@@ -273,6 +283,7 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
+  reportReview: reportReview,
   postReview: postReview,
   postInteraction: postInteraction,
   postQuestion: postQuestion,

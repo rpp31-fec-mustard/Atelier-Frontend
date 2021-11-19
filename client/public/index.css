@@ -1037,8 +1037,20 @@ border: none;
   margin-bottom: 10px;
 }
 
+.footerWrapper {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  margin-right: 10px;
+}
+
 .helpful {
   font-size: 13px;
+  margin-right: 10px;
+}
+
+.report {
+  margin-left: 10px;
 }
 
 .response {
