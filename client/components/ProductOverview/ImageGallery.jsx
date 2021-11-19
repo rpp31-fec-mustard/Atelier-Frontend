@@ -35,7 +35,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     }
   };
 
-  const [show, setShow] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
 //useLayoutEffect?
   useLayoutEffect(() => {
     mlog('IG useEffect to set index to 0');
@@ -43,7 +43,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
   }, [productId]);
 
   const handleClickImage = () => {
-    setShow(true);
+    setIsShowing(true);
   };
 
   const handleThumbnailClick = (index) => {
@@ -88,12 +88,12 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
               currentStyle={currentStyle}
               productName={productName}
               index={index}
-              show={show}
+              isShowing={isShowing}
               imageLeftClick={imageLeftClick}
               imageRightClick={imageRightClick}
               handleThumbnailClick={handleThumbnailClick}
               indexMax={photos.length - 1}
-              onClose={() => setShow(false)}/>
+              onClose={() => setIsShowing(false)}/>
             <div className='arrow_po'>
               <div className='arrow_space_po' onClick={handleClickImage}></div>
               <ArrowRight

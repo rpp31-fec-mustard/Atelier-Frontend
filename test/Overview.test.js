@@ -17,6 +17,10 @@ import ThumbnailsBar from '../client/components/ProductOverview/ImageGallerySubs
 import Thumbnail from '../client/components/ProductOverview/ImageGallerySubs/Thumbnail.jsx';
 import SelectSizeMenu from '../client/components/ProductOverview/StyleCartSubs/SelectSizeMenu.jsx';
 import SelectQuantityMenu from '../client/components/ProductOverview/StyleCartSubs/SelectQuantityMenu.jsx';
+import FullScreenModal from '../client/components/ProductOverview/ImageGallerySubs/FullScreenModal.jsx';
+import ImageIconBar from '../client/components/ProductOverview/ImageGallerySubs/ImageIcon.jsx';
+import ImageIcon from '../client/components/ProductOverview/ImageGallerySubs/ImageIcon.jsx';
+import AddToCart from '../client/components/ProductOverview/AddToCart.jsx';
 
 // fixtures
 import fixtures from './fixtures.js';
@@ -74,26 +78,56 @@ xdescribe('Product Overview', () => {
 
 // *** *** *** *** *** *** *** *** IMAGE GALLERY *** *** *** *** *** *** *** *** //
 
-describe('Image Gallery', () => {
-  test('renders main image', () => {
-    render(<ImageGallery
-      currentStyle={fixtures.styles.results[0]}
-      productId={fixtures.product.id}
-      productName={fixtures.product.name}/>);
-    // screen.debug();
-    let result = screen.getByTestId('main-image');
-    expect(result).toBeInTheDocument;
-  });
-  test('renders correct number of thumbnails', () => {
-    render(<ImageGallery
-      currentStyle={fixtures.styles.results[0]}
-      productId={fixtures.product.id}
-      productName={fixtures.product.name}/>);
-    // screen.debug();
-    let result = screen.getAllByRole('img', {name: /Thumbnail/});
-    expect(result.length).toEqual(2);
+xdescribe('Image Gallery', () => {
+  describe('Default View', () => {
 
-    xtest('renders thumbnail', () => {
+    test('renders main image', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getByTestId('main-image');
+      expect(result).toBeInTheDocument;
+    });
+    test('renders correct number of thumbnails', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getAllByRole('img', {name: /Thumbnail/});
+      expect(result.length).toEqual(2);
+    });
+  });
+
+  describe('Expanded View', () => {
+
+    test('renders main image', () => {
+      render(<FullScreenModal
+        isShowing={true}
+        currentStyle={fixtures.styles.results[0]}
+        index={0}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      expect(screen.getByRole('img', {name: /Camo Onesie/} )).toBeInTheDocument();
+    });
+    test('renders icons for thumbnail images', () => {
+      render(<FullScreenModal
+        isShowing={true}
+        currentStyle={fixtures.styles.results[0]}
+        index={0}
+        indexMax={1}
+        productName={fixtures.product.name}/>);
+      // screen.debug();
+      let result = screen.getAllByTestId(/image_icon/);
+      expect(result).toHaveLength(2); // this one!
+    });
+  });
+
+  describe('Thumbnail bar', () => {
+
+    test('renders thumbnail', () => {
       render(<ImageGallery
         currentStyle={fixtures.styles.results[0]}
         productId={fixtures.product.id}
@@ -102,24 +136,32 @@ describe('Image Gallery', () => {
       let result = screen.getByRole('img', {name: /Camo Onesie in First Green & Black 0/});
       expect(result).toBeInTheDocument;
     });
+    test('renders correct number of thumbnails', () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      screen.debug();
+      let result = screen.getAllByRole('img', {name: /Thumbnail/});
+      expect(result).toHaveLength(2);
 
+    });
+    // test('renders correct number of thumbnails', () => {
+    //   render(<ImageGallery
+    //     currentStyle={fixtures.styles.results[0]}
+    //     productId={fixtures.product.id}
+    //     productName={fixtures.product.name}/>);
+    //   // screen.debug();
+    //   let result = screen.getAllByRole('img', {name: /Camo Onesie/});
+    //   expect(result).toHaveLength(2);
+    // });
   });
-  xtest('renders correct number of thumbnails', () => {
-    render(<ImageGallery
-      currentStyle={fixtures.styles.results[0]}
-      productId={fixtures.product.id}
-      productName={fixtures.product.name}/>);
-    // screen.debug();
-    let result = screen.getAllByRole('img', {name: /Camo Onesie/});
-    expect(result).toHaveLength(2);
-
-  });
-
 });
 
 
 
 // *** *** *** *** *** *** *** *** STYLE SELECTOR *** *** *** *** *** *** *** *** //
+
 
 xdescribe('Style Selector', () => {
   test ('renders Style Selector component', () => {
@@ -175,7 +217,12 @@ xdescribe('Style Selector', () => {
 
 // *** *** *** *** *** *** *** *** *** ADD TO CART *** *** *** *** *** *** *** *** *** //
 
-xdescribe('Add to Cart', () => {
+
+
+
+
+describe('Add to Cart', () => {
+
   describe('Select Size Menu', () => {
 
     test('renders Size Menu component', () => {
@@ -204,7 +251,8 @@ xdescribe('Add to Cart', () => {
     });
   });
 
-  xdescribe('Select Quantity Menu', () => {
+  describe('Select Quantity Menu', () => {
+
     test('renders Quantity Menu component', () => {
       // console.log('path test', path);
       render(<SelectQuantityMenu />);
@@ -244,7 +292,19 @@ xdescribe('Add to Cart', () => {
       expect(screen.getByRole( )).toBeInTheDocument();
     });
   });
+
+  describe('Add to Bag Button', () => {
+
+    test('renders component', () => {
+      // console.log('path test', path);
+      render(<AddToCart style={fixtures.styles.results[0]}/>);
+      screen.debug();
+      // expect(screen.getByRole( )).toBeInTheDocument();
+    });
+  });
 });
+
+
 
 
 
@@ -256,10 +316,10 @@ xdescribe('Add to Cart', () => {
 
 xdescribe('Test Group', () => {
   test('renders component', () => {
-    console.log('path test', path);
-    render(<Comp props={''}/>);
-    screen.debug();
-    expect(screen.getByRole( )).toBeInTheDocument();
+    // console.log('path test', path);
+    // render(<Comp props={''}/>);
+    // screen.debug();
+    // expect(screen.getByRole( )).toBeInTheDocument();
   });
   test('renders default', () => {
 
@@ -324,107 +384,4 @@ xdescribe('Render Tests', () => {
     // };
   });
 });
-//*/
-
-
-
-
-
-
-
-/*/
-xdescribe('<ProductOverview /> full rendering', () => {
-  it('renders one <ImageGallery /> component', () => {
-    act(() => {
-      render(<App />, container);
-    });
-
-    const wrapper = mount(<ProductOverview />);
-    console.log('wrapper', wrapper);
-    expect(wrapper.contains(<ImageGallery />)).toEqual(true);
-
-  });
-
-  test('renders five <Thumbnail /> components', () => {
-    act(() => {
-      render(<App />, container);
-    });
-
-    const wrapper = mount(<ProductOverview />);
-    // console.log('test')
-    // console.log(wrapper.find(Thumbnail))
-    expect(wrapper).toHaveLength(5);
-
-  });
-});
-//*/
-
-/*/
-xdescribe('Image Gallery Module', () => {
-  xit('renders all modules', () => {
-  });
-  it('renders Image Gallery', () => {
-    act(() => {
-      render(<ImageGallery />, container);
-    });
-    //journal entry
-    const component = document.getElementsByClassName('image_gallery_po');
-    expect(component.length).toBe(1);
-  });
-
-  it('renders left arrow', ()=> {
-    act(() => {
-      render(<ArrowLeft />, container);
-    });
-    const component = document.getElementsByClassName('arrow_left_po');
-    expect(component.length).toBe(1);
-  });
-
-  it('renders right arrow', ()=> {
-    act(() => {
-      render(<ArrowRight />, container);
-    });
-    const component = document.getElementsByClassName('arrow_right_po');
-    expect(component.length).toBe(1);
-  });
-
-  xit('style thumbnails should render', () => {
-    // let count =
-    const wrapper = shallow(<StyleSelector />);
-    expect(wrapper.find(StyleThumbnail)).toHave(5);
-  });
-
-  // test('renders five <Thumbnail /> components shallow', () => {
-  //   const wrapper = shallow(<ThumbnailsBar />);
-  //   expect(wrapper.find(Thumbnail)).toHaveLength(5);
-  // });
-
-  xit('interacts correctly', () => {
-  });
-
-  xit('interacts correctly', () => {
-  });
-
-  xit('left arrow changes to previous image', () => {
-  });
-
-  xit('right arrow changed to next image', () => {
-  });
-});
-
-xdescribe('Add to Cart Module', () => {
-  xit('renders all modules', () => {
-  });
-
-  xit('interacts correctly', () => {
-  });
-});
-
-xdescribe('Cart Interaction Module', () => {
-  xit('renders all modules', () => {
-  });
-  xit('interacts correctly', () => {
-  });
-});
-
 //*/

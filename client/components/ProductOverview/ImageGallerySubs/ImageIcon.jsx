@@ -9,6 +9,7 @@ const ImageIcon = ({i, photoIndex, handleThumbnailClick}) => {
   return ( <React.Fragment>
     <div className={`image_icon_${i} image_icon_po`}
       onClick={ () => { handleThumbnailClick(i); }}
+      data-testid={`image_icon_${i}`}
       style={{backgroundColor: color}}></div>
   </React.Fragment>
   );

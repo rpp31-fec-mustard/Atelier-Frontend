@@ -275,6 +275,7 @@ button {
   z-index: 3;
   height: 100%;
   width: 40%;
+  cursor: pointer;
 }
 
 .inner_image_exp_po {

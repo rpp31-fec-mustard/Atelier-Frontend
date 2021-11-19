@@ -1,20 +1,21 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-import { fromEvent } from 'rxjs';
+// import { fromEvent } from 'rxjs';
 import ArrowLeft from './ArrowLeft.jsx';
 import ArrowRight from './ArrowRight.jsx';
 import ImageIconBar from './ImageIconBar.jsx';
 
 import {DEBUG} from '../ProductOverview.jsx';
 
-const FullScreenModal = ({currentStyle, productName, index, show, onClose,
+const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
   imageLeftClick, imageRightClick, handleThumbnailClick, indexMax }) => {
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
-  if (!show) { return null; }
+  if (!isShowing) { return null; }
 
   const photos = currentStyle.photos;
+  // console.log('tests', photos)
   const altText = `${productName} in ${currentStyle.name }`;
   mlog('FSM altText', altText);
 
@@ -80,6 +81,7 @@ const FullScreenModal = ({currentStyle, productName, index, show, onClose,
       <div className='main_image_exp_po' >
         <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
         <img className='inner_image_exp_po' src={photos[index].url}
+          alt={altText}
           onClick={onClickZoomImage}
           onMouseMove={moveMousePanImage} />
         <div className='arrow_box_exp_po a_right_po' onClick={imageRightClick}>{rightArrowIcon}</div>
