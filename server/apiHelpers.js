@@ -124,6 +124,35 @@ const getReviews = (id, sort) => {
     });
 };
 
+const postReview = (review) => {
+  let data = {
+    'characteristics': JSON.parse(review.characteristics),
+    'email': review.email,
+    'name': review.name,
+    'body': review.body,
+    'photos': review.photos ? review.photos : [],
+    'product_id': Number(review.product_id),
+    'rating': Number(review.rating),
+    'recommend': (review.recommend === 'true'),
+    'summary': review.summary
+  };
+
+  let options = {
+    url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/',
+    headers: {
+      'Authorization': `${config.key}`
+    },
+    data: data,
+    method: 'post',
+  };
+
+  return axios.request(options).then((result) => {
+    return result;
+  }).catch((err) => {
+    console.log('API Helper postReviews error: ', err);
+  });
+};
+
 
 const putReviewHelpfulness = (id) => {
   return axios.put (`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/${id}/helpful`, {}, auth)
@@ -132,6 +161,16 @@ const putReviewHelpfulness = (id) => {
     })
     .catch((err) => {
       return 'error updated review helpfulness', err;
+    });
+};
+
+const reportReview = (reviewId) => {
+  return axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/reviews/${reviewId}/report`, {}, auth)
+    .then(() => {
+      return;
+    })
+    .catch((err) => {
+      return 'error reporting review', err;
     });
 };
 
@@ -243,6 +282,8 @@ module.exports = {
   getQuestions: getQuestions,
   getRating: getRating,
   putReviewHelpfulness: putReviewHelpfulness,
+  reportReview: reportReview,
+  postReview: postReview,
   postInteraction: postInteraction,
   postQuestion: postQuestion,
   postAnswer: postAnswer,

@@ -93,7 +93,7 @@ button {
 
 
 
-/* *** *** *** *** PRODUCT OVERVIEW *** *** *** *** */
+/*todo *** *** *** *** *** *** *** *** PRODUCT OVERVIEW *** *** *** *** *** *** *** *** */
 
 #product_overview_main {
 
@@ -111,7 +111,7 @@ button {
 }
 
 
-/** image gallery **/
+/*todo *** *** *** *** image gallery *** *** *** *** */
 .image_container_po {
   position: relative;
   top: 0px;
@@ -219,18 +219,6 @@ button {
   z-index: 3; */
 }
 
-/* .hover_fullscreen_button_po {
-  height: 20px;
-  width: 20px;
-  background-color: yellow;
-} */
-
-/* .fullscreen_button_po {
-  margin: 5px 0px;
-  width: 20px;
-  height: 20px;
-} */
-
 .fullscreen_exp_po {
   position: fixed;
   left: 0%;
@@ -294,7 +282,7 @@ button {
   height: 10%;
   width:100%;
 }
-/** ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+/*todo ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 .image_icon_bar_po {
   /* background-color: yellowgreen; */
   display: flex;
@@ -339,7 +327,7 @@ button {
   /* height: 100%; */
 }
 
-/** stars **/
+/*todo *** *** *** *** stars *** *** *** *** */
 .stars_po {
   display: flex;
   flex-direction: row;
@@ -481,7 +469,6 @@ position: relative
   flex-direction: row;
   align-items: center;
   justify-content: right;
-  /* padding: var(--po-info-text-padding); */
 }
 
 .add_to_bag_button_po {
@@ -494,7 +481,7 @@ position: relative
   height: 50%;
 }
 
-/** description and features **/
+/*todo *** *** *** *** description and features *** *** *** *** */
 .bottom01 {
   display: flex;
   width: 100%;
@@ -816,6 +803,7 @@ td {
 
 .singleQuestion {
   width: 700px;
+  border: none;
 }
 
 .questionEntry {
@@ -901,6 +889,7 @@ td {
 .answer-meta {
   display: flex;
   font-size: 13px;
+  border: none;
 }
 
 .seller {
@@ -1002,29 +991,34 @@ textarea {
   border: none;
 }
 
+.thumbnails {
+  display: flex;
+}
+
 
 /* *** RATINGS/REVIEWS *** */
+
 #ratings_reviews {
 align-items: flex-start;
-height: 600px;
+height: 650px;
 border: none;
-margin-top: 0px;
 }
 
 .reviews {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 600px;
-  margin-top: 0px;
+  width: 900px;
+  height: 650px;
+  margin-left: 40px;
   border: none;
   text-align: left;
-  justify-content: left;
+  justify-content: center;
+  align-content: center;
 }
 
 .reviewsTitle {
   border: none;
-  margin-top: 10px;
+  margin-left: 85px;
   border-style: none;
   color: var(--global-border-color);
 }
@@ -1032,20 +1026,22 @@ margin-top: 0px;
 .reviewsList_container {
   display: flex;
   flex-direction:column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 700px;
+  height: 580px;
   border: none;
+  margin-top: 10px;
+  margin-left: 40px;
 }
 
 .ratings_container {
   display: flex;
   flex-direction:column;
   align-items: center;
-  width: 50%;
+  width: 220px;
   height: 500px;
   color: rgb(59, 58, 58);
   border: none;
+  margin: 31px 40px 0px 50px;
 }
 
 .ratingsContent {
@@ -1054,16 +1050,25 @@ margin-top: 0px;
   justify-content: center;
   align-items: center;
   border: none;
+  width: 210px;
+}
+
+.sortByWrapper {
+ text-align: left;
 }
 
 .sortBy {
   border: none;
+  font-size: 18px;
   font-weight: bolder;
+  text-align: left;
+  margin-bottom: 20px;
 }
 
 .sortByButton {
   border: none;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .entry {
@@ -1078,8 +1083,8 @@ margin-top: 0px;
   height: 80%;
   overflow-y: scroll;
   border: none;
+  margin-bottom: 10px;
 }
-
 
 .wrapper_RT {
   display: flex;
@@ -1096,7 +1101,6 @@ margin-top: 0px;
   font-size: 11px;
   color: rgb(179, 130, 130);
 }
-
 
 .reviewBody {
   display: flex;
@@ -1137,24 +1141,57 @@ margin-top: 0px;
 }
 
 .recommend {
-  font-size: 13px;
+  font-size: 10px;
   margin-bottom: 10px;
+}
+
+.footerWrapper {
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  margin-right: 10px;
 }
 
 .helpful {
   font-size: 13px;
+  margin-right: 10px;
 }
 
+.report {
+  margin-left: 10px;
+}
+
+.response {
+  background-color: lightgray;
+}
 
 .overall {
   display: flex;
   flex-direction: column;
   height: 50px;
-  width: 80%;
+  width: 180px;
   color: rgb(77, 63, 63);
   justify-content: center;
   align-items: center;
   border: none;
+}
+
+.reviewListButton {
+  border-radius: 5px;
+  color: rgb(22, 20, 20);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  letter-spacing: .5px;
+  height: 60px;
+  width: auto;
+  margin: 0px 20px 5px 0px;
+  text-transform: uppercase;
+}
+
+.reviewListButton:hover {
+  background: #fff;
+  color: #648880;
 }
 
 .starScale {
@@ -1162,9 +1199,9 @@ margin-top: 0px;
 }
 
 .starBreakdown {
-  margin-top: 10px;
-  height: 110px;
-  width: 90%;
+  margin-top: 20px;
+  height: 150px;
+  width: 240px;
   overflow-y: scroll;
   border: none;
 }
@@ -1173,11 +1210,9 @@ margin-top: 0px;
   display: flex;
   flex-direction: column;
   height: 300px;
-  width: 90%;
   font-size: 10px;
   border: none;
   overflow-y: scroll;
-  font-size: 10px;
 }
 
 .starTotalReviews {
@@ -1189,8 +1224,8 @@ margin-top: 0px;
 .overallRating {
   display: flex;
   flex-direction: row;
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 55px;
+  font-weight: 900;
   border: none;
 }
 
@@ -1202,11 +1237,12 @@ margin-top: 0px;
   font-size: 75%;
   display: flex;
   flex-direction: row;
+  width: 100%;
   border: none;
   height: 15px;
   justify-content: center;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 13px;
 }
 
 progress {
@@ -1214,13 +1250,12 @@ progress {
   margin-top: 5px;
   margin-left: 5px;
   height: 7px;
-  width: 55%;
+  width: 68%;
 }
 
 .numReviews {
   margin-bottom: 30px;
 }
-
 
 progress::-webkit-progress-bar {
   background-color: rgb(143, 143, 129);
@@ -1275,7 +1310,7 @@ progress::-webkit-progress-value {
   border: none;
   cursor: pointer;
   text-decoration: underline;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .numStar:hover {
@@ -1284,24 +1319,31 @@ progress::-webkit-progress-value {
 
 .charRatingEntry {
   border: none;
+  font-size: 12px;
+  width: 240px;
+  margin: 12px 0 12px 0;
+}
+
+.characteristicName {
+  margin: 9px;
 }
 
 .pBreakdownScale {
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 254px;
+  width: 210px;
   margin: 4px 10px 0px 10px;
   border: none;
 }
 
 .innerBar {
   position: relative;
-  width:80px;
-	height:4px;
-  margin-left: 2px;
-  margin-right: 2px;
-  background-color: lightgray
+  width:70px;
+	height:6px;
+  margin-right: 4px;
+  background-color: lightgray;
+  font-size: 10px;
 }
 
 .indicator {
@@ -1309,20 +1351,21 @@ progress::-webkit-progress-value {
   bottom: 10%;
 }
 
-.ratingMeaning {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
+.meaning  {
+  margin-top: 5px;
 }
 
-.ratingMeaning section {
-  display: table-cell;
+.second {
   text-align: center;
-  font-size: 8px;
+}
+
+.last {
+text-align: right;
 }
 
 .percentRecommend {
-  font-size: 10px;
+  font-size: 12px;
+  width: 220px;
 }
 
 .reviewThumbnailContainer {
@@ -1374,6 +1417,7 @@ progress::-webkit-progress-value {
   bottom: 0;
   background-color: rgba(87, 59, 59, 0.938);
   display: flex;
+  text-align: center;
   align-items: center;
   justify-content: center;
   border: none;
@@ -1381,21 +1425,21 @@ progress::-webkit-progress-value {
 
 .modal_input {
   border: none;
+  width: 500px;
 }
+
 .modal_content {
   display: flex;
   flex-direction:column;
-  /* align-items: center; */
+  align-items: center;
   border: none;
-  width: 60%;
   height: 60%;
   background-color: white;
   overflow-y: scroll;
-}
-.selected {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  border: none;
+  margin: 15px;
+  height: 600px;
+  width: 800px;
 }
 
 .modal_characteristics {
@@ -1403,12 +1447,27 @@ progress::-webkit-progress-value {
   flex-direction: row;
   margin: 7px;
   justify-content: center;
+  border: none;
 }
 
-.test {
+.ratingSelection {
+  display: flex;
+  flex-direction: column;
   width: 25%;
-  margin-right: 10px;
+  margin-right: 8px;
   text-align: center;
+  border: none;
+}
+
+.selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.modal_rating {
+  margin: 15px;
 }
 
 p {
@@ -1437,4 +1496,23 @@ p {
   opacity: 0;
 }
 
+.selectedStar {
+  margin-left: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 4px;
+}
 
+.modal_recommend {
+  border: none;
+}
+
+.reviewInput {
+  width: 270px;
+}
+
+.closeModal {
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}

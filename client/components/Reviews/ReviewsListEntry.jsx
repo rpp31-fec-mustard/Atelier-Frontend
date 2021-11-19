@@ -3,17 +3,25 @@ import axios from 'axios';
 import Thumbnail from './ReviewThumbnail.jsx';
 import ImgModal from './ImgModal.jsx';
 import Stars from '../Global/Stars.jsx';
+import trackPost from './trackPost.jsx';
+import track from 'react-tracking';
 
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+  trackPost(data)
+ }})
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      rating: 0,
       helpful: this.props.review.helpfulness,
       body: '',
       addShowButton: false,
       showMore: false,
-      img: ''
+      img: '',
+      reported: false
     };
   }
 
@@ -41,6 +49,14 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `showImgModal`
+    })
+  }))
+
   showModal(e) {
     this.setState({
       modal: true,
@@ -60,6 +76,13 @@ class ReviewsListEntry extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: 'showFullBody'
+    })
+  }))
   showMore(e) {
     e.preventDefault();
     this.setState({
@@ -85,7 +108,8 @@ class ReviewsListEntry extends React.Component {
       this.showLess();
     } else {
       this.setState({
-        body: body
+        body: body,
+        addShowButton: false
       });
     }
   }
@@ -93,32 +117,23 @@ class ReviewsListEntry extends React.Component {
   displayButton() {
     if (!this.state.showMore) {
       return (
-        <a href='/' onClick={this.showMore.bind(this)}> show more </a>
+        <a className='showBody' href='/' onClick={this.showMore.bind(this)}> show more </a>
       );
     } else {
       return (
-        <a href='/' onClick={this.showLess.bind(this)}> show less </a>
+        <a href='/' className='hideBody' onClick={this.showLess.bind(this)}> show less </a>
       );
     }
   }
 
-  componentDidMount() {
-    this.reviewListBody(this.props.review.body);
-    this.setState({
-      rating: this.props.review.rating
-    });
-  }
 
-  componentDidUpdate() {
-    if (this.state.rating !== this.props.review.rating) {
-      this.setState({
-        rating: this.props.review.rating
-      });
-    }
-  }
-
-
-  //create post request that adjust data for item clicked.
+ @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: 'reviewHelpfulness'
+    })
+  }))
   handleYesClick(e) {
     e.preventDefault();
     let num = this.state.helpful;
@@ -132,10 +147,67 @@ class ReviewsListEntry extends React.Component {
         .catch((err) => {
           console.log('Client unable to post helpfulness', err);
         });
-
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `reportReview`
+    })
+  }))
+  handleReportClick(e) {
+    e.preventDefault();
+    let name = this.props.review.review_id + ' review'
+    if (!localStorage.getItem(name)) {
+      localStorage.setItem(name, true);
+      axios.put('/reportReview', {
+        reviewId: this.props.review.review_id
+      })
+        .then(() => {
+         this.setState({
+           reported: true
+         })
+        })
+        .catch((err) => {
+          console.log('error reporting review', err);
+        });
+    }
+  }
+
+  displayReported() {
+    let name = this.props.review.review_id + ' review'
+    if (!localStorage.getItem(name)) {
+      return (
+        <a href='' onClick={this.handleReportClick.bind(this)} >report </a>
+      )
+    } else {
+      return (
+        <section>reported</section>
+      )
+    }
+  }
+
+  componentDidMount() {
+    this.reviewListBody(this.props.review.body);
+    this.setState({
+      rating: this.props.review.rating,
+      helpful: this.props.review.helpfulness
+    });
+  }
+
+  componentDidUpdate() {
+    let newBody = this.props.review.body.substring(0, 250);
+    let currBody = this.state.body.substring(0, 250);
+    if ((this.state.rating !== this.props.review.rating) || (currBody !== newBody)) {
+      this.reviewListBody(this.props.review.body);
+      this.setState({
+        rating: this.props.review.rating,
+        helpful: this.props.review.helpfulness
+      });
+    }
+  }
 
   render() {
     return (
@@ -166,11 +238,16 @@ class ReviewsListEntry extends React.Component {
           {this.wouldRecommend()}
         </section>
         <section className='response'> {this.response(this.props.review.response)} </section>
+        <section className='footerWrapper'>
         <section className='helpful'>
           Helpful?
           <a href='' onClick= {this.handleYesClick.bind(this)}>
             Yes({this.state.helpful})
           </a>
+        </section> |
+        <section className='report'>
+          {this.displayReported()}
+        </section>
         </section>
       </div>
     );

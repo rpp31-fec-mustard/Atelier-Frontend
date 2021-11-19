@@ -3,6 +3,12 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
+import track from 'react-tracking';
+import trackPost from './trackPost.jsx'
+
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+ trackPost(data)
+}})
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -29,10 +35,30 @@ class Reviews extends React.Component {
         displayedReviews: result.data.reviewsArr,
         reviewMeta: result.data.meta,
       });
+      this.props.updateTotal(result.data.reviewsArr.length);
     })
       .catch((err) => {
         console.log('Error Getting Reviews:');
       });
+  }
+
+  post(data) {
+    let options = {
+      url: 'postReview',
+      params: data,
+      method: 'post'
+    };
+
+    return axios.request(options).then((result) => {
+      this.setState({
+        allReviews: result.data.reviewsArr,
+        displayedReviews: result.data.reviewsArr,
+        reviewMeta: result.data.meta,
+      });
+      this.props.updateTotal(result.data.reviewsArr.length);
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
   sortListOnChange(e, callback) {
@@ -51,6 +77,13 @@ class Reviews extends React.Component {
     }
   }
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `sortBy: ${event.target.value}`
+    })
+  }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
@@ -91,6 +124,13 @@ class Reviews extends React.Component {
   }
 
 
+  @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: props.productId,
+      className: `reviewFilter: ${event.target.innerText}`
+    })
+  }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
     let allReviews = this.state.allReviews;
@@ -158,8 +198,6 @@ class Reviews extends React.Component {
     }
   }
 
-
-
   render() {
     return (
       <div id='ratings_reviews' className='module_container'>
@@ -171,7 +209,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
-          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} meta={this.state.reviewMeta} productInfo={this.props.productInfo} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} meta={this.state.reviewMeta} productInfo={this.props.productInfo} sort={this.state.sorted} post={this.post.bind(this)} />
         </div>
       </div>
     );

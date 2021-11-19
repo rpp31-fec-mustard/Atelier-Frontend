@@ -17,7 +17,7 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 import fixtures from '../../../test/fixtures.js';
 
 
-const ProductOverview = ({product, id}) => {
+const ProductOverview = ({product, id, total}) => {
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
@@ -111,7 +111,7 @@ const ProductOverview = ({product, id}) => {
           productName={product.name} />
         <div className='right02'>
           <div className='stars_po'>
-            <Stars productId={product.id}/>
+            <Stars productId={product.id} total={total} />
 
             {/* making change this line here */}
             { (() => {
@@ -165,5 +165,3 @@ const ProductOverview = ({product, id}) => {
 
 
 export default ProductOverview;
-
-

@@ -1,7 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import Search from './Search.jsx';
 import Q_A from './Q_A.jsx';
-import axios from 'axios';
 
 class QA extends React.Component {
   constructor(props) {
