@@ -1,116 +1,96 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-import { fromEvent } from 'rxjs';
-import { map, throttleTime } from 'rxjs/operators';
-// import ReactDOM from 'react-dom';
+// import { fromEvent } from 'rxjs';
+import ArrowLeft from './ArrowLeft.jsx';
+import ArrowRight from './ArrowRight.jsx';
+import ImageIconBar from './ImageIconBar.jsx';
 
 import {DEBUG} from '../ProductOverview.jsx';
 
-
-const FullScreenModal = ({currentStyle, productName, index, show, onClose}) => {
+const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
+  imageLeftClick, imageRightClick, handleThumbnailClick, indexMax }) => {
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
+  if (!isShowing) { return null; }
 
-  if (!show) {
-    return null;
-  }
-
-  const [zoom, setZoom] = useState(false);
   const photos = currentStyle.photos;
+  // console.log('tests', photos)
   const altText = `${productName} in ${currentStyle.name }`;
   mlog('FSM altText', altText);
 
-
-  // const useMousePosition = () => {
-  //   const [x, setX] = useState(null);
-  //   const [y, setY] = useState(null);
-
-  //   useEffect(() => {
-  //     const sub = fromEvent(document, 'mousemove')
-  //       .pipe(map(event => [event.clientX, event.clientY]))
-  //       .subscribe(([newX, newY]) => {
-  //         setX(newX);
-  //         setY(newY);
-  //       });
-
-  //     return () => {
-  //       sub.unsubscribe();
-  //     };
-  //   }, []);
-  //   return {mouseX: x, mouseY: y};
-  // };
-
-  // //throttle detection to 10x a sec
-  // const sub = fromEvent(document, 'mousemove').pipe(throttleTime(100),
-  //   map(event => [event.clientX, event.clientY])
-  // );
-
-  // const {mouseX, mouseY } = useMousePosition();
-
-
-
-  // console.log(x, y);
-
-  // console.log(mouseX, mouseY);
+  const [photoIndex, setPhotoIndex] = useState(index);
+  const [zoom, setZoom] = useState(false);
   const [panImage, setPanImage] = useState(false);
 
-  const moveMousePanImage = (e) => {
-    if (panImage) {
-      console.log(e.pageX, e.pageY);
-      let image = document.getElementsByClassName('main_image_exp_po')[0];
+  useEffect(() => {
+    let leftArrow = document.getElementsByClassName('a_left_po')[0];
+    let rightArrow = document.getElementsByClassName('a_right_po')[0];
+    let image = document.getElementsByClassName('inner_image_exp_po')[0];
+    let iconsBar = document.getElementsByClassName('image_icons_exp_po')[0];
 
-      console.log(image);
-      console.log(image.offsetWidth, image.offsetHeight);
-      console.log(image.offsetLeft, image.offsetTop);
-
-      image.style.transformOrigin = ((e.pageX - image.offsetLeft) / image.offsetWidth) * 100 + '% ' +
-        ((e.pageY - image.offsetTop) / image.offsetHeight) * 100 + '% ';
-      // image.style.transformOrigin = ((e.pageX - image.offset().left) / image.width()) * 100 + '% ' +
-      //   ((e.pageY - image.offset().top) / image.height()) * 100 + '% ';
-
-
-
-    }
-  };
-
-  // .on('mousemove', function(e) {
-  //   $(this).css({'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 + '%'});
-
-
-  useLayoutEffect(() => {
     if (zoom) {
-      document.getElementsByClassName('main_image_exp_po')[0].style.transform = 'scale(2.5)';
-      document.getElementsByClassName('main_image_exp_po')[0].style.cursor = 'zoom-out';
+      image.style.transform = 'scale(2.5)';
+      image.style.cursor = 'zoom-out';
+      leftArrow.style.visibility = 'hidden';
+      rightArrow.style.visibility = 'hidden';
+      iconsBar.style.visibility = 'hidden';
       setPanImage(true);
 
     } else {
-      document.getElementsByClassName('main_image_exp_po')[0].style.transform = 'scale(1)';
-      document.getElementsByClassName('main_image_exp_po')[0].style.cursor = 'zoom-in';
+      image.style.transform = 'scale(1)';
+      image.style.cursor = 'zoom-in';
+      iconsBar.style.visibility = 'visible';
+      leftArrow.style.visibility = 'visible';
+      rightArrow.style.visibility = 'visible';
+      if (index <= 0) {
+        leftArrow.style.visibility = 'hidden';
+      }
+      if (index >= indexMax) {
+        rightArrow.style.visibility = 'hidden';
+      }
       setPanImage(false);
-
     }
-  }, [zoom]);
+  }, [zoom, index]);
 
+
+  const onClickZoomImage = (e) => {
+    zoom ? setZoom(false) : setZoom(true);
+    let image = document.getElementsByClassName('inner_image_exp_po')[0];
+    image.style.transformOrigin = ((e.pageX - image.offsetLeft) / image.offsetWidth) * 100 + '% ' +
+    ((e.pageY - image.offsetTop) / image.offsetHeight) * 100 + '% ';
+  };
+
+  const moveMousePanImage = (e) => {
+    let image = document.getElementsByClassName('inner_image_exp_po')[0];
+    // console.log(e.pageX, e.pageY);
+    if (panImage) {
+      image.style.transformOrigin = ((e.pageX - image.offsetLeft) / image.offsetWidth) * 100 + '% ' +
+        ((e.pageY - image.offsetTop) / image.offsetHeight) * 100 + '% ';
+    }
+  };
+
+
+  let leftArrowIcon = <i className="ri-arrow-left-s-line"></i>;
+  let rightArrowIcon = <i className="ri-arrow-right-s-line"></i>;
 
   return (
-    <div className='fullscreen_exp_po'
-    >
-      <div className='image_side_po'
-        onClick={onClose}
-      >side</div>
-      <div className='main_image_exp_po'>
+    <div className='fullscreen_exp_po'>
+      <div className='image_side_po' onClick={onClose}>
+      </div>
+      <div className='main_image_exp_po' >
+        <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
         <img className='inner_image_exp_po' src={photos[index].url}
-          onClick={() => {
-            zoom ? setZoom(false) : setZoom(true);
-          }}
-          onMouseMove={moveMousePanImage}
-        />
+          alt={altText}
+          onClick={onClickZoomImage}
+          onMouseMove={moveMousePanImage} />
+        <div className='arrow_box_exp_po a_right_po' onClick={imageRightClick}>{rightArrowIcon}</div>
       </div>
       <div className='image_side_po'
-        onClick={onClose}
-      >side</div>
-      <div className='thumbnails_exp_po'>
+        onClick={onClose}>
+      </div>
+      <div className='image_icons_exp_po'>
+        <ImageIconBar index={index} indexMax={indexMax} handleThumbnailClick={handleThumbnailClick}/>
         <p className='txt'>Congratulations Michael and Family!</p>
       </div>
     </div> );
