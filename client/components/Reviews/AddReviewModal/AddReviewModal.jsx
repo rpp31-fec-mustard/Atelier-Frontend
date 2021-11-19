@@ -4,7 +4,12 @@ import CharacteristicReview from './CharacteristicReview.jsx';
 import AddReviewThumbnail from './AddReviewThumbnail.jsx';
 import StarRating from './StarRating.jsx';
 import axios from 'axios';
+import track from 'react-tracking';
+import trackPost from '../trackPost.jsx'
 
+@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+ trackPost(data)
+}})
 class Modal extends React.Component {
   constructor(props) {
     super(props);
@@ -40,6 +45,14 @@ class Modal extends React.Component {
     }
   }
 
+
+ @track((props, state, [event]) => ({
+    time: new Date().toString(),
+    element: JSON.stringify({
+      productId: state.productId,
+      className: 'uploadReviewImg'
+    })
+  }))
   handleImageChange(e) {
     let url = e.target.files[0];
 
@@ -72,9 +85,6 @@ class Modal extends React.Component {
 
   handleSubmit(e, images) {
     e.preventDefault();
-    // if (e.target.elements.email.value.indexOf('@') === -1) {
-
-    // }
     let result = {};
     let characteristics = {};
     result['product_id'] = Number(this.state.productId);
@@ -102,13 +112,6 @@ class Modal extends React.Component {
     });
   }
 
-  componentDidUpdate() {
-    if (this.state.productId !== this.props.meta.product_id) {
-      this.setState({
-        productId: this.props.meta.product_id
-      });
-    }
-  }
 
   getRating(rating) {
     this.setState({
@@ -121,6 +124,14 @@ class Modal extends React.Component {
       return name.substring(4, name.length);
     } else {
       return name;
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.state.productId !== this.props.meta.product_id) {
+      this.setState({
+        productId: this.props.meta.product_id
+      });
     }
   }
 
