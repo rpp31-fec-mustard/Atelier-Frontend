@@ -73,6 +73,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
           <div className='image_gallery_po'>
             <ThumbnailsBar
               photos={photos}
+              photoIndex={index}
               handleThumbnailClick={handleThumbnailClick}
               altText = {altText} />
             <div className='arrow_po'>
