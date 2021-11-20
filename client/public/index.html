@@ -6,12 +6,42 @@
     <meta name="description" content="A single page shopping site with a product overview, related products and outfit saver,
     a Q&A section, and a reviews and ratings section.">
     <title>Mustard</title>
+    <style> #app {font-family: 'Nanum Gothic', sans-serif;} </style>
+    <style>
+      /* product name */
+      @font-face {
+        font-family: 'Bungee Shade';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/bungeeshade/v6/DtVkJxarWL0t2KdzK3oI_jkc6SjTjQJElg.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Fascinate';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/fascinate/v11/z7NWdRrufC8XJK0IIElS07zRZv-drg.woff2) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      /* app */
+      @font-face {
+        font-family: 'Nanum Gothic';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/nanumgothic/v17/PN_3Rfi-oW3hYwmKDpxS7F_z-9LZxnthzY0SO7Jj27F-wOe3JI_cmfgf-Q.89.woff2) format('woff2');
+        unicode-range: U+5703-5704, U+5708, U+570d, U+5712-5713, U+5716, U+5718, U+572d, U+573b, U+5740, U+5742, U+5747, U+574a, U+574d-574e, U+5750-5751, U+5761, U+5764, U+5766, U+576a, U+576e, U+5770, U+5775, U+577c, U+5782, U+5788, U+578b, U+5793, U+57a0, U+57a2-57a3, U+57c3, U+57c7-57c8, U+57cb, U+57df-57e0, U+57f0, U+57f4, U+57f7, U+57f9-57fa, U+57fc, U+5800, U+5802, U+5805-5806, U+5808-580a, U+581e, U+5821, U+5824, U+5827, U+582a, U+582f-5831, U+5835, U+583a, U+584a-584b, U+584f, U+5851, U+5854, U+5857-5858, U+585a, U+585e, U+5861-5862, U+5864, U+5875, U+5879, U+587c, U+587e, U+5883, U+5885, U+5889, U+5893, U+589c, U+589e-589f, U+58a8-58a9, U+58ae, U+58b3, U+58ba-58bb, U+58be, U+58c1, U+58c5, U+58c7, U+58ce, U+58d1, U+58d3, U+58d5, U+58d8-58d9, U+58de-58df, U+58e4, U+58ec, U+58ef, U+58f9-58fb, U+58fd, U+590f, U+5914-5915, U+5919, U+5922, U+592d-592e, U+5931, U+5937, U+593e, U+5944, U+5947-5949, U+594e-5951, U+5954-5955, U+5957, U+595a, U+5960, U+5962, U+5967, U+596a-596e, U+5974, U+5978, U+5982-5984, U+598a, U+5993, U+5996-5997, U+5999, U+59a5, U+59a8, U+59ac, U+59b9, U+59bb;
+      }
+    </style>
     <script src="https://kit.fontawesome.com/2500930c5f.js" crossorigin="anonymous" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Fascinate&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700;900&display=swap" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Fascinate&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
