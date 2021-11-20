@@ -60,6 +60,7 @@ const ProductCard = (props) => {
                 widget: 'Related Items & Comparison'
               });
             }}
+            aria-label={`${props.product.name}`}
           >
             <div className="prod-card-img-wrapper">{image}</div>
             <div className="prod-card-info-wrapper">
