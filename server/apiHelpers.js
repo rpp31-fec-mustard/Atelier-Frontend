@@ -1,8 +1,7 @@
 /* eslint-disable camelcase */
 
 const axios = require('axios');
-const config = require('../config.js');
-
+// const config = require('../config.js');
 
 const dotenv = require('dotenv').config();
 console.log(dotenv);
