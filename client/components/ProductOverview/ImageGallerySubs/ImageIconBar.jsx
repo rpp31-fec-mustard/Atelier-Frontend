@@ -17,6 +17,7 @@ const ImageIconBar = ({index, indexMax, handleThumbnailClick}) => {
               handleThumbnailClick={handleThumbnailClick} key={`II${i}`}/> );
           })
         }
+         <p className='txt' style={{visibility:'hidden'}}>Congratulations Michael and Family!</p>
       </div>
     </React.Fragment>
   );

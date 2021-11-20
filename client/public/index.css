@@ -272,18 +272,17 @@ button {
 }
 
 .image_icons_exp_po{
+
+}
+/*todo ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
+.image_icon_bar_po {
   color: white;
   position: absolute;
   z-index: 10;
   right: 0;
   bottom: 10%;
   left: 0;
-  background-color: rgb(0, 0, 0, .5);
-  height: 10%;
-  width:100%;
-}
-/*todo ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
-.image_icon_bar_po {
+  /* background-color: rgb(0, 0, 0, .5); */
   /* background-color: yellowgreen; */
   display: flex;
   flex-direction: row;
@@ -294,8 +293,9 @@ button {
 
 .image_icon_po {
   background-color: var(--mustard);
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
   margin: 0px 10px;
 }
 

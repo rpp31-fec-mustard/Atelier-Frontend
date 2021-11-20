@@ -18,7 +18,7 @@ fetch.js
 API_paths.txt
 API_product_ref.txt
 config.js
-
+.env
 
 
 # MLapid - 21.11.01 - Adding package-lock.json. It's only necessary once we deploy live to lock-in

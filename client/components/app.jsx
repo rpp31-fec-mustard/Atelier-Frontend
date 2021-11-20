@@ -10,6 +10,8 @@ import defaultOnLoad from './defaultOnLoad.jsx';
 // fixtures
 import fixtures from '../../test/fixtures.js';
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);

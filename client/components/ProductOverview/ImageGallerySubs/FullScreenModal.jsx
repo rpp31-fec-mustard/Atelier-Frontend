@@ -27,14 +27,14 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
     let leftArrow = document.getElementsByClassName('a_left_po')[0];
     let rightArrow = document.getElementsByClassName('a_right_po')[0];
     let image = document.getElementsByClassName('inner_image_exp_po')[0];
-    let iconsBar = document.getElementsByClassName('image_icons_exp_po')[0];
+    let iconsBar = document.getElementsByClassName('image_icon_bar_po')[0];
 
     if (zoom) {
       image.style.transform = 'scale(2.5)';
       image.style.cursor = 'zoom-out';
+      iconsBar.style.visibility = 'hidden';
       leftArrow.style.visibility = 'hidden';
       rightArrow.style.visibility = 'hidden';
-      iconsBar.style.visibility = 'hidden';
       setPanImage(true);
 
     } else {
@@ -89,10 +89,10 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       <div className='image_side_po'
         onClick={onClose}>
       </div>
-      <div className='image_icons_exp_po'>
+      {/* <div className='image_icons_exp_po'> */}
         <ImageIconBar index={index} indexMax={indexMax} handleThumbnailClick={handleThumbnailClick}/>
-        <p className='txt'>Congratulations Michael and Family!</p>
-      </div>
+
+      {/* </div> */}
     </div> );
 };
 

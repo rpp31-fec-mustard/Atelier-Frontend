@@ -3,7 +3,12 @@
 const axios = require('axios');
 const config = require('../config.js');
 
-const auth = {headers: {Authorization: `${config.key}`} };
+
+const dotenv = require('dotenv').config();
+console.log(dotenv);
+
+// const auth = {headers: {Authorization: `${config.key}`} };
+const auth = {headers: {Authorization: `${process.env.KEY}`} };
 
 
 const getProduct = (productId) => {
