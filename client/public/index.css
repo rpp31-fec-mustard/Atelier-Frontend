@@ -7,7 +7,7 @@ html, body, #app {
   margin: -1px;  /* this is to remove scrollbar at the bottom of the page. */
   padding: 0;
   width: 99.9%;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 html {
@@ -357,7 +357,6 @@ div {
 
 #name_po {
   font-family: 'Bungee Shade', cursive;
-  /* font-family: 'Fascinate', cursive; */
   font-weight: 800;
   font-size: 35px;
   margin: 0px;
@@ -599,7 +598,7 @@ position: relative
   margin: 5px;
   border: none;
   text-align: left;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .prod-card-info-wrapper div {
@@ -757,7 +756,7 @@ td {
 }
 
 .questionButton {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 18px;
   font-weight: bold;
   width: 50%;
@@ -798,7 +797,7 @@ td {
 }
 
 .questionHelpful {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   display: flex;
   flex: auto;
   border: none;
@@ -809,7 +808,7 @@ td {
 }
 
 .addAnswer {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   display: flex;
   flex: auto;
   border: none;
@@ -820,7 +819,7 @@ td {
 }
 
 .answer-meta-helpful {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   border: none;
   background-color: white;
   text-align: left;
@@ -829,7 +828,7 @@ td {
   width: 110px;
 }
 .answer-meta-report {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   border: none;
   background-color: white;
   text-align: left;
@@ -910,7 +909,7 @@ td {
 }
 
 .modal-footer-button {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 15px;
   font-weight: bold;
   width: 50%;
@@ -953,7 +952,7 @@ td {
 }
 
 textarea {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   resize: none;
   overflow: auto;
 }
