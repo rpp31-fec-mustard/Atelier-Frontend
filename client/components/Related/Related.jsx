@@ -41,8 +41,14 @@ const Related = (props) => {
   }
 
   React.useEffect(() => {
-    // console.log('LISTENS TO LOCALSTORAGE', localStorage.outfitList);
-  }, [localStorage.outfitList]);
+    // if addHomeProduct = true
+    //   newOutfitList is current outfitList concatenated with homeProduct
+    //   update state and localStorage with newOutfitList
+
+    // else
+    //   newOutfitList is filtered out outfitList without homeProduct
+    //   update state and localStorage with newOutfitList
+  }, [props.addHomeProduct]);
 
   const [outfitList, setOutfitList] = React.useState(outfitStorage);
 

@@ -92,7 +92,7 @@ const AddtoCart = ({style, toggleToOutfitList}) => {
         </div>
         <div className='dropdown_space_po'>
         </div>
-        <button className='favorites_add_button_po' onClick={toggleToOutfitList}>star</button>
+        <button className='favorites_add_button_po' onClick={toggleToOutfitList}>Star</button>
       </div>
     </div> );
 };
