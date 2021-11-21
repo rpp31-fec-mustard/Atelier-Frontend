@@ -23,24 +23,32 @@ const Related = (props) => {
 
   let outfitStorage;
   // initialize localStorage for outfitList
-  if (!localStorage.getItem('outfitList')) {
+  if (!localStorage.outfitList) {
     outfitStorage = [];
   } else {
     // set outfitStorage with localStorage outfitList
-    outfitStorage = JSON.parse(localStorage.getItem('outfitList'));
+    outfitStorage = JSON.parse(localStorage.outfitList);
     // star all products in relatedProducts present in outfitList
-    Promise.resolve(
-      relatedProducts.map((relProduct) => {
-        const relProductId = relProduct.id;
-        outfitStorage.forEach((outfitProduct) => {
-          const outfitProdId = outfitProduct.id;
-          if (relProductId === outfitProdId) {
-            relProduct['starred'] = true;
-          }
-        });
-      })
-    );
+    relatedProducts.map((relProduct) => {
+      const relProductId = relProduct.id;
+      outfitStorage.forEach((outfitProduct) => {
+        const outfitProdId = outfitProduct.id;
+        if (relProductId === outfitProdId) {
+          relProduct['starred'] = true;
+        }
+      });
+    });
   }
+
+  React.useEffect(() => {
+    // if addHomeProduct = true
+    //   newOutfitList is current outfitList concatenated with homeProduct
+    //   update state and localStorage with newOutfitList
+
+    // else
+    //   newOutfitList is filtered out outfitList without homeProduct
+    //   update state and localStorage with newOutfitList
+  }, [props.addHomeProduct]);
 
   const [outfitList, setOutfitList] = React.useState(outfitStorage);
 
@@ -54,11 +62,7 @@ const Related = (props) => {
       });
   }, [props.productId]);
 
-  // update localStorage outfitList upon outfitList change
-  React.useEffect(() => {
-    localStorage.setItem('outfitList', JSON.stringify(outfitList));
-  }, [outfitList]);
-
+  // handle adding and removing outfit from outfit list
   const handleAction = (event) => {
     const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
     const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
@@ -69,10 +73,11 @@ const Related = (props) => {
         const productId = product.id.toString(10);
         if (productId === targetProductId) {
           product['starred'] = true;
-          // updateState with outfit list
-          const newOutfitList = outfitList.concat([product]);
 
+          // updateState and localStorage with new outfit list
+          const newOutfitList = outfitList.concat([product]);
           setOutfitList(newOutfitList);
+          localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
           return product;
         } else {
           return product;
@@ -82,13 +87,6 @@ const Related = (props) => {
       setRelatedProducts(newRelatedProducts);
     } else {
       // remove from outfit list
-      const newOutfitList = outfitList.filter((product) => {
-        const productId = product.id.toString(10);
-        return productId !== targetProductId;
-      });
-
-      setOutfitList(newOutfitList);
-
       const newRelatedProducts = relatedProducts.map((product) => {
         const productId = product.id.toString(10);
         if (productId === targetProductId) {
@@ -100,6 +98,15 @@ const Related = (props) => {
       });
 
       setRelatedProducts(newRelatedProducts);
+
+      // updateState and localStorage with new outfit list
+      const newOutfitList = outfitList.filter((product) => {
+        const productId = product.id.toString(10);
+        return productId !== targetProductId;
+      });
+
+      setOutfitList(newOutfitList);
+      localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
     }
   };
 

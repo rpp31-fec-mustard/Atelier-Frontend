@@ -53,10 +53,14 @@ const ProductCard = (props) => {
               props.renderRelated(event);
               trackEvent({
                 time: new Date().toString(),
-                element: `product ${props.product.id} card`,
+                element: JSON.stringify({
+                  productId: props.product.id,
+                  className: 'product-card-wrapper'
+                }),
                 widget: 'Related Items & Comparison'
               });
             }}
+            aria-label={`${props.product.name}`}
           >
             <div className="prod-card-img-wrapper">{image}</div>
             <div className="prod-card-info-wrapper">
@@ -66,7 +70,7 @@ const ProductCard = (props) => {
                 originalPrice={props.product.originalPrice}
                 salePrice={props.product.salePrice}
               />
-              <div className="rating">
+              <div className="prod-card-rating">
                 <Stars productId={props.product.id} />
               </div>
             </div>

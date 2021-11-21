@@ -7,7 +7,7 @@ html, body, #app {
   margin: -1px;  /* this is to remove scrollbar at the bottom of the page. */
   padding: 0;
   width: 99.9%;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 html {
@@ -18,15 +18,11 @@ html {
 /* currently at 1040px */
 #app {
   width: 1040px;
+  border: none;
 }
 
 div {
   border: 1px solid var(--global-border-color);
-}
-
-button {
-  width: 100%;
-  height: 100%;
 }
 
 /* GLOBAL VARIABLES */
@@ -361,7 +357,6 @@ button {
 
 #name_po {
   font-family: 'Bungee Shade', cursive;
-  /* font-family: 'Fascinate', cursive; */
   font-weight: 800;
   font-size: 35px;
   margin: 0px;
@@ -603,7 +598,7 @@ position: relative
   margin: 5px;
   border: none;
   text-align: left;
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .prod-card-info-wrapper div {
@@ -693,11 +688,6 @@ position: relative
   background: var(--prod-img-background-color);
 }
 
-.button-container {
-  position: static;
-  border: none;
-}
-
 .nav-button {
   align-self: center;
   -webkit-appearance: none;
@@ -707,34 +697,6 @@ position: relative
   border-style: none;
   cursor: pointer;
   font-size: 25px;
-}
-
-.left-gradient {
-  position: relative;
-  border: none;
-  /* left: 100%;
-  width: 100%;
-  height: calc(100% - 17px);
-  background: linear-gradient(90deg, white 60%, transparent); */
-}
-
-.left-button-container .nav-button {
-  height: var(--prod-card-height);
-  padding: 0;
-}
-
-.right-gradient {
-  position: relative;
-  border: none;
-  /* left: -150%; */
-  /* width: 150%; */
-  /* height: calc(100% - 17px); */
-  /* background: linear-gradient(270deg, white 60%, transparent); */
-}
-
-.right-button-container .nav-button {
-  height: var(--prod-card-height);
-  padding: 0;
 }
 
 .prod-comparison-wrapper {
@@ -794,7 +756,7 @@ td {
 }
 
 .questionButton {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 18px;
   font-weight: bold;
   width: 50%;
@@ -835,7 +797,7 @@ td {
 }
 
 .questionHelpful {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   display: flex;
   flex: auto;
   border: none;
@@ -846,7 +808,7 @@ td {
 }
 
 .addAnswer {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   display: flex;
   flex: auto;
   border: none;
@@ -857,7 +819,7 @@ td {
 }
 
 .answer-meta-helpful {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   border: none;
   background-color: white;
   text-align: left;
@@ -866,7 +828,7 @@ td {
   width: 110px;
 }
 .answer-meta-report {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   border: none;
   background-color: white;
   text-align: left;
@@ -947,7 +909,7 @@ td {
 }
 
 .modal-footer-button {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 15px;
   font-weight: bold;
   width: 50%;
@@ -990,7 +952,7 @@ td {
 }
 
 textarea {
-  font-family: 'Zen Maru Gothic', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   resize: none;
   overflow: auto;
 }

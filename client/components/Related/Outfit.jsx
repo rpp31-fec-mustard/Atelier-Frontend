@@ -33,12 +33,10 @@ const Outfit = (props) => {
   return (
     <div id="your-outfit" className="related-submodule">
       <div className="related-submodule-content">
-        <div className="button-container">
-          <LeftButton
-            cardsWrapper={cardsWrapper}
-            handleLeftScroll={props.handleScroll.handleLeftScroll}
-          />
-        </div>
+        <LeftButton
+          cardsWrapper={cardsWrapper}
+          handleLeftScroll={props.handleScroll.handleLeftScroll}
+        />
         <div className="prod-cards-container">
           <h3>YOUR OUTFIT</h3>
           <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
@@ -47,14 +45,12 @@ const Outfit = (props) => {
             {outfitProducts}
           </div>
         </div>
-        <div className="button-container">
-          <RightButton
-            cardsWrapper={cardsWrapper}
-            cardsWrapperLength={props.outfitList.length}
-            handleRightScroll={props.handleScroll.handleRightScroll}
-            outfit={true}
-          />
-        </div>
+        <RightButton
+          cardsWrapper={cardsWrapper}
+          cardsWrapperLength={props.outfitList.length}
+          handleRightScroll={props.handleScroll.handleRightScroll}
+          outfit={true}
+        />
       </div>
     </div>
   );

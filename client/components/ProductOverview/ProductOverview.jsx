@@ -17,7 +17,7 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 import fixtures from '../../../test/fixtures.js';
 
 
-const ProductOverview = ({product, id, total}) => {
+const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
@@ -136,7 +136,8 @@ const ProductOverview = ({product, id, total}) => {
           <StyleSelector styles={styles.results}
             currentStyleIndex={currentStyleIndex}
             productName={name}
-            handleStyleOnClick={handleStyleOnClick}/>
+            handleStyleOnClick={handleStyleOnClick}
+            toggleToOutfitList={toggleToOutfitList}/>
         </div>
       </div>
       <div className='bottom01'>

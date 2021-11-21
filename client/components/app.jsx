@@ -16,6 +16,23 @@ class App extends React.Component {
     this.state = {
       productId: '59601', //testing
       product: fixtures.product, //testing
+
+      // Product needs to have these properties
+      // {
+      //   id: 60012,
+      //   category: 'Suit',
+      //   name: 'Abigale Suit',
+      //   features: [
+      //     {feature: 'Frame', value: '"DuraResin"'},
+      //     {feature: 'Non-GMO', value: null},
+      //     {feature: 'Non-GMO', value: null}
+      //   ],
+      //   thumbnailUrl: 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      //   defaultPrice: '896.00',
+      //   originalPrice: '896.00',
+      //   salePrice: null,
+      // }
+
       total: '0'
 
       // productId: '59553', //testing ML
@@ -73,12 +90,29 @@ class App extends React.Component {
     });
   }
 
+  toggleToOutfitList(event) {
+    let label = event.target.innerText;
+    const homeProduct = this.state.product;
+    if (label === 'Star') {
+      // add to outfit list
+
+      // update state addHomeProduct to be true
+      // render button to say "Remove"
+    } else {
+      // remove from outfit list
+
+      // update state addHomeProduct to be false
+      // render button to say "Star"
+    }
+  }
+
+  // pass addHomeProduct state to Related
   render () {
     return (
       <React.Fragment>
         <TempTopBanner sendNumber={this.sendNumber}/>
-        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} />
-        <Related productId={this.state.productId} homeProduct={this.state.product} renderRelated={this.renderRelated.bind(this)}/>
+        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} toggleToOutfitList={this.toggleToOutfitList.bind(this)}/>
+        <Related productId={this.state.productId} homeProduct={this.state.product} /*addHomeProduct={this.state.addHomeProduct}*/ renderRelated={this.renderRelated.bind(this)}/>
         <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews productId={this.state.productId} productInfo={this.state.product} updateTotal={this.updateTotal.bind(this)} />
       </React.Fragment>

@@ -10,7 +10,7 @@ import SelectQuantityMenu from './StyleCartSubs/SelectQuantityMenu.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 
-const AddtoCart = ({style}) => {
+const AddtoCart = ({style, toggleToOutfitList}) => {
 
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
@@ -62,6 +62,12 @@ const AddtoCart = ({style}) => {
   };
 
 
+  //get productlist and compare to product id
+  //if true,
+    //light button
+  //else off
+
+
   return (
     <div className='add_to_bag_po'>
       <div className='add_to_bag_top_po'>
@@ -86,7 +92,7 @@ const AddtoCart = ({style}) => {
         </div>
         <div className='dropdown_space_po'>
         </div>
-        <button className='favorites_add_button_po'>star</button>
+        <button className='favorites_add_button_po' onClick={toggleToOutfitList}>Star</button>
       </div>
     </div> );
 };
