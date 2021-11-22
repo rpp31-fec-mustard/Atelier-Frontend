@@ -24,7 +24,7 @@ const ProductComparison = (props) => {
           <tr>
             <th>{props.homeProduct.name}</th>
             <th></th>
-            <th style={{backgroundColor: '#FFDB58'}}>{props.currentProduct.name}</th>
+            <th><span style={{backgroundColor: '#FFDB58'}}>{props.currentProduct.name}</span></th>
           </tr>
         </thead>
         <tbody>

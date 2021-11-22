@@ -21,12 +21,10 @@ const RelatedProducts = (props) => {
   return (
     <div id="related-products" className="related-submodule">
       <div className="related-submodule-content">
-        <div className="button-container">
-          <LeftButton
-            cardsWrapper={cardsWrapper}
-            handleLeftScroll={props.handleScroll.handleLeftScroll}
-          />
-        </div>
+        <LeftButton
+          cardsWrapper={cardsWrapper}
+          handleLeftScroll={props.handleScroll.handleLeftScroll}
+        />
         <div className="prod-cards-container">
           <h3>RELATED PRODUCTS</h3>
           <div className="prod-cards-wrapper" ref={cardsWrapper} onScroll={
@@ -35,13 +33,11 @@ const RelatedProducts = (props) => {
             {productCards}
           </div>
         </div>
-        <div className="button-container">
-          <RightButton
-            cardsWrapper={cardsWrapper}
-            cardsWrapperLength={productCards.length}
-            handleRightScroll={props.handleScroll.handleRightScroll}
-          />
-        </div>
+        <RightButton
+          cardsWrapper={cardsWrapper}
+          cardsWrapperLength={productCards.length}
+          handleRightScroll={props.handleScroll.handleRightScroll}
+        />
       </div>
     </div>
   );
