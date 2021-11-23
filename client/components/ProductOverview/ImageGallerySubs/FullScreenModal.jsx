@@ -80,10 +80,12 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       </div>
       <div className='main_image_exp_po' >
         <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
-        <img className='inner_image_exp_po' src={photos[index].url}
+        <img className='inner_image_exp_po'
+          src={photos[index].url}
           alt={altText}
           onClick={onClickZoomImage}
-          onMouseMove={moveMousePanImage} />
+          onMouseMove={moveMousePanImage}
+          data-testid='main-image-exp' />
         <div className='arrow_box_exp_po a_right_po' onClick={imageRightClick}>{rightArrowIcon}</div>
       </div>
       <div className='image_side_po'
@@ -91,7 +93,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       </div>
       <div className='image_icons_exp_po'>
         <ImageIconBar index={index} indexMax={indexMax} handleThumbnailClick={handleThumbnailClick}/>
-        <p className='txt'>Congratulations Michael and Family!</p>
+        {/* <p className='txt' hidden={true}>Congratulations Michael and Family!</p> */}
       </div>
     </div> );
 };

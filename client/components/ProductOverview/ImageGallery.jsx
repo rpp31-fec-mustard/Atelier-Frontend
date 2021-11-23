@@ -83,7 +83,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
                 index={index} />
               <div className='arrow_space_po' onClick={handleClickImage}></div>
             </div>
-            <div className='space01_po' onClick={handleClickImage}></div>
+            <div className='space01_po' onClick={handleClickImage} data-testid='click-exp-view' ></div>
             <FullScreenModal
               currentStyle={currentStyle}
               productName={productName}
