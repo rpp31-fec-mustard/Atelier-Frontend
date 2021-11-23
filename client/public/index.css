@@ -294,8 +294,9 @@ button {
 
 .image_icon_po {
   background-color: var(--mustard);
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
   margin: 0px 10px;
 }
 
