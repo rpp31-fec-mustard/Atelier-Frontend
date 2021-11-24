@@ -14,11 +14,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59601', //testing
+      // productId: '59601', //testing
       product: fixtures.product, //testing
-      total: '0'
+      total: '0',
 
-      // productId: '59553', //testing ML
+      productId: '59553', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
 
     };
@@ -42,7 +42,7 @@ class App extends React.Component {
 
   //off for testing ML
   componentDidMount() {
-    Promise.resolve(this.getProduct(this.state.productId));
+    // Promise.resolve(this.getProduct(this.state.productId));
   }
 
 

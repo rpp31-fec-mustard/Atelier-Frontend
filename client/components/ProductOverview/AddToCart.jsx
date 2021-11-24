@@ -12,30 +12,31 @@ import {DEBUG} from './ProductOverview.jsx';
 
 const AddtoCart = ({style}) => {
 
-  // const DEBUG = true;
+  const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
   mlog(logC + ' ATC style', style);
   // mlog(logC + ' ATC skus', style.skus);
 
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState('Select Size');
   const [quantityMax, setQuantityMax] = useState(null);
   const [quantityAdd, setQuantityAdd] = useState(1);
   mlog(logC + ' ATC size', size);
 
 
   const handleSetSize = async (event) => {
-    mlog(logC + ' ATC handler size', event.target.value);
     mlog(logC + ' ATC handler', event.target);
-    mlog(logC + ' ATC handler sku', $('.size_select_po option:selected').attr('sku'));
-    let sku = $('.size_select_po option:selected').attr('sku');
-    // mlog(logC + ' ATC handler sku', sku);
+    mlog(logC + ' ATC handler size', event.target.getAttribute('value'));
+    mlog(logC + ' ATC handler name', event.target.textContent);
+    mlog(logC + ' ATC handler sku', event.target.getAttribute('sku'));
+    let sku = event.target.getAttribute('sku');
+    mlog(logC + ' ATC handler sku 2', sku);
     if (sku === undefined) {
       document.getElementById('menu2_po').selectedIndex = 0;
     } else {
       mlog(logC + ' ATC handler quantityMax', style.skus[sku].quantityMax);
-      await setSize(event.target.value);
+      await setSize(event.target.textContent);
       setQuantityMax(style.skus[sku].quantityMax);
       document.getElementById('menu2_po').selectedIndex = 1;
     }
@@ -65,7 +66,7 @@ const AddtoCart = ({style}) => {
   return (
     <div className='add_to_bag_po'>
       <div className='add_to_bag_top_po'>
-        <SelectSizeMenu skus={style.skus} handleSetSize={handleSetSize}/>
+        <SelectSizeMenu skus={style.skus} size={size} handleSetSize={handleSetSize}/>
         <div className='dropdown_space_po'>
         </div>
         <SelectQuantityMenu size={size}
@@ -74,7 +75,7 @@ const AddtoCart = ({style}) => {
       </div>
       <div className='add_to_bag_bottom_po'>
         <div className='add_to_bag_bottom_left_po'>
-          {(()=>{
+          {/* {(()=>{
             if (!(_.every(style.skus, (sku) => {
               return sku.quantity === 0;
             }))) {
@@ -82,7 +83,7 @@ const AddtoCart = ({style}) => {
                 onClick={addToCart}>add to bag</button>);
             }
           })()
-          }
+          } */}
         </div>
         <div className='dropdown_space_po'>
         </div>
@@ -93,3 +94,7 @@ const AddtoCart = ({style}) => {
 
 export default AddtoCart;
 
+
+//put in journal
+//event.target.getAttribute('')
+//event.target.textContent

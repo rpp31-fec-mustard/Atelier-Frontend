@@ -1,15 +1,15 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-import React, {useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import _, { every } from 'underscore';
 import $ from 'jquery';
 import {DEBUG} from '../ProductOverview.jsx';
 
 
-const SelectSizeMenu = ({skus, handleSetSize}) => {
+const SelectSizeMenu = ({skus, size, handleSetSize}) => {
 
-  // var DEBUG = false;
+  var DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 
@@ -44,6 +44,33 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
   }, [skus]);
 
 
+  const [sizeDisplay, setSizeDisplay] = useState('Select Size');
+  const [showSizes, setShowSizes] = useState(false);
+
+  const handleSelectSizeClick = () => {
+    mlog(logC + ' SSM select size clicked');
+    showSizes ? setShowSizes(false) : setShowSizes(true)
+  }
+
+  const handleSetSizeClick = (event) => {
+    // console.log(event);
+    // // // console.log('value', value);
+    // console.log('sku', event.target.getAttribute('sku'));
+    // console.log('size', event.target.getAttribute('value'));
+
+    handleSetSize(event);
+    handleSelectSizeClick();
+  }
+  // useEffect(() => {
+  //   if (showSizes) {
+  //     document.getElementsByClassName('size_box')[0].style.visibility = 'visible'
+  //   } else {
+  //     document.getElementsByClassName('size_box')[0].style.visibility = 'hidden'
+  //   }
+
+
+  // }, [showSizes]);
+
 
 
   //render component
@@ -52,36 +79,57 @@ const SelectSizeMenu = ({skus, handleSetSize}) => {
     return sku.quantity === 0;
   })) {
     return (
-      <React.Fragment>
-        <select className='size_select_po' id='menu1_po'>
-          <option>OUT OF STOCK</option>
-        </select>
-      </React.Fragment>
+      // <React.Fragment>
+      //   <select className='size_select_po' id='menu1_po'>
+      //     <option>OUT OF STOCK</option>
+      //   </select>
+      // </React.Fragment>
+      <div>OUT OF STOCK</div>
     );
+  } else if (!showSizes){
+    return (
+    <React.Fragment>
+    <div className='size_menu_po'>
+      <div className='size_display_po' onClick={handleSelectSizeClick}>{size}</div>
+    </div>
+      </React.Fragment> )
   } else {
     return (
       <React.Fragment>
-        <select name='size' className='size_select_po' id='menu1_po' onChange={handleSetSize}>
-          <option value='no_selection'>Select Size</option>
+        <div className='size_menu_po'>
+          <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>Select Size</div>
+          <div className='size_box'>
           {
             skuList.map((sku)=> {
               if (skus[sku].quantity > 0) {
                 const size = skus[sku].size;
                 mlog(logC + 'SSM  size test', sizeTable[size]);
-                return (
-                  <option key={sku.toString()} value={skus[sku].size} sku={sku}>{sizeTable[size] ? sizeTable[size] : size }</option>
-                );
-              }
-            })
-          }
-        </select>
+
+
+                  let sizeString = sizeTable[size] ? sizeTable[size] : size;
+                  console.log(sizeString)
+
+                  return (
+                    <div className='size_option_po' key={sku.toString()} value={skus[sku].size}
+                    sku={sku} size={sizeString} onClick={handleSetSizeClick}>{sizeString}</div>
+                  );
+
+
+
+
+
+                }
+              })
+            }
+          </div>
+            </div>
       </React.Fragment>
+
     );
   }
 };
 
 export default SelectSizeMenu;
-
 
 
 // how to disable menu
