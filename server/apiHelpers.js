@@ -11,7 +11,18 @@ const getProduct = (productId) => {
 
   return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${productId}`, auth)
     .then((result) => {
-      return result.data;
+      const product = result.data;
+      return getPrimaryStyle(product.id)
+        .then((primaryStyle) => {
+          const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
+          const originalPrice = primaryStyle.original_price;
+          const salePrice = primaryStyle.sale_price;
+          product.thumnailUrl = thumbnailUrl;
+          product.originalPrice = originalPrice;
+          product.salePrice = salePrice;
+
+          return product;
+        });
     })
     .catch((error) => {
       console.log('API Helper getProduct error: ', error.response.status, error.response.statusText);
