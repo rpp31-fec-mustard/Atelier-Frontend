@@ -20,7 +20,7 @@ const AddtoCart = ({style}) => {
   // mlog(logC + ' ATC skus', style.skus);
 
   const [size, setSize] = useState('Select Size');
-  const [quantityMax, setQuantityMax] = useState(null);
+  const [quantityMax, setQuantityMax] = useState(0);
   const [quantityAdd, setQuantityAdd] = useState(1);
   const [skus, setSkus] = useState(style.skus);
   mlog(logC + ' ATC size', size);
@@ -46,7 +46,8 @@ const AddtoCart = ({style}) => {
 
   useEffect(() => {
     mlog(logC + ' ATC state', size, quantityMax);
-    setQuantityMax(null);
+    setSkus(style.skus);
+    setQuantityMax(0);
   }, [style, size]);
 
 

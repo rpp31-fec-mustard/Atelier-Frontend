@@ -35,10 +35,10 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
     if (loaded.current) {
       mlog(logC + 'SSM  RESET SELECT SIZE');
       // mlog(logC + 'SSM ', document.getElementById('menu1_po'));
-      document.getElementById('menu1_po').selectedIndex = 0;
+      // document.getElementById('menu1_po').selectedIndex = 0;
 
 
-      document.getElementById('menu2_po').selectedIndex = 0;
+      // document.getElementById('menu2_po').selectedIndex = 0;
     } else {
       mlog(logC + 'SSM  SKIP ON LOAD');
       loaded.current = true;
