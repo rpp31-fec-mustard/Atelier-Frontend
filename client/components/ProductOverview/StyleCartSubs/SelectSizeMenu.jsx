@@ -34,8 +34,10 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
   useEffect(() => {
     if (loaded.current) {
       mlog(logC + 'SSM  RESET SELECT SIZE');
-      mlog(logC + 'SSM ', document.getElementById('menu1_po'));
+      // mlog(logC + 'SSM ', document.getElementById('menu1_po'));
       document.getElementById('menu1_po').selectedIndex = 0;
+
+
       document.getElementById('menu2_po').selectedIndex = 0;
     } else {
       mlog(logC + 'SSM  SKIP ON LOAD');
@@ -70,7 +72,14 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
 
 
   // }, [showSizes]);
-
+  const handleMouseOverColorChange = (event) => {
+    // console.log('mouseover')
+    event.target.setAttribute('style', 'background:#FFDB58');
+  }
+  const handleMouseExitColorChange = (event) => {
+    // console.log('mouseover')
+    event.target.setAttribute('style', 'background:white');
+  }
 
 
   //render component
@@ -111,7 +120,10 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
 
                   return (
                     <div className='size_option_po' key={sku.toString()} value={skus[sku].size}
-                    sku={sku} size={sizeString} onClick={handleSetSizeClick}>{sizeString}</div>
+                    sku={sku} size={sizeString} onClick={handleSetSizeClick}
+                    onMouseOver={handleMouseOverColorChange}
+                    onMouseLeave={handleMouseExitColorChange}
+                    style={{background:'white'}}>{sizeString}</div>
                   );
 
 
@@ -133,3 +145,6 @@ export default SelectSizeMenu;
 
 
 // how to disable menu
+
+//put in journal
+//different ways to set css attributes

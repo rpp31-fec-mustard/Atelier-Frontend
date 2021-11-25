@@ -22,6 +22,7 @@ const AddtoCart = ({style}) => {
   const [size, setSize] = useState('Select Size');
   const [quantityMax, setQuantityMax] = useState(null);
   const [quantityAdd, setQuantityAdd] = useState(1);
+  const [skus, setSkus] = useState(style.skus);
   mlog(logC + ' ATC size', size);
 
 
@@ -49,6 +50,11 @@ const AddtoCart = ({style}) => {
   }, [style, size]);
 
 
+
+  useEffect(() => {
+    setSize('Select Size');
+  }, [style.skus]);
+
   //disable flag
   //when quantityMax is zero, disable
   //when select size, disable
@@ -66,7 +72,7 @@ const AddtoCart = ({style}) => {
   return (
     <div className='add_to_bag_po'>
       <div className='add_to_bag_top_po'>
-        <SelectSizeMenu skus={style.skus} size={size} handleSetSize={handleSetSize}/>
+        <SelectSizeMenu skus={skus} size={size} handleSetSize={handleSetSize}/>
         <div className='dropdown_space_po'>
         </div>
         <SelectQuantityMenu size={size}
