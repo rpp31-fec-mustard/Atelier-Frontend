@@ -477,10 +477,21 @@ position: relative
   width: 20px;
 }
 
-.qty_select_po {
+.quantity_menu_po {
+  display: flex;
+  flex-direction: column;
+  position: static;
+  z-index: 2;
+}
+
+/* .quantity_body_po {
+  visibility: hidden;
+} */
+
+/* .qty_select_po {
   width: 75px;
   height: 40px;
-}
+} */
 
 .add_to_bag_bottom_po {
   height: 50%;

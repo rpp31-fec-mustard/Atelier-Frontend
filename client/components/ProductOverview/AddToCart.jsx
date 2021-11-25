@@ -26,42 +26,49 @@ const AddtoCart = ({style}) => {
   mlog(logC + ' ATC size', size);
 
 
-  const handleSetSize = async (event) => {
+  const handleSetSize = (event) => {
     mlog(logC + ' ATC handler', event.target);
     mlog(logC + ' ATC handler size', event.target.getAttribute('value'));
     mlog(logC + ' ATC handler name', event.target.textContent);
     mlog(logC + ' ATC handler sku', event.target.getAttribute('sku'));
+
     let sku = event.target.getAttribute('sku');
     mlog(logC + ' ATC handler sku 2', sku);
-    if (sku === undefined) {
-      document.getElementById('menu2_po').selectedIndex = 0;
-    } else {
-      mlog(logC + ' ATC handler quantityMax', style.skus[sku].quantityMax);
-      await setSize(event.target.textContent);
-      setQuantityMax(style.skus[sku].quantityMax);
-      document.getElementById('menu2_po').selectedIndex = 1;
-    }
+    // if (sku === undefined) {
+    //   document.getElementById('menu2_po').selectedIndex = 0;
+    // } else {
+    // }
+      mlog(logC + ' ATC handler quantityMax before', style.skus[sku].quantity);
+      setSize(event.target.textContent)
+
+        setQuantityMax(style.skus[sku].quantity);
+        mlog(logC + ' ATC handler quantityMax after', style.skus[sku].quantity);
+        setQuantityAdd(1);
+      // document.getElementById('menu2_po').selectedIndex = 1;
 
   };
 
+  //on selecting new style
   useEffect(() => {
     mlog(logC + ' ATC state', size, quantityMax);
     setSkus(style.skus);
+    setSize('Select Size');
     setQuantityMax(0);
-  }, [style, size]);
+  }, [style]);
 
 
 
   useEffect(() => {
-    setSize('Select Size');
-  }, [style.skus]);
+    // if (size)
+    // setQuantityMax(0);
+  }, [size]);
 
   //disable flag
   //when quantityMax is zero, disable
   //when select size, disable
 
-  const handleSetAddQty = async (event) => {
-    await setQuantityAdd(event.target.value);
+  const handleSetAddQty = (event) => {
+    setQuantityAdd(event.target.getAttribute('value'));
   };
 
 
@@ -78,6 +85,7 @@ const AddtoCart = ({style}) => {
         </div>
         <SelectQuantityMenu size={size}
           quantityMax={quantityMax}
+          quantityAdd={quantityAdd}
           handleSetAddQty={handleSetAddQty}/>
       </div>
       <div className='add_to_bag_bottom_po'>
