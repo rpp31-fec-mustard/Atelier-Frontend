@@ -54,6 +54,11 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
     showSizes ? setShowSizes(false) : setShowSizes(true)
   }
 
+  const handleMouseExitCloseMenu = () => {
+      showSizes ? setShowSizes(false) : setShowSizes(true)
+  }
+
+
   const handleSetSizeClick = (event) => {
     // console.log(event);
     // // // console.log('value', value);
@@ -74,12 +79,15 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
   // }, [showSizes]);
   const handleMouseOverColorChange = (event) => {
     // console.log('mouseover')
-    event.target.setAttribute('style', 'background:#FFDB58');
+    event.target.setAttribute('style', 'background:#FFDB58; color:black');
+    // event.target.setAttribute('style', 'color:black');
   }
   const handleMouseExitColorChange = (event) => {
     // console.log('mouseover')
-    event.target.setAttribute('style', 'background:white');
+    event.target.setAttribute('style', 'background:gray; color:white');
+    // event.target.setAttribute('style', 'color:white');
   }
+
 
 
   //render component
@@ -93,20 +101,27 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
       //     <option>OUT OF STOCK</option>
       //   </select>
       // </React.Fragment>
+      <React.Fragment>
+      <div className='size_menu_po'>
       <div>OUT OF STOCK</div>
+      </div>
+      </React.Fragment>
     );
   } else if (!showSizes){
     return (
     <React.Fragment>
     <div className='size_menu_po'>
-      <div className='size_display_po' onClick={handleSelectSizeClick}>{size}</div>
+      <div className='size_display_po'
+        onClick={handleSelectSizeClick}>{size}</div>
     </div>
       </React.Fragment> )
   } else {
     return (
       <React.Fragment>
-        <div className='size_menu_po'>
-          <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>Select Size</div>
+        <div className='size_menu_po'
+        // onMouseLeave={handleMouseExitCloseMenu}
+        >
+          <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>{size}</div>
           <div className='size_box'>
           {
             skuList.map((sku)=> {
@@ -123,7 +138,8 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
                     sku={sku} size={sizeString} onClick={handleSetSizeClick}
                     onMouseOver={handleMouseOverColorChange}
                     onMouseLeave={handleMouseExitColorChange}
-                    style={{background:'white'}}>{sizeString}</div>
+                    // style={{background:'white'}}
+                    >{sizeString}</div>
                   );
 
 

@@ -19,6 +19,10 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     showQuantity ? setShowQuantity(false) : setShowQuantity(true)
   }
 
+  const handleMouseExitCloseMenu = () => {
+    showQuantity ? setShowQuantity(false) : setShowQuantity(true)
+}
+
   const handleSetQuantityClick = (event) => {
     // console.log(event);
     // // // console.log('value', value);
@@ -29,11 +33,22 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     handleSelectQuantityClick();
   }
 
+  const handleMouseOverColorChange = (event) => {
+    // console.log('mouseover')
+    event.target.setAttribute('style', 'background:#FFDB58');
+  }
+  const handleMouseExitColorChange = (event) => {
+    // console.log('mouseover')
+    event.target.setAttribute('style', 'background:white');
+  }
+
+
+
 
   let max = parseInt(quantityMax < 15 ? quantityMax : 15);
   mlog(logC + ' SQM max', max);
   let qtyArray = [];
-  for (let i = 2; i < max + 1; i++) {
+  for (let i = 1; i < max + 1; i++) {
     qtyArray.push(i);
   }
   if (quantityMax === 0) {
@@ -50,7 +65,8 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     return (
       <React.Fragment>
         <div className='quantity_menu_po'>
-          <div className='quantity_display_po' onClick={handleSelectQuantityClick}>{quantityAdd}</div>
+          <div className='quantity_display_po'
+            onClick={handleSelectQuantityClick}>{quantityAdd}</div>
           </div>
         </React.Fragment>
     )
@@ -60,12 +76,14 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
 
     return (
 <React.Fragment>
-  <div className='quantity_menu_po'>
+  <div className='quantity_menu_po' onMouseLeave={handleMouseExitCloseMenu}>
     <div className='quantity_display_po' onClick={handleSelectQuantityClick}>{quantityAdd}</div>
       {
         qtyArray.map((i) => {
         return (<div className='quantity_body_po' key={`A${i}`} value={i}
-        onClick={handleSetQuantityClick}>{i}</div>);
+        onClick={handleSetQuantityClick}
+        onMouseOver={handleMouseOverColorChange}
+        onMouseLeave={handleMouseExitColorChange}>{i}</div>);
       })
     }
     </div>
