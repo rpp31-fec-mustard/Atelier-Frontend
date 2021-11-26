@@ -38,12 +38,12 @@ const AddtoCart = ({style}) => {
     //   document.getElementById('menu2_po').selectedIndex = 0;
     // } else {
     // }
-      mlog(logC + ' ATC handler quantityMax before', style.skus[sku].quantity);
-      setSize(event.target.textContent)
+    mlog(logC + ' ATC handler quantityMax before', style.skus[sku].quantity);
+    setSize(event.target.textContent);
 
-        setQuantityMax(style.skus[sku].quantity);
-        mlog(logC + ' ATC handler quantityMax after', style.skus[sku].quantity);
-        setQuantityAdd(1);
+    setQuantityMax(style.skus[sku].quantity);
+    mlog(logC + ' ATC handler quantityMax after', style.skus[sku].quantity);
+    setQuantityAdd(1);
       // document.getElementById('menu2_po').selectedIndex = 1;
 
   };
@@ -54,14 +54,9 @@ const AddtoCart = ({style}) => {
     setSkus(style.skus);
     setSize('Select Size');
     setQuantityMax(0);
+    setShowAlert(false);
   }, [style]);
 
-
-
-  useEffect(() => {
-    // if (size)
-    // setQuantityMax(0);
-  }, [size]);
 
   //disable flag
   //when quantityMax is zero, disable
@@ -71,16 +66,42 @@ const AddtoCart = ({style}) => {
     setQuantityAdd(event.target.getAttribute('value'));
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+
+  const setShowSizeMenuTrue = () => {
+    setShowAlert(true);
+  };
+
+  const setShowAlertFalse = () => {
+    setShowAlert(false);
+  };
+
+  useEffect(() => {
+    if (showAlert) {
+      document.getElementsByClassName('size_alert_po')[0].style.visibility = 'visible';
+    } else {
+      document.getElementsByClassName('size_alert_po')[0].style.visibility = 'hidden';
+    }
+  }, [showAlert]);
 
   const addToCart = () => {
-    mlog(logC + 'ATC Add to Cart', style.style_id, size, quantityAdd);
+    if (size === 'Select Size') {
+      // document.getElementsByClassName('size_alert_po')[0].style.visibility = 'visible';
+      setShowAlert(true);
+      setShowSizeMenuTrue();
+    } else {
+      mlog(logC + 'ATC Add to Cart', style.style_id, size, quantityAdd);
+    }
   };
 
 
   return (
     <div className='add_to_bag_po'>
       <div className='add_to_bag_top_po'>
-        <SelectSizeMenu skus={skus} size={size} handleSetSize={handleSetSize}/>
+        <SelectSizeMenu skus={skus} size={size} showAlert={showAlert}
+          setShowAlertFalse={setShowAlertFalse}
+          setShowSizeMenuTrue={setShowSizeMenuTrue}
+          handleSetSize={handleSetSize}/>
         {/* <div className='dropdown_space_po'>
         </div> */}
         <SelectQuantityMenu size={size}
@@ -88,16 +109,17 @@ const AddtoCart = ({style}) => {
           quantityAdd={quantityAdd}
           handleSetAddQty={handleSetAddQty}/>
       </div>
+      <div className='size_alert_po'>select a size</div>
       <div className='add_to_bag_bottom_po'>
-          {(()=>{
-            if (!(_.every(style.skus, (sku) => {
-              return sku.quantity === 0;
-            }))) {
-              return ( <button className='add_to_bag_button_po'
-                onClick={addToCart}>add to bag</button>);
-            }
-          })()
+        {(()=>{
+          if (!(_.every(style.skus, (sku) => {
+            return sku.quantity === 0;
+          }))) {
+            return ( <button className='add_to_bag_button_po'
+              onClick={addToCart}>add to bag</button>);
           }
+        })()
+        }
 
         <button className='favorites_add_button_po'>star</button>
       </div>

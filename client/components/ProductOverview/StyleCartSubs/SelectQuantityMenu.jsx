@@ -16,12 +16,12 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
 
   const handleSelectQuantityClick = () => {
     mlog(logC + ' SQM select qty clicked');
-    showQuantity ? setShowQuantity(false) : setShowQuantity(true)
-  }
+    showQuantity ? setShowQuantity(false) : setShowQuantity(true);
+  };
 
   const handleMouseExitCloseMenu = () => {
-    showQuantity ? setShowQuantity(false) : setShowQuantity(true)
-}
+    showQuantity ? setShowQuantity(false) : setShowQuantity(true);
+  };
 
   const handleSetQuantityClick = (event) => {
     // console.log(event);
@@ -31,18 +31,18 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
 
     handleSetAddQty(event);
     handleSelectQuantityClick();
-  }
+  };
 
   const handleMouseOverColorChange = (event) => {
     // console.log('mouseover')
     event.target.setAttribute('style', 'background:#FFDB58; color:black');
     // event.target.setAttribute('style', 'color:black');
-  }
+  };
   const handleMouseExitColorChange = (event) => {
     // console.log('mouseover')
     event.target.setAttribute('style', 'background:gray; color:white');
     // event.target.setAttribute('style', 'color:white');
-  }
+  };
 
 
 
@@ -57,51 +57,40 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     return (
       <React.Fragment>
 
-      <div className='quantity_menu_po' style={{background: 'lightgrey'}}>---</div>
+        <div className='quantity_menu_po' style={{background: 'lightgrey'}}>---</div>
       </React.Fragment>
       // <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
       //   <option value='' default>---</option>
       // </select>
-      );
+    );
   } else if (!showQuantity) {
     return (
       <React.Fragment>
         <div className='quantity_menu_po'>
           <div className='quantity_display_po'
             onClick={handleSelectQuantityClick}>{quantityAdd}</div>
-          </div>
-        </React.Fragment>
-    )
+        </div>
+      </React.Fragment>
+    );
 
 
   } else {
 
     return (
-<React.Fragment>
-  <div className='quantity_menu_po' onMouseLeave={handleMouseExitCloseMenu}>
-    <div className='quantity_display_po' onClick={handleSelectQuantityClick}>{quantityAdd}</div>
-      {
-        qtyArray.map((i) => {
-        return (<div className='quantity_body_po' key={`A${i}`} value={i}
-        onClick={handleSetQuantityClick}
-        onMouseOver={handleMouseOverColorChange}
-        onMouseLeave={handleMouseExitColorChange}>{i}</div>);
-      })
-    }
-    </div>
-  </React.Fragment>
-      // <select name='qty'
-      //   className='qty_select_po menu_po'
-      //   id='menu2_po'
-      //   onChange={handleSetAddQty} >
-      //   <option value='' default>---</option>
-      //   {
-        //     qtyArray.map((i) => {
-          //       return (<option key={`A${i}`} value={i}>{i}</option>);
-          //     })
-          //   }
-          // </select>
-          );
+      <React.Fragment>
+        <div className='quantity_menu_po' onMouseLeave={handleMouseExitCloseMenu}>
+          <div className='quantity_display_po' onClick={handleSelectQuantityClick}>{quantityAdd}</div>
+          {
+            qtyArray.map((i) => {
+              return (<div className='quantity_body_po' key={`A${i}`} value={i}
+                onClick={handleSetQuantityClick}
+                onMouseOver={handleMouseOverColorChange}
+                onMouseLeave={handleMouseExitColorChange}>{i}</div>);
+            })
+          }
+        </div>
+      </React.Fragment>
+    );
   }
 };
 

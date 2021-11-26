@@ -528,14 +528,22 @@ position: relative
 
 .add_to_bag_button_po {
   grid-column: 2 / 6;
-  width: 130px;
+  /* width: 130px; */
   height: 50%;
   margin: 10px 0px;
 }
 
+.size_alert_po{
+  visibility: hidden;
+  position: absolute;
+  top: 445px;
+  right: 345px;
+  z-index: 3;
+  background: yellow;
+}
 .favorites_add_button_po {
   grid-column: 7 / 10;
-  width: 95px;
+  /* width: 95px; */
   height: 50%;
   margin: 10px 0px;
 }

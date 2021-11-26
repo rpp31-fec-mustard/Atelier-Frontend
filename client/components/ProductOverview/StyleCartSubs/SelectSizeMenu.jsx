@@ -7,7 +7,7 @@ import $ from 'jquery';
 import {DEBUG} from '../ProductOverview.jsx';
 
 
-const SelectSizeMenu = ({skus, size, handleSetSize}) => {
+const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize}) => {
 
   var DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
@@ -51,29 +51,25 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
 
   const handleSelectSizeClick = () => {
     mlog(logC + ' SSM select size clicked');
-    showSizes ? setShowSizes(false) : setShowSizes(true)
-  }
+    showSizes ? setShowSizes(false) : setShowSizes(true);
+  };
 
   const handleMouseExitCloseMenu = () => {
-      showSizes ? setShowSizes(false) : setShowSizes(true)
-  }
+    setShowSizes(false);
+    setShowAlertFalse();
+      // document.getElementsByClassName('size_alert_po')[0].style.visibility = 'hidden';
+  };
 
 
   const handleSetSizeClick = (event) => {
     // console.log(event);
-    // // // console.log('value', value);
     // console.log('sku', event.target.getAttribute('sku'));
     // console.log('size', event.target.getAttribute('value'));
 
     handleSetSize(event);
     handleSelectSizeClick();
-  }
-  // useEffect(() => {
-  //   if (showSizes) {
-  //     document.getElementsByClassName('size_box')[0].style.visibility = 'visible'
-  //   } else {
-  //     document.getElementsByClassName('size_box')[0].style.visibility = 'hidden'
-  //   }
+    setShowAlertFalse();
+  };
 
 
   // }, [showSizes]);
@@ -81,12 +77,21 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
     // console.log('mouseover')
     event.target.setAttribute('style', 'background:#FFDB58; color:black');
     // event.target.setAttribute('style', 'color:black');
-  }
+  };
   const handleMouseExitColorChange = (event) => {
     // console.log('mouseover')
     event.target.setAttribute('style', 'background:gray; color:white');
     // event.target.setAttribute('style', 'color:white');
-  }
+  };
+
+  // show menu if alert is up
+  useEffect(() => {
+    if (showAlert) {
+      setShowSizes(true);
+    } else {
+      setShowSizes(false);
+    }
+  }, [showAlert]);
 
 
 
@@ -102,27 +107,26 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
       //   </select>
       // </React.Fragment>
       <React.Fragment>
-      <div className='size_menu_po'>
-      <div className='out_of_stock_po'>OUT OF STOCK</div>
-      </div>
+        <div className='size_menu_po'>
+          <div className='out_of_stock_po'>OUT OF STOCK</div>
+        </div>
       </React.Fragment>
     );
-  } else if (!showSizes){
+  } else if (!showSizes) {
     return (
-    <React.Fragment>
-    <div className='size_menu_po'>
-      <div className='size_display_po'
-        onClick={handleSelectSizeClick}>{size}</div>
-    </div>
-      </React.Fragment> )
+      <React.Fragment>
+        <div className='size_menu_po'>
+          <div className='size_display_po'
+            onClick={handleSelectSizeClick}>{size}</div>
+        </div>
+      </React.Fragment> );
   } else {
     return (
       <React.Fragment>
         <div className='size_menu_po'
-        onMouseLeave={handleMouseExitCloseMenu}
+          onMouseLeave={handleMouseExitCloseMenu}
         >
           <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>{size}</div>
-          {/* <div className='size_box'> */}
           {
             skuList.map((sku)=> {
               if (skus[sku].quantity > 0) {
@@ -130,27 +134,21 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
                 mlog(logC + 'SSM  size test', sizeTable[size]);
 
 
-                  let sizeString = sizeTable[size] ? sizeTable[size] : size;
-                  console.log(sizeString)
+                let sizeString = sizeTable[size] ? sizeTable[size] : size;
+                console.log(sizeString);
 
-                  return (
-                    <div className='size_body_po' key={sku.toString()} value={skus[sku].size}
+                return (
+                  <div className='size_body_po' key={sku.toString()} value={skus[sku].size}
                     sku={sku} size={sizeString} onClick={handleSetSizeClick}
                     onMouseOver={handleMouseOverColorChange}
                     onMouseLeave={handleMouseExitColorChange}
                     // style={{background:'white'}}
-                    >{sizeString}</div>
-                  );
-
-
-
-
-
-                }
-              })
-            }
-          {/* </div> */}
-            </div>
+                  >{sizeString}</div>
+                );
+              }
+            })
+          }
+        </div>
       </React.Fragment>
 
     );
