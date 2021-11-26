@@ -122,7 +122,7 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
         onMouseLeave={handleMouseExitCloseMenu}
         >
           <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>{size}</div>
-          <div className='size_box'>
+          {/* <div className='size_box'> */}
           {
             skuList.map((sku)=> {
               if (skus[sku].quantity > 0) {
@@ -134,7 +134,7 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
                   console.log(sizeString)
 
                   return (
-                    <div className='size_option_po' key={sku.toString()} value={skus[sku].size}
+                    <div className='size_body_po' key={sku.toString()} value={skus[sku].size}
                     sku={sku} size={sizeString} onClick={handleSetSizeClick}
                     onMouseOver={handleMouseOverColorChange}
                     onMouseLeave={handleMouseExitColorChange}
@@ -149,7 +149,7 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
                 }
               })
             }
-          </div>
+          {/* </div> */}
             </div>
       </React.Fragment>
 

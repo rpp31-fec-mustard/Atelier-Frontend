@@ -81,16 +81,15 @@ const AddtoCart = ({style}) => {
     <div className='add_to_bag_po'>
       <div className='add_to_bag_top_po'>
         <SelectSizeMenu skus={skus} size={size} handleSetSize={handleSetSize}/>
-        <div className='dropdown_space_po'>
-        </div>
+        {/* <div className='dropdown_space_po'>
+        </div> */}
         <SelectQuantityMenu size={size}
           quantityMax={quantityMax}
           quantityAdd={quantityAdd}
           handleSetAddQty={handleSetAddQty}/>
       </div>
       <div className='add_to_bag_bottom_po'>
-        <div className='add_to_bag_bottom_left_po'>
-          {/* {(()=>{
+          {(()=>{
             if (!(_.every(style.skus, (sku) => {
               return sku.quantity === 0;
             }))) {
@@ -98,10 +97,8 @@ const AddtoCart = ({style}) => {
                 onClick={addToCart}>add to bag</button>);
             }
           })()
-          } */}
-        </div>
-        <div className='dropdown_space_po'>
-        </div>
+          }
+
         <button className='favorites_add_button_po'>star</button>
       </div>
     </div> );
