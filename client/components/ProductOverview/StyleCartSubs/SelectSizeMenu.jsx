@@ -103,7 +103,7 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
       // </React.Fragment>
       <React.Fragment>
       <div className='size_menu_po'>
-      <div>OUT OF STOCK</div>
+      <div className='out_of_stock_po'>OUT OF STOCK</div>
       </div>
       </React.Fragment>
     );
@@ -119,7 +119,7 @@ const SelectSizeMenu = ({skus, size, handleSetSize}) => {
     return (
       <React.Fragment>
         <div className='size_menu_po'
-        // onMouseLeave={handleMouseExitCloseMenu}
+        onMouseLeave={handleMouseExitCloseMenu}
         >
           <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>{size}</div>
           <div className='size_box'>

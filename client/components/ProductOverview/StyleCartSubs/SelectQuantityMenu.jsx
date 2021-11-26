@@ -35,11 +35,13 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
 
   const handleMouseOverColorChange = (event) => {
     // console.log('mouseover')
-    event.target.setAttribute('style', 'background:#FFDB58');
+    event.target.setAttribute('style', 'background:#FFDB58; color:black');
+    // event.target.setAttribute('style', 'color:black');
   }
   const handleMouseExitColorChange = (event) => {
     // console.log('mouseover')
-    event.target.setAttribute('style', 'background:white');
+    event.target.setAttribute('style', 'background:gray; color:white');
+    // event.target.setAttribute('style', 'color:white');
   }
 
 
@@ -55,7 +57,7 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     return (
       <React.Fragment>
 
-      <div>---</div>
+      <div className='quantity_menu_po' style={{background: 'lightgrey'}}>---</div>
       </React.Fragment>
       // <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
       //   <option value='' default>---</option>
