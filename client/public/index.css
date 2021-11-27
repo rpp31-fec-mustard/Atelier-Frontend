@@ -141,8 +141,17 @@ button {
   background-color: rgba(255, 255, 255, 0.5);
   /* position: relative;
   top: 0px; */
+
+  flex-flow: wrap;
+  height: 300px;
+  overflow: scroll;
+  /* overflow: overlay; */
 }
 
+.thumbnails_po::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
 
 .thumbnail_frame_po {
   display: flex;
