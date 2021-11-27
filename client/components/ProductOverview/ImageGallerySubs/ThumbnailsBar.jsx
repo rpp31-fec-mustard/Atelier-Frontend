@@ -15,8 +15,10 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
   let counter = -1;
 
   return (
-    <div className='thumbnails_po'>
+    <React.Fragment>
+      <div className='thumbnails_bar_po'>
       <div id='arrow_up_po'>{upIcon}</div>
+    <div className='thumbnails_po'>
       {
         photos.map((photo, index) => {
           counter++;
@@ -28,10 +30,12 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
             counter={counter}
             altText={altText}
             handleThumbnailClick={handleThumbnailClick}/> );
-        })
-      }
-      <div id='arrow_down_po'>{downIcon}</div>
+          })
+        }
     </div>
+      <div id='arrow_down_po'>{downIcon}</div>
+      </div>
+        </React.Fragment>
   );
 };
 
