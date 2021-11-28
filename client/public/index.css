@@ -20,9 +20,9 @@ html {
   width: 1040px;
 }
 
-div {
+/* div {
   border: 1px solid var(--global-border-color);
-}
+} */
 
 button {
   width: 100%;
@@ -139,22 +139,17 @@ button {
   align-items: center;
   width: 12%;
   background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
 }
 
 .thumbnails_po {
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-
   justify-content: center;
   width: 100%;
-  /* position: relative;
-  top: 0px; */
-
   flex-flow: wrap;
   height: 415px;
-  /* overflow: scroll; */
-  /* overflow: auto; */
   overflow: overlay;
 }
 
@@ -163,21 +158,30 @@ button {
   background: transparent;
 }
 
+.thumbnail_select_po {
+  width: 50px;
+  height: 50px;
+  margin: 5px 0px;
+  z-index: 5;
+}
+
+.thumb_selected_po {
+  box-shadow: 0 0 0 4px var(--mustard);
+}
+
 .thumbnail_frame_po {
   display: flex;
   align-items: center;
   width: 50px;
   height: 50px;
-  margin: 3px 0px;
   overflow: hidden;
 }
 
-.thumb_selected_po {
-  border: 4px solid var(--mustard);
-}
 
 .thumbnail_box_po {
-  max-width: 100%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
 #arrow_up_po, #arrow_down_po {
@@ -239,6 +243,8 @@ button {
   z-index: 3; */
 }
 
+/*todo *** *** *** *** expanded image *** *** *** *** */
+
 .fullscreen_exp_po {
   position: fixed;
   left: 0%;
@@ -246,16 +252,13 @@ button {
   right: 0%;
   bottom: 0%;
   background-color: rgba(196, 167, 5, 0.5);
+  backdrop-filter: blur(2px);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-
+  z-index: 3;
 }
-
-
-/*todo *** *** *** *** expanded image *** *** *** *** */
 
 .main_image_exp_po {
   background-image: '';
@@ -270,13 +273,14 @@ button {
 
 .arrow_box_exp_po {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 37px;
-  width: 20px;
+  height: 160px;
+  width: 25px;
   position: relative;
   z-index: 7;
   display:flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 .image_side_po {
@@ -293,24 +297,29 @@ button {
 }
 
 .image_icons_exp_po{
-  color: white;
+  /* color: white; */
   position: absolute;
   z-index: 10;
   right: 0;
-  bottom: 10%;
+  bottom: 5%;
   left: 0;
-  background-color: rgb(0, 0, 0, .5);
-  height: 10%;
-  width:100%;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
 }
 
 .image_icon_bar_po {
-  /* background-color: yellowgreen; */
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: row;
-  width: 100%;
   height: 30px;
   justify-content: center;
+  align-items: center;
+  border-radius: 12px;
 }
 
 .image_icon_po {
@@ -410,7 +419,7 @@ button {
 }
 
 .style_row_thumbnail_po {
-  height: 136px;
+  height: 130px;
   width: 270px;
   display: flex;
   flex-direction: row;
@@ -437,7 +446,8 @@ position: relative
   height: 50px;
   width: 50px;
   border-radius: 13px;
-  margin: 5px
+  margin: 5px;
+  object-fit: cover;
 }
 
 .style_checkmark_po {
@@ -476,6 +486,8 @@ position: relative
   z-index: 2;
   height: 25px;
   margin: 10px 0px;
+  border-radius: 4px;
+  border: solid 1px black;
 }
 
 .size_display_po {
@@ -483,6 +495,8 @@ position: relative
   justify-content: center;
   align-items: inherit;
   width: 100%;
+  /* border-radius: 4px;
+  border: solid 1px black; */
 }
 
 .size_body_po {
@@ -493,6 +507,7 @@ position: relative
   justify-content: center;
   width: 80%;
   height: 20px;
+
 }
 
 .out_of_stock_po {
@@ -513,6 +528,8 @@ position: relative
   z-index: 2;
   height: 25px;
   margin: 10px 0px;
+  border-radius: 4px;
+  border: solid 1px black;
 }
 
 .quantity_display_po {
@@ -556,10 +573,13 @@ position: relative
 .size_alert_po{
   visibility: hidden;
   position: absolute;
-  top: 445px;
-  right: 345px;
+  top: 434px;
+  right: 310px;
   z-index: 3;
-  background: yellow;
+  background: var(--mustard);
+  padding: 0px 5px;
+  border-radius: 4px;
+  border: solid 2px var(--mustard-shadow);
 }
 .favorites_add_button_po {
   grid-column: 7 / 10;

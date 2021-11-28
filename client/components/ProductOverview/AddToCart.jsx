@@ -109,7 +109,7 @@ const AddtoCart = ({style}) => {
           quantityAdd={quantityAdd}
           handleSetAddQty={handleSetAddQty}/>
       </div>
-      <div className='size_alert_po'>select a size</div>
+      <div className='size_alert_po'>Please select size</div>
       <div className='add_to_bag_bottom_po'>
         {(()=>{
           if (!(_.every(style.skus, (sku) => {
