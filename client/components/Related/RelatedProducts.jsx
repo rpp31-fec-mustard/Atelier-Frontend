@@ -14,6 +14,7 @@ const RelatedProducts = (props) => {
         product={item}
         homeProduct={props.homeProduct}
         renderRelated={props.renderRelated}
+        outfitList={props.outfitList}
       />
     );
   });

@@ -21,36 +21,53 @@ const Related = (props) => {
         });
     }});
 
-  let outfitStorage;
-  // initialize localStorage for outfitList
-  if (!localStorage.outfitList) {
-    outfitStorage = [];
-  } else {
-    // set outfitStorage with localStorage outfitList
-    outfitStorage = JSON.parse(localStorage.outfitList);
-    // star all products in relatedProducts present in outfitList
-    relatedProducts.map((relProduct) => {
-      const relProductId = relProduct.id;
-      outfitStorage.forEach((outfitProduct) => {
-        const outfitProdId = outfitProduct.id;
-        if (relProductId === outfitProdId) {
-          relProduct['starred'] = true;
-        }
-      });
-    });
-  }
+  // let outfitStorage;
+  // // initialize localStorage for outfitList
+  // if (!localStorage.outfitList) {
+  //   outfitStorage = [];
+  // } else {
+  //   // set outfitStorage with localStorage outfitList
+  //   outfitStorage = JSON.parse(localStorage.outfitList);
+  //   // star all products in relatedProducts present in outfitList
+  //   relatedProducts.map((relProduct) => {
+  //     const relProductId = relProduct.id;
+  //     outfitStorage.forEach((outfitProduct) => {
+  //       const outfitProdId = outfitProduct.id;
+  //       if (relProductId === outfitProdId) {
+  //         relProduct['starred'] = true;
+  //       }
+  //     });
+  //   });
+  // }
 
-  React.useEffect(() => {
-    // if addHomeProduct = true
-    //   newOutfitList is current outfitList concatenated with homeProduct
-    //   update state and localStorage with newOutfitList
+  // const [outfitList, setOutfitList] = React.useState(outfitStorage);
 
-    // else
-    //   newOutfitList is filtered out outfitList without homeProduct
-    //   update state and localStorage with newOutfitList
-  }, [props.addHomeProduct]);
+  // handle adding/removing home product to outfit list
+  // React.useEffect(() => {
+  //   if (props.addedHomeProduct.id) {
+  //     // add to outfit list
+  //     console.log('ADD HOME PRODUCT');
+  //     const newOutfitList = props.outfitList.filter((product) => {
+  //       const productId = product.id.toString(10);
+  //       return productId !== props.addedHomeProduct.id;
+  //     }).concat([props.addedHomeProduct]);
 
-  const [outfitList, setOutfitList] = React.useState(outfitStorage);
+  //     props.setOutfitList(newOutfitList);
+  //     localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
+
+  //   } else if (typeof props.addedHomeProduct === 'string') {
+  //     // remove from outfit list
+  //     console.log('REMOVE HOME PRODUCT');
+  //     const newOutfitList = props.outfitList.filter((product) => {
+  //       const productId = product.id.toString(10);
+  //       return productId !== props.addedHomeProduct;
+  //     });
+
+  //     props.setOutfitList(newOutfitList);
+  //     localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
+  //   }
+  // }, [props.addedHomeProduct]);
+
 
   React.useEffect(() => {
     axios.post('/related', { productId: props.productId })
@@ -75,8 +92,8 @@ const Related = (props) => {
           product['starred'] = true;
 
           // updateState and localStorage with new outfit list
-          const newOutfitList = outfitList.concat([product]);
-          setOutfitList(newOutfitList);
+          const newOutfitList = props.outfitList.concat([product]);
+          props.setOutfitList(newOutfitList);
           localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
           return product;
         } else {
@@ -100,12 +117,11 @@ const Related = (props) => {
       setRelatedProducts(newRelatedProducts);
 
       // updateState and localStorage with new outfit list
-      const newOutfitList = outfitList.filter((product) => {
+      const newOutfitList = props.outfitList.filter((product) => {
         const productId = product.id.toString(10);
         return productId !== targetProductId;
       });
-
-      setOutfitList(newOutfitList);
+      props.setOutfitList(newOutfitList);
       localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
     }
   };
@@ -153,15 +169,16 @@ const Related = (props) => {
         <RelatedProducts
           productId={productId}
           relatedProducts={relatedProducts}
-          handleAction={handleAction}
+          handleAction={props.toggleToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           homeProduct={props.homeProduct}
           renderRelated={props.renderRelated}
+          outfitList={props.outfitList}
         />
         <Outfit
-          outfitList={outfitList}
-          handleAction={handleAction}
+          outfitList={props.outfitList}
+          handleAction={props.toggleToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           renderRelated={props.renderRelated}
