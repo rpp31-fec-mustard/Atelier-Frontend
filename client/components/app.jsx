@@ -53,8 +53,13 @@ class App extends React.Component {
   //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
+    this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
   }
 
+  // update localStorage whenever outfitList in state is updated
+  componentDidUpdate() {
+    localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
+  }
 
   getProduct(id) {
     axios.get('/product', {
