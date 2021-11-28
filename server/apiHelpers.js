@@ -17,7 +17,7 @@ const getProduct = (productId) => {
           const thumbnailUrl = primaryStyle.photos[0].thumbnail_url;
           const originalPrice = primaryStyle.original_price;
           const salePrice = primaryStyle.sale_price;
-          product.thumnailUrl = thumbnailUrl;
+          product.thumbnailUrl = thumbnailUrl;
           product.originalPrice = originalPrice;
           product.salePrice = salePrice;
 

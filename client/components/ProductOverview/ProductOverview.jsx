@@ -79,9 +79,6 @@ const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
 
 
 
-
-
-
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
     setStyleIndex(selectedStyleIndex);
