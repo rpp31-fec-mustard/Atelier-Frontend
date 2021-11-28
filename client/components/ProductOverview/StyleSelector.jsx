@@ -4,7 +4,15 @@ import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 import AddToCart from './AddToCart.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
-const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnClick, toggleToOutfitList}) => {
+const StyleSelector = ({
+  styles,
+  currentStyleIndex,
+  productName,
+  productId,
+  handleStyleOnClick,
+  toggleProductToOutfitList,
+  isProductInOutfitList,
+}) => {
   // const DEBUG = false;
   var mlog = (DEBUG) ? console.log : () => {};
 
@@ -41,8 +49,11 @@ const StyleSelector = ({styles, currentStyleIndex, productName, handleStyleOnCli
           </div>
         </div>
         <AddToCart
+          productId={productId}
           style={styles[currentStyleIndex]}
-          toggleToOutfitList={toggleToOutfitList}/>
+          toggleProductToOutfitList={toggleProductToOutfitList}
+          isProductInOutfitList={isProductInOutfitList}
+        />
       </React.Fragment>
     );
   } else {

@@ -21,9 +21,9 @@ html {
   border: none;
 }
 
-div {
+/* div {
   border: 1px solid var(--global-border-color);
-}
+} */
 
 /* GLOBAL VARIABLES */
 
@@ -57,7 +57,6 @@ div {
 
   width: 100%;
 }
-
 
 
 /* *** TEMP TOP BANNER *** */
@@ -567,6 +566,7 @@ position: relative
   height: var(--prod-card-height);
   margin: var(--prod-card-margins);
   flex: 0 0 auto;
+  border: 1px solid var(--global-border-color);
 }
 
 .prod-card:hover {
@@ -580,7 +580,6 @@ position: relative
 
 .prod-card-wrapper button {
   -webkit-appearance: none;
-  -moz-appearance: none;
   background: none;
   fill: none;
   border-style: none;
@@ -591,8 +590,10 @@ position: relative
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
 }
-
 
 .prod-card-info-wrapper {
   margin: 5px;

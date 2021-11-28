@@ -1,3 +1,4 @@
+/* eslint-disable func-style */
 import React from 'react';
 import axios from 'axios';
 
@@ -7,6 +8,8 @@ import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import defaultOnLoad from './defaultOnLoad.jsx';
+import checkOutfitListPresence from './Global/checkOutfitListPresence.jsx';
+
 // fixtures
 import fixtures from '../../test/fixtures.js';
 
@@ -14,32 +17,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59601', //testing
+      productId: '59553', //testing
       product: fixtures.product, //testing
+      total: '0',
 
-      // Product needs to have these properties
-      // {
-      //   id: 60012,
-      //   category: 'Suit',
-      //   name: 'Abigale Suit',
-      //   features: [
-      //     {feature: 'Frame', value: '"DuraResin"'},
-      //     {feature: 'Non-GMO', value: null},
-      //     {feature: 'Non-GMO', value: null}
-      //   ],
-      //   thumbnailUrl: 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
-      //   defaultPrice: '896.00',
-      //   originalPrice: '896.00',
-      //   salePrice: null,
-      // }
-
-      total: '0'
-
-      // productId: '59553', //testing ML
+      // productId: '59601', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
+      addedHomeProduct: {},
+      outfitList: []
 
     };
     this.sendNumber = this.sendNumber.bind(this);
+    this.setOutfitList = this.setOutfitList.bind(this);
   }
 
   //! testing only
@@ -57,11 +46,20 @@ class App extends React.Component {
       });
   }
 
+  setOutfitList(newOutfitList) {
+    this.setState({outfitList: newOutfitList});
+  }
+
   //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
+    this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
   }
 
+  // update localStorage whenever outfitList in state is updated
+  componentDidUpdate() {
+    localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
+  }
 
   getProduct(id) {
     axios.get('/product', {
@@ -90,31 +88,43 @@ class App extends React.Component {
     });
   }
 
-  toggleToOutfitList(event) {
-    let label = event.target.innerText;
-    const homeProduct = this.state.product;
-    if (label === 'Star') {
-      // add to outfit list
+  toggleToOutfitList(product) {
+    let productInList = checkOutfitListPresence(product, this.state.outfitList);
 
-      // update state addHomeProduct to be true
-      // render button to say "Remove"
+    if (!productInList) {
+      let newOutfitList = this.state.outfitList.concat([product]);
+      this.setState({outfitList: newOutfitList});
     } else {
-      // remove from outfit list
-
-      // update state addHomeProduct to be false
-      // render button to say "Star"
+      const newOutfitList = this.state.outfitList.filter((p) => String(p.id) !== String(product.id));
+      this.setState({outfitList: newOutfitList});
     }
   }
 
-  // pass addHomeProduct state to Related
   render () {
     return (
       <React.Fragment>
         <TempTopBanner sendNumber={this.sendNumber}/>
-        <ProductOverview id={this.state.productId} product={this.state.product} total={this.state.total} toggleToOutfitList={this.toggleToOutfitList.bind(this)}/>
-        <Related productId={this.state.productId} homeProduct={this.state.product} /*addHomeProduct={this.state.addHomeProduct}*/ renderRelated={this.renderRelated.bind(this)}/>
+        <ProductOverview
+          id={this.state.productId}
+          product={this.state.product}
+          isProductInOutfitList={checkOutfitListPresence(this.state.product, this.state.outfitList)}
+          total={this.state.total}
+          toggleProductToOutfitList={() => this.toggleToOutfitList(this.state.product)}
+        />
+        <Related
+          productId={this.state.productId}
+          homeProduct={this.state.product}
+          outfitList={this.state.outfitList}
+          setOutfitList={this.setOutfitList}
+          renderRelated={this.renderRelated.bind(this)}
+          toggleToOutfitList={this.toggleToOutfitList.bind(this)}
+        />
         <QA product={this.state.productId} productInfo={this.state.product}/>
-        <Reviews productId={this.state.productId} productInfo={this.state.product} updateTotal={this.updateTotal.bind(this)} />
+        <Reviews
+          productId={this.state.productId}
+          productInfo={this.state.product}
+          updateTotal={this.updateTotal.bind(this)}
+        />
       </React.Fragment>
     );
   }

@@ -17,7 +17,7 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 import fixtures from '../../../test/fixtures.js';
 
 
-const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
+const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList}) => {
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
@@ -79,9 +79,6 @@ const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
 
 
 
-
-
-
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
     setStyleIndex(selectedStyleIndex);
@@ -133,11 +130,15 @@ const ProductOverview = ({product, id, total, toggleToOutfitList}) => {
             <Price salePrice={styles.results[currentStyleIndex].sale_price}
               originalPrice={styles.results[currentStyleIndex].original_price}/>
           </div>
-          <StyleSelector styles={styles.results}
+          <StyleSelector
+            styles={styles.results}
             currentStyleIndex={currentStyleIndex}
             productName={name}
+            productId={id}
             handleStyleOnClick={handleStyleOnClick}
-            toggleToOutfitList={toggleToOutfitList}/>
+            toggleToOutfitList={toggleProductToOutfitList}
+            isProductInOutfitList={isProductInOutfitList}
+          />
         </div>
       </div>
       <div className='bottom01'>

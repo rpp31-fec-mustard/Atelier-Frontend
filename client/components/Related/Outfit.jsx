@@ -8,7 +8,12 @@ const Outfit = (props) => {
 
   let outfitProducts;
 
+  // React.useEffect(() => {
+  //   console.log('OUTFIT LIST CHANGING');
+  // }, [props.outfitList.length]);
+
   if (props.outfitList.length) {
+    // console.log(props.outfitList);
     outfitProducts = props.outfitList.map((item) => {
       return (
         <ProductCard
@@ -16,6 +21,7 @@ const Outfit = (props) => {
           product={item}
           handleAction={props.handleAction}
           renderRelated={props.renderRelated}
+          outfitList={props.outfitList}
           outfit={true}
         />
       );
@@ -29,6 +35,7 @@ const Outfit = (props) => {
       </div>
     ];
   }
+
 
   return (
     <div id="your-outfit" className="related-submodule">

@@ -44,6 +44,7 @@ const ProductCard = (props) => {
         <ActionButton
           product={props.product}
           handleAction={props.handleAction}
+          outfitList={props.outfitList}
         />
 
         <div className="prod-card-wrapper">
