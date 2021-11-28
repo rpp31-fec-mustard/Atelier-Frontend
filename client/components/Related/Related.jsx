@@ -21,54 +21,6 @@ const Related = (props) => {
         });
     }});
 
-  // let outfitStorage;
-  // // initialize localStorage for outfitList
-  // if (!localStorage.outfitList) {
-  //   outfitStorage = [];
-  // } else {
-  //   // set outfitStorage with localStorage outfitList
-  //   outfitStorage = JSON.parse(localStorage.outfitList);
-  //   // star all products in relatedProducts present in outfitList
-  //   relatedProducts.map((relProduct) => {
-  //     const relProductId = relProduct.id;
-  //     outfitStorage.forEach((outfitProduct) => {
-  //       const outfitProdId = outfitProduct.id;
-  //       if (relProductId === outfitProdId) {
-  //         relProduct['starred'] = true;
-  //       }
-  //     });
-  //   });
-  // }
-
-  // const [outfitList, setOutfitList] = React.useState(outfitStorage);
-
-  // handle adding/removing home product to outfit list
-  // React.useEffect(() => {
-  //   if (props.addedHomeProduct.id) {
-  //     // add to outfit list
-  //     console.log('ADD HOME PRODUCT');
-  //     const newOutfitList = props.outfitList.filter((product) => {
-  //       const productId = product.id.toString(10);
-  //       return productId !== props.addedHomeProduct.id;
-  //     }).concat([props.addedHomeProduct]);
-
-  //     props.setOutfitList(newOutfitList);
-  //     localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
-
-  //   } else if (typeof props.addedHomeProduct === 'string') {
-  //     // remove from outfit list
-  //     console.log('REMOVE HOME PRODUCT');
-  //     const newOutfitList = props.outfitList.filter((product) => {
-  //       const productId = product.id.toString(10);
-  //       return productId !== props.addedHomeProduct;
-  //     });
-
-  //     props.setOutfitList(newOutfitList);
-  //     localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
-  //   }
-  // }, [props.addedHomeProduct]);
-
-
   React.useEffect(() => {
     axios.post('/related', { productId: props.productId })
       .then((result) => {
@@ -78,53 +30,6 @@ const Related = (props) => {
         console.log('Client unable to get related products: ', error);
       });
   }, [props.productId]);
-
-  // handle adding and removing outfit from outfit list
-  const handleAction = (event) => {
-    const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
-    const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
-
-    if (target.className === 'ri-star-fill') {
-      // add to outfit list
-      const newRelatedProducts = relatedProducts.map((product) => {
-        const productId = product.id.toString(10);
-        if (productId === targetProductId) {
-          product['starred'] = true;
-
-          // updateState and localStorage with new outfit list
-          const newOutfitList = props.outfitList.concat([product]);
-          props.setOutfitList(newOutfitList);
-          localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
-          return product;
-        } else {
-          return product;
-        }
-      });
-
-      setRelatedProducts(newRelatedProducts);
-    } else {
-      // remove from outfit list
-      const newRelatedProducts = relatedProducts.map((product) => {
-        const productId = product.id.toString(10);
-        if (productId === targetProductId) {
-          product['starred'] = false;
-          return product;
-        } else {
-          return product;
-        }
-      });
-
-      setRelatedProducts(newRelatedProducts);
-
-      // updateState and localStorage with new outfit list
-      const newOutfitList = props.outfitList.filter((product) => {
-        const productId = product.id.toString(10);
-        return productId !== targetProductId;
-      });
-      props.setOutfitList(newOutfitList);
-      localStorage.setItem('outfitList', JSON.stringify(newOutfitList));
-    }
-  };
 
   const handleLeftScroll = (scrollRef) => {
     const cardsWrapper = scrollRef.current;

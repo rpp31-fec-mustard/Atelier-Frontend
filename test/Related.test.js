@@ -205,7 +205,6 @@ describe('Interact with Components', () => {
         const newRelatedProducts = testState.relatedProducts.map((product) => {
           const productId = product.id.toString(10);
           if (productId === targetProductId) {
-            product['starred'] = true;
             // updateState with outfit list
             const newOutfitList = testState.outfitList.concat([product]);
 

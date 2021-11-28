@@ -255,8 +255,7 @@ const fixtures = {
       thumbnailUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
       defaultPrice: '230.00',
       originalPrice: '230.00',
-      salePrice: null,
-      starred: true
+      salePrice: null
     },
     {
       id: 59930,
@@ -270,8 +269,7 @@ const fixtures = {
       thumbnailUrl: 'https://images.unsplash.com/photo-1422557379185-474fa15bf770?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
       defaultPrice: '881.00',
       originalPrice: '881.00',
-      salePrice: '100.00',
-      starred: true
+      salePrice: '100.00'
     }
   ],
   reviews: [

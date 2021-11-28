@@ -90,8 +90,7 @@ const getRelated = (productId) => {
                 const defaultPrice = productInfo.data.default_price;
                 const originalPrice = styleInfo.original_price;
                 const salePrice = styleInfo.sale_price;
-                const starred = false;
-                return { id, category, name, features, thumbnailUrl, defaultPrice, originalPrice, salePrice, starred};
+                return { id, category, name, features, thumbnailUrl, defaultPrice, originalPrice, salePrice};
               }); // consolidates and returns all product information including thumbnail url and price
             })
             .catch((error) => {
