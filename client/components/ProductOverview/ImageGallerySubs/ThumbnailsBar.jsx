@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
-const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
+
+const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText, cW2}) => {
   const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
@@ -14,11 +15,30 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
   let downIcon = <i className="ri-arrow-down-s-fill"></i>;
   let counter = -1;
 
+  // const cW2 = React.useRef(null); //testing
+
+
+
+  const handleUpScroll = () => {
+    cW2.current.scrollBy({top: -180, behavior: 'smooth'})
+  }
+
+  const handleDownScroll = () => {
+    cW2.current.scrollBy({top: 180, behavior: 'smooth'})
+  }
+
+
+    // let currentTop = document.getElementById('tb_po').scrollTop
+    // let selectedTop = 60 * photoIndex;
+    // cW2.current.scrollBy({top: selectedTop - currentTop - 180, behavior: 'smooth'}) //good for incremental scroll
+
+
+
   return (
     <React.Fragment>
       <div className='thumbnails_bar_po'>
-      <div id='arrow_up_po'>{upIcon}</div>
-    <div className='thumbnails_po'>
+      <div id='arrow_up_po' onClick={() => {handleUpScroll() }}>{upIcon}</div>
+    <div className='thumbnails_po' id='tb_po' ref={cW2}>
       {
         photos.map((photo, index) => {
           counter++;
@@ -33,7 +53,7 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText}) => {
           })
         }
     </div>
-      <div id='arrow_down_po'>{downIcon}</div>
+      <div id='arrow_down_po' onClick={() => {handleDownScroll()}}>{downIcon}</div>
       </div>
         </React.Fragment>
   );

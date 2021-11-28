@@ -154,12 +154,13 @@ button {
   flex-flow: wrap;
   height: 415px;
   /* overflow: scroll; */
+  /* overflow: auto; */
   overflow: overlay;
 }
 
 .thumbnails_po::-webkit-scrollbar {
   width: 0px;
-  background: transparent; /* make scrollbar transparent */
+  background: transparent;
 }
 
 .thumbnail_frame_po {

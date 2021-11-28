@@ -1,12 +1,12 @@
 import React from 'react';
 import ImageIcon from './ImageIcon.jsx';
 
-const ImageIconBar = ({index, indexMax, handleThumbnailClick}) => {
+const ImageIconBar = ({index, photoIndexMax, handleThumbnailClick}) => {
 
   let i = 0;
   let indexArr = [];
 
-  while (i <= indexMax) { indexArr.push(i); i++; }
+  while (i <= photoIndexMax) { indexArr.push(i); i++; }
 
   return (
     <React.Fragment>

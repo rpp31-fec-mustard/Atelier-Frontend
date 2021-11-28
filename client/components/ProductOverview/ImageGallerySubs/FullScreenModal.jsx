@@ -7,7 +7,7 @@ import ImageIconBar from './ImageIconBar.jsx';
 import {DEBUG} from '../ProductOverview.jsx';
 
 const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
-  imageLeftClick, imageRightClick, handleThumbnailClick, indexMax }) => {
+  imageLeftClick, imageRightClick, handleThumbnailClick, photoIndexMax }) => {
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
@@ -43,15 +43,15 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       iconsBar.style.visibility = 'visible';
       leftArrow.style.visibility = 'visible';
       rightArrow.style.visibility = 'visible';
-      if (index <= 0) {
+      if (photoIndex <= 0) {
         leftArrow.style.visibility = 'hidden';
       }
-      if (index >= indexMax) {
+      if (photoIndex >= photoIndexMax) {
         rightArrow.style.visibility = 'hidden';
       }
       setPanImage(false);
     }
-  }, [zoom, index]);
+  }, [zoom, photoIndex]);
 
 
   const onClickZoomImage = (e) => {
@@ -81,7 +81,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       <div className='main_image_exp_po' >
         <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
         <img className='inner_image_exp_po'
-          src={photos[index].url}
+          src={photos[photoIndex].url}
           alt={altText}
           onClick={onClickZoomImage}
           onMouseMove={moveMousePanImage}
@@ -92,7 +92,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
         onClick={onClose}>
       </div>
       <div className='image_icons_exp_po'>
-        <ImageIconBar index={index} indexMax={indexMax} handleThumbnailClick={handleThumbnailClick}/>
+        <ImageIconBar index={photoIndex} photoIndexMax={photoIndexMax} handleThumbnailClick={handleThumbnailClick}/>
         {/* <p className='txt' hidden={true}>Congratulations Michael and Family!</p> */}
       </div>
     </div> );

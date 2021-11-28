@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const ArrowLeft = ({index, imageLeftClick}) => {
+const ArrowLeft = ({photoIndex, imageLeftClick}) => {
 
   let leftIcon = <i className="ri-arrow-left-s-line"></i>;
 
-  if (index === undefined || index <= 0) {
+  if (photoIndex === undefined || photoIndex <= 0) {
     return (<React.Fragment></React.Fragment>);
   } else {
     return (<React.Fragment>

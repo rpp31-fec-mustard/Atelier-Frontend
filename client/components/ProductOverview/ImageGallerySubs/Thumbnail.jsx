@@ -11,7 +11,7 @@ const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) 
 
   return (
     <React.Fragment>
-      <div className={`thumbnail_frame_po ${thumbSelected}`} key={`TF${counter}`}>
+      <div className={`thumbnail_frame_po ${thumbSelected}`} id={`${thumbSelected}`} key={`TF${counter}`}>
         <img className='thumbnail_box_po'
           src={photo}
           alt={`${altText} ${counter} Thumbnail`}
