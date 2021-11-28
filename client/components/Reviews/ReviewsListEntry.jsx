@@ -41,7 +41,7 @@ class ReviewsListEntry extends React.Component {
     var date = new Date(date).toDateString();
     var dateArr = date.split(' ');
     dateArr.shift();
-    dateArr[1] = dateArr[1] + ', ';
+    dateArr[1] = (Number(dateArr[1]) + 1) + ', ';
     return dateArr.join(' ');
   }
 
