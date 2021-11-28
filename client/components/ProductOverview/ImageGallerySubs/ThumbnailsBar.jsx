@@ -20,42 +20,35 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText, cW2})
 
 
   const handleUpScroll = () => {
-    cW2.current.scrollBy({top: -180, behavior: 'smooth'})
-  }
+    cW2.current.scrollBy({top: -180, behavior: 'smooth'});
+  };
 
   const handleDownScroll = () => {
-    cW2.current.scrollBy({top: 180, behavior: 'smooth'})
-  }
-
-
-    // let currentTop = document.getElementById('tb_po').scrollTop
-    // let selectedTop = 60 * photoIndex;
-    // cW2.current.scrollBy({top: selectedTop - currentTop - 180, behavior: 'smooth'}) //good for incremental scroll
-
-
+    cW2.current.scrollBy({top: 180, behavior: 'smooth'});
+  };
 
   return (
     <React.Fragment>
       <div className='thumbnails_bar_po'>
-      <div id='arrow_up_po' onClick={() => {handleUpScroll() }}>{upIcon}</div>
-    <div className='thumbnails_po' id='tb_po' ref={cW2}>
-      {
-        photos.map((photo, index) => {
-          counter++;
-          mlog(logC + ' TB altText:', altText, counter);
-          return ( <Thumbnail
-            key={`TN${index}`}
-            photo={photo.url}
-            photoIndex = {photoIndex}
-            counter={counter}
-            altText={altText}
-            handleThumbnailClick={handleThumbnailClick}/> );
-          })
-        }
-    </div>
-      <div id='arrow_down_po' onClick={() => {handleDownScroll()}}>{downIcon}</div>
+        <div id='arrow_up_po' onClick={() => { handleUpScroll(); }}>{upIcon}</div>
+        <div className='thumbnails_po' id='tb_po' ref={cW2}>
+          {
+            photos.map((photo, index) => {
+              counter++;
+              mlog(logC + ' TB altText:', altText, counter);
+              return ( <Thumbnail
+                key={`TN${index}`}
+                photo={photo.url}
+                photoIndex = {photoIndex}
+                counter={counter}
+                altText={altText}
+                handleThumbnailClick={handleThumbnailClick}/> );
+            })
+          }
+        </div>
+        <div id='arrow_down_po' onClick={() => { handleDownScroll(); }}>{downIcon}</div>
       </div>
-        </React.Fragment>
+    </React.Fragment>
   );
 };
 

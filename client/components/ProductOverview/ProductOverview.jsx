@@ -64,7 +64,7 @@ const ProductOverview = ({product, id, total}) => {
 
 
   // const loaded = useRef(true); //testing
-  const loaded = useRef(false);    //for testing Ml
+  const loaded = useRef(false); //for testing Ml
 
   useEffect(async () => {
     if (loaded.current) {

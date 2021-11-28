@@ -1,15 +1,15 @@
 import React, {useEffect, useRef} from 'react';
 
-const ImageIcon = ({i, photoIndex, handleThumbnailClick}) => {
-  console.log('imageIcon', i, photoIndex, `image_icon_${i}`);
+const ImageIcon = ({iconId, photoIndex, handleThumbnailClick}) => {
+  console.log('imageIcon', iconId, photoIndex, `image_icon_${iconId}`);
 
   let color;
-  (i === photoIndex ) ? color = '#FFDB58' : color = 'rgb(125, 125, 125)';
+  (iconId === photoIndex ) ? color = '#FFDB58' : color = 'rgb(125, 125, 125)';
 
   return ( <React.Fragment>
-    <div className={`image_icon_${i} image_icon_po`}
-      onClick={ () => { handleThumbnailClick(i); }}
-      data-testid={`image_icon_${i}`}
+    <div className={`image_icon_${iconId} image_icon_po`}
+      onClick={ () => { handleThumbnailClick(iconId); }}
+      data-testid={`image_icon_${iconId}`}
       style={{backgroundColor: color}}></div>
   </React.Fragment>
   );

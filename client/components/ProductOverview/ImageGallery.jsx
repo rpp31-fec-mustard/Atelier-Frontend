@@ -27,46 +27,35 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoIndexMax, setPhotoIndexMax] = useState(0);
 
+
+
+  //code to scroll thumbnails bar
   const cW2 = React.useRef(null); //testing
+
+  const scrollThumbnailsToCurrent = () => {
+    let currentTop = document.getElementById('tb_po').scrollTop;
+    let selectedTop = 60 * photoIndex;
+    cW2.current.scrollBy({top: selectedTop - currentTop - 180, behavior: 'smooth'});
+  };
+
 
   const imageLeftClick = () => {
     if (photoIndex > 0) {
       setPhotoIndex(photoIndex - 1);
     }
-    // document.getElementsByClassName('thumb_selected_po')[0].scrollIntoView({block: 'center', behavior: 'smooth'}); //janky
-    let currentTop = document.getElementById('tb_po').scrollTop
-    let selectedTop = 60 * photoIndex;
-    cW2.current.scrollBy({top: selectedTop - currentTop - 180, behavior: 'smooth'})
+    scrollThumbnailsToCurrent();
 
-    // let container = $('#tb_po');
-    // let item = $('#thumb_selected_po');
-    // let position = scrollTo.offset().top - container.offset().top + container.scrollTop();
-    // container.scrollTo(document.getElementById(item), 800);
-    // container.scrollTo(0, 300);
-    // console.log('jquery check', $("#tb_po").length)
-    // container.scrollTo(0, 300);
-    // $('.thumbnails_po').scrollTo(document.getElementById('thumb_selected_po'), 800);
-    // document.getElementsByClassName('thumbnails_po')[0].scrollBy({top: -20, behavior: 'smooth'})
   };
 
   const imageRightClick = () => {
     if (photoIndex < photos.length - 1) {
       setPhotoIndex(photoIndex + 1);
     }
-    // document.getElementsByClassName('thumb_selected_po')[0].scrollIntoView({block: 'center', behavior: 'smooth'}); //janky
-    // cW2.current.scrollTo(document.getElementById('thumb_selected_po'), 100)
-    let currentTop = document.getElementById('tb_po').scrollTop
-    let selectedTop = 60 * photoIndex;
-    cW2.current.scrollBy({top: selectedTop - currentTop - 180, behavior: 'smooth'}) //good for incremental scroll
-    // let container = $('tb_po'); //bug01.scrollto
-    // let item = $('#thumb_selected_po'); //bug01.scrollto
-    // let position = scrollTo.offset().top - containe.offset().top + container.scrollTop();
-    // container.scrollTo(document.getElementById(item), 800);
-    // container.scrollTo(0, 200);
-    // console.log('jquery check', $("#tb_po").length)
-    // $('.thumbnails_po').scrollTo(document.getElementById('thumb_selected_po'), 100);
-    // document.getElementsByClassName('thumbnails_po')[0].scrollBy({top: 20, behavior: 'smooth'})
+    scrollThumbnailsToCurrent(); //good for incremental scroll
   };
+
+
+
 
   const [isShowing, setIsShowing] = useState(false);
 //useLayoutEffect?
@@ -79,10 +68,11 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     setIsShowing(true);
   };
 
-  const handleThumbnailClick = (index1) => {
-    console.log('htc', index1);
-    setPhotoIndex(index1);
+  const handleThumbnailClick = (iconId) => {
+    console.log('htc', iconId);
+    setPhotoIndex(iconId);
     // document.getElementsByClassName(`image_icon_${index}`)[0].style.backgroundColor = 'white'
+
   };
 
 // useEffect(() => {
@@ -121,7 +111,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
               handleThumbnailClick={handleThumbnailClick}
               altText = {altText}
               cW2={cW2}
-              />
+            />
             <div className='arrow_po'>
               <div className='arrow_space_po' onClick={handleClickImage}></div>
               <ArrowLeft
@@ -138,7 +128,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
             <FullScreenModal
               currentStyle={currentStyle}
               productName={productName}
-              index={photoIndex}
+              photoIndex={photoIndex}
               isShowing={isShowing}
               imageLeftClick={imageLeftClick}
               imageRightClick={imageRightClick}

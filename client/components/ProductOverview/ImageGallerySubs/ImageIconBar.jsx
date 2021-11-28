@@ -13,7 +13,7 @@ const ImageIconBar = ({index, photoIndexMax, handleThumbnailClick}) => {
       <div className='image_icon_bar_po'>
         {
           indexArr.map((i) => {
-            return ( <ImageIcon i={i} photoIndex={index}
+            return ( <ImageIcon iconId={i} photoIndex={index}
               handleThumbnailClick={handleThumbnailClick} key={`II${i}`}/> );
           })
         }

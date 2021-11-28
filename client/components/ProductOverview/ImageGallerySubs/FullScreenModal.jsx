@@ -6,7 +6,7 @@ import ImageIconBar from './ImageIconBar.jsx';
 
 import {DEBUG} from '../ProductOverview.jsx';
 
-const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
+const FullScreenModal = ({currentStyle, productName, photoIndex, isShowing, onClose,
   imageLeftClick, imageRightClick, handleThumbnailClick, photoIndexMax }) => {
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
@@ -19,7 +19,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
   const altText = `${productName} in ${currentStyle.name }`;
   mlog('FSM altText', altText);
 
-  const [photoIndex, setPhotoIndex] = useState(index);
+  // const [photoIndex, setPhotoIndex] = useState(index);
   const [zoom, setZoom] = useState(false);
   const [panImage, setPanImage] = useState(false);
 
@@ -73,7 +73,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
 
   let leftArrowIcon = <i className="ri-arrow-left-s-line"></i>;
   let rightArrowIcon = <i className="ri-arrow-right-s-line"></i>;
-
+  console.log('FSM photoIndex', photoIndex);
   return (
     <div className='fullscreen_exp_po'>
       <div className='image_side_po' onClick={onClose}>
