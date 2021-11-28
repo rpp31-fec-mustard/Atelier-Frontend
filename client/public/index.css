@@ -1116,9 +1116,10 @@ border: none;
   margin-bottom: 10px;
 }
 
-.recommend {
-  font-size: 10px;
-  margin-bottom: 10px;
+.recommendWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0px 8px 0px;
 }
 
 .footerWrapper {
@@ -1466,6 +1467,8 @@ p {
   display: flex;
   flex-direction: row;
   border: none;
+  font-size: 24px;
+  margin-top: 8px;
 }
 
 .starRadio {

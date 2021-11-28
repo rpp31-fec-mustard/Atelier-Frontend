@@ -28,8 +28,10 @@ class ReviewsListEntry extends React.Component {
   wouldRecommend() {
     if (this.props.review.recommend) {
       return (
-        <section>
-          <i className="fas fa-check"></i> I would recommend this item!
+        <section className='recommendWrapper'>
+        <i className="ri-check-line" style={{fontSize: "24px"}}></i>
+        <section className='recommendText' style={{fontSize: "12px", marginTop: '6px'}}>I would recommend this item!
+          </section>
         </section>
       );
     }
