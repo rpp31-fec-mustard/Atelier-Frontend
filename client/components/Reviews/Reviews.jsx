@@ -23,7 +23,6 @@ class Reviews extends React.Component {
     };
   }
 
-
   sortRatings(reviews, meta) {
     let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
     for (var i = 0; i < reviews.length; i++) {
