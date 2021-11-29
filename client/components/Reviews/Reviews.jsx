@@ -23,6 +23,15 @@ class Reviews extends React.Component {
     };
   }
 
+
+  sortRatings(reviews, meta) {
+    let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+    for (var i = 0; i < reviews.length; i++) {
+      ratingBreakdown[reviews[i].rating]++
+    }
+    meta.ratings = ratingBreakdown
+  }
+
   get(option) {
     let options = {
       url: '/getReviews',
@@ -30,6 +39,7 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
+      this.sortRatings(result.data.reviewsArr, result.data.meta)
       this.setState({
         allReviews: result.data.reviewsArr,
         displayedReviews: result.data.reviewsArr,
