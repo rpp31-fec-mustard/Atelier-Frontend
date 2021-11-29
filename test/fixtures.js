@@ -242,6 +242,36 @@ const fixtures = {
       salePrice: null
     }
   ],
+  outfitList: [
+    {
+      id: 60123,
+      category: 'Dress',
+      name: 'The Evangeline Dress',
+      features: [
+        { feature: 'Sustainably Sourced', value: null },
+        { feature: 'Fair Trade Certified', value: null },
+        { feature: '5 Year Warranty', value: null }
+      ],
+      thumbnailUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '230.00',
+      originalPrice: '230.00',
+      salePrice: null
+    },
+    {
+      id: 59930,
+      category: 'Trousers',
+      name: 'Julian Trousers',
+      features: [
+        { feature: 'Non-GMO', value: null },
+        { feature: 'Frame', value: '"AllLight Composition Resin"' },
+        { feature: 'Stitching', value: '"Double Stitch"' }
+      ],
+      thumbnailUrl: 'https://images.unsplash.com/photo-1422557379185-474fa15bf770?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      defaultPrice: '881.00',
+      originalPrice: '881.00',
+      salePrice: '100.00'
+    }
+  ],
   reviews: [
     {
       reviewId: 1016925,

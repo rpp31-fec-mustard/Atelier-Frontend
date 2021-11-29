@@ -1,17 +1,22 @@
 import * as React from 'react';
+import checkOutfitListPresence from '../Global/checkOutfitListPresence.jsx';
 
 const ActionButton = (props) => {
   let icon;
-
-  if (props.product.starred) {
-    icon = <i className="ri-close-fill" aria-label="Remove product"></i>;
+  if (checkOutfitListPresence(props.product, props.outfitList)) {
+    icon = <i className="ri-close-fill" role="button" aria-label="Remove product"></i>;
   } else {
-    icon = <i className="ri-star-fill" aria-label="Add product"></i>;
+    icon = <i className="ri-star-fill" role="button" aria-label="Add product"></i>;
   }
 
   return (
     <div className="action-button-wrapper">
-      <button className="action-button" onClick={(event) => { props.handleAction(event); }}>{icon}</button>
+      <button
+        className="action-button"
+        onClick={(event) => { props.handleAction(props.product); }}
+        aria-label="Action button"
+      >
+        {icon}</button>
     </div>
   );
 };

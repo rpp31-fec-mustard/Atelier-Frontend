@@ -13,10 +13,14 @@ const RightButton = (props) => {
 
   return (
     <React.Fragment>
-      <div className="right-gradient"></div>
-      <button className="right nav-button" style={{color: 'transparent'}} onClick={(event) => {
-        props.handleRightScroll(props.cardsWrapper);
-      }}>
+      <button
+        className="right nav-button"
+        style={{color: 'transparent'}}
+        onClick={(event) => {
+          props.handleRightScroll(props.cardsWrapper);
+        }}
+        aria-label="Scroll right"
+      >
         <i className="ri-arrow-right-circle-line"></i>
       </button>
     </React.Fragment>

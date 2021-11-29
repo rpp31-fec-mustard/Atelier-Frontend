@@ -21,29 +21,6 @@ const Related = (props) => {
         });
     }});
 
-  let outfitStorage;
-  // initialize localStorage for outfitList
-  if (!localStorage.getItem('outfitList')) {
-    outfitStorage = [];
-  } else {
-    // set outfitStorage with localStorage outfitList
-    outfitStorage = JSON.parse(localStorage.getItem('outfitList'));
-    // star all products in relatedProducts present in outfitList
-    Promise.resolve(
-      relatedProducts.map((relProduct) => {
-        const relProductId = relProduct.id;
-        outfitStorage.forEach((outfitProduct) => {
-          const outfitProdId = outfitProduct.id;
-          if (relProductId === outfitProdId) {
-            relProduct['starred'] = true;
-          }
-        });
-      })
-    );
-  }
-
-  const [outfitList, setOutfitList] = React.useState(outfitStorage);
-
   React.useEffect(() => {
     axios.post('/related', { productId: props.productId })
       .then((result) => {
@@ -53,55 +30,6 @@ const Related = (props) => {
         console.log('Client unable to get related products: ', error);
       });
   }, [props.productId]);
-
-  // update localStorage outfitList upon outfitList change
-  React.useEffect(() => {
-    localStorage.setItem('outfitList', JSON.stringify(outfitList));
-  }, [outfitList]);
-
-  const handleAction = (event) => {
-    const target = event.target.tagName === 'I' ? event.target : event.target.firstElementChild;
-    const targetProductId = target.parentElement.parentElement.parentElement.classList[1];
-
-    if (target.className === 'ri-star-fill') {
-      // add to outfit list
-      const newRelatedProducts = relatedProducts.map((product) => {
-        const productId = product.id.toString(10);
-        if (productId === targetProductId) {
-          product['starred'] = true;
-          // updateState with outfit list
-          const newOutfitList = outfitList.concat([product]);
-
-          setOutfitList(newOutfitList);
-          return product;
-        } else {
-          return product;
-        }
-      });
-
-      setRelatedProducts(newRelatedProducts);
-    } else {
-      // remove from outfit list
-      const newOutfitList = outfitList.filter((product) => {
-        const productId = product.id.toString(10);
-        return productId !== targetProductId;
-      });
-
-      setOutfitList(newOutfitList);
-
-      const newRelatedProducts = relatedProducts.map((product) => {
-        const productId = product.id.toString(10);
-        if (productId === targetProductId) {
-          product['starred'] = false;
-          return product;
-        } else {
-          return product;
-        }
-      });
-
-      setRelatedProducts(newRelatedProducts);
-    }
-  };
 
   const handleLeftScroll = (scrollRef) => {
     const cardsWrapper = scrollRef.current;
@@ -146,15 +74,16 @@ const Related = (props) => {
         <RelatedProducts
           productId={productId}
           relatedProducts={relatedProducts}
-          handleAction={handleAction}
+          handleAction={props.toggleToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           homeProduct={props.homeProduct}
           renderRelated={props.renderRelated}
+          outfitList={props.outfitList}
         />
         <Outfit
-          outfitList={outfitList}
-          handleAction={handleAction}
+          outfitList={props.outfitList}
+          handleAction={props.toggleToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           renderRelated={props.renderRelated}
