@@ -50,7 +50,7 @@ describe('Reviews Component', () => {
   });
 
   test('checks if state is passed to Ratings Component', (done) => {
-    const wrapper = mount( < Reviews productId={'59553'}/>);
+    const wrapper = shallow( < Reviews productId={'59553'}/>);
     wrapper.instance().get().then((result) => {
       expect(result.find(Ratings).props().meta).toBe(fixtures.meta);
       done();
@@ -147,12 +147,14 @@ describe('Reviews Component', () => {
 
 describe('ReviewsList Component', () => {
   test('checks if ReviewsList renders', () => {
-    const wrapper = shallow( < ReviewsList list = {fixtures.reviews}/>);
+    let id = {id: 59553};
+    const wrapper = shallow( < ReviewsList list = {fixtures.reviews} productInfo={id}/>);
     expect(wrapper).toHaveLength(1);
   });
 
   test('checks if getMoreReviews function adjusts state', () => {
-    const wrapper = shallow( < ReviewsList list = {fixtures.reviews}/>);
+    let id = {id: 59553};
+    const wrapper = shallow( < ReviewsList list = {fixtures.reviews} productInfo={id} />);
     wrapper.instance().getMoreReviews();
     expect(wrapper.state('showing')).toEqual(4);
   });
@@ -209,12 +211,12 @@ describe('CharactertisticBreakdown Component', () => {
     const wrapper = shallow( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
     expect(wrapper).toHaveLength(1);
     expect(wrapper.find('.characteristicName').text()).toEqual(' Size ');
-    let meanings = wrapper.find('.ratingMeaning').text();
-    expect(meanings).toEqual('too small perfect too big ');
+    let meaning = wrapper.find('.first').text();
+    expect(meaning).toEqual('too small ');
   });
 
   test('checks if rating is converted to percent and added to style in indicator element', () => {
     const wrapper = mount( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
-    expect(wrapper.find('i').props().style).toEqual({left: '60%'});
+    expect(wrapper.find('i').props().style).toEqual({left: '55%'});
   });
 });
