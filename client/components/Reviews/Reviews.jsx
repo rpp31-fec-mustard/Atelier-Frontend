@@ -6,9 +6,9 @@ import FilterDisplay from './FilterDisplay.jsx';
 import track from 'react-tracking';
 import trackPost from './trackPost.jsx'
 
-@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
- trackPost(data)
-}})
+// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+//  trackPost(data)
+// }})
 
 class Reviews extends React.Component {
   constructor(props) {

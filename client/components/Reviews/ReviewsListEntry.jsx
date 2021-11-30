@@ -7,9 +7,9 @@ import trackPost from './trackPost.jsx';
 import track from 'react-tracking';
 
 
-@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-  trackPost(data)
- }})
+// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+//   trackPost(data)
+//  }})
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
