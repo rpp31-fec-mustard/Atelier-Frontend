@@ -906,12 +906,12 @@ td {
 .modal-header {
   flex-direction: row;
   padding: 10px;
+  text-align: left;
 }
 
 .modal-footer {
-  /* display: flex;
-  flex-direction: row; */
   padding: 10px;
+  text-align: left;
 }
 
 .modal-footer-button {
@@ -919,16 +919,27 @@ td {
   font-size: 15px;
   font-weight: bold;
   width: 50%;
-  background-color: white;
+  height: 100px;
+  background-color: black;
+  color: white;
   padding: 0px;
+}
+
+.submit-button {
+  padding-top: 20px;
 }
 
 .answer-thumbnail {
   height: 50px;
 }
 
+.question-error {
+  padding-top: 0px;
+}
+
 .error {
   color: red;
+  padding-top: 20px;
 }
 
 .modal-title {
@@ -937,6 +948,7 @@ td {
 
 .modal-subtitle {
   margin: 0;
+  font-weight: bold;
 }
 
 .close-modal-button {
@@ -964,7 +976,39 @@ textarea {
 }
 
 .add-question-body {
+  font-weight: bold;
   border: none;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.add-question-nickname {
+  font-weight: bold;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-question-email {
+  font-weight: bold;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.add-answer-body {
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.add-answer-nickname {
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-answer-email {
+  text-align: left;
+  padding-bottom: 10px;
 }
 
 .disclaimer {

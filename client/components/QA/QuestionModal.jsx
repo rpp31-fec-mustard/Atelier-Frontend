@@ -60,14 +60,14 @@ const questionModal = (props) => {
       <div className="modal-content">
         <div className="modal-header">
           <div className="close-modal-button" onClick={()=> props.hide()}>X</div>
-          <h4 className="modal-title">Ask Your Question</h4>
-          <h5 className="modal-subtitle">About the {props.name}</h5>
+          <h3 className="modal-title">Ask Your Question</h3>
+          <div className="modal-subtitle">About the {props.name}</div>
         </div>
         <div className="modal-body">
           <form>
             <div className="add-question-body">
-              <label>Your Question<sup>*</sup></label>
-              <div><textarea id="question-body" maxLength="1000" rows="3" cols="100" required></textarea></div>
+              <label>Your Question<sup>*</sup>: </label>
+              <div><textarea id="question-body" maxLength="1000" rows="5" cols="70" required></textarea></div>
             </div>
             <div className="add-question-nickname">
               <label>Your Username<sup>*</sup>: </label>
@@ -82,8 +82,10 @@ const questionModal = (props) => {
           </form>
         </div>
         <div className="modal-footer">
-          <div id="error" className="error">{error}</div>
-          <button className="modal-footer-button" onClick={() => validateForm()}>Submit Question</button>
+          <div id="question-error" className="error">{error}</div>
+          <div className="submit-button">
+            <button className="modal-footer-button" onClick={() => validateForm()}>Submit Question</button>
+          </div>
         </div>
       </div>
     </div>

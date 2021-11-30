@@ -58,7 +58,6 @@ const answerModal = (props) => {
 
   const photoThumbnail = () => {
     var file = document.querySelector('input[type=file').files[0];
-    // var reader = new FileReader();
     const fd = new FormData();
     fd.append('file', file);
     fd.append('upload_preset', 'mustardUpload');
@@ -81,14 +80,14 @@ const answerModal = (props) => {
         <div className="modal-content">
           <div className="modal-header">
             <div className="close-modal-button" onClick={()=> props.hide()}>X</div>
-            <h4 className="modal-title">Submit Your Answer</h4>
+            <h3 className="modal-title">Submit Your Answer</h3>
             <div className="modal-subtitle">{props.name}: {props.question}</div>
           </div>
           <div className="modal-body">
             <form>
               <div className="add-answer-body">
-                <label>Your Answer<sup>*</sup></label>
-                <div><textarea id="answer-body" maxLength="1000" rows="3" cols="100" required></textarea></div>
+                <label>Your Answer<sup>*</sup>: </label>
+                <div><textarea id="answer-body" maxLength="1000" rows="5" cols="70" required></textarea></div>
               </div>
               <div className="add-answer-nickname">
                 <label>Your Username<sup>*</sup>: </label>
@@ -104,7 +103,7 @@ const answerModal = (props) => {
           </div>
           <div className="modal-footer">
             <div>
-              <label>Attach Up To Five Photos</label>
+              <label>Attach Up To Five Photos  </label>
               <input type="file" onChange={() => photoThumbnail()} accept="image/*" multiple></input>
             </div>
             <div className="thumbnails">
@@ -113,7 +112,9 @@ const answerModal = (props) => {
               )}
             </div>
             <div id="error" className="error">{error}</div>
-            <button className="modal-footer-button"onClick={() => validateForm()}>Submit Answer</button>
+            <div className="submit-button">
+              <button className="modal-footer-button" onClick={() => validateForm()}>Submit Answer</button>
+            </div>
           </div>
         </div>
       </div>
