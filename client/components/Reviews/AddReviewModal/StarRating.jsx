@@ -30,7 +30,7 @@ class StarRating extends React.Component {
             <label key={i} >
               <input className='starRadio' name='rating' type='radio' value={i + 1} onClick={this.handleClick.bind(this)} required>
               </input>
-              <i className="fas fa-star"
+              <i className="ri-star-fill"
                 style={i + 1 <= (this.state.hover || this.state.rating) ? {color: 'black'} : {color: 'lightgray'}}
                 onMouseEnter={() => { this.setState({hover: i + 1}); } }
                 onMouseLeave={() => { this.setState({hover: null}); } }

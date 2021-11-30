@@ -45,7 +45,7 @@ class CharacteristicReview extends React.Component {
           <section className='ratingSelection'>
             <section className='ratingButton'>
               <p>1</p>
-              <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} title= {meaningFor1} />
+              <input className='charInput' type="radio" value="1" name={this.props.meta.id} onChange={this.onCharacteristicChange.bind(this)} checked={this.state.rating === '1'} title= {meaningFor1} required/>
             </section>
             <p>{meaningFor1}</p>
           </section>

@@ -7,6 +7,7 @@ import {rest} from 'msw';
 import {setupServer} from 'msw/node';
 import {render, fireEvent, waitFor, screen} from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
 
 import App from '../client/components/app.jsx';
@@ -25,7 +26,7 @@ import AddToCart from '../client/components/ProductOverview/AddToCart.jsx';
 // fixtures
 import fixtures from './fixtures.js';
 
-
+/* eslint-disable func-style */
 
 
 
@@ -41,7 +42,7 @@ xdescribe('My Tests', () => {
 
 // *** *** *** *** *** *** *** *** PRODUCT OVERVIEW *** *** *** *** *** *** *** *** //
 
-xdescribe('Product Overview', () => {
+describe('Product Overview', () => {
   test ('renders Product Overview component', () => {
     render(<ProductOverview
       product={fixtures.product}
@@ -78,7 +79,8 @@ xdescribe('Product Overview', () => {
 
 // *** *** *** *** *** *** *** *** IMAGE GALLERY *** *** *** *** *** *** *** *** //
 
-xdescribe('Image Gallery', () => {
+describe('Image Gallery', () => {
+
   describe('Default View', () => {
 
     test('renders main image', () => {
@@ -99,7 +101,20 @@ xdescribe('Image Gallery', () => {
       let result = screen.getAllByRole('img', {name: /Thumbnail/});
       expect(result.length).toEqual(2);
     });
+    test('renders expanded view on click', async () => {
+      render(<ImageGallery
+        currentStyle={fixtures.styles.results[0]}
+        productId={fixtures.product.id}
+        productName={fixtures.product.name}/>);
+      expect(screen.queryByTestId('main-image-exp')).toBeNull();
+      screen.debug();
+      await userEvent.click(screen.getByTestId('click-exp-view'));
+      screen.debug();
+      expect(screen.getByTestId('main-image-exp')).toBeInTheDocument();
+    });
   });
+
+
 
   describe('Expanded View', () => {
 
@@ -163,7 +178,7 @@ xdescribe('Image Gallery', () => {
 // *** *** *** *** *** *** *** *** STYLE SELECTOR *** *** *** *** *** *** *** *** //
 
 
-xdescribe('Style Selector', () => {
+describe('Style Selector', () => {
   test ('renders Style Selector component', () => {
     const productName = 'The Product';
     render(<StyleSelector
@@ -336,13 +351,15 @@ xdescribe('Test Group', () => {
 });
 
 
+/*/
+test commands
+
+npm run test-log -- Overview.test.js --coverage --collectCoverageFrom='../client/components/ProductOverview/**'
 
 
 
 
-
-
-
+//*/
 
 
 /*/

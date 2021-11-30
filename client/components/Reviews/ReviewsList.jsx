@@ -6,9 +6,9 @@ import trackPost from './trackPost.jsx';
 import track from 'react-tracking';
 
 
-@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-  trackPost(data)
- }})
+// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+//   trackPost(data)
+//  }})
 
 class ReviewsList extends React.Component {
   constructor(props) {
@@ -17,6 +17,22 @@ class ReviewsList extends React.Component {
       showing: 2,
       modal: false
     };
+  }
+
+  displayReviewsList() {
+    if (this.props.list.length !== 0) {
+      return (
+        <div className="reviewEntry_container">
+        {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
+          return (
+            <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={this.props.productInfo.id} />
+          );
+        })}
+      </div>
+      )
+    } else {
+      return null
+    }
   }
 
   @track((props, state, [event]) => ({
@@ -51,7 +67,6 @@ class ReviewsList extends React.Component {
     });
   }
 
-
   closeModal() {
     this.setState({
       modal: false
@@ -64,13 +79,7 @@ class ReviewsList extends React.Component {
         <section className='SortByWrapper'>
           <SortBy list={this.props.list} onChange={this.props.onChange} />
         </section>
-        <div className="entry_container">
-          {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
-            return (
-              <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={this.props.productInfo.id} />
-            );
-          })}
-        </div>
+          {this.displayReviewsList()}
         <div className='reviewButtons'>
           {this.moreReviewsButton()}
           <button className='reviewListButton' onClick={this.showModal.bind(this)}>Add a Review +</button>
