@@ -22,7 +22,7 @@ class ReviewsList extends React.Component {
   displayReviewsList() {
     if (this.props.list.length !== 0) {
       return (
-        <div className="entry_container">
+        <div className="reviewEntry_container">
         {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
           return (
             <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={this.props.productInfo.id} />

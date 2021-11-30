@@ -213,7 +213,7 @@ class ReviewsListEntry extends React.Component {
 
   render() {
     return (
-      <div className='entry'>
+      <div className='reviewEntry'>
         <section className='wrapper_RT'>
           <section className='starRating'> {this.renderStars()} </section>
           <section className='name_date_RT'>

@@ -220,3 +220,10 @@ describe('CharactertisticBreakdown Component', () => {
     expect(wrapper.find('i').props().style).toEqual({left: '55%'});
   });
 });
+
+{/* describe('CharactertisticBreakdown Component', () => {
+  test('checks if characteristicBreakdown component renders', () => {
+    const wrapper = shallow( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
+  });
+
+}); */}
