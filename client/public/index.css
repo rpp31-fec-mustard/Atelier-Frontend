@@ -454,7 +454,7 @@ position: relative
 .style_checkmark_po {
   font-size: 18px;
   position: relative;
-  top: -24px;
+  top: -21px;
   right: 3px;
 }
 
@@ -496,6 +496,7 @@ position: relative
   justify-content: center;
   align-items: inherit;
   width: 100%;
+  margin: 4px;
   /* border-radius: 4px;
   border: solid 1px black; */
 }
@@ -519,6 +520,7 @@ position: relative
   align-items: inherit;
   width: 100%;
   height: 25px;
+  margin: 4px;
 }
 
 .quantity_menu_po {
@@ -531,6 +533,7 @@ position: relative
   margin: 10px 0px;
   border-radius: 4px;
   border: solid 1px black;
+  justify-content: center;
 }
 
 .quantity_display_po {
@@ -538,6 +541,7 @@ position: relative
   justify-content: center;
   align-items: inherit;
   width: 100%;
+  margin: 4px;
 }
 
 .quantity_body_po {
@@ -574,8 +578,8 @@ position: relative
 .size_alert_po{
   visibility: hidden;
   position: absolute;
-  top: 434px;
-  right: 310px;
+  top: 437px;
+  right: 306px;
   z-index: 3;
   background: var(--mustard);
   padding: 0px 5px;
