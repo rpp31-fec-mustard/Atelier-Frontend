@@ -780,6 +780,8 @@ td {
 .singleQuestion {
   width: 700px;
   border: none;
+  padding-bottom: 15px;
+  padding-top: 10px;
 }
 
 .questionEntry {
@@ -787,7 +789,7 @@ td {
   flex: auto;
   font-weight: bold;
   font-size: 20px;
-  border: none;
+  border-top: solid;
   width: 100%;
 }
 
@@ -795,6 +797,7 @@ td {
   display: flex;
   font-size: 13px;
   margin-left: 10px;
+  padding-top: 10px;
 }
 
 .questionHelpful {
@@ -860,6 +863,7 @@ td {
   font-weight: normal;
   font-size: 18px;
   border: none;
+  padding-bottom: 25px;
 }
 
 .answer-meta {
@@ -876,6 +880,7 @@ td {
   border: none;
   font-weight: bold;
   margin-left: 28px;
+  padding-bottom: 20px;
 }
 
 .modal {
