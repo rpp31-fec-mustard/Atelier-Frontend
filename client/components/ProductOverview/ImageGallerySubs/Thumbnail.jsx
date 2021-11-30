@@ -4,6 +4,21 @@ import ReactDOM from 'react-dom';
 const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) => {
 
 
+  const resizeUrl = (url, pixelWidth) => {
+    let resultUrl = '';
+    resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
+      url.slice(url.lastIndexOf('q='));
+    console.log(resultUrl);
+    return resultUrl;
+  };
+
+  const resizeUrl2 = (url, pixelWidth) => {
+    let resultUrl = '';
+    resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
+    console.log(resultUrl);
+    return resultUrl;
+  };
+
   //change className to add style
 
   let thumbSelected = '';
@@ -17,6 +32,7 @@ const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) 
         <div className={'thumbnail_frame_po'} key={`TF${counter}`}>
           <img className='thumbnail_box_po'
             src={photo}
+            // src={resizeUrl2(photo, 'fm=jpg&w=1000&fit=max')}
             alt={`${altText} ${counter} Thumbnail`}
             onClick={ () => { handleThumbnailClick(counter); }}/>
         </div>

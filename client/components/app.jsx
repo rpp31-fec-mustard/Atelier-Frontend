@@ -54,11 +54,15 @@ class App extends React.Component {
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
     this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
+    //not working ML
+    // this.setState({productId: JSON.parse(localStorage.getItem('productId'))});
   }
 
   // update localStorage whenever outfitList in state is updated
   componentDidUpdate() {
     localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
+    //not working ML
+    // localStorage.setItem('productId', JSON.stringify(this.state.productId));
   }
 
   getProduct(id) {

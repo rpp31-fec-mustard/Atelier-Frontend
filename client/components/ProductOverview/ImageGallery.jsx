@@ -75,13 +75,21 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
   };
 
-// useEffect(() => {
-//   // console.log(document.getElementsByClassName('style_row_thumbnail_po')[0]);
-//   // document.getElementsByClassName('style_row_thumbnail_po')[0].scrollBy({top: 20, behavior: 'smooth'})
-//   // document.getElementsByClassName('thumbnails_po')[0].scrollBy({top: 20, behavior: 'smooth'})
-//   // console.log(cW2);
-//   // console.log(cW2.current);
-//   // cW2.current.scrollBy({top: 20, behavior: 'smooth'})
+  const resizeUrl = (url, pixelWidth) => {
+    let resultUrl = '';
+    resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
+      url.slice(url.lastIndexOf('q='));
+    console.log(resultUrl);
+    return resultUrl;
+  };
+
+  const resizeUrl2 = (url, pixelWidth) => {
+    let resultUrl = '';
+    resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
+    console.log(resultUrl);
+    return resultUrl;
+  };
+  // fm=jpg&w=200&fit=max
 
 // }, [photoIndex]);
 
@@ -102,6 +110,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
         <div className='image_container_po'>
           <img className='main_image_po'
             src={photos[photoIndex].url}
+            // src={resizeUrl2(photos[photoIndex].url, 'fm=jpg&w=1000&fit=max')}
             alt={altText}
             data-testid='main-image' />
           <div className='image_gallery_po'>
@@ -158,3 +167,28 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
 export default ImageGallery;
 
+
+
+
+/*/
+url: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+
+url: 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80'
+
+fm=jpg&w=200&fit=max
+
+
+//between 'crop&w=' and 'q='
+//search from end
+//lastIndexOf + 7    and    lastIndexOf - 1
+//slice(0, (lastIndexOf + 7)) + <new size> + slice(lastIndexOf -1)
+
+
+const resizeUrl100 = (url, pixelWidth) => {
+  let resultUrl = '';
+  resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + '100' +
+  url.slice(url.lastIndexOf('q='));
+
+  return resultUrl;
+};
+//*/
