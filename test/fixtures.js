@@ -41,27 +41,27 @@ const fixtures = {
           },
         ],
         skus: {
-          '2122777': {
+          '1111177': {
             quantity: 8,
             size: 'XS'
           },
-          '2122778': {
+          '1111178': {
             quantity: 16,
             size: 'S'
           },
-          '2122779': {
+          '1111179': {
             quantity: 17,
             size: 'M'
           },
-          '2122780': {
+          '1111180': {
             quantity: 10,
             size: 'L'
           },
-          '2122781': {
+          '1111181': {
             quantity: 15,
             size: 'XL'
           },
-          '2122782': {
+          '1111182': {
             quantity: 4,
             size: 'XXL'
           }
@@ -84,27 +84,27 @@ const fixtures = {
           },
         ],
         skus: {
-          '2122783': {
+          '2222283': {
             quantity: 8,
             size: 'XS'
           },
-          '2122784': {
+          '2222284': {
             quantity: 0,
             size: 'S'
           },
-          '2122785': {
+          '2222285': {
             quantity: 17,
             size: 'M'
           },
-          '2122786': {
+          '2222286': {
             quantity: 0,
             size: 'L'
           },
-          '2122787': {
+          '2222287': {
             quantity: 15,
             size: 'XL'
           },
-          '2122788': {
+          '2222288': {
             quantity: 4,
             size: 'XL'
           }
@@ -127,27 +127,27 @@ const fixtures = {
           },
         ],
         skus: {
-          '2122777': {
+          '3333388': {
             quantity: 0,
             size: 'XS'
           },
-          '2122789': {
+          '3333389': {
             quantity: 0,
             size: 'S'
           },
-          '2122790': {
+          '3333390': {
             quantity: 0,
             size: 'M'
           },
-          '2122791': {
+          '3333391': {
             quantity: 0,
             size: 'L'
           },
-          '2122792': {
+          '3333392': {
             quantity: 0,
             size: 'XL'
           },
-          '21227893': {
+          '3333393': {
             quantity: 0,
             size: 'XL'
           }

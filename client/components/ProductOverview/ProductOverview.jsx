@@ -63,8 +63,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
 
 
-  const loaded = useRef(true); //testing
-  // const loaded = useRef(false);    //for testing Ml
+  // const loaded = useRef(true); //testing
+  const loaded = useRef(false); //for testing Ml
 
   useEffect(async () => {
     if (loaded.current) {
@@ -167,5 +167,3 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
 
 export default ProductOverview;
-
-

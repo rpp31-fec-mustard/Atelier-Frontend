@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const ArrowRight = ({index, indexMax, imageRightClick}) => {
+const ArrowRight = ({photoIndex, photoIndexMax, imageRightClick}) => {
 
   let rightIcon = <i className="ri-arrow-right-s-line"></i>;
 
-  if (index === undefined || index >= indexMax) {
+  if (photoIndex === undefined || photoIndex >= photoIndexMax) {
     return (<React.Fragment></React.Fragment>);
   } else {
     return (<React.Fragment>

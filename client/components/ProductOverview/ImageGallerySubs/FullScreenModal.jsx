@@ -6,8 +6,8 @@ import ImageIconBar from './ImageIconBar.jsx';
 
 import {DEBUG} from '../ProductOverview.jsx';
 
-const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
-  imageLeftClick, imageRightClick, handleThumbnailClick, indexMax }) => {
+const FullScreenModal = ({currentStyle, productName, photoIndex, isShowing, onClose,
+  imageLeftClick, imageRightClick, handleThumbnailClick, photoIndexMax }) => {
   // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
@@ -19,7 +19,7 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
   const altText = `${productName} in ${currentStyle.name }`;
   mlog('FSM altText', altText);
 
-  const [photoIndex, setPhotoIndex] = useState(index);
+  // const [photoIndex, setPhotoIndex] = useState(index);
   const [zoom, setZoom] = useState(false);
   const [panImage, setPanImage] = useState(false);
 
@@ -43,15 +43,15 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
       iconsBar.style.visibility = 'visible';
       leftArrow.style.visibility = 'visible';
       rightArrow.style.visibility = 'visible';
-      if (index <= 0) {
+      if (photoIndex <= 0) {
         leftArrow.style.visibility = 'hidden';
       }
-      if (index >= indexMax) {
+      if (photoIndex >= photoIndexMax) {
         rightArrow.style.visibility = 'hidden';
       }
       setPanImage(false);
     }
-  }, [zoom, index]);
+  }, [zoom, photoIndex]);
 
 
   const onClickZoomImage = (e) => {
@@ -73,25 +73,27 @@ const FullScreenModal = ({currentStyle, productName, index, isShowing, onClose,
 
   let leftArrowIcon = <i className="ri-arrow-left-s-line"></i>;
   let rightArrowIcon = <i className="ri-arrow-right-s-line"></i>;
-
+  console.log('FSM photoIndex', photoIndex);
   return (
     <div className='fullscreen_exp_po'>
       <div className='image_side_po' onClick={onClose}>
       </div>
       <div className='main_image_exp_po' >
         <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
-        <img className='inner_image_exp_po' src={photos[index].url}
+        <img className='inner_image_exp_po'
+          src={photos[photoIndex].url}
           alt={altText}
           onClick={onClickZoomImage}
-          onMouseMove={moveMousePanImage} />
+          onMouseMove={moveMousePanImage}
+          data-testid='main-image-exp' />
         <div className='arrow_box_exp_po a_right_po' onClick={imageRightClick}>{rightArrowIcon}</div>
       </div>
       <div className='image_side_po'
         onClick={onClose}>
       </div>
       <div className='image_icons_exp_po'>
-        <ImageIconBar index={index} indexMax={indexMax} handleThumbnailClick={handleThumbnailClick}/>
-        <p className='txt'>Congratulations Michael and Family!</p>
+        <ImageIconBar index={photoIndex} photoIndexMax={photoIndexMax} handleThumbnailClick={handleThumbnailClick}/>
+        {/* <p className='txt' hidden={true}>Congratulations Michael and Family!</p> */}
       </div>
     </div> );
 };
