@@ -6,7 +6,7 @@ Have you ever wanted to view the ins and outs of a random clothing product witho
 
 Mustard is a project developed by Hack Reactor, a software engineering boot-camp, that pushed the boundaries of our front-end knowledge. Throughout this endeavor, we as a team of four, increased our proficiency with React, CSS, testing, front-end optimization, and other concepts/tools. A third party API hosted by Hack Reactor provides the data we need to display and we use these resources to build the features and content for a robust, familiar, and enjoyable user experience.
 
-## Modules and related features
+## Modules and Related Features
 
 ### 1. Product Overview
 **Purpose:**
@@ -16,9 +16,9 @@ Mustard is a project developed by Hack Reactor, a software engineering boot-camp
 * GIF
 
 ### 2. Related Products and Outfit
-**Purpose:**
+**Purpose:** Allow user to navigate to and view related products in a digestable format, compare features between each related product and the main product, and add products to the outfit list to be saved even after the session ends.
 
-*Feature A:*
+*Dynamic Product Cards*
 * Description
 * GIF
 
