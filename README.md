@@ -20,6 +20,14 @@ Mustard is a project developed by Hack Reactor, a software engineering boot-camp
 
 *Dynamic Product Cards*
 * Description
+![](dynamic-product-cards.gif)
+
+*Dynamic Comparison Modal*
+* Description
+* GIF
+
+*Save Products with the Outfit List*
+* Description
 * GIF
 
 ### 3. Questions & Answers
