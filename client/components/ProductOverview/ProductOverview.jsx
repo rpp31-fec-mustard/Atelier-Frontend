@@ -63,8 +63,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
 
 
-  // const loaded = useRef(true); //testing
-  const loaded = useRef(false); //for testing Ml
+  const loaded = useRef(true); //testing
+  // const loaded = useRef(false); //for testing Ml
 
   useEffect(async () => {
     if (loaded.current) {
@@ -86,6 +86,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
 
   // if (styles !== undefined) {
+
     // mlog('state defined: component load executed');
   // mlog(logC + ' PO product destructure:', product );
   const {
@@ -101,63 +102,65 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
     // mlog(styles);
 
   return (
-    <div className='module_container' id='product_overview_main' >
-      <div className='top01'>
-        <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-          productId={id}
-          productName={product.name} />
-        <div className='right02'>
-          <div className='stars_po'>
-            <Stars productId={product.id} total={total} />
-
-            {/* making change this line here */}
-            { (() => {
-              if (review) {
-                return ( <a className='read_reviews_po'
-                  onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a> );
-              }
-            })()
-            }
-
-          </div>
-          <div className='name_block_po'>
-            {category}
-            <p id='name_po'>{name}</p>
-            {/* <p id='name_po'>first line second line</p> */}
-          </div>
-          <div className='price_po'>
-            {/* eslint-disable-next-line camelcase, no-multi-spaces */}
-            <Price salePrice={styles.results[currentStyleIndex].sale_price}
-              originalPrice={styles.results[currentStyleIndex].original_price}/>
-          </div>
-          <StyleSelector
-            styles={styles.results}
-            currentStyleIndex={currentStyleIndex}
-            productName={name}
+    <React.Fragment>
+      <div className='module_container' id='product_overview_main' >
+        <div className='top01'>
+          <ImageGallery currentStyle={styles.results[currentStyleIndex]}
             productId={id}
-            handleStyleOnClick={handleStyleOnClick}
-            toggleProductToOutfitList={toggleProductToOutfitList}
-            isProductInOutfitList={isProductInOutfitList}
-          />
+            productName={product.name} />
+          <div className='right02'>
+            <div className='stars_po'>
+              <Stars productId={product.id} total={total} />
+
+              {/* making change this line here */}
+              { (() => {
+                if (review) {
+                  return ( <a className='read_reviews_po'
+                    onClick={()=> { window.location.href = '#ratings_reviews'; }}>Read all reviews</a> );
+                }
+              })()
+              }
+
+            </div>
+            <div className='name_block_po'>
+              {category}
+              <p id='name_po'>{name}</p>
+              {/* <p id='name_po'>first line second line</p> */}
+            </div>
+            <div className='price_po'>
+              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
+              <Price salePrice={styles.results[currentStyleIndex].sale_price}
+                originalPrice={styles.results[currentStyleIndex].original_price}/>
+            </div>
+            <StyleSelector
+              styles={styles.results}
+              currentStyleIndex={currentStyleIndex}
+              productName={name}
+              productId={id}
+              handleStyleOnClick={handleStyleOnClick}
+              toggleProductToOutfitList={toggleProductToOutfitList}
+              isProductInOutfitList={isProductInOutfitList}
+            />
+          </div>
+        </div>
+        <div className='bottom01'>
+          <div className='product_desc_po'>
+            <h2>{slogan}</h2><br/>
+            {description}
+          </div>
+          <div className='highlights_po'>
+            Highlights:<br/>
+            {
+              features.map((feature, index) => {
+                // mlog(logC + 'feature', feature);
+                return (
+                  <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
+              })
+            }
+          </div>
         </div>
       </div>
-      <div className='bottom01'>
-        <div className='product_desc_po'>
-          <h2>{slogan}</h2><br/>
-          {description}
-        </div>
-        <div className='highlights_po'>
-          Highlights:<br/>
-          {
-            features.map((feature, index) => {
-              // mlog(logC + 'feature', feature);
-              return (
-                <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
-            })
-          }
-        </div>
-      </div>
-    </div>
+    </React.Fragment>
   );
   // } else {
   //   mlog('state undefined: props not correct. component load delayed');

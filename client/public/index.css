@@ -72,6 +72,7 @@ html {
   width: 100%;
   color: white;
   background-color: #555555;
+  background: var(--mustard-shadow);
 }
 
 .top_text {
@@ -182,7 +183,7 @@ html {
   justify-content: center;
   width: 20px;
   height: 15px;
-  margin: 0px;
+  margin: 5px 0px;
   overflow: hidden;
   transform: scale(2.5, 1);
 }
@@ -452,6 +453,7 @@ position: relative
 /*todo *** *** *** *** add to bag *** *** *** *** */
 
 .add_to_bag_po {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 22%;
@@ -522,7 +524,7 @@ position: relative
   margin: 10px 0px;
   border-radius: 4px;
   border: solid 1px black;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .quantity_display_po {
@@ -567,19 +569,45 @@ position: relative
 .size_alert_po{
   visibility: hidden;
   position: absolute;
-  top: 437px;
-  right: 306px;
+  top: -12px;
+  left: 23px;
   z-index: 3;
   background: var(--mustard);
   padding: 0px 5px;
   border-radius: 4px;
   border: solid 2px var(--mustard-shadow);
+  width: 150px;
+  text-align: center;
 }
 .favorites_add_button_po {
   grid-column: 7 / 10;
   /* width: 95px; */
   height: 50%;
   margin: 10px 0px;
+  /* height: 25px; */
+  border-radius: 4px;
+  border: solid 1px black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ri-star-line {
+  font-size: 24px;
+}
+
+.favorites_on_po {
+  color: var(--mustard-shadow);
+  font-size: 24px;
+  background: var(--mustard);
+  border: solid 1px var(--mustard-shadow);
+}
+
+.favorites_off_po {
+  color: gray;
+  font-size: 24px;
+  background: lightgrey;
+  border: solid 1px black;
 }
 
 /*todo *** *** *** *** description and features *** *** *** *** */
