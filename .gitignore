@@ -7,7 +7,6 @@ bundle.js*
 dummyData.js
 deploy.sh
 fec.pem
-README.md
 
 ## Tests ##
 test/coverage
