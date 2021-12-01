@@ -872,6 +872,7 @@ td {
   height: 400px;
   overflow-y: scroll;
   border: none;
+  padding-bottom: 15px;
 }
 
 .singleQuestion {
