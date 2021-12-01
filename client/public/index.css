@@ -888,6 +888,8 @@ td {
 .singleQuestion {
   width: 700px;
   border: none;
+  padding-bottom: 15px;
+  padding-top: 10px;
 }
 
 .questionEntry {
@@ -895,7 +897,7 @@ td {
   flex: auto;
   font-weight: bold;
   font-size: 20px;
-  border: none;
+  border-top: solid;
   width: 100%;
 }
 
@@ -903,6 +905,7 @@ td {
   display: flex;
   font-size: 13px;
   margin-left: 10px;
+  padding-top: 10px;
 }
 
 .questionHelpful {
@@ -968,6 +971,7 @@ td {
   font-weight: normal;
   font-size: 18px;
   border: none;
+  padding-bottom: 25px;
 }
 
 .answer-meta {
@@ -984,6 +988,7 @@ td {
   border: none;
   font-weight: bold;
   margin-left: 28px;
+  padding-bottom: 20px;
 }
 
 .modal {
@@ -1009,12 +1014,12 @@ td {
 .modal-header {
   flex-direction: row;
   padding: 10px;
+  text-align: left;
 }
 
 .modal-footer {
-  /* display: flex;
-  flex-direction: row; */
   padding: 10px;
+  text-align: left;
 }
 
 .modal-footer-button {
@@ -1022,16 +1027,27 @@ td {
   font-size: 15px;
   font-weight: bold;
   width: 50%;
-  background-color: white;
+  height: 100px;
+  background-color: black;
+  color: white;
   padding: 0px;
+}
+
+.submit-button {
+  padding-top: 20px;
 }
 
 .answer-thumbnail {
   height: 50px;
 }
 
+.question-error {
+  padding-top: 0px;
+}
+
 .error {
   color: red;
+  padding-top: 20px;
 }
 
 .modal-title {
@@ -1040,6 +1056,7 @@ td {
 
 .modal-subtitle {
   margin: 0;
+  font-weight: bold;
 }
 
 .close-modal-button {
@@ -1067,7 +1084,39 @@ textarea {
 }
 
 .add-question-body {
+  font-weight: bold;
   border: none;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.add-question-nickname {
+  font-weight: bold;
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-question-email {
+  font-weight: bold;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.add-answer-body {
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.add-answer-nickname {
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.add-answer-email {
+  text-align: left;
+  padding-bottom: 10px;
 }
 
 .disclaimer {
@@ -1155,19 +1204,19 @@ border: none;
   cursor: pointer;
 }
 
-.entry {
+.reviewEntry_container {
+  width: 100%;
+  /* height: 80%; */
+  overflow-y: scroll;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.reviewEntry {
   border: none;
   border-bottom: 1px solid;
   margin-top: 7px;
   margin-right: 7px;
-}
-
-.entry_container {
-  width: 100%;
-  height: 80%;
-  overflow-y: scroll;
-  border: none;
-  margin-bottom: 10px;
 }
 
 .wrapper_RT {
@@ -1224,9 +1273,10 @@ border: none;
   margin-bottom: 10px;
 }
 
-.recommend {
-  font-size: 10px;
-  margin-bottom: 10px;
+.recommendWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0px 8px 0px;
 }
 
 .footerWrapper {
@@ -1379,13 +1429,14 @@ progress::-webkit-progress-value {
   border: none;
   display: flex;
   flex-direction: row;
+  margin-left: 75px;
 }
 
 .filterMessage {
   border: none;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 15px;
+  font-size: 12px;
   font-style: italic;
   color: rgb(128, 124, 124);
 }
@@ -1574,6 +1625,8 @@ p {
   display: flex;
   flex-direction: row;
   border: none;
+  font-size: 24px;
+  margin-top: 8px;
 }
 
 .starRadio {

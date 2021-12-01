@@ -23,12 +23,10 @@ class App extends React.Component {
 
       // productId: '59601', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
-      addedHomeProduct: {},
       outfitList: []
 
     };
     this.sendNumber = this.sendNumber.bind(this);
-    this.setOutfitList = this.setOutfitList.bind(this);
   }
 
   //! testing only
@@ -46,16 +44,14 @@ class App extends React.Component {
       });
   }
 
-  setOutfitList(newOutfitList) {
-    this.setState({outfitList: newOutfitList});
-  }
-
   //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
-    this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
-    //not working ML
-    // this.setState({productId: JSON.parse(localStorage.getItem('productId'))});
+    if (!localStorage.outfitList) {
+      this.setState({outfitList: []});
+    } else {
+      this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
+    }
   }
 
   // update localStorage whenever outfitList in state is updated
@@ -119,7 +115,6 @@ class App extends React.Component {
           productId={this.state.productId}
           homeProduct={this.state.product}
           outfitList={this.state.outfitList}
-          setOutfitList={this.setOutfitList}
           renderRelated={this.renderRelated.bind(this)}
           toggleToOutfitList={this.toggleToOutfitList.bind(this)}
         />

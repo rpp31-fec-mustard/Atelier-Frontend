@@ -138,7 +138,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
               productName={name}
               productId={id}
               handleStyleOnClick={handleStyleOnClick}
-              toggleToOutfitList={toggleProductToOutfitList}
+              toggleProductToOutfitList={toggleProductToOutfitList}
               isProductInOutfitList={isProductInOutfitList}
             />
           </div>

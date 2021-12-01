@@ -5,7 +5,7 @@ import AddReviewThumbnail from './AddReviewThumbnail.jsx';
 import StarRating from './StarRating.jsx';
 import axios from 'axios';
 import track from 'react-tracking';
-import trackPost from '../trackPost.jsx'
+import trackPost from '../trackPost.jsx';
 
 @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
  trackPost(data)

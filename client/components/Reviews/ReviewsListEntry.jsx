@@ -7,9 +7,9 @@ import trackPost from './trackPost.jsx';
 import track from 'react-tracking';
 
 
-@track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-  trackPost(data)
- }})
+// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
+//   trackPost(data)
+//  }})
 
 class ReviewsListEntry extends React.Component {
   constructor(props) {
@@ -28,8 +28,10 @@ class ReviewsListEntry extends React.Component {
   wouldRecommend() {
     if (this.props.review.recommend) {
       return (
-        <section>
-          <i className="fas fa-check"></i> I would recommend this item!
+        <section className='recommendWrapper'>
+        <i className="ri-check-line" style={{fontSize: "24px"}}></i>
+        <section className='recommendText' style={{fontSize: "12px", marginTop: '6px'}}>I would recommend this item!
+          </section>
         </section>
       );
     }
@@ -39,7 +41,7 @@ class ReviewsListEntry extends React.Component {
     var date = new Date(date).toDateString();
     var dateArr = date.split(' ');
     dateArr.shift();
-    dateArr[1] = dateArr[1] + ', ';
+    dateArr[1] = (Number(dateArr[1]) + 1) + ', ';
     return dateArr.join(' ');
   }
 
@@ -211,7 +213,7 @@ class ReviewsListEntry extends React.Component {
 
   render() {
     return (
-      <div className='entry'>
+      <div className='reviewEntry'>
         <section className='wrapper_RT'>
           <section className='starRating'> {this.renderStars()} </section>
           <section className='name_date_RT'>
