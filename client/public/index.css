@@ -21,17 +21,6 @@ html {
   border: none;
 }
 
-/* div {
-  border: 1px solid var(--global-border-color);
-} */
-
-
-/* check this. wasn't sure who needed this. */
-/* button {
-  width: 100%;
-  height: 100%;
-} */
-
 /* GLOBAL VARIABLES */
 
 :root {
@@ -40,7 +29,7 @@ html {
   --global-border-color: rgb(125, 125, 125);
 
   /* RELATED PRODUCTS */
-  --prod-card-width: 22%;
+  --prod-card-width: 23%;
   --prod-card-height: 300px;
   --prod-card-margins: 0px 10px;
   --prod-img-height: 200px;
@@ -636,7 +625,7 @@ position: relative
   align-items: center;
 
   margin: 0;
-  width: 100%;
+  width: 110%;
 }
 
 .related-submodule-content {

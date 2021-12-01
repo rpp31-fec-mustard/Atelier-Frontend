@@ -1,12 +1,12 @@
 # 🌭 Mustard 🌭
 
-Have you ever wanted to view the ins and outs of a random clothing product without being able to navigate anywhere else in the website? Well, we bring you Mustard, a true single page shopping experience.
+Have you ever wanted to view the ins and outs of a random clothing product without being able to navigate anywhere else in the website? Well, Team Mustard brings you Mustard, a true single page shopping experience.
 
 ## Description
 
-## How to view website
+Mustard is a project developed by Hack Reactor, a software engineering boot-camp, that pushed the boundaries of our front-end knowledge. Throughout this endeavor, we as a team of four, increased our proficiency with React, CSS, testing, front-end optimization, and other concepts/tools. A third party API hosted by Hack Reactor provides the data we need to display and we use these resources to build the features and content for a robust, familiar, and enjoyable user experience.
 
-## Modules and related features
+## Modules and Related Features
 
 ### 1. Product Overview
 **Purpose:**
@@ -16,9 +16,19 @@ Have you ever wanted to view the ins and outs of a random clothing product witho
 * GIF
 
 ### 2. Related Products and Outfit
-**Purpose:**
+**Purpose:** Allow user to navigate to and view related products in a digestable format, compare features between each related product and the main product, and add products to the outfit list to be saved even after the session ends.
 
-*Feature A:*
+*Dynamic Product Cards*
+
+Every product has associated related products (determined by Hack Reactor's API) that are dynamically rendered in a scrollable list. Navigation buttons appear on each side of the list based on scroll bar location and presence of additional products on the corresponding side.
+
+![](dynamic-product-cards.gif)
+
+*Dynamic Comparison Modal*
+* Description
+* GIF
+
+*Save Products with the Outfit List*
 * Description
 * GIF
 
