@@ -32,8 +32,8 @@ const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) 
         <div className={'thumbnail_frame_po'} key={`TF${counter}`}>
           <img className='thumbnail_box_po'
             src={photo}
-            // src={resizeUrl2(photo, 'fm=jpg&w=1000&fit=max')}
-            alt={`${altText} ${counter} Thumbnail`}
+            src={resizeUrl2(photo, 'auto=format&w=200&h=200&fit=max&q=80')}
+            // alt={`${altText} ${counter} Thumbnail`}
             onClick={ () => { handleThumbnailClick(counter); }}/>
         </div>
       </div>

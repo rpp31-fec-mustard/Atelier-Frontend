@@ -14,6 +14,13 @@ const StyleThumbnail = ({ style, styleIndex, productName, handleStyleOnClick,
   let checkMark = <i className="ri-checkbox-circle-line"></i>;
   const altText = `${productName} in ${style.name}`;
 
+  const resizeUrl2 = (url, pixelWidth) => {
+    let resultUrl = '';
+    resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
+    console.log(resultUrl);
+    return resultUrl;
+  };
+
   return (
     <React.Fragment>
       <div className='style_thumb_container_po'>
@@ -26,7 +33,8 @@ const StyleThumbnail = ({ style, styleIndex, productName, handleStyleOnClick,
         })()}
         <img className='style_thumbnail_po'
           onClick={() => { handleStyleOnClick(styleIndex); }}
-          src={style.photos[0].thumbnail_url}
+          src={resizeUrl2(style.photos[0].thumbnail_url, 'auto=format&w=200&h=200&fit=clip&q=80')}
+          // src={style.photos[0].thumbnail_url}
           alt={altText} />
       </div>
     </React.Fragment>

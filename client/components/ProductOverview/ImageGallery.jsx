@@ -75,6 +75,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
   };
 
+
   const resizeUrl = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
@@ -109,8 +110,8 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
 
         <div className='image_container_po'>
           <img className='main_image_po'
-            src={photos[photoIndex].url}
-            // src={resizeUrl2(photos[photoIndex].url, 'fm=jpg&w=1000&fit=max')}
+            // src={photos[photoIndex].url}
+            src={resizeUrl2(photos[photoIndex].url, 'auto=format&w=1000&h=1000&fit=clip=q=80')}
             alt={altText}
             data-testid='main-image' />
           <div className='image_gallery_po'>
