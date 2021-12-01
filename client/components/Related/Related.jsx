@@ -50,8 +50,10 @@ const Related = (props) => {
   };
 
   const checkScrollPosition = (cardsWrapperRef, cardsWrapperLength) => {
-    const wrapperScrollPosition = Math.floor(cardsWrapperRef.scrollLeft);
-    const wrapperMaxScrollPosition = cardsWrapperRef.scrollWidth - cardsWrapperRef.clientWidth;
+    const wrapperMaxScrollPosition = cardsWrapperRef.scrollWidth - cardsWrapperRef.clientWidth - 1;
+    const wrapperScrollPosition = cardsWrapperRef.scrollLeft;
+    console.log({wrapperScrollPosition}, {wrapperMaxScrollPosition});
+
     const submodule = event.target.closest('.related-submodule').id;
     // handle left button
     const lButton = submodule === 'related-products' ?
@@ -65,7 +67,7 @@ const Related = (props) => {
       document.getElementsByClassName('right nav-button')[0] :
       document.getElementsByClassName('right nav-button')[1];
 
-    rButton.style.color = wrapperScrollPosition === wrapperMaxScrollPosition ? 'transparent' : 'black';
+    rButton.style.color = wrapperScrollPosition >= wrapperMaxScrollPosition ? 'transparent' : 'black';
   };
 
   return (
