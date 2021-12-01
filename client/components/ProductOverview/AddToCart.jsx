@@ -7,6 +7,7 @@ import $ from 'jquery';
 
 import SelectSizeMenu from './StyleCartSubs/SelectSizeMenu.jsx';
 import SelectQuantityMenu from './StyleCartSubs/SelectQuantityMenu.jsx';
+import AddOutfitListButton from './StyleCartSubs/AddOutfitListButton.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 
@@ -131,7 +132,8 @@ const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutf
 
         <div className='dropdown_space_po'>
         </div>
-        <button className='favorites_add_button_po' onClick={toggleProductToOutfitList}>{outfitButtonLabel}</button>
+        <AddOutfitListButton toggleProductToOutfitList={toggleProductToOutfitList}
+          isProductInOutfitList={isProductInOutfitList}/>
       </div>
     </div> );
 };

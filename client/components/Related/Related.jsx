@@ -74,7 +74,7 @@ const Related = (props) => {
         <RelatedProducts
           productId={productId}
           relatedProducts={relatedProducts}
-          handleAction={props.toggleToOutfitList}
+          handleAction={props.toggleProductToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           homeProduct={props.homeProduct}
@@ -83,7 +83,7 @@ const Related = (props) => {
         />
         <Outfit
           outfitList={props.outfitList}
-          handleAction={props.toggleToOutfitList}
+          handleAction={props.toggleProductToOutfitList}
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           renderRelated={props.renderRelated}
