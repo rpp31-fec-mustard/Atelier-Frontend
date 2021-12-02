@@ -115,6 +115,12 @@ class Modal extends React.Component {
     });
   }
 
+  closeModal() {
+    this.setState({
+      allImages: []
+    })
+    this.props.close()
+  }
 
   getRating(rating) {
     this.setState({
@@ -144,7 +150,7 @@ class Modal extends React.Component {
         <div className='modal'>
           <form onSubmit={(e) => { this.handleSubmit(e, this.state.allImages); }} >
             <div className='modal_content' >
-              <div className='closeModal' onClick={this.props.close}>X</div>
+              <div className='closeModal' onClick={this.closeModal.bind(this)}>X</div>
               <h2 className='modal_title'>Write Your Review</h2>
               <h4 className='subtitle'> About The {this.displayName(this.props.productInfo.name)}</h4>
               <section className='modal_rating'>
