@@ -52,7 +52,7 @@ This component extends the ability to view and search questions, ask questions, 
 * The list contains all questions by default, but can be filtered to a subset based on user searches.
 * If no questions have been submitted for this product, then the list collapses and the button to submit a new question appears near the top of the module.
 
-![](ViewQuestion.gif)
+![](gifs/ViewQuestion.gif)
 
 *Search Question*
 * Search terms entered in the search bar filters the question list for matching results.
@@ -60,14 +60,14 @@ This component extends the ability to view and search questions, ask questions, 
 * If the user clears the search term, or removes characters so that less than 3 remain, the list returns to the state where it is not filtered to matching text.
 * The search filter works with any other filters or sorts that have been applied, and narrows the results further.
 
-![](SearchQuestion.gif)
+![](gifs/SearchQuestion.gif)
 
 *Ask Question*
 * At the bottom of the Questions & Answers module, the 'Add Questions +' button allows users to create a new question for the product.
 * Upon clicking the button a modal window opens, overlaying the product page.
 * Upon selecting the 'Submit Question' button the form’s inputs are validated. If there are any invalid entries, the submission is prevented, and a warning message appears.
 
-![](AskQuestion.gif)
+![](gifs/AskQuestion.gif)
 
 *Answer Question*
 * Through the link provided on each question within the Questions list, users are allowed to submit an answer for the product.
@@ -75,7 +75,7 @@ This component extends the ability to view and search questions, ask questions, 
 * Users can upload up to five photos for each answer.
 * Upon selecting the 'Submit Answer' button the form’s inputs are validated. If there are any invalid entries, the submission is prevented, and a warning message appears.
 
-![](AnswerQuestion.gif)
+![](gifs/AnswerQuestion.gif)
 
 ### 4. Reviews & Ratings
 **Purpose:**
