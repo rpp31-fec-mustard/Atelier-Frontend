@@ -1437,23 +1437,10 @@ progress::-webkit-progress-value {
   font-family: 'remixicon' !important;
 }
 
-/* .stars-outer::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 200;
-} */
-
 .stars-inner::before {
   content: '\f186 \f186 \f186 \f186 \f186';
   font-family: 'remixicon' !important;
 }
-
-/* .stars-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-} */
-
 
 .filter {
   border: none;
