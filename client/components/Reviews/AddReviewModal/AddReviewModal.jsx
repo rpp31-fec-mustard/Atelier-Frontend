@@ -108,6 +108,9 @@ class Modal extends React.Component {
       }
     }
     this.props.post(result).then((res) => {
+      this.setState({
+        allImages: []
+      })
       this.props.close();
     });
   }
