@@ -22,7 +22,7 @@ Mustard is a project developed by Hack Reactor, a software engineering boot-camp
 
 Every product has associated related products (determined by Hack Reactor's API) that are dynamically rendered in a scrollable list. Navigation buttons appear on each side of the list based on scroll bar location and presence of additional products on the corresponding side.
 
-![](dynamic-product-cards.gif)
+![](gifs/dynamic-product-cards.gif)
 
 *Dynamic Comparison Modal*
 * Description
