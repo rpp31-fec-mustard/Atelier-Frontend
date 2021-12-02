@@ -4,7 +4,7 @@ const AnswerModalThumbnails = (props) => {
 
   return (
     <div>
-      <img className="answer-thumbnail" src={props.src} alt="Image Preview"></img>
+      <img className="answer-thumbnail" width="50" height="50" src={props.src} alt="Image Preview"></img>
     </div>
   );
 };
