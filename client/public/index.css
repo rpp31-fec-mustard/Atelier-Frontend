@@ -1433,15 +1433,13 @@ progress::-webkit-progress-value {
 }
 
 .stars-outer::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 200;
+  content: '\f18b \f18b \f18b \f18b \f18b';
+  font-family: 'remixicon' !important;
 }
 
 .stars-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
+  content: '\f186 \f186 \f186 \f186 \f186';
+  font-family: 'remixicon' !important;
 }
 
 .filter {
@@ -1672,4 +1670,7 @@ p {
   cursor: pointer;
   font-weight: bold;
   border: none;
+  position: relative;
+  top: 15px;
+  left: 375px;
 }
