@@ -2,7 +2,7 @@ const path = require('path');
 const entry = __dirname + '/client/components/index.jsx';
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   optimization: {
     usedExports: true,
   },
