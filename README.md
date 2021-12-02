@@ -101,6 +101,8 @@ This component extends the ability to write, read, and browse through reviews fo
 * Upon selecting the 'Submit Review' button the form’s inputs are validated.
 * If there are any invalid entries, the submission is prevented, and a warning message will appear.
 
+![WriteAReviewMustard](https://user-images.githubusercontent.com/77697842/144483747-029cb33c-f50b-47dd-8c92-4a03e9ab6a81.gif)
+
 
 *Reviews List*
 * The heart of the Ratings and Reviews module is the list of reviews available for the user to read. This list displays all the reviews that have been submitted for the product being viewed.
@@ -113,6 +115,8 @@ This component extends the ability to write, read, and browse through reviews fo
 * If the reviewer checks that they would recommend the product, that is displayed in the review tile.
 * If the seller responds to a review, the response is displayed in the review tile.
 
+![ReviewList](https://user-images.githubusercontent.com/77697842/144485686-111d72d0-6193-450d-94ab-e94f8fa97484.gif)
+
 *Sorting*
 * Users are able to change how the reviews list is sorted from a dropdown menu consisting of 3 selections:
   - Relevant: Relevance will be determined by a combination of both the date that the review was submitted as well as ‘helpfulness’ feedback received.  This combination should weigh the two characteristics such that recent reviews appear near the top, but do not outweigh reviews that have been found helpful.  Similarly, reviews that have been helpful should appear near the top, but should yield to more recent reviews if they are older.
@@ -122,6 +126,8 @@ This component extends the ability to write, read, and browse through reviews fo
 * By default, the reviews list should load with the sort order set to relevant.
 * The sort order should persist even when filters are added and removed.
 
+![Sorting](https://user-images.githubusercontent.com/77697842/144486191-9ca75dc7-071d-4acb-9a72-2632297e25bf.gif)
+
 *Rating Breakdown*
 * The average overall rating for the current product is displayed as a number and a star scale. The amount of stars filled corresponds to the average rating.
 * The percentage of reviews that ‘recommend’ the product will be displayed.
@@ -130,6 +136,8 @@ This component extends the ability to write, read, and browse through reviews fo
 * Each rating breakdown, consisting of the label, the bar, and the count, acts as a filter. Clicking on the breakdown for a star count filters the reviews list so that only reviews of that rating display.
 * The filters can be toggled on and off with each click.
 * Once one or more filters has been applied, a message will appear stating which filters have been applied.  It will also include a link to “Remove all filters”.  Clicking on this link will remove any filters applied and return the list to the default state.
+
+![RatingBreakdown](https://user-images.githubusercontent.com/77697842/144486579-1f9f3a73-54fc-47d0-85f4-defd170918ae.gif)
 
 *Product Breakdown*
 * When submitting a review, a user has the ability to rate each characteristic for the selected product.
