@@ -25,12 +25,16 @@ Every product has associated related products (determined by Hack Reactor's API)
 ![](gifs/dynamic-product-cards.gif)
 
 *Dynamic Comparison Modal*
-* Description
-* GIF
+
+This comparison modal pops up when the user hovers over each related product, allowing them to directly compare the features of the main product with the moused-over product.
+
+![](gifs/comparison-modal.gif)
 
 *Save Products with the Outfit List*
-* Description
-* GIF
+
+The user has the ability to save products from both the related products and the product overview across sessions. This feature utilizes localStorage Web API to persist the list of outfits beyond the current session.
+
+![](gifs/outfit-list.gif)
 
 ### 3. Questions & Answers
 **Purpose:**
