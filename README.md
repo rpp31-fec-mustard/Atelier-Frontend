@@ -9,10 +9,24 @@ Mustard is a project developed by Hack Reactor, a software engineering boot-camp
 ## Modules and Related Features
 
 ### 1. Product Overview
-**Purpose:**
+**Purpose:** Display product details, assorted styles, and sample images to the user; allow the user to select size and quantity to add to their cart; and add the product to the user's Outfit List.
+
+*Product Image Gallery*
+
+A robust image viewer that allows multiple ways to view the many sample images of a given product style. Arrows allow naviagtion through the style set and a thumbnail preview to jump to any image with an indicator of where the viewer is within that set. Clicking on the current image expands it to fill the screen, along with a zoomed-in, scrollable detail viewer.
+
+* GIF
 
 *Feature A:*
-* Description
+
+Any style chosen will update the size and quantity drop-down menus with only available items, or even indicate if the product is completely out of stock.
+
+* GIF
+
+*Favorite / Add to Outfit List*
+
+A light-up button that indicates if the user has favorited the product and added it to their Outfit List (see next section).
+
 * GIF
 
 ### 2. Related Products and Outfit
