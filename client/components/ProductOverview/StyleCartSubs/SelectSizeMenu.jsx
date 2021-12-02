@@ -106,7 +106,7 @@ const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize
       //   </select>
       // </React.Fragment>
       <React.Fragment>
-        <div className='size_menu_po'>
+        <div className='size_menu_po' style={{background: 'lightgrey'}}>
           <div className='out_of_stock_po'>OUT OF STOCK</div>
         </div>
       </React.Fragment>
