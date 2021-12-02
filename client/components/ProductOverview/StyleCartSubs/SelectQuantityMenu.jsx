@@ -57,7 +57,9 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
     return (
       <React.Fragment>
 
-        <div className='quantity_menu_po' style={{background: 'lightgrey'}}>---</div>
+        <div className='quantity_menu_po' style={{background: 'lightgrey'}}>
+          <div className='quantity_display_po'>---</div>
+        </div>
       </React.Fragment>
       // <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
       //   <option value='' default>---</option>

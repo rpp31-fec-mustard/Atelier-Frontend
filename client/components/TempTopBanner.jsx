@@ -35,10 +35,10 @@ const TempTopBanner = (props) => {
   return (
     <div id='top_banner'>
       <div id='top_bar'>
-        <h3 className='top_text'>STORE LOGOTYPE</h3>
+        <h3 className='top_text'>Mustard</h3>
         <p id='outlines' onClick={clickHandlerBorder}>outlines</p>
-        <p id='product_59553' onClick={() => { props.sendNumber('59553'); }}>59553</p>
-        <h3 className='top_text' onClick={clickHandlerRandom}>SEARCH</h3>
+        {/* <p id='product_59553' onClick={() => { props.sendNumber('59553'); }}>59553</p> */}
+        <h3 onClick={clickHandlerRandom}>SEARCH</h3>
       </div>
       <p id='announcements'>
         announcements *** Click outlines to toggle outlines! Click search to change product! *** announcements

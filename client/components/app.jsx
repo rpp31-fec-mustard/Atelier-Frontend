@@ -57,6 +57,8 @@ class App extends React.Component {
   // update localStorage whenever outfitList in state is updated
   componentDidUpdate() {
     localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
+    //not working ML
+    // localStorage.setItem('productId', JSON.stringify(this.state.productId));
   }
 
   getProduct(id) {
@@ -86,7 +88,7 @@ class App extends React.Component {
     });
   }
 
-  toggleToOutfitList(product) {
+  toggleProductToOutfitList(product) {
     let productInList = checkOutfitListPresence(product, this.state.outfitList);
 
     if (!productInList) {
@@ -107,14 +109,14 @@ class App extends React.Component {
           product={this.state.product}
           isProductInOutfitList={checkOutfitListPresence(this.state.product, this.state.outfitList)}
           total={this.state.total}
-          toggleProductToOutfitList={() => this.toggleToOutfitList(this.state.product)}
+          toggleProductToOutfitList={() => this.toggleProductToOutfitList(this.state.product)}
         />
         <Related
           productId={this.state.productId}
           homeProduct={this.state.product}
           outfitList={this.state.outfitList}
           renderRelated={this.renderRelated.bind(this)}
-          toggleToOutfitList={this.toggleToOutfitList.bind(this)}
+          toggleProductToOutfitList={this.toggleProductToOutfitList.bind(this)}
         />
         <QA product={this.state.productId} productInfo={this.state.product}/>
         <Reviews

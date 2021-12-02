@@ -57,7 +57,6 @@ const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize
   const handleMouseExitCloseMenu = () => {
     setShowSizes(false);
     setShowAlertFalse();
-      // document.getElementsByClassName('size_alert_po')[0].style.visibility = 'hidden';
   };
 
 
