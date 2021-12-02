@@ -125,7 +125,7 @@ const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutf
             return sku.quantity === 0;
           }))) {
             return ( <button className='add_to_bag_button_po'
-              onClick={addToCart}>add to bag</button>);
+              onClick={addToCart}>Add to Bag</button>);
           }
         })()
         }

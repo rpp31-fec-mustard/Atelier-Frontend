@@ -52,8 +52,6 @@ const Related = (props) => {
   const checkScrollPosition = (cardsWrapperRef, cardsWrapperLength) => {
     const wrapperMaxScrollPosition = cardsWrapperRef.scrollWidth - cardsWrapperRef.clientWidth - 1;
     const wrapperScrollPosition = cardsWrapperRef.scrollLeft;
-    console.log({wrapperScrollPosition}, {wrapperMaxScrollPosition});
-
     const submodule = event.target.closest('.related-submodule').id;
     // handle left button
     const lButton = submodule === 'related-products' ?

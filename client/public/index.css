@@ -75,12 +75,18 @@ html {
   background: var(--mustard-shadow);
 }
 
-.top_text {
+#top_bar h3 {
   margin: 0px 10px;
 }
 
+.top_text {
+  font-family: 'Comforter Brush', cursive;
+  font-size: 64px;
+}
+
 #announcements {
-  margin: 5px;
+  margin: 12px;
+  font-size: 16px;
 }
 
 
@@ -215,8 +221,6 @@ html {
   color: white;
   font-size: 36px;
 }
-
-
 
 .arrow_space_po {
   display: flex;
@@ -448,8 +452,6 @@ position: relative
   right: 3px;
 }
 
-
-
 /*todo *** *** *** *** add to bag *** *** *** *** */
 
 .add_to_bag_po {
@@ -466,7 +468,6 @@ position: relative
   display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
-
 
 /*todo ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 
@@ -500,7 +501,6 @@ position: relative
   justify-content: center;
   width: 80%;
   height: 20px;
-
 }
 
 .out_of_stock_po {
@@ -579,6 +579,7 @@ position: relative
   width: 150px;
   text-align: center;
 }
+
 .favorites_add_button_po {
   grid-column: 7 / 10;
   /* width: 95px; */
@@ -653,7 +654,7 @@ position: relative
   align-items: center;
 
   margin: 0;
-  width: 110%;
+  width: 1116px;
 }
 
 .related-submodule-content {
