@@ -75,8 +75,13 @@ html {
   background: var(--mustard-shadow);
 }
 
-.top_text {
+#top_bar h3 {
   margin: 0px 10px;
+}
+
+.top_text {
+  font-family: 'Comforter Brush', cursive;
+  font-size: 64px;
 }
 
 #announcements {
@@ -653,7 +658,7 @@ position: relative
   align-items: center;
 
   margin: 0;
-  width: 110%;
+  width: 1134px;
 }
 
 .related-submodule-content {
