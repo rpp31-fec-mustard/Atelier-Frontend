@@ -144,6 +144,7 @@ This component extends the ability to write, read, and browse through reviews fo
 * Each product can have different characterstics to give feedback on.
 * Each characteristic associated with the product will be dynamically displayed, along with a rating bar with an icon indicating the average rating for that characteristic.
 
+![ProductBreakdown](https://user-images.githubusercontent.com/77697842/144498009-7293776d-ab56-4783-b4dc-7da2f4fb737f.gif)
 
 ## Team Members
 * **[Michael Lapid](https://github.com/addessosf)**
