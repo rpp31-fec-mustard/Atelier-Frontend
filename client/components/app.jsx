@@ -39,9 +39,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // initialize product from localStorage if exists
+    // initialize product and productId from localStorage if exists
     if (localStorage.product) {
-      this.setState({product: JSON.parse(localStorage.getItem('product'))});
+      const product = JSON.parse(localStorage.getItem('product'));
+      this.setState({product});
+      this.setState({productId: product.id});
     }
 
     // initialize outfitList as empty array if new user without localStorage
@@ -100,7 +102,6 @@ class App extends React.Component {
       <React.Fragment>
         <TempTopBanner sendNumber={this.sendNumber}/>
         <ProductOverview
-          id={this.state.productId}
           product={this.state.product}
           isProductInOutfitList={checkOutfitListPresence(this.state.product, this.state.outfitList)}
           total={this.state.total}

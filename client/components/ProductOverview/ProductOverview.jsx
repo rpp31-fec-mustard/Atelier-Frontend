@@ -37,7 +37,7 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
       });
   };
 
-  const getProductReviews = () => {
+  const getProductReviews = (id) => {
     // mlog('this.props.product.id :', productId);
     axios.get('/getReviews', {
       params: {
