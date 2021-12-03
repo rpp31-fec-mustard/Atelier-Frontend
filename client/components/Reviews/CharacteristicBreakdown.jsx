@@ -25,14 +25,13 @@ const getRatingPercent = (rating) => {
   if (percent < 5) {
     return percent + '%';
   } else {
-    return (percent - 5) + '%';
+    return (percent - 7) + '%';
   }
 };
 
 const CharacteristicBreakdown = (props) => {
 
   let style = {
-    // left: '100px',
     left: getRatingPercent(props.rating)
   };
 
@@ -56,7 +55,6 @@ const CharacteristicBreakdown = (props) => {
             {displayMeaning(props.char, 2)}
           </section>
         </section>
-
       </section>
     </div>
   );
