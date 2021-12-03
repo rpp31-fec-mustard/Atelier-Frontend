@@ -104,6 +104,7 @@ const Q_A = (props) => {
                 answer={[question.answers]}
                 name={props.productInfo.name}
                 update={props.update}
+                darkMode={props.darkMode}
               />
             )}
           </div>
@@ -118,7 +119,7 @@ const Q_A = (props) => {
   } else {
     return (
       <Track>
-        <div className="questionDisplay">
+        <div className="questionDisplay dm">
           <div className="questionList">
             {displayQuestions.map((question, answer) =>
               <Question
@@ -129,6 +130,7 @@ const Q_A = (props) => {
                 answer={[question.answers]}
                 name={props.productInfo.name}
                 update={props.update}
+                darkMode={props.darkMode}
               />
             )}
           </div>

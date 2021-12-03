@@ -68,6 +68,11 @@ const Answer = (props) => {
     }
   });
 
+
+
+
+  let darkModeClass1 = props.darkMode ? 'dm' : '';
+
   if (props.name === 'Seller') {
     return (
       <div className="singleAnswer">
@@ -80,8 +85,10 @@ const Answer = (props) => {
           <div className="answer-meta"> by
             <div className="seller">&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
-            <button onClick={() => answerHelpful()} id={props.id + 'answer'} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
-            <button onClick={() => reportAnswer()} id={props.id + 'report'} className="answer-meta-report">&nbsp;<u>Report</u></button>
+            <button onClick={() => answerHelpful()} id={props.id + 'answer'}
+              className={`${darkModeClass1} answer-meta-helpful`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+            <button onClick={() => reportAnswer()} id={props.id + 'report'}
+              className={`${darkModeClass1} answer-meta-report`}>&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>
@@ -98,8 +105,10 @@ const Answer = (props) => {
           <div className="answer-meta">by
             <div>&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
-            <button onClick={() => answerHelpful()} id={props.id + 'answer'} className="answer-meta-helpful">&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
-            <button onClick={() => reportAnswer()} id={props.id + 'report'} className="answer-meta-report">&nbsp;<u>Report</u></button>
+            <button onClick={() => answerHelpful()} id={props.id + 'answer'}
+              className={`${darkModeClass1} answer-meta-helpful`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+            <button onClick={() => reportAnswer()} id={props.id + 'report'}
+              className={`${darkModeClass1} answer-meta-report`}>&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>

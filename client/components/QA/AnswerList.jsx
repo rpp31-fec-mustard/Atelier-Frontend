@@ -16,6 +16,7 @@ const AnswerList = (props) => {
             helpfulness={answer.helpfulness}
             update={props.update}
             photos={answer.photos}
+            darkMode={props.darkMode}
           />
         )}
       </div>

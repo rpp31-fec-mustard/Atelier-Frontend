@@ -21,7 +21,8 @@ class App extends React.Component {
       productId: '59553', //testing
       product: fixtures.product, //testing
       total: '0',
-      darkMode: false,
+      darkMode: true, //testing
+      // darkMode: false,
 
       // productId: '59601', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
@@ -145,7 +146,10 @@ class App extends React.Component {
           renderRelated={this.renderRelated.bind(this)}
           toggleProductToOutfitList={this.toggleProductToOutfitList.bind(this)}
         />
-        <QA product={this.state.productId} productInfo={this.state.product}/>
+        <QA product={this.state.productId}
+          productInfo={this.state.product}
+          darkMode={this.state.darkMode}
+        />
         <Reviews
           productId={this.state.productId}
           productInfo={this.state.product}
