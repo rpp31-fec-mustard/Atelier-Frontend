@@ -19,12 +19,13 @@ class QA extends React.Component {
   }
 
   componentDidUpdate () {
+    console.log('PRODCUT ID', this.props.product)
     if ((this.state.productInfo !== this.props.productInfo) || (this.state.productId !== this.props.product)) {
       this.setState({
         productInfo: this.props.productInfo,
         productId: this.props.product
       });
-      this.getQuestions(this.state.productId);
+      this.getQuestions(this.props.product);
     }
   }
 
