@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Thumbnail from './Thumbnail.jsx';
 
 
-const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText, cW2}) => {
+const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText, cW2, darkMode}) => {
   const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
@@ -27,9 +27,11 @@ const ThumbnailsBar = ({photos, photoIndex, handleThumbnailClick, altText, cW2})
     cW2.current.scrollBy({top: 180, behavior: 'smooth'});
   };
 
+  let darkModeClassTNB = darkMode ? 'dmTNB' : '';
+
   return (
     <React.Fragment>
-      <div className='thumbnails_bar_po'>
+      <div className={`thumbnails_bar_po ${darkModeClassTNB}`}>
         <div id='arrow_up_po' onClick={() => { handleUpScroll(); }}>{upIcon}</div>
         <div className='thumbnails_po' id='tb_po' ref={cW2}>
           {

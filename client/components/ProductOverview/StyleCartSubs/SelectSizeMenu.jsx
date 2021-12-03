@@ -9,7 +9,7 @@ import {DEBUG} from '../ProductOverview.jsx';
 
 const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize}) => {
 
-  var DEBUG = true;
+  // var DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 

@@ -6,7 +6,7 @@ import {DEBUG} from '../ProductOverview.jsx';
 //can remove size in production
 const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) => {
 
-  const DEBUG = true;
+  // const DEBUG = true;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[36m';
 

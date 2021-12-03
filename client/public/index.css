@@ -382,6 +382,7 @@ html {
   text-transform: uppercase;
   font-size: 13px;
   margin: 5px;
+  color: var(--global-border-color)
 }
 
 #name_po {

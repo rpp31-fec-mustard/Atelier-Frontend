@@ -13,7 +13,7 @@ import {DEBUG} from './ProductOverview.jsx';
 
 const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutfitList}) => {
 
-  const DEBUG = true;
+  const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
 

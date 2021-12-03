@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom';
 
 const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) => {
 
+    var DEBUG = false;
+    var mlog = (DEBUG) ? console.log : () => {};
 
   const resizeUrl = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
       url.slice(url.lastIndexOf('q='));
-    console.log(resultUrl);
+    mlog(resultUrl);
     return resultUrl;
   };
 
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
-    console.log(resultUrl);
+    mlog(resultUrl);
     return resultUrl;
   };
 

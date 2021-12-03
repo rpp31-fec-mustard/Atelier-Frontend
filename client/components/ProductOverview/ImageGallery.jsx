@@ -13,7 +13,8 @@ import FullScreenModal from './ImageGallerySubs/FullScreenModal.jsx';
 import {DEBUG} from './ProductOverview.jsx';
 
 
-const ImageGallery = ({currentStyle, productId, productName}) => {
+const ImageGallery = ({currentStyle, productId, productName, ...rest}) => {
+
   // const DEBUG = false;
   var mlog = DEBUG ? console.log : () => {};
   var logC = '\x1b[35m';
@@ -69,7 +70,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
   };
 
   const handleThumbnailClick = (iconId) => {
-    console.log('htc', iconId);
+    mlog('htc', iconId);
     setPhotoIndex(iconId);
     // document.getElementsByClassName(`image_icon_${index}`)[0].style.backgroundColor = 'white'
 
@@ -80,14 +81,14 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
       url.slice(url.lastIndexOf('q='));
-    console.log(resultUrl);
+    mlog(resultUrl);
     return resultUrl;
   };
 
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
-    console.log(resultUrl);
+    mlog(resultUrl);
     return resultUrl;
   };
   // fm=jpg&w=200&fit=max
@@ -121,6 +122,7 @@ const ImageGallery = ({currentStyle, productId, productName}) => {
               handleThumbnailClick={handleThumbnailClick}
               altText = {altText}
               cW2={cW2}
+              {...rest}
             />
             <div className='arrow_po'>
               <div className='arrow_space_po' onClick={handleClickImage}></div>

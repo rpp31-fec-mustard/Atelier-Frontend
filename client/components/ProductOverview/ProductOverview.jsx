@@ -1,7 +1,7 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
 export var DEBUG = false;
-// DEBUG = true;
+DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -17,14 +17,15 @@ import defaultOnLoad from '../defaultOnLoad.jsx';
 import fixtures from '../../../test/fixtures.js';
 
 
-const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList}) => {
+const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList, darkMode}) => {
+
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(fixtures.styles); //testing
   // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
   const [review, setReview] = useState(false);
   // mlog(logC + ' PO product :', product);
   // mlog('PO id :', id);
-  // mlog(logC + ' PO styles:', styles);
+  mlog(logC + ' PO styles:', styles);
   // mlog(logC + ' PO productId:', id);
   // mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
@@ -99,7 +100,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
   } = product;
   // mlog(logC + ' features', features);
 
-    // mlog(styles);
+    mlog(logC + 'PO bug styles', styles);
+    mlog(logC + 'PO bug currentStyleIndex', currentStyleIndex)
 
   return (
     <React.Fragment>
@@ -107,7 +109,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
             productId={id}
-            productName={product.name} />
+            productName={product.name}
+            darkMode={darkMode}/>
           <div className='right02'>
             <div className='stars_po'>
               <Stars productId={product.id} total={total} />

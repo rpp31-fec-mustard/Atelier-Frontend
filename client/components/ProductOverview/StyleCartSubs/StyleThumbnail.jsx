@@ -17,7 +17,7 @@ const StyleThumbnail = ({ style, styleIndex, productName, handleStyleOnClick,
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
-    console.log(resultUrl);
+    mlog(resultUrl);
     return resultUrl;
   };
 
