@@ -25,7 +25,7 @@ const getRatingPercent = (rating) => {
   if (percent < 5) {
     return percent + '%';
   } else {
-    return (percent - 5) + '%';
+    return (percent - 7) + '%';
   }
 };
 
@@ -39,6 +39,7 @@ const CharacteristicBreakdown = (props) => {
     <div className='charRatingEntry'>
       <section className='characteristicName'> {props.char} </section>
       <section className='pBreakdownScale'>
+        <i className="breakdownIcon" style={ style }></i>
         <section className='innerBar'>
           <section className='first meaning'>
             {displayMeaning(props.char, 0)}
@@ -54,7 +55,6 @@ const CharacteristicBreakdown = (props) => {
             {displayMeaning(props.char, 2)}
           </section>
         </section>
-        <i className="fas fa-caret-down indicator" style={style}></i>
       </section>
     </div>
   );

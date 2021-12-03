@@ -9,11 +9,25 @@ Mustard is a project developed by Hack Reactor, a software engineering boot-camp
 ## Modules and Related Features
 
 ### 1. Product Overview
-**Purpose:**
+**Purpose:** Display product details, assorted styles, and sample images to the user; allow the user to select size and quantity to add to their cart; and add the product to the user's Outfit List.
 
-*Feature A:*
-* Description
-* GIF
+*Product Image Gallery*
+
+A robust image viewer that allows multiple ways to view the many sample images of a given product style. Arrows allow naviagtion through the style set and a thumbnail preview to jump to any image with an indicator of where the viewer is within that set. Clicking on the current image expands it to fill the screen, along with a zoomed-in, scrollable detail viewer.
+
+![product-image-gallery](https://user-images.githubusercontent.com/19236670/144541590-b2a71385-0de0-47ce-8046-c52607e82c20.gif)
+
+*Dynamic Size and Quantity Menus*
+
+Any style chosen will update the size and quantity drop-down menus with only available items, or even indicate if the product is completely out of stock.
+
+![size-and-quantity-menus](https://user-images.githubusercontent.com/19236670/144541631-5a8de33c-9c52-48a8-9470-64d54de3f155.gif)
+
+*Favorite / Add to Outfit List*
+
+A light-up button that indicates if the user has favorited the product and added it to their Outfit List (see next section).
+
+![add-to-outfit-list](https://user-images.githubusercontent.com/19236670/144541648-7ff950f9-7d28-4086-82f0-ce368554db84.gif)
 
 ### 2. Related Products and Outfit
 **Purpose:** Allow user to navigate to and view related products in a digestable format, compare features between each related product and the main product, and add products to the outfit list to be saved even after the session ends.
