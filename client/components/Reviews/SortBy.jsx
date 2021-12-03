@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTracking } from 'react-tracking';
+import axios from 'axios';
 
 
 const SortBy = (props) => {
@@ -17,7 +18,7 @@ const SortBy = (props) => {
       }
     });
 
-  const handleSortChange = () => {
+  const track = () => {
     trackEvent({
       time: new Date().toString(),
       element: JSON.stringify({
@@ -26,15 +27,13 @@ const SortBy = (props) => {
       }),
       widget: 'Ratings and Reviews'
     });
-
-    props.onChange;
   };
 
   return (
     <form className='sortBy'>
       <label> {props.list.length} reviews, Sorted by
       </label>
-      <select value={props.selected} onChange={handleSortChange} name="sortBy" className="sortByButton">
+      <select value={props.selected} onClick={track} onChange={props.onChange} name="sortBy" className="sortByButton">
         <option>relevance</option>
         <option>newest</option>
         <option>most helpful</option>

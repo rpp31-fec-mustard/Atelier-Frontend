@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 import SortBy from './SortBy.jsx';
 import AddReviewModal from './AddReviewModal/AddReviewModal.jsx';
+import axios from 'axios';
 import { useTracking } from 'react-tracking';
 
 const ReviewsList = (props) => {
@@ -74,10 +75,11 @@ const ReviewsList = (props) => {
     setModal(false);
   };
 
+
   return (
     <div className="reviewsList_container">
       <section className='SortByWrapper'>
-        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo} />
+        <SortBy list={props.list} onChange={props.onChange.bind(this)} productInfo={props.productInfo} />
       </section>
       {displayReviewsList()}
       <div className='reviewButtons'>
