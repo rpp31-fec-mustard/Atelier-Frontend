@@ -27,6 +27,10 @@ const ProductCard = (props) => {
     <div className="prod-card-no-img">No image</div>
   );
 
+  //dark mode
+  let darkModeClass1 = props.darkMode ? 'dm' : '';
+  console.log('darkModeClass1 :', darkModeClass1);
+
   return (
     <React.Fragment>
       <div
