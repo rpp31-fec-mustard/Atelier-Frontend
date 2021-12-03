@@ -24,7 +24,7 @@ class QA extends React.Component {
         productInfo: this.props.productInfo,
         productId: this.props.product
       });
-      this.getQuestions(this.state.productId);
+      this.getQuestions(this.props.product);
     }
   }
 
