@@ -1441,6 +1441,7 @@ progress::-webkit-progress-value {
   content: '\f186 \f186 \f186 \f186 \f186';
   font-family: 'remixicon' !important;
 }
+
 .breakdownIcon::before{
   content: '\ea4d';
   font-family: 'remixicon' !important;
