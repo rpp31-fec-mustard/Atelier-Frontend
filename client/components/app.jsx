@@ -21,7 +21,7 @@ class App extends React.Component {
       productId: '59553', //testing
       product: fixtures.product, //testing
       total: '0',
-      darkMode: true, //testing
+      darkMode: true,  //testing
       // darkMode: false,
 
       // productId: '59601', //testing ML
