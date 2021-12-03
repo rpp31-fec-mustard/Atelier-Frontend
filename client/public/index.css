@@ -1442,6 +1442,19 @@ progress::-webkit-progress-value {
   font-family: 'remixicon' !important;
 }
 
+.breakdownIcon::before{
+  content: '\ea4d';
+  font-family: 'remixicon' !important;
+  position: absolute;
+  z-index: 3;
+ }
+
+ .breakdownIcon {
+   position: absolute;
+   bottom: 12px;
+   font-size: 15px;
+ }
+
 .filter {
   border: none;
   display: flex;
@@ -1474,6 +1487,7 @@ progress::-webkit-progress-value {
   font-size: 12px;
   width: 240px;
   margin: 12px 0 12px 0;
+  position: relative;
 }
 
 .characteristicName {
