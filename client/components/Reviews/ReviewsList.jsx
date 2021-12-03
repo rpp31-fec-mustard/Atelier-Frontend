@@ -79,7 +79,8 @@ const ReviewsList = (props) => {
   return (
     <div className="reviewsList_container">
       <section className='SortByWrapper'>
-        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo} />
+        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo}
+          darkMode={props.darkMode}/>
       </section>
       {displayReviewsList()}
       <div className='reviewButtons'>

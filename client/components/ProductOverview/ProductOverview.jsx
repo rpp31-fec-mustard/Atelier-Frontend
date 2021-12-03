@@ -1,10 +1,5 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export var DEBUG = false;
-// DEBUG = true;
-var mlog = (DEBUG) ? console.log : () => {};
-var logC = '\x1b[33m';
-
 import React, {useRef, useState, useEffect, useLayoutEffect} from 'react';
 import axios from 'axios';
 
@@ -15,21 +10,20 @@ import Price from '../Global/Price.jsx';
 import defaultProduct from '../defaultProduct.jsx';
 
 
-const ProductOverview = ({product, total, toggleProductToOutfitList, isProductInOutfitList}) => {
+const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList, darkMode}) => {
+
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(defaultProduct.styles);
   const [review, setReview] = useState(false);
 
 
   const getProductStyles = () => {
-    // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
         productId: product.id
       }
     })
       .then((res) => {
-        // mlog(logC + ' PO res product/styles:', res.data);
         setStyles(res.data);
       })
       .catch((err) => {
@@ -38,14 +32,12 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
   };
 
   const getProductReviews = (id) => {
-    // mlog('this.props.product.id :', productId);
     axios.get('/getReviews', {
       params: {
         productId: id
       }
     })
       .then((res) => {
-        // mlog(logC + ' PO res product/reviews:', res.data);
         setReview(!!res.data.reviewsArr.length);
       })
       .catch((err) => {
@@ -65,7 +57,6 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
   }, []);
 
   useEffect(async () => {
-      // mlog(logC + ' useEffect triggered by id change', id);
     getProductStyles(product.id);
     localStorage.setItem('styles', JSON.stringify(styles));
     getProductReviews(product.id);
@@ -74,15 +65,12 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
 
 
   const handleStyleOnClick = (selectedStyleIndex) => {
-    // mlog('PO handleStyleOnClick setIndex', styleIndex);
     setStyleIndex(selectedStyleIndex);
   };
 
 
   // if (styles !== undefined) {
 
-    // mlog('state defined: component load executed');
-  // mlog(logC + ' PO product destructure:', product );
   const {
     description,
     name,
@@ -91,17 +79,17 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
     slogan,
     features
   } = product;
-  // mlog(logC + ' features', features);
-
-    // mlog(styles);
 
   return (
     <React.Fragment>
-      <div className='module_container' id='product_overview_main' >
+      <div className='module_container dm-' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-            productId={product.id}
-            productName={product.name} />
+            productId={id}  //check which to keep
+            // productId={product.id}  //check which to keep
+            productName={product.name}
+            darkMode={darkMode}
+          />
           <div className='right02'>
             <div className='stars_po'>
               <Stars productId={product.id} total={total} />
@@ -117,12 +105,10 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
 
             </div>
             <div className='name_block_po'>
-              {category}
+              <p id='category_po'>{category}</p>
               <p id='name_po'>{name}</p>
-              {/* <p id='name_po'>first line second line</p> */}
             </div>
             <div className='price_po'>
-              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
               <Price salePrice={styles.results[currentStyleIndex].sale_price}
                 originalPrice={styles.results[currentStyleIndex].original_price}/>
             </div>
@@ -146,7 +132,6 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
             Highlights:<br/>
             {
               features.map((feature, index) => {
-                // mlog(logC + 'feature', feature);
                 return (
                   <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
               })
@@ -157,10 +142,9 @@ const ProductOverview = ({product, total, toggleProductToOutfitList, isProductIn
     </React.Fragment>
   );
   // } else {
-  //   mlog('state undefined: props not correct. component load delayed');
+  //   console.log('state undefined: props not correct. component load delayed');
   //   return <div>props load delayed</div>;
   // }
 };
-
 
 export default ProductOverview;

@@ -5,7 +5,6 @@ import RightButton from './RightButton.jsx';
 
 const RelatedProducts = (props) => {
   const cardsWrapper = React.useRef(null);
-
   const productCards = props.relatedProducts.map((item, i) => {
     return (
       <ProductCard
@@ -15,6 +14,7 @@ const RelatedProducts = (props) => {
         homeProduct={props.homeProduct}
         renderRelated={props.renderRelated}
         outfitList={props.outfitList}
+        darkMode={props.darkMode}
       />
     );
   });

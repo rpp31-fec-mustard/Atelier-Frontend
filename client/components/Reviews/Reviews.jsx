@@ -194,7 +194,7 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      <div id='ratings_reviews' className='module_container'>
+      <div id='ratings_reviews' className='module_container dm-'>
         <div className='reviewsTitle'>
           <h3> Ratings and Reviews </h3>
         </div>
@@ -203,7 +203,7 @@ class Reviews extends React.Component {
         </div>
         <div className='reviews'>
           <Ratings handleChange={this.handleStarChange.bind(this)} productId={this.state.id} meta={this.state.reviewMeta} total={this.state.allReviews.length} />
-          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} meta={this.state.reviewMeta} productInfo={this.props.productInfo} sort={this.state.sorted} post={this.post.bind(this)} />
+          <ReviewsList onChange={this.handleSortedList.bind(this)} list={this.state.displayedReviews} meta={this.state.reviewMeta} productInfo={this.props.productInfo} sort={this.state.sorted} post={this.post.bind(this)} darkMode={this.props.darkMode}/>
         </div>
       </div>
     );

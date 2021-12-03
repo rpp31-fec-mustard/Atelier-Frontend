@@ -29,11 +29,13 @@ const SortBy = (props) => {
     });
   };
 
+  let darkModeClass1 = props.darkMode ? 'dmSB' : '';
+
   return (
     <form className='sortBy'>
       <label> {props.list.length} reviews, Sorted by
       </label>
-      <select value={props.selected} onClick={track} onChange={props.onChange} name="sortBy" className="sortByButton">
+      <select value={props.selected} onClick={track} onChange={props.onChange} name="sortBy" className={`sortByButton ${darkModeClass1}`}>
         <option>relevance</option>
         <option>newest</option>
         <option>most helpful</option>

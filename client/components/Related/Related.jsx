@@ -70,7 +70,7 @@ const Related = (props) => {
 
   return (
     <Track>
-      <section id="related-main" className="module_container">
+      <section id="related-main" className="module_container dm-">
         <RelatedProducts
           productId={productId}
           relatedProducts={relatedProducts}
@@ -80,6 +80,7 @@ const Related = (props) => {
           homeProduct={props.homeProduct}
           renderRelated={props.renderRelated}
           outfitList={props.outfitList}
+          darkMode={props.darkMode}
         />
         <Outfit
           outfitList={props.outfitList}
@@ -87,6 +88,7 @@ const Related = (props) => {
           handleScroll={{handleLeftScroll: handleLeftScroll, handleRightScroll: handleRightScroll}}
           checkScrollPosition={checkScrollPosition}
           renderRelated={props.renderRelated}
+          darkMode={props.darkMode}
         />
       </section>
     </Track>

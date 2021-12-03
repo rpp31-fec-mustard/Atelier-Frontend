@@ -23,6 +23,7 @@ const Outfit = (props) => {
           renderRelated={props.renderRelated}
           outfitList={props.outfitList}
           outfit={true}
+          darkMode={props.darkMode}
         />
       );
     });

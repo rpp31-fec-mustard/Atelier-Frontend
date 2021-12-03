@@ -8,66 +8,33 @@ import $ from 'jquery';
 import SelectSizeMenu from './StyleCartSubs/SelectSizeMenu.jsx';
 import SelectQuantityMenu from './StyleCartSubs/SelectQuantityMenu.jsx';
 import AddOutfitListButton from './StyleCartSubs/AddOutfitListButton.jsx';
-import {DEBUG} from './ProductOverview.jsx';
 
 
 const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutfitList}) => {
-
-  const DEBUG = true;
-  var mlog = DEBUG ? console.log : () => {};
-  var logC = '\x1b[35m';
-
-  mlog(logC + ' ATC style', style);
-  // mlog(logC + ' ATC skus', style.skus);
-
   const [size, setSize] = useState('Select Size');
   const [quantityMax, setQuantityMax] = useState(0);
   const [quantityAdd, setQuantityAdd] = useState(1);
   const [skus, setSkus] = useState(style.skus);
-  mlog(logC + ' ATC size', size);
-
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSetSize = (event) => {
-    mlog(logC + ' ATC handler', event.target);
-    mlog(logC + ' ATC handler size', event.target.getAttribute('value'));
-    mlog(logC + ' ATC handler name', event.target.textContent);
-    mlog(logC + ' ATC handler sku', event.target.getAttribute('sku'));
 
     let sku = event.target.getAttribute('sku');
-    mlog(logC + ' ATC handler sku 2', sku);
-    // if (sku === undefined) {
-    //   document.getElementById('menu2_po').selectedIndex = 0;
-    // } else {
-    // }
-    mlog(logC + ' ATC handler quantityMax before', style.skus[sku].quantity);
     setSize(event.target.textContent);
-
     setQuantityMax(style.skus[sku].quantity);
-    mlog(logC + ' ATC handler quantityMax after', style.skus[sku].quantity);
     setQuantityAdd(1);
-      // document.getElementById('menu2_po').selectedIndex = 1;
-
   };
 
-  //on selecting new style
   useEffect(() => {
-    mlog(logC + ' ATC state', size, quantityMax);
     setSkus(style.skus);
     setSize('Select Size');
     setQuantityMax(0);
     setShowAlert(false);
   }, [style]);
 
-
-  //disable flag
-  //when quantityMax is zero, disable
-  //when select size, disable
-
   const handleSetAddQty = (event) => {
     setQuantityAdd(event.target.getAttribute('value'));
   };
-
-  const [showAlert, setShowAlert] = useState(false);
 
   const setShowSizeMenuTrue = () => {
     setShowAlert(true);
@@ -87,22 +54,14 @@ const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutf
 
   const addToCart = () => {
     if (size === 'Select Size') {
-      // document.getElementsByClassName('size_alert_po')[0].style.visibility = 'visible';
       setShowAlert(true);
       setShowSizeMenuTrue();
     } else {
-      mlog(logC + 'ATC Add to Cart', style.style_id, size, quantityAdd);
+      console.log('ATC Add to Cart', style.style_id, size, quantityAdd);
     }
   };
 
-
-  //get productlist and compare to product id
-  //if true,
-    //light button
-  //else off'
-
   let outfitButtonLabel = isProductInOutfitList ? 'Remove' : 'Star';
-
 
   return (
     <div className='add_to_bag_po'>
@@ -111,8 +70,6 @@ const AddtoCart = ({style, toggleProductToOutfitList, productId, isProductInOutf
           setShowAlertFalse={setShowAlertFalse}
           setShowSizeMenuTrue={setShowSizeMenuTrue}
           handleSetSize={handleSetSize}/>
-        {/* <div className='dropdown_space_po'>
-        </div> */}
         <SelectQuantityMenu size={size}
           quantityMax={quantityMax}
           quantityAdd={quantityAdd}

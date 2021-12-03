@@ -52,7 +52,7 @@ class QA extends React.Component {
 
   render () {
     return (
-      <div id="qa-module" className="module_container">
+      <div id="qa-module" className={'module_container'}>
         <div className="qa-title">
           <h3>QUESTIONS & ANSWERS</h3>
         </div>
@@ -65,6 +65,7 @@ class QA extends React.Component {
             questions={this.state.questions}
             productInfo={this.state.productInfo}
             filter={this.state.search}
+            darkMode={this.props.darkMode}
             update={this.componentDidMount.bind(this)}
           />
         </div>

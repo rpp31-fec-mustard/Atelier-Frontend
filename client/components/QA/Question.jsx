@@ -47,29 +47,37 @@ const Question = (props) => {
   if (displayAnswers.length === 0) {
     return (
       <div>
-        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name} id={props.id} update={props.update}/>
+        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name}
+          id={props.id} update={props.update} darkMode={props.darkMode}
+        />
       </div>
     );
   } else if (displayAnswers.length < sortedAnswers.length) {
     return (
       <div>
-        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name} id={props.id} update={props.update}/>
-        <AnswerList displayAnswers={displayAnswers} update={props.update}/>
+        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name}
+          id={props.id} update={props.update} darkMode={props.darkMode}
+        />
+        <AnswerList displayAnswers={displayAnswers} update={props.update} darkMode={props.darkMode}/>
         <div className="expandCollapseAnswers" onClick={() => setCount(sortedAnswers.length)}><small>LOAD MORE ANSWERS</small></div>
       </div>
     );
   } else if ((displayAnswers.length === sortedAnswers.length) && sortedAnswers.length > 2) {
     return (
       <div>
-        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name} id={props.id} update={props.update}/>
-        <AnswerList displayAnswers={displayAnswers} update={props.update}/>
+        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name}
+          id={props.id} update={props.update} darkMode={props.darkMode}
+        />
+        <AnswerList displayAnswers={displayAnswers} update={props.update} darkMode={props.darkMode}/>
         <div className="expandCollapseAnswers" onClick={() => setCount(2)}><small>COLLAPSE ANSWERS</small></div>
       </div>
     );
   } else {
     return (
       <div>
-        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name} id={props.id} update={props.update}/>
+        <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name}
+          id={props.id} update={props.update} darkMode={props.darkMode}
+        />
         <AnswerList displayAnswers={displayAnswers} update={props.update}/>
       </div>
     );
