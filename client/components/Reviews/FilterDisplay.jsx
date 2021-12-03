@@ -1,7 +1,6 @@
 import React from 'react';
 
 const FilterDisplay = (props) => {
-  console.log(props.filters)
   if (props.filters.length) {
     return (
       <div className='filter'>
