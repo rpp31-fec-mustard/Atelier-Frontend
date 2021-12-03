@@ -15,7 +15,7 @@ import Price from '../Global/Price.jsx';
 import defaultProduct from '../defaultProduct.jsx';
 
 
-const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList}) => {
+const ProductOverview = ({product, total, toggleProductToOutfitList, isProductInOutfitList}) => {
   const [currentStyleIndex, setStyleIndex] = useState(0);
   const [styles, setStyles] = useState(defaultProduct.styles);
   const [review, setReview] = useState(false);
@@ -25,7 +25,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
     // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
-        productId: id
+        productId: product.id
       }
     })
       .then((res) => {
@@ -58,20 +58,20 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
   const loaded = useRef(true); //testing
   // const loaded = useRef(false); //for testing Ml
 
-  useEffect(async () => {
-    if (loaded.current) {
-      // mlog(logC + ' useEffect triggered by id change', id);
-      await getProductStyles(id);
-      await getProductReviews(id);
-      setStyleIndex(0);
-    } else {
-      loaded.current = true;
-    }
-  }, [id]);
-
   useEffect(() => {
-
+    if (localStorage.styles) {
+      setStyles(JSON.parse(localStorage.getItem('styles')));
+    }
   }, []);
+
+  useEffect(async () => {
+      // mlog(logC + ' useEffect triggered by id change', id);
+    getProductStyles(product.id);
+    localStorage.setItem('styles', JSON.stringify(styles));
+    getProductReviews(product.id);
+    setStyleIndex(0);
+  }, [product]);
+
 
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
@@ -100,7 +100,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       <div className='module_container' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-            productId={id}
+            productId={product.id}
             productName={product.name} />
           <div className='right02'>
             <div className='stars_po'>
@@ -130,7 +130,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
               styles={styles.results}
               currentStyleIndex={currentStyleIndex}
               productName={name}
-              productId={id}
+              productId={product.id}
               handleStyleOnClick={handleStyleOnClick}
               toggleProductToOutfitList={toggleProductToOutfitList}
               isProductInOutfitList={isProductInOutfitList}
