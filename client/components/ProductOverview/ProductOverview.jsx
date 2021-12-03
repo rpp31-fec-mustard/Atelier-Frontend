@@ -69,7 +69,9 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
     }
   }, [id]);
 
+  useEffect(() => {
 
+  }, []);
 
   const handleStyleOnClick = (selectedStyleIndex) => {
     // mlog('PO handleStyleOnClick setIndex', styleIndex);
