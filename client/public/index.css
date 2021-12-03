@@ -1457,7 +1457,7 @@ progress::-webkit-progress-value {
   border: none;
   display: flex;
   flex-direction: row;
-  margin-left: 75px;
+  margin-bottom: 10px;
 }
 
 .filterMessage {
