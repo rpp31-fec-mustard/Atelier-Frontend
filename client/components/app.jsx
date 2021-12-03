@@ -20,9 +20,6 @@ class App extends React.Component {
       productId: '59553', //testing
       product: fixtures.product, //testing
       total: '0',
-
-      // productId: '59601', //testing ML
-      // product: defaultOnLoad.productOnLoad, //testing
       outfitList: []
 
     };
@@ -44,7 +41,6 @@ class App extends React.Component {
       });
   }
 
-  //off for testing ML
   componentDidMount() {
     Promise.resolve(this.getProduct(this.state.productId));
     if (!localStorage.outfitList) {
@@ -54,11 +50,8 @@ class App extends React.Component {
     }
   }
 
-  // update localStorage whenever outfitList in state is updated
   componentDidUpdate() {
     localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
-    //not working ML
-    // localStorage.setItem('productId', JSON.stringify(this.state.productId));
   }
 
   getProduct(id) {
