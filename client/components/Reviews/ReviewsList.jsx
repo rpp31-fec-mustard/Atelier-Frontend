@@ -1,94 +1,93 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
 import SortBy from './SortBy.jsx';
 import AddReviewModal from './AddReviewModal/AddReviewModal.jsx';
-import trackPost from './trackPost.jsx';
-import track from 'react-tracking';
+import { useTracking } from 'react-tracking';
 
+const ReviewsList = (props) => {
+  const [showing, setShowing] = useState(2);
+  const [modal, setModal] = useState(false);
+  const { Track, trackEvent } = useTracking({},
+    {
+      dispatch: data => {
+        console.log(data);
+        // axios.post('/interactions', {
+        //   time: data.time,
+        //   element: data.element,
+        //   widget: data.widget
+        // })
+        //   .catch((error) => {
+        //     console.log('Client unable to post interaction: ', error);
+        //   });
+      }
+    });
 
-// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-//   trackPost(data)
-//  }})
-
-class ReviewsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showing: 2,
-      modal: false
-    };
-  }
-
-  displayReviewsList() {
-    if (this.props.list.length !== 0) {
+  const displayReviewsList = () => {
+    if (props.list.length !== 0) {
       return (
         <div className="reviewEntry_container">
-        {this.props.list.filter((review, i) => i < this.state.showing).map((currReview, i) => {
-          return (
-            <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={this.props.productInfo.id} />
-          );
-        })}
-      </div>
-      )
-    } else {
-      return null
-    }
-  }
-
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productInfo.id,
-      className: 'moreReviews'
-    })
-  }))
-  getMoreReviews(e) {
-    this.setState({
-      showing: this.state.showing + 2
-    });
-  }
-
-  moreReviewsButton(e) {
-    if (this.state.showing !== this.props.list.length && (this.state.showing - 1) !== this.props.list.length) {
-      return <button className='reviewListButton' onClick={this.getMoreReviews.bind(this)}>More Reviews</button>;
-    }
-  }
-
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productInfo.id,
-      className: `addReview`
-    })
-  }))
-  showModal(e) {
-    this.setState({
-      modal: true
-    });
-  }
-
-  closeModal() {
-    this.setState({
-      modal: false
-    });
-  }
-
-  render() {
-    return (
-      <div className="reviewsList_container">
-        <section className='SortByWrapper'>
-          <SortBy list={this.props.list} onChange={this.props.onChange} />
-        </section>
-          {this.displayReviewsList()}
-        <div className='reviewButtons'>
-          {this.moreReviewsButton()}
-          <button className='reviewListButton' onClick={this.showModal.bind(this)}>Add a Review +</button>
-          <AddReviewModal meta={this.props.meta} close={this.closeModal.bind(this)} show={this.state.modal} productInfo={this.props.productInfo} post={this.props.post} sort={this.props.sort}/>
+          {props.list.filter((review, i) => i < showing).map((currReview, i) => {
+            return (
+              <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={props.productInfo.id} />
+            );
+          })}
         </div>
-      </div>
-    );
-  }
-}
+      );
+    } else {
+      return null;
+    }
+  };
 
+  const getMoreReviews = (e) => {
+    trackEvent({
+      time: new Date().toString(),
+      element: JSON.stringify({
+        productId: props.productInfo.id,
+        className: 'reviewListButton show'
+      }),
+      widget: 'Ratings and Reviews'
+    });
+
+    setShowing(showing + 2);
+  };
+
+  const moreReviewsButton = (e) => {
+    if (showing !== props.list.length && (showing - 1) !== props.list.length) {
+      return <button className='reviewListButton show' onClick={getMoreReviews.bind(this)}>More Reviews</button>;
+    } else {
+      return null;
+    }
+  };
+
+  const showModal = (e) => {
+    trackEvent({
+      time: new Date().toString(),
+      element: JSON.stringify({
+        productId: props.productInfo.id,
+        className: 'addReview'
+      }),
+      widget: 'Ratings and Reviews'
+    });
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  return (
+    <div className="reviewsList_container">
+      <section className='SortByWrapper'>
+        <SortBy list={props.list} onChange={props.onChange} />
+      </section>
+      {displayReviewsList()}
+      <div className='reviewButtons'>
+        {moreReviewsButton()}
+        <button className='reviewListButton add' onClick={showModal.bind(this)}>Add a Review +</button>
+        <AddReviewModal meta={props.meta} close={closeModal.bind(this)} show={modal} productInfo={props.productInfo} post={props.post} sort={props.sort} />
+      </div>
+    </div>
+  );
+};
 export default ReviewsList;
 
