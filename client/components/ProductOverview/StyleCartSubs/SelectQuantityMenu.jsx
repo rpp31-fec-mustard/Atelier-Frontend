@@ -1,21 +1,12 @@
-
 import React, {useState, useEffect} from 'react';
-// import ReactDOM from 'react-dom';
-import {DEBUG} from '../ProductOverview.jsx';
+
 
 //can remove size in production
 const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) => {
 
-  // const DEBUG = true;
-  var mlog = DEBUG ? console.log : () => {};
-  var logC = '\x1b[36m';
-
-  mlog(logC + ' SQM ', quantityMax, size);
-
   const [showQuantity, setShowQuantity] = useState(false);
 
   const handleSelectQuantityClick = () => {
-    mlog(logC + ' SQM select qty clicked');
     showQuantity ? setShowQuantity(false) : setShowQuantity(true);
   };
 
@@ -24,31 +15,18 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
   };
 
   const handleSetQuantityClick = (event) => {
-    // console.log(event);
-    // // // console.log('value', value);
-    // console.log('sku', event.target.getAttribute('sku'));
-    // console.log('size', event.target.getAttribute('value'));
-
     handleSetAddQty(event);
     handleSelectQuantityClick();
   };
 
   const handleMouseOverColorChange = (event) => {
-    // console.log('mouseover')
     event.target.setAttribute('style', 'background:#FFDB58; color:black');
-    // event.target.setAttribute('style', 'color:black');
   };
   const handleMouseExitColorChange = (event) => {
-    // console.log('mouseover')
     event.target.setAttribute('style', 'background:gray; color:white');
-    // event.target.setAttribute('style', 'color:white');
   };
 
-
-
-
   let max = parseInt(quantityMax < 15 ? quantityMax : 15);
-  mlog(logC + ' SQM max', max);
   let qtyArray = [];
   for (let i = 1; i < max + 1; i++) {
     qtyArray.push(i);
@@ -56,14 +34,10 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
   if (quantityMax === 0) {
     return (
       <React.Fragment>
-
         <div className='quantity_menu_po' style={{background: 'lightgrey'}}>
           <div className='quantity_display_po'>---</div>
         </div>
       </React.Fragment>
-      // <select name='qty' className='qty_select_po menu_po' id='menu2_po' disabled>
-      //   <option value='' default>---</option>
-      // </select>
     );
   } else if (!showQuantity) {
     return (
@@ -74,10 +48,7 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
         </div>
       </React.Fragment>
     );
-
-
   } else {
-
     return (
       <React.Fragment>
         <div className='quantity_menu_po' onMouseLeave={handleMouseExitCloseMenu}>
@@ -97,4 +68,3 @@ const SelectQuantityMenu = ({quantityMax, size, quantityAdd, handleSetAddQty}) =
 };
 
 export default SelectQuantityMenu;
-

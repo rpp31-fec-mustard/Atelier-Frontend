@@ -83,12 +83,18 @@ html {
   background: var(--mustard-shadow);
 }
 
-.top_text {
+#top_bar h3 {
   margin: 0px 10px;
 }
 
+.top_text {
+  font-family: 'Comforter Brush', cursive;
+  font-size: 64px;
+}
+
 #announcements {
-  margin: 5px;
+  margin: 12px;
+  font-size: 16px;
 }
 
 
@@ -223,8 +229,6 @@ html {
   color: white;
   font-size: 36px;
 }
-
-
 
 .arrow_space_po {
   display: flex;
@@ -462,9 +466,8 @@ position: relative
   position: relative;
   top: -21px;
   right: 3px;
+  color: black;
 }
-
-
 
 /*todo *** *** *** *** add to bag *** *** *** *** */
 
@@ -482,7 +485,6 @@ position: relative
   display: grid;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
 }
-
 
 /*todo ** ** ** ** ** ** ** ** ** ** CHANGES HERE ** ** ** ** ** ** ** ** ** ** **/
 
@@ -514,7 +516,6 @@ position: relative
   justify-content: center;
   width: 80%;
   height: 20px;
-
 }
 
 .out_of_stock_po {
@@ -596,6 +597,7 @@ position: relative
   width: 150px;
   text-align: center;
 }
+
 .favorites_add_button_po {
   grid-column: 7 / 10;
   /* width: 95px; */
@@ -670,7 +672,7 @@ position: relative
   align-items: center;
 
   margin: 0;
-  width: 110%;
+  width: 1116px;
 }
 
 .related-submodule-content {
@@ -1176,7 +1178,6 @@ border: none;
   flex-direction: row;
   width: 900px;
   height: 650px;
-  margin-left: 40px;
   border: none;
   text-align: left;
   justify-content: center;
@@ -1185,7 +1186,6 @@ border: none;
 
 .reviewsTitle {
   border: none;
-  margin-left: 85px;
   border-style: none;
   color: var(--global-border-color);
 }
@@ -1197,7 +1197,7 @@ border: none;
   height: 580px;
   border: none;
   margin-top: 10px;
-  margin-left: 40px;
+  margin-left: 60px;
 }
 
 .ratings_container {
@@ -1208,7 +1208,8 @@ border: none;
   height: 500px;
   color: rgb(59, 58, 58);
   border: none;
-  margin: 31px 40px 0px 50px;
+  margin-left:110px;
+  margin-right: 30px;
 }
 
 .ratingsContent {
@@ -1239,8 +1240,7 @@ border: none;
 }
 
 .reviewEntry_container {
-  width: 100%;
-  /* height: 80%; */
+  width: 740px;
   overflow-y: scroll;
   border: none;
   margin-bottom: 10px;
@@ -1448,22 +1448,33 @@ progress::-webkit-progress-value {
 }
 
 .stars-outer::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 200;
+  content: '\f18b \f18b \f18b \f18b \f18b';
+  font-family: 'remixicon' !important;
 }
 
 .stars-inner::before {
-  content: '\f005 \f005 \f005 \f005 \f005';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
+  content: '\f186 \f186 \f186 \f186 \f186';
+  font-family: 'remixicon' !important;
 }
+
+.breakdownIcon::before{
+  content: '\ea4d';
+  font-family: 'remixicon' !important;
+  position: absolute;
+  z-index: 3;
+ }
+
+ .breakdownIcon {
+   position: absolute;
+   bottom: 12px;
+   font-size: 15px;
+ }
 
 .filter {
   border: none;
   display: flex;
   flex-direction: row;
-  margin-left: 75px;
+  margin-bottom: 10px;
 }
 
 .filterMessage {
@@ -1491,6 +1502,7 @@ progress::-webkit-progress-value {
   font-size: 12px;
   width: 240px;
   margin: 12px 0 12px 0;
+  position: relative;
 }
 
 .characteristicName {
@@ -1550,7 +1562,8 @@ text-align: right;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(87, 59, 59, 0.938);
+  background-color: rgba(255, 219, 88, 0.75);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1584,7 +1597,8 @@ text-align: right;
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(87, 59, 59, 0.938);
+  background-color: rgba(255, 219, 88, 0.75);
+  backdrop-filter: blur(2px);
   display: flex;
   text-align: center;
   align-items: center;
@@ -1686,6 +1700,10 @@ p {
   cursor: pointer;
   font-weight: bold;
   border: none;
+
+  position: relative;
+  top: 15px;
+  left: 375px;
 }
 
 
@@ -1755,10 +1773,11 @@ body::-webkit-scrollbar-thumb {
   border-radius: 3px;
   }
 
-  :root {
-    --dark-mode-light: rgb(90, 90, 90);
-    --dark-mode-dark: rgb(44, 44, 44);
-    /* --mustard: #FFDB58;
-    --mustard-shadow: #d09821;
-    --global-border-color: rgb(125, 125, 125); */
-  }
+:root {
+  --dark-mode-light: rgb(90, 90, 90);
+  --dark-mode-dark: rgb(44, 44, 44);
+  /* --mustard: #FFDB58;
+  --mustard-shadow: #d09821;
+  --global-border-color: rgb(125, 125, 125); */
+}
+

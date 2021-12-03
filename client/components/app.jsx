@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable func-style */
 import React from 'react';
 import axios from 'axios';
@@ -8,26 +9,18 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import Related from './Related/Related.jsx';
 import QA from './QA/QA.jsx';
 import Reviews from './Reviews/Reviews.jsx';
-import defaultOnLoad from './defaultOnLoad.jsx';
+import defaultProduct from './defaultProduct.jsx';
 import checkOutfitListPresence from './Global/checkOutfitListPresence.jsx';
-
-// fixtures
-import fixtures from '../../test/fixtures.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productId: '59553', //testing
-      product: fixtures.product, //testing
+      productId: '59553',
+      product: defaultProduct.product,
       total: '0',
-      darkMode: true,  //testing
-      // darkMode: false,
-
-      // productId: '59601', //testing ML
-      // product: defaultOnLoad.productOnLoad, //testing
-      outfitList: []
-
+      outfitList: [],
+      darkMode: false
     };
     this.sendNumber = this.sendNumber.bind(this);
     this.handleDarkModeClick = this.handleDarkModeClick.bind(this);
@@ -57,9 +50,15 @@ class App extends React.Component {
       });
   }
 
-  //off for testing ML
   componentDidMount() {
-    Promise.resolve(this.getProduct(this.state.productId));
+    // initialize product and productId from localStorage if exists
+    if (localStorage.product) {
+      const product = JSON.parse(localStorage.getItem('product'));
+      this.setState({product});
+      this.setState({productId: product.id});
+    }
+
+    // initialize outfitList as empty array if new user without localStorage
     if (!localStorage.outfitList) {
       this.setState({outfitList: []});
     } else {
@@ -69,11 +68,9 @@ class App extends React.Component {
     this.setState({});
   }
 
-  // update localStorage whenever outfitList in state is updated
   componentDidUpdate() {
+    localStorage.setItem('product', JSON.stringify(this.state.product));
     localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
-    //not working ML
-    // localStorage.setItem('productId', JSON.stringify(this.state.productId));
   }
 
   getProduct(id) {
@@ -84,7 +81,6 @@ class App extends React.Component {
     })
       .then((res) => {
         this.setState({product: res.data});
-        // }
       })
       .catch((error) => {
         console.log('Error retrieving product/all: ', error);
@@ -134,7 +130,6 @@ class App extends React.Component {
         <div className='dark_mode_toggle' onClick={this.handleDarkModeClick}>Dark</div>
         <TempTopBanner sendNumber={this.sendNumber}/>
         <ProductOverview
-          id={this.state.productId}
           product={this.state.product}
           total={this.state.total}
           darkMode={this.state.darkMode}

@@ -6,6 +6,12 @@ import ProductComparison from './Comparison.jsx';
 import Price from '../Global/Price.jsx';
 import Stars from '../Global/Stars.jsx';
 
+const resizeImg = (url, pixelWidth) => {
+  let resultUrl = '';
+  resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
+  return resultUrl;
+};
+
 const ProductCard = (props) => {
   const { trackEvent } = useTracking();
   const [{ isHovering, x, y }, setHoverState] = React.useState({
@@ -18,7 +24,7 @@ const ProductCard = (props) => {
   // setting image in cases of null image
   let image = props.product.thumbnailUrl ? (
     <img
-      src={props.product.thumbnailUrl}
+      src={resizeImg(props.product.thumbnailUrl, 'auto=format&h=200&fit=clamp&q=80')}
       className="prod-card-img"
       alt={props.product.name}
       loading="lazy"

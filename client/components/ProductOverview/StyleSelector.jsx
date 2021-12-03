@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import StyleThumbnail from './StyleCartSubs/StyleThumbnail.jsx';
 import AddToCart from './AddToCart.jsx';
-import {DEBUG} from './ProductOverview.jsx';
 
 const StyleSelector = ({
   styles,
@@ -13,12 +12,6 @@ const StyleSelector = ({
   toggleProductToOutfitList,
   isProductInOutfitList,
 }) => {
-  // const DEBUG = false;
-  var mlog = (DEBUG) ? console.log : () => {};
-
-  mlog('SS styleSelector:', styles);
-  mlog('SS currentStyleIndex:', currentStyleIndex);
-  mlog('SS singleStyle:', styles[currentStyleIndex]);
 
   if (styles) {
     let styleIndex = -1;
@@ -32,8 +25,6 @@ const StyleSelector = ({
           <div className='style_row_thumbnail_po'>
             {
               styles.map((style) => {
-                mlog('i', style);
-                mlog('id', style.style_id);
                 styleIndex++;
                 return (
                   <StyleThumbnail key={`ST${styleIndex}`}
@@ -57,11 +48,9 @@ const StyleSelector = ({
       </React.Fragment>
     );
   } else {
-    mlog('state undefined: props not correct. component load delayed');
+    console.log('state undefined: props not correct. component load delayed');
     return <div>props load delayed</div>;
   }
 };
 
 export default StyleSelector;
-
-// npm test -- ReactTestLib.test.js --coverage --collectCoverageFrom='../client/components/ProductOverview/StyleSelector.jsx'

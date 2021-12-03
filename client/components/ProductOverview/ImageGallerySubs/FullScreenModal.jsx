@@ -1,25 +1,18 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-// import { fromEvent } from 'rxjs';
+
 import ArrowLeft from './ArrowLeft.jsx';
 import ArrowRight from './ArrowRight.jsx';
 import ImageIconBar from './ImageIconBar.jsx';
 
-import {DEBUG} from '../ProductOverview.jsx';
 
 const FullScreenModal = ({currentStyle, productName, photoIndex, isShowing, onClose,
   imageLeftClick, imageRightClick, handleThumbnailClick, photoIndexMax }) => {
-  // const DEBUG = true;
-  var mlog = DEBUG ? console.log : () => {};
-  var logC = '\x1b[35m';
 
   if (!isShowing) { return null; }
 
   const photos = currentStyle.photos;
-  // console.log('tests', photos)
   const altText = `${productName} in ${currentStyle.name }`;
-  mlog('FSM altText', altText);
 
-  // const [photoIndex, setPhotoIndex] = useState(index);
   const [zoom, setZoom] = useState(false);
   const [panImage, setPanImage] = useState(false);
 
@@ -72,12 +65,10 @@ const FullScreenModal = ({currentStyle, productName, photoIndex, isShowing, onCl
 
   let leftArrowIcon = <i className="ri-arrow-left-s-line"></i>;
   let rightArrowIcon = <i className="ri-arrow-right-s-line"></i>;
-  console.log('FSM photoIndex', photoIndex);
 
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
-    console.log(resultUrl);
     return resultUrl;
   };
 

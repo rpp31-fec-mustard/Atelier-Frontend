@@ -1,10 +1,5 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
-export var DEBUG = false;
-// DEBUG = true;
-var mlog = (DEBUG) ? console.log : () => {};
-var logC = '\x1b[33m';
-
 import React, {useRef, useState, useEffect, useLayoutEffect} from 'react';
 import axios from 'axios';
 
@@ -12,33 +7,23 @@ import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
-import defaultOnLoad from '../defaultOnLoad.jsx';
-// fixtures
-import fixtures from '../../../test/fixtures.js';
+import defaultProduct from '../defaultProduct.jsx';
 
 
 const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList, darkMode}) => {
 
   const [currentStyleIndex, setStyleIndex] = useState(0);
-  const [styles, setStyles] = useState(fixtures.styles); //testing
-  // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
+  const [styles, setStyles] = useState(defaultProduct.styles);
   const [review, setReview] = useState(false);
-  // mlog(logC + ' PO product :', product);
-  // mlog('PO id :', id);
-  mlog(logC + ' PO styles:', styles);
-  // mlog(logC + ' PO productId:', id);
-  // mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = () => {
-    // mlog('this.props.product.id :', productId);
     axios.get('/product/styles', {
       params: {
-        productId: id
+        productId: product.id
       }
     })
       .then((res) => {
-        // mlog(logC + ' PO res product/styles:', res.data);
         setStyles(res.data);
       })
       .catch((err) => {
@@ -46,15 +31,13 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       });
   };
 
-  const getProductReviews = () => {
-    // mlog('this.props.product.id :', productId);
+  const getProductReviews = (id) => {
     axios.get('/getReviews', {
       params: {
         productId: id
       }
     })
       .then((res) => {
-        // mlog(logC + ' PO res product/reviews:', res.data);
         setReview(!!res.data.reviewsArr.length);
       })
       .catch((err) => {
@@ -64,32 +47,30 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
 
 
-  // const loaded = useRef(true); //testing
-  const loaded = useRef(false); //for testing Ml
+  const loaded = useRef(true); //testing
+  // const loaded = useRef(false); //for testing Ml
+
+  useEffect(() => {
+    if (localStorage.styles) {
+      setStyles(JSON.parse(localStorage.getItem('styles')));
+    }
+  }, []);
 
   useEffect(async () => {
-    if (loaded.current) {
-      // mlog(logC + ' useEffect triggered by id change', id);
-      await getProductStyles(id);
-      await getProductReviews(id);
-      setStyleIndex(0);
-    } else {
-      loaded.current = true;
-    }
-  }, [id]);
-
+    getProductStyles(product.id);
+    localStorage.setItem('styles', JSON.stringify(styles));
+    getProductReviews(product.id);
+    setStyleIndex(0);
+  }, [product]);
 
 
   const handleStyleOnClick = (selectedStyleIndex) => {
-    // mlog('PO handleStyleOnClick setIndex', styleIndex);
     setStyleIndex(selectedStyleIndex);
   };
 
 
   // if (styles !== undefined) {
 
-    // mlog('state defined: component load executed');
-  // mlog(logC + ' PO product destructure:', product );
   const {
     description,
     name,
@@ -98,19 +79,17 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
     slogan,
     features
   } = product;
-  // mlog(logC + ' features', features);
-
-  mlog(logC + 'PO bug styles', styles);
-  mlog(logC + 'PO bug currentStyleIndex', currentStyleIndex);
 
   return (
     <React.Fragment>
       <div className='module_container dm-' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-            productId={id}
+            productId={id}  //check which to keep
+            // productId={product.id}  //check which to keep
             productName={product.name}
-            darkMode={darkMode}/>
+            darkMode={darkMode}
+          />
           <div className='right02'>
             <div className='stars_po'>
               <Stars productId={product.id} total={total} />
@@ -128,10 +107,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
             <div className='name_block_po'>
               <p id='category_po'>{category}</p>
               <p id='name_po'>{name}</p>
-              {/* <p id='name_po'>first line second line</p> */}
             </div>
             <div className='price_po'>
-              {/* eslint-disable-next-line camelcase, no-multi-spaces */}
               <Price salePrice={styles.results[currentStyleIndex].sale_price}
                 originalPrice={styles.results[currentStyleIndex].original_price}/>
             </div>
@@ -139,7 +116,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
               styles={styles.results}
               currentStyleIndex={currentStyleIndex}
               productName={name}
-              productId={id}
+              productId={product.id}
               handleStyleOnClick={handleStyleOnClick}
               toggleProductToOutfitList={toggleProductToOutfitList}
               isProductInOutfitList={isProductInOutfitList}
@@ -155,7 +132,6 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
             Highlights:<br/>
             {
               features.map((feature, index) => {
-                // mlog(logC + 'feature', feature);
                 return (
                   <div key={`F${index}`}>{feature.value} {feature.feature}</div>);
               })
@@ -166,10 +142,9 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
     </React.Fragment>
   );
   // } else {
-  //   mlog('state undefined: props not correct. component load delayed');
+  //   console.log('state undefined: props not correct. component load delayed');
   //   return <div>props load delayed</div>;
   // }
 };
-
 
 export default ProductOverview;
