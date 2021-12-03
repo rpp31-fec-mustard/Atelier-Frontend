@@ -1445,7 +1445,6 @@ progress::-webkit-progress-value {
   content: '\ea4d';
   font-family: 'remixicon' !important;
   position: absolute;
-  /* left: 100px; */
   z-index: 3;
  }
 
