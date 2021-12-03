@@ -217,6 +217,6 @@ describe('CharactertisticBreakdown Component', () => {
 
   test('checks if rating is converted to percent and added to style in indicator element', () => {
     const wrapper = mount( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
-    expect(wrapper.find('i').props().style).toEqual({left: '55%'});
+    expect(wrapper.find('i').props().style).toEqual({left: '53%'});
   });
 });
