@@ -29,7 +29,6 @@ const ProductCard = (props) => {
 
   //dark mode
   let darkModeClass1 = props.darkMode ? 'dm' : '';
-  console.log('darkModeClass1 :', darkModeClass1);
 
   return (
     <React.Fragment>
@@ -51,9 +50,11 @@ const ProductCard = (props) => {
           outfitList={props.outfitList}
         />
 
-        <div className="prod-card-wrapper dm-">
+        <div className="prod-card-wrapper">
           <button
-            className={props.product.id}
+            // className={props.product.id}
+            className={darkModeClass1}  //switched for dark mode
+            id={props.product.id}  //added for dark mode
             onClick={(event) => {
               props.renderRelated(event);
               trackEvent({
@@ -68,8 +69,8 @@ const ProductCard = (props) => {
             aria-label={`${props.product.name}`}
           >
             <div className="prod-card-img-wrapper">{image}</div>
-            <div className="prod-card-info-wrapper dm-">
-              <div className="prod-card-category dm-">{props.product.category}</div>
+            <div className="prod-card-info-wrapper">
+              <div className="prod-card-category">{props.product.category}</div>
               <div className="prod-card-name">{props.product.name}</div>
               <Price
                 originalPrice={props.product.originalPrice}

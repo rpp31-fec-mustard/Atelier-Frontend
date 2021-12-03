@@ -92,7 +92,8 @@ class App extends React.Component {
   }
 
   async renderRelated(event) {
-    const relatedId = event.target.closest('button').className;
+    const relatedId = event.target.closest('button').id;  //switched for dark mode
+    // const relatedId = event.target.closest('button').className;
     await this.setState({productId: relatedId});
     this.getProduct(this.state.productId);
   }

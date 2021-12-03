@@ -1,7 +1,7 @@
 /*eslint indent: ["error", 2, {"ignoreComments":true}]*/
 
 export var DEBUG = false;
-DEBUG = true;
+// DEBUG = true;
 var mlog = (DEBUG) ? console.log : () => {};
 var logC = '\x1b[33m';
 
@@ -100,8 +100,8 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
   } = product;
   // mlog(logC + ' features', features);
 
-    mlog(logC + 'PO bug styles', styles);
-    mlog(logC + 'PO bug currentStyleIndex', currentStyleIndex)
+  mlog(logC + 'PO bug styles', styles);
+  mlog(logC + 'PO bug currentStyleIndex', currentStyleIndex);
 
   return (
     <React.Fragment>

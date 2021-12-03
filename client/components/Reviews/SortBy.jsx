@@ -6,7 +6,7 @@ const SortBy = (props) => {
     <form className='sortBy'>
       <label> {props.list.length} reviews, Sorted by
       </label>
-      <select value={props.selected} onChange={props.onChange} name="sortBy" className="sortByButton">
+      <select value={props.selected} onChange={props.onChange} name="sortBy" className="sortByButton dmSB">
         <option>relevance</option>
         <option>newest</option>
         <option>most helpful</option>
