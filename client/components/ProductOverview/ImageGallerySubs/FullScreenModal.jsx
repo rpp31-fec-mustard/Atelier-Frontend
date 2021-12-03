@@ -88,7 +88,7 @@ const FullScreenModal = ({currentStyle, productName, photoIndex, isShowing, onCl
       <div className='main_image_exp_po' >
         <div className='arrow_box_exp_po a_left_po' onClick={imageLeftClick}>{leftArrowIcon}</div>
         <img className='inner_image_exp_po'
-          src={photos[photoIndex].url, 'auto=format&w=2000&h=2000&fit=clip&q=80'}
+          src={resizeUrl2(photos[photoIndex].url, 'auto=format&w=2000&h=2000&fit=clip&q=80')}
           alt={altText}
           onClick={onClickZoomImage}
           onMouseMove={moveMousePanImage}

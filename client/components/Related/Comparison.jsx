@@ -15,7 +15,7 @@ const hasMetric = (product, metric) => {
 
 const ProductComparison = (props) => {
   return (
-    <div className="prod-comparison-wrapper" style={{top: `${props.position.y - 250}px`, left: `${props.position.x - 140}px`}}>
+    <div className="prod-comparison-wrapper dm-2" style={{top: `${props.position.y - 250}px`, left: `${props.position.x - 140}px`}}>
       <table>
         <thead>
           <tr>

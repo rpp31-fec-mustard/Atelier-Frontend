@@ -216,7 +216,7 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      <div id='ratings_reviews' className='module_container'>
+      <div id='ratings_reviews' className='module_container dm-'>
         <div className='reviewsTitle'>
           <h3> Ratings and Reviews </h3>
         </div>

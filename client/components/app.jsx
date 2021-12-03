@@ -1,6 +1,7 @@
 /* eslint-disable func-style */
 import React from 'react';
 import axios from 'axios';
+import $ from 'jquery';
 
 import TempTopBanner from './TempTopBanner.jsx';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
@@ -20,6 +21,7 @@ class App extends React.Component {
       productId: '59553', //testing
       product: fixtures.product, //testing
       total: '0',
+      darkMode: false,
 
       // productId: '59601', //testing ML
       // product: defaultOnLoad.productOnLoad, //testing
@@ -27,7 +29,17 @@ class App extends React.Component {
 
     };
     this.sendNumber = this.sendNumber.bind(this);
+    this.handleDarkModeClick = this.handleDarkModeClick.bind(this);
   }
+
+
+  //! dark mode toggle
+  handleDarkModeClick() {
+    this.state.darkMode ? this.setState({darkMode: false}) : this.setState({darkMode: true});
+  }
+
+
+
 
   //! testing only
   sendNumber(id) {
@@ -51,7 +63,9 @@ class App extends React.Component {
       this.setState({outfitList: []});
     } else {
       this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
+      // this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList')), productId: JSON.parse(localStorage.getItem('productId'))});
     }
+    this.setState({});
   }
 
   // update localStorage whenever outfitList in state is updated
@@ -100,9 +114,22 @@ class App extends React.Component {
     }
   }
 
+
+
   render () {
+    if (this.state.darkMode) {
+      let darkModeClass1 = 'dm';
+      $('body').addClass('dm');
+      console.log('darkmode on');
+    } else {
+      let darkModeClass1 = '';
+      $('body').removeClass('dm');
+      console.log('darkmode off');
+    }
+
     return (
       <React.Fragment>
+        <div className='dark_mode_toggle' onClick={this.handleDarkModeClick}>Dark</div>
         <TempTopBanner sendNumber={this.sendNumber}/>
         <ProductOverview
           id={this.state.productId}

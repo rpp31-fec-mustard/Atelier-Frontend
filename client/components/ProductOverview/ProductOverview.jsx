@@ -103,7 +103,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
   return (
     <React.Fragment>
-      <div className='module_container' id='product_overview_main' >
+      <div className='module_container dm-' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
             productId={id}

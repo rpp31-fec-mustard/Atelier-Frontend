@@ -47,7 +47,7 @@ const ProductCard = (props) => {
           outfitList={props.outfitList}
         />
 
-        <div className="prod-card-wrapper">
+        <div className="prod-card-wrapper dm-">
           <button
             className={props.product.id}
             onClick={(event) => {
@@ -64,8 +64,8 @@ const ProductCard = (props) => {
             aria-label={`${props.product.name}`}
           >
             <div className="prod-card-img-wrapper">{image}</div>
-            <div className="prod-card-info-wrapper">
-              <div className="prod-card-category">{props.product.category}</div>
+            <div className="prod-card-info-wrapper dm-">
+              <div className="prod-card-category dm-">{props.product.category}</div>
               <div className="prod-card-name">{props.product.name}</div>
               <Price
                 originalPrice={props.product.originalPrice}

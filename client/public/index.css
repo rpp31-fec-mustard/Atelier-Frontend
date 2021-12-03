@@ -21,9 +21,17 @@ html {
   border: none;
 }
 
+.dark_mode_toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: grey;
+}
+
 /* GLOBAL VARIABLES */
 
 :root {
+  --mustard-light: rgb(255, 239, 170, 0.7);
   --mustard: #FFDB58;
   --mustard-shadow: #d09821;
   --global-border-color: rgb(125, 125, 125);
@@ -406,6 +414,7 @@ html {
 .text_po {
   padding: 0px;
   margin: 0px;
+  font-size: 14px;
   padding: var(--po-info-text-padding);
 }
 
@@ -562,6 +571,9 @@ position: relative
   /* width: 130px; */
   height: 50%;
   margin: 10px 0px;
+  height: 25px;
+  border-radius: 4px;
+  border: solid 1px black;
 }
 
 .size_alert_po{
@@ -604,7 +616,7 @@ position: relative
 .favorites_off_po {
   color: gray;
   font-size: 24px;
-  background: lightgrey;
+  background: rgb(239, 239, 239);
   border: solid 1px black;
 }
 
@@ -827,8 +839,9 @@ position: relative
   position: fixed;
   width: var(--comparison-width);
   z-index: 1;
-
-  background-color: rgba(255, 255, 255, 0.804);
+/*
+  background-color: rgba(255, 255, 255, 0.804); */
+  background: var(--mustard-light);
   backdrop-filter: blur(5px);
   text-align: center;
   pointer-events: none;
@@ -1668,4 +1681,24 @@ p {
   cursor: pointer;
   font-weight: bold;
   border: none;
+}
+
+
+/* dark mode override */
+.dm {
+  color: rgb(236, 236, 236);
+  background: rgb(54, 54, 54);
+}
+
+.dm2 {
+  background: rgb(94, 94, 94, 0.6);
+}
+
+/* body {
+  background: rgb(54, 54, 54);
+
+} */
+
+.scrollable-element {
+  scrollbar-color: grey rgb(54, 54, 54);
 }

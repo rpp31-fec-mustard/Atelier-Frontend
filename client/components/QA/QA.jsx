@@ -52,7 +52,7 @@ class QA extends React.Component {
 
   render () {
     return (
-      <div id="qa-module" className="module_container">
+      <div id="qa-module" className="module_container dm-">
         <div className="qa-title">
           <h3>QUESTIONS & ANSWERS</h3>
         </div>

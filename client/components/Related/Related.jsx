@@ -72,7 +72,7 @@ const Related = (props) => {
 
   return (
     <Track>
-      <section id="related-main" className="module_container">
+      <section id="related-main" className="module_container dm-">
         <RelatedProducts
           productId={productId}
           relatedProducts={relatedProducts}
