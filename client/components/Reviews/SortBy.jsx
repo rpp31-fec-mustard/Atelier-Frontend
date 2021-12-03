@@ -6,15 +6,14 @@ const SortBy = (props) => {
   const { Track, trackEvent } = useTracking({},
     {
       dispatch: data => {
-        console.log(data);
-        // axios.post('/interactions', {
-        //   time: data.time,
-        //   element: data.element,
-        //   widget: data.widget
-        // })
-        //   .catch((error) => {
-        //     console.log('Client unable to post interaction: ', error);
-        //   });
+        axios.post('/interactions', {
+          time: data.time,
+          element: data.element,
+          widget: data.widget
+        })
+          .catch((error) => {
+            console.log('Client unable to post interaction: ', error);
+          });
       }
     });
 
