@@ -3,12 +3,6 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
-import track from 'react-tracking';
-import trackPost from './trackPost.jsx'
-
-// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-//  trackPost(data)
-// }})
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -24,18 +18,18 @@ class Reviews extends React.Component {
   }
 
   adjustMeta(reviews, meta) {
-    let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
-    let recommended = {false: 0, true: 0}
+    let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+    let recommended = {false: 0, true: 0};
     for (var i = 0; i < reviews.length; i++) {
-      ratingBreakdown[reviews[i].rating]++
+      ratingBreakdown[reviews[i].rating]++;
       if (reviews[i].recommend) {
-        recommended.true++
+        recommended.true++;
       } else {
-        recommended.false++
+        recommended.false++;
       }
     }
-    meta.ratings = ratingBreakdown
-    meta.recommended = recommended
+    meta.ratings = ratingBreakdown;
+    meta.recommended = recommended;
   }
 
   get(option) {
@@ -45,12 +39,18 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      this.adjustMeta(result.data.reviewsArr, result.data.meta)
-      this.setState({
-        allReviews: result.data.reviewsArr,
-        displayedReviews: result.data.reviewsArr,
-        reviewMeta: result.data.meta,
-      });
+      this.adjustMeta(result.data.reviewsArr, result.data.meta);
+      if (this.state.starFilter.length === 0) {
+        if (result) {
+          this.setState({
+            allReviews: result.data.reviewsArr,
+            displayedReviews: result.data.reviewsArr,
+            reviewMeta: result.data.meta
+          });
+        }
+      } else {
+        this.filterReviews(result.data.reviewsArr, result.data.meta, this.state.starFilter);
+      }
       this.props.updateTotal(result.data.reviewsArr.length);
     })
       .catch((err) => {
@@ -93,64 +93,42 @@ class Reviews extends React.Component {
     }
   }
 
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productId,
-      className: `sortBy: ${event.target.value}`
-    })
-  }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
         productId: this.state.id,
         sort: this.state.sorted,
       };
-      this.get(options).then((result) => {
-        if (this.state.starFilter.length === 0) {
-          if (result) {
-            this.setState({
-              allReviews: result.reviewsArr,
-              displayedReviews: result.reviewsArr
-            });
-          }
-        } else {
-          this.filterReviews(result.reviewsArr, this.state.starFilter);
-        }
-      }).catch((err) => {
+      this.get(options).catch((err) => {
         throw err;
       });
     });
   }
 
 
-  filterReviews(reviews, filter) {
+  filterReviews(reviews, meta, filter) {
     let filteredReviews = [];
-    for (var i = 0; i < reviews.length; i++) {
-      for (var j = 0; j < filter.length; j++) {
-        if (reviews[i].rating.toString() === filter[j]) {
-          filteredReviews.push(reviews[i]);
+    if (filter) {
+      for (var i = 0; i < reviews.length; i++) {
+        for (var j = 0; j < filter.length; j++) {
+          if (reviews[i].rating.toString() === filter[j]) {
+            filteredReviews.push(reviews[i]);
+          }
         }
       }
+      this.setState({
+        allReviews: reviews,
+        displayedReviews: filteredReviews,
+        reviewMeta: meta
+      });
     }
-    this.setState({
-      allReviews: reviews,
-      displayedReviews: filteredReviews
-    });
   }
 
-
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productId,
-      className: `reviewFilter: ${event.target.innerText}`
-    })
-  }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
     let allReviews = this.state.allReviews;
     let starFilter = this.state.starFilter;
+    let meta = this.state.reviewMeta;
     let filteredReviews = [];
     if (starFilter.length === 0) {
       starFilter.push(clickedStar);
@@ -173,11 +151,11 @@ class Reviews extends React.Component {
             starFilter: []
           });
         } else {
-          this.filterReviews(allReviews, starFilter);
+          this.filterReviews(allReviews, meta, starFilter);
         }
       } else {
         starFilter.push(clickedStar);
-        this.filterReviews(allReviews, starFilter);
+        this.filterReviews(allReviews, meta, starFilter);
       }
     }
   }

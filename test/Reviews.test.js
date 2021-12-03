@@ -152,11 +152,17 @@ describe('ReviewsList Component', () => {
     expect(wrapper).toHaveLength(1);
   });
 
-  test('checks if getMoreReviews function adjusts state', () => {
+  test('checks if only two reviews are displayed', () => {
     let id = {id: 59553};
-    const wrapper = shallow( < ReviewsList list = {fixtures.reviews} productInfo={id} />);
-    wrapper.instance().getMoreReviews();
-    expect(wrapper.state('showing')).toEqual(4);
+    const wrapper = mount( < ReviewsList list={fixtures.reviews} productInfo={id} meta={fixtures.meta} />);
+    expect(wrapper.find('.reviewEntry').length).toEqual(2);
+  });
+
+  test('checks if show more reviews button adds two reviews', () => {
+    let id = {id: 59553};
+    const wrapper = mount( < ReviewsList list={fixtures.reviews} productInfo={id} meta={fixtures.meta} />);
+    wrapper.find('.show').simulate('click');
+    expect(wrapper.find('.reviewEntry').length).toEqual(4);
   });
 });
 
@@ -217,6 +223,6 @@ describe('CharactertisticBreakdown Component', () => {
 
   test('checks if rating is converted to percent and added to style in indicator element', () => {
     const wrapper = mount( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
-    expect(wrapper.find('i').props().style).toEqual({left: '55%'});
+    expect(wrapper.find('i').props().style).toEqual({left: '53%'});
   });
 });

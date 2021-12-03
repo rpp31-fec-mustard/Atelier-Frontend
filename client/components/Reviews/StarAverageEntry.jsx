@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTracking } from 'react-tracking';
+import axios from 'axios';
 
 const order = (star) => {
   if (star === 1) {
@@ -24,8 +26,33 @@ const getAveragePercent = (num, total) => {
 };
 
 const StarAverageEntry = (props) => {
+  const { Track, trackEvent } = useTracking({},
+    {
+      dispatch: data => {
+        axios.post('/interactions', {
+          time: data.time,
+          element: data.element,
+          widget: data.widget
+        })
+          .catch((error) => {
+            console.log('Client unable to post interaction: ', error);
+          });
+      }
+    });
+
+  const track = () => {
+    trackEvent({
+      time: new Date().toString(),
+      element: JSON.stringify({
+        productId: props.productId,
+        className: 'numStar filter'
+      }),
+      widget: 'Ratings and Reviews'
+    });
+  };
+
   return (
-    <div className='star'>
+    <div className='star' onClick={track}>
       <div className='numStar' onClick={props.handleChange.bind(this)}>{order(props.star)} stars:
       </div>
       <progress className="star_bar" max="100" value={getAveragePercent(props.average, props.total)}> </progress>
