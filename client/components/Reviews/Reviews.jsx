@@ -3,12 +3,6 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import FilterDisplay from './FilterDisplay.jsx';
-import track from 'react-tracking';
-import trackPost from './trackPost.jsx'
-
-// @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
-//  trackPost(data)
-// }})
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -24,18 +18,18 @@ class Reviews extends React.Component {
   }
 
   adjustMeta(reviews, meta) {
-    let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
-    let recommended = {false: 0, true: 0}
+    let ratingBreakdown = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0};
+    let recommended = {false: 0, true: 0};
     for (var i = 0; i < reviews.length; i++) {
-      ratingBreakdown[reviews[i].rating]++
+      ratingBreakdown[reviews[i].rating]++;
       if (reviews[i].recommend) {
-        recommended.true++
+        recommended.true++;
       } else {
-        recommended.false++
+        recommended.false++;
       }
     }
-    meta.ratings = ratingBreakdown
-    meta.recommended = recommended
+    meta.ratings = ratingBreakdown;
+    meta.recommended = recommended;
   }
 
   get(option) {
@@ -45,7 +39,7 @@ class Reviews extends React.Component {
       method: 'get'
     };
     return axios.request(options).then((result) => {
-      this.adjustMeta(result.data.reviewsArr, result.data.meta)
+      this.adjustMeta(result.data.reviewsArr, result.data.meta);
       this.setState({
         allReviews: result.data.reviewsArr,
         displayedReviews: result.data.reviewsArr,
@@ -93,13 +87,6 @@ class Reviews extends React.Component {
     }
   }
 
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productId,
-      className: `sortBy: ${event.target.value}`
-    })
-  }))
   handleSortedList(e) {
     this.sortListOnChange(e, () => {
       let options = {
@@ -139,14 +126,6 @@ class Reviews extends React.Component {
     });
   }
 
-
-  @track((props, state, [event]) => ({
-    time: new Date().toString(),
-    element: JSON.stringify({
-      productId: props.productId,
-      className: `reviewFilter: ${event.target.innerText}`
-    })
-  }))
   handleStarChange(e) {
     let clickedStar = e.target.innerText[0];
     let allReviews = this.state.allReviews;

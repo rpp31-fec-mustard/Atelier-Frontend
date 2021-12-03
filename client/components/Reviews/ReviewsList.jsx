@@ -10,15 +10,14 @@ const ReviewsList = (props) => {
   const { Track, trackEvent } = useTracking({},
     {
       dispatch: data => {
-        console.log(data);
-        // axios.post('/interactions', {
-        //   time: data.time,
-        //   element: data.element,
-        //   widget: data.widget
-        // })
-        //   .catch((error) => {
-        //     console.log('Client unable to post interaction: ', error);
-        //   });
+        axios.post('/interactions', {
+          time: data.time,
+          element: data.element,
+          widget: data.widget
+        })
+          .catch((error) => {
+            console.log('Client unable to post interaction: ', error);
+          });
       }
     });
 
@@ -78,7 +77,7 @@ const ReviewsList = (props) => {
   return (
     <div className="reviewsList_container">
       <section className='SortByWrapper'>
-        <SortBy list={props.list} onChange={props.onChange} />
+        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo} />
       </section>
       {displayReviewsList()}
       <div className='reviewButtons'>

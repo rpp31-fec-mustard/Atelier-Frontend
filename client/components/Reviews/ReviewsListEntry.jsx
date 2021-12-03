@@ -3,6 +3,7 @@ import axios from 'axios';
 import Thumbnail from './ReviewThumbnail.jsx';
 import ImgModal from './ImgModal.jsx';
 import Stars from '../Global/Stars.jsx';
+import { useTracking } from 'react-tracking';
 
 const ReviewsListEntry = (props) => {
   const [rating, setRating] = useState(0);
@@ -13,6 +14,19 @@ const ReviewsListEntry = (props) => {
   const [img, setImg] = useState('');
   const [reported, setReported] = useState(false);
   const [modal, setModal] = useState(false);
+  const { Track, trackEvent } = useTracking({},
+    {
+      dispatch: data => {
+        axios.post('/interactions', {
+          time: data.time,
+          element: data.element,
+          widget: data.widget
+        })
+          .catch((error) => {
+            console.log('Client unable to post interaction: ', error);
+          });
+      }
+    });
 
   const wouldRecommend = () => {
     if (props.review.recommend) {
@@ -95,6 +109,14 @@ const ReviewsListEntry = (props) => {
   const handleYesClick = (e) => {
     e.preventDefault();
     // let num = this.state.helpful;
+    trackEvent({
+      time: new Date().toString(),
+      element: JSON.stringify({
+        productId: props.productId,
+        className: 'helpful'
+      }),
+      widget: 'Ratings and Reviews'
+    });
     if (!localStorage.getItem(props.review.review_id)) {
       localStorage.setItem(props.review.review_id, true);
       setHelpful(helpful + 1);
@@ -108,6 +130,14 @@ const ReviewsListEntry = (props) => {
 
   const handleReportClick = (e) => {
     e.preventDefault();
+    trackEvent({
+      time: new Date().toString(),
+      element: JSON.stringify({
+        productId: props.productId,
+        className: 'reported'
+      }),
+      widget: 'Ratings and Reviews'
+    });
     let name = props.review.review_id + ' review';
     if (!localStorage.getItem(name)) {
       localStorage.setItem(name, true);
