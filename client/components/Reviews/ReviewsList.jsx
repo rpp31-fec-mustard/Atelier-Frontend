@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useTracking } from 'react-tracking';
 
 const ReviewsList = (props) => {
-  const [showing, setShowing] = useState(2);
+  const [showing, setShowing] = useState(0);
   const [modal, setModal] = useState(false);
   const { Track, trackEvent } = useTracking({},
     {
@@ -22,22 +22,6 @@ const ReviewsList = (props) => {
       }
     });
 
-  const displayReviewsList = () => {
-    if (props.list.length !== 0) {
-      return (
-        <div className="reviewEntry_container">
-          {props.list.filter((review, i) => i < showing).map((currReview, i) => {
-            return (
-              <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={props.productInfo.id} />
-            );
-          })}
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
   const getMoreReviews = (e) => {
     trackEvent({
       time: new Date().toString(),
@@ -52,7 +36,7 @@ const ReviewsList = (props) => {
   };
 
   const moreReviewsButton = (e) => {
-    if (showing !== props.list.length && (showing - 1) !== props.list.length) {
+    if (showing !== props.list.length && (showing - 1) !== props.list.length && props.list.length !== 0) {
       return <button className='reviewListButton show' onClick={getMoreReviews.bind(this)}>More Reviews</button>;
     } else {
       return null;
@@ -75,14 +59,23 @@ const ReviewsList = (props) => {
     setModal(false);
   };
 
+  useEffect(() => {
+    setShowing(2);
+  }, [props.productInfo.id, props.list]);
+
 
   return (
     <div className="reviewsList_container">
       <section className='SortByWrapper'>
-        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo}
-          darkMode={props.darkMode}/>
+        <SortBy list={props.list} onChange={props.onChange.bind(this)} productInfo={props.productInfo} />
       </section>
-      {displayReviewsList()}
+      <div className="reviewEntry_container">
+        {props.list.filter((review, i) => i < showing).map((currReview, i) => {
+          return (
+            <ReviewsListEntry key={i} review={currReview} rating={currReview.rating} productId={props.productInfo.id} />
+          );
+        })}
+      </div>
       <div className='reviewButtons'>
         {moreReviewsButton()}
         <button className='reviewListButton add' onClick={showModal.bind(this)}>Add a Review +</button>
