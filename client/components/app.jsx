@@ -16,7 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       productId: '59553',
-      product: {},
+      product: defaultProduct.product,
       total: '0',
       outfitList: []
     };
@@ -39,11 +39,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // initialize product in state with localStorage product
+    // initialize product from localStorage if exists
     if (localStorage.product) {
       this.setState({product: JSON.parse(localStorage.getItem('product'))});
-    } else {
-      this.setState({product: defaultProduct.product});
     }
 
     // initialize outfitList as empty array if new user without localStorage
