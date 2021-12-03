@@ -12,21 +12,13 @@ import ImageGallery from './ImageGallery.jsx';
 import StyleSelector from './StyleSelector.jsx';
 import Stars from '../Global/Stars.jsx';
 import Price from '../Global/Price.jsx';
-import defaultOnLoad from '../defaultOnLoad.jsx';
-// fixtures
-import fixtures from '../../../test/fixtures.js';
+import defaultProduct from '../defaultProduct.jsx';
 
 
 const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProductInOutfitList}) => {
   const [currentStyleIndex, setStyleIndex] = useState(0);
-  const [styles, setStyles] = useState(fixtures.styles); //testing
-  // const [styles, setStyles] = useState(defaultOnLoad.styleOnLoad); //testing
+  const [styles, setStyles] = useState(defaultProduct.styles);
   const [review, setReview] = useState(false);
-  // mlog(logC + ' PO product :', product);
-  // mlog('PO id :', id);
-  // mlog(logC + ' PO styles:', styles);
-  // mlog(logC + ' PO productId:', id);
-  // mlog(logC + ' PO styleIndex:', currentStyleIndex);
 
 
   const getProductStyles = () => {
