@@ -364,8 +364,8 @@ html {
   flex-direction: row;
   height: 10%;
   margin: var(--po-info-margin);
-  padding: var(--po-info-text-padding);
-  align-items: end;
+  /* padding: var(--po-info-text-padding); */
+  align-items: center;
 }
 
 .read_reviews_po {
@@ -376,6 +376,12 @@ html {
 .name_block_po {
   height: 25%;
   margin: var(--po-info-margin);
+}
+
+#category_po {
+  text-transform: uppercase;
+  font-size: 13px;
+  margin: 5px;
 }
 
 #name_po {

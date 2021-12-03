@@ -121,11 +121,11 @@ class App extends React.Component {
     if (this.state.darkMode) {
       let darkModeClass1 = 'dm';
       $('body').addClass('dm');
-      console.log('darkmode on');
+      // console.log('darkmode on');
     } else {
       let darkModeClass1 = '';
       $('body').removeClass('dm');
-      console.log('darkmode off');
+      // console.log('darkmode off');
     }
 
     return (
@@ -135,14 +135,16 @@ class App extends React.Component {
         <ProductOverview
           id={this.state.productId}
           product={this.state.product}
-          isProductInOutfitList={checkOutfitListPresence(this.state.product, this.state.outfitList)}
           total={this.state.total}
+          darkMode={this.state.darkMode}
+          isProductInOutfitList={checkOutfitListPresence(this.state.product, this.state.outfitList)}
           toggleProductToOutfitList={() => this.toggleProductToOutfitList(this.state.product)}
         />
         <Related
           productId={this.state.productId}
           homeProduct={this.state.product}
           outfitList={this.state.outfitList}
+          darkMode={this.state.darkMode}
           renderRelated={this.renderRelated.bind(this)}
           toggleProductToOutfitList={this.toggleProductToOutfitList.bind(this)}
         />
@@ -154,6 +156,7 @@ class App extends React.Component {
           productId={this.state.productId}
           productInfo={this.state.product}
           updateTotal={this.updateTotal.bind(this)}
+          darkMode={this.state.darkMode}
         />
       </React.Fragment>
     );

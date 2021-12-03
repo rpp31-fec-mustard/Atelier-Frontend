@@ -123,7 +123,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
 
             </div>
             <div className='name_block_po'>
-              {category}
+              <p id='category_po'>{category}</p>
               <p id='name_po'>{name}</p>
               {/* <p id='name_po'>first line second line</p> */}
             </div>
