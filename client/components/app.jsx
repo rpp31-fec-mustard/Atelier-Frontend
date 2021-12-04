@@ -26,18 +26,13 @@ class App extends React.Component {
     this.handleDarkModeClick = this.handleDarkModeClick.bind(this);
   }
 
-
   //! dark mode toggle
   handleDarkModeClick() {
     this.state.darkMode ? this.setState({darkMode: false}) : this.setState({darkMode: true});
   }
 
-
-
-
   //! testing only
   sendNumber(id) {
-    // console.log('app id :', id);
     new Promise((resolve, notResolve) => {
       this.setState({productId: id});
       resolve();
@@ -51,21 +46,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // initialize product and productId from localStorage if exists
-    if (localStorage.product) {
-      const product = JSON.parse(localStorage.getItem('product'));
-      this.setState({product});
-      this.setState({productId: product.id});
-    }
-
     // initialize outfitList as empty array if new user without localStorage
     if (!localStorage.outfitList) {
       this.setState({outfitList: []});
     } else {
       this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList'))});
-      // this.setState({outfitList: JSON.parse(localStorage.getItem('outfitList')), productId: JSON.parse(localStorage.getItem('productId'))});
     }
-    this.setState({});
   }
 
   componentDidUpdate() {
@@ -88,7 +74,7 @@ class App extends React.Component {
   }
 
   async renderRelated(event) {
-    const relatedId = event.target.closest('button').id;  //switched for dark mode
+    const relatedId = event.target.closest('button').id; //switched for dark mode
     // const relatedId = event.target.closest('button').className;
     await this.setState({productId: relatedId});
     this.getProduct(this.state.productId);
