@@ -78,7 +78,7 @@ const Question = (props) => {
         <QuestionList question={props.question} helpfulness={props.helpfulness} name={props.name}
           id={props.id} update={props.update} darkMode={props.darkMode}
         />
-        <AnswerList displayAnswers={displayAnswers} update={props.update}/>
+        <AnswerList displayAnswers={displayAnswers} update={props.update} darkMode={props.darkMode}/>
       </div>
     );
   }

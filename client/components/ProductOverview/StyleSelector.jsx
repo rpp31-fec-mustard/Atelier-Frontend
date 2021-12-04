@@ -11,6 +11,7 @@ const StyleSelector = ({
   handleStyleOnClick,
   toggleProductToOutfitList,
   isProductInOutfitList,
+  darkMode
 }) => {
 
   if (styles) {
@@ -44,6 +45,7 @@ const StyleSelector = ({
           style={styles[currentStyleIndex]}
           toggleProductToOutfitList={toggleProductToOutfitList}
           isProductInOutfitList={isProductInOutfitList}
+          darkMode={darkMode}
         />
       </React.Fragment>
     );

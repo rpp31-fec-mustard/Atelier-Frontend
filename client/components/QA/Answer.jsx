@@ -86,9 +86,9 @@ const Answer = (props) => {
             <div className="seller">&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
             <button onClick={() => answerHelpful()} id={props.id + 'answer'}
-              className={`${darkModeClass1} answer-meta-helpful`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+              className={`answer-meta-helpful ${darkModeClass1}`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
             <button onClick={() => reportAnswer()} id={props.id + 'report'}
-              className={`${darkModeClass1} answer-meta-report`}>&nbsp;<u>Report</u></button>
+              className={`answer-meta-report ${darkModeClass1}`}>&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>
@@ -106,9 +106,9 @@ const Answer = (props) => {
             <div>&nbsp;{props.name}</div>
             <div>,&nbsp;{convertDate(props.date)} |&nbsp;</div>
             <button onClick={() => answerHelpful()} id={props.id + 'answer'}
-              className={`${darkModeClass1} answer-meta-helpful`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
+              className={`answer-meta-helpful ${darkModeClass1}`}>&nbsp;Helpful? <u>Yes({props.helpfulness})</u>&nbsp;&nbsp;|</button>
             <button onClick={() => reportAnswer()} id={props.id + 'report'}
-              className={`${darkModeClass1} answer-meta-report`}>&nbsp;<u>Report</u></button>
+              className={`answer-meta-report ${darkModeClass1}`}>&nbsp;<u>Report</u></button>
           </div>
         </div>
       </div>

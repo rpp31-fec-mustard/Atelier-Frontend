@@ -85,7 +85,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       <div className='module_container dm-' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-            productId={id}  //check which to keep
+            productId={id} //check which to keep
             // productId={product.id}  //check which to keep
             productName={product.name}
             darkMode={darkMode}
@@ -120,16 +120,17 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
               handleStyleOnClick={handleStyleOnClick}
               toggleProductToOutfitList={toggleProductToOutfitList}
               isProductInOutfitList={isProductInOutfitList}
+              darkMode={darkMode}
             />
           </div>
         </div>
         <div className='bottom01'>
           <div className='product_desc_po'>
-            <h2>{slogan}</h2><br/>
+            <h2 className='slogan_po'>{slogan}</h2><br/>
             {description}
           </div>
           <div className='highlights_po'>
-            Highlights:<br/>
+            <p className='highlights_label_po'>HIGHLIGHTS:</p>
             {
               features.map((feature, index) => {
                 return (

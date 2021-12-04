@@ -37,7 +37,7 @@ const TempTopBanner = (props) => {
       <div id='top_bar'>
         <h3 className='top_text'>Mustard</h3>
         <p id='outlines' onClick={clickHandlerBorder}></p>
-        {/* <p id='product_59553' onClick={() => { props.sendNumber('59553'); }}>59553</p> */}
+        <p id='product_59553' onClick={() => { props.sendNumber('59553'); }}>59553</p>
         <h3 onClick={clickHandlerRandom}>SEARCH</h3>
       </div>
       <p id='announcements'>

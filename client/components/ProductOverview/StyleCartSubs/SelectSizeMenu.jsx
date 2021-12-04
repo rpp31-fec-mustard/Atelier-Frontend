@@ -5,7 +5,7 @@ import _, { every } from 'underscore';
 import $ from 'jquery';
 
 
-const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize}) => {
+const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize, darkMode}) => {
 
   let skuList = Object.keys(skus).sort();
 
@@ -70,6 +70,9 @@ const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize
   }, [showAlert]);
 
 
+
+  let darkModeClassMenu = darkMode ? 'dmSB' : '';
+
   //render component
   //if every sku quantity is 0
   if (_.every(skus, (sku) => {
@@ -85,15 +88,16 @@ const SelectSizeMenu = ({skus, size, showAlert, setShowAlertFalse, handleSetSize
   } else if (!showSizes) {
     return (
       <React.Fragment>
-        <div className='size_menu_po'>
+        <div className={`size_menu_po ${darkModeClassMenu}`} >
           <div className='size_display_po'
+
             onClick={handleSelectSizeClick}>{size}</div>
         </div>
       </React.Fragment> );
   } else {
     return (
       <React.Fragment>
-        <div className='size_menu_po'
+        <div className={`size_menu_po ${darkModeClassMenu}`}
           onMouseLeave={handleMouseExitCloseMenu}
         >
           <div className='size_display_po' size={'Select Size'} onClick={handleSelectSizeClick}>{size}</div>
