@@ -61,14 +61,6 @@ const ImageGallery = ({currentStyle, productId, productName, ...rest}) => {
     setPhotoIndex(iconId);
   };
 
-
-  const resizeUrl = (url, pixelWidth) => {
-    let resultUrl = '';
-    resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
-      url.slice(url.lastIndexOf('q='));
-    return resultUrl;
-  };
-
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
