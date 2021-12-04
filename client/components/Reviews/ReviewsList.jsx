@@ -67,7 +67,7 @@ const ReviewsList = (props) => {
   return (
     <div className="reviewsList_container">
       <section className='SortByWrapper'>
-        <SortBy list={props.list} onChange={props.onChange.bind(this)} productInfo={props.productInfo} />
+        <SortBy list={props.list} onChange={props.onChange} productInfo={props.productInfo} />
       </section>
       <div className="reviewEntry_container">
         {props.list.filter((review, i) => i < showing).map((currReview, i) => {

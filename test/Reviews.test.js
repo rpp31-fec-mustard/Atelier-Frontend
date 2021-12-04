@@ -12,6 +12,7 @@ import ReviewsList from '../client/components/Reviews/ReviewsList.jsx';
 import ReviewsListEntry from '../client/components/Reviews/ReviewsListEntry.jsx';
 import FilterDisplay from '../client/components/Reviews/FilterDisplay.jsx';
 import CharacteristicBreakdown from '../client/components/Reviews/CharacteristicBreakdown.jsx';
+import AddReviewModal from '../client/components/Reviews/AddReviewModal/AddReviewModal.jsx';
 
 import fixtures from './fixtures.js';
 
@@ -75,13 +76,15 @@ describe('Reviews Component', () => {
 
   test('checks reviews api get call', () => {
     const spy = jest.spyOn(Reviews.prototype, 'get');
-    const wrapper = mount( < Reviews productId={'59553'}/ > );
+    let id = {id: 59553};
+    const wrapper = mount( < Reviews productId={'59553'} productInfo={id}/ > );
     expect(spy).toHaveBeenCalled();
   });
 
   test('checks reviews componentDidMount', () => {
     const spy = jest.spyOn(Reviews.prototype, 'componentDidMount');
-    const wrapper = mount( < Reviews productId={'59553'} / > );
+    let id = {id: 59553};
+    const wrapper = mount( < Reviews productId={'59553'} productInfo={id} /> );
     expect(spy).toHaveBeenCalled();
     spy.mockReset();
     spy.mockRestore();
@@ -95,7 +98,7 @@ describe('Reviews Component', () => {
 
   test('checks filterReviews function', () => {
     const wrapper = shallow( < Reviews productId={'59553'}/>);
-    wrapper.instance().filterReviews(fixtures.reviews, ['4']);
+    wrapper.instance().filterReviews(fixtures.reviews, fixtures.meta, ['4']);
     expect(wrapper.state('displayedReviews').length).toEqual(1);
   });
 
@@ -224,5 +227,13 @@ describe('CharactertisticBreakdown Component', () => {
   test('checks if rating is converted to percent and added to style in indicator element', () => {
     const wrapper = mount( < CharacteristicBreakdown key='1' char='Size' rating='3' />);
     expect(wrapper.find('i').props().style).toEqual({left: '53%'});
+  });
+});
+
+
+describe('AddReviewsModal Component', () => {
+  test('checks if characteristicBreakdown component renders', () => {
+    const wrapper = mount( < AddReviewModal meta={fixtures.meta} />);
+    expect(wrapper).toHaveLength(1);
   });
 });
