@@ -10,7 +10,7 @@ import trackPost from '../trackPost.jsx';
 @track({widget: 'Ratings and Reviews'}, { dispatch: data => {
  trackPost(data)
 }})
-class Modal extends React.Component {
+class AddReviewModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -215,4 +215,4 @@ class Modal extends React.Component {
 }
 
 
-export default Modal;
+export default AddReviewModal;

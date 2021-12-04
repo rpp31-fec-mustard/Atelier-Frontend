@@ -28,6 +28,10 @@ html {
   color: grey;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* GLOBAL VARIABLES */
 
 :root {
@@ -964,7 +968,6 @@ td {
 .questionButtonContainer {
   display: flex;
   width: 50%;
-
 }
 
 .questionButton {
@@ -975,6 +978,11 @@ td {
   height: 50px;
   background-color: white;
   padding: 0px;
+  cursor: pointer;
+}
+
+.questionButton:hover {
+  background-color: var(--mustard);
 }
 
 .questionDisplay {
@@ -1021,6 +1029,7 @@ td {
   text-align: right;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .addAnswer {
@@ -1032,6 +1041,7 @@ td {
   text-align: left;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .answer-meta-helpful {
@@ -1041,7 +1051,8 @@ td {
   text-align: left;
   margin-top: 0px;
   padding: 0px;
-  width: 110px;
+  width: 113px;
+  cursor: pointer;
 }
 .answer-meta-report {
   font-family: 'Nanum Gothic', sans-serif;
@@ -1051,6 +1062,7 @@ td {
   margin-top: 0px;
   padding: 0px;
   width: 50px;
+  cursor: pointer;
 }
 
 .answer {
@@ -1093,6 +1105,7 @@ td {
   font-weight: bold;
   margin-left: 28px;
   padding-bottom: 20px;
+  cursor: pointer;
 }
 
 .modal {
@@ -1132,9 +1145,13 @@ td {
   font-weight: bold;
   width: 50%;
   height: 100px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   padding: 0px;
+}
+
+.modal-footer-button:hover {
+  background-color: var(--mustard);
 }
 
 .submit-button {
@@ -1426,8 +1443,8 @@ border: none;
 }
 
 .reviewListButton:hover {
-  background: #fff;
-  color: #648880;
+  background: #d09821;
+  color: white;
 }
 
 .starScale {
@@ -1494,11 +1511,11 @@ progress {
 }
 
 progress::-webkit-progress-bar {
-  background-color: rgb(143, 143, 129);
+  background-color: lightgray
 }
 
 progress::-webkit-progress-value {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 
 .stars-outer {
@@ -1562,7 +1579,8 @@ progress::-webkit-progress-value {
 }
 
 .numStar:hover {
-  background-color: lightskyblue;
+  background-color: rgba(255, 219, 88, 0.75);
+  backdrop-filter: blur(2px);
 }
 
 .charRatingEntry {
@@ -1672,6 +1690,7 @@ text-align: right;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 10;
 }
 
 .modal_input {
@@ -1800,53 +1819,50 @@ p {
 body::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  }
+}
 
 
-  .reviewEntry_container::-webkit-scrollbar-track,
-  .questionList::-webkit-scrollbar-track,
-  .prod-cards-wrapper::-webkit-scrollbar-track,
+.reviewEntry_container::-webkit-scrollbar-track,
+.questionList::-webkit-scrollbar-track,
+.prod-cards-wrapper::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 3px rgba(255,255,255,0.3);
   border-radius: 5px;
-  outline: 1px solid var(--dark-mode-light);
-  }
+  outline: none;
+}
 
 
-  .reviewEntry_container::-webkit-scrollbar-thumb,
-  .questionList::-webkit-scrollbar-thumb,
-  .prod-cards-wrapper::-webkit-scrollbar-thumb,
+.reviewEntry_container::-webkit-scrollbar-thumb,
+.questionList::-webkit-scrollbar-thumb,
+.prod-cards-wrapper::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
   background-color: var(--mustard-shadow);
-  outline: 1px solid var(--dark-mode-light);
+  outline: none;
   border-radius: 5px;
-  }
+}
 
 
 .style_row_thumbnail_po::-webkit-scrollbar {
   width: 6px;
-  }
+}
 
 
 .style_row_thumbnail_po::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   outline: 1px solid var(--dark-mode-light);
-  }
+}
 
 
 .style_row_thumbnail_po::-webkit-scrollbar-thumb {
   background-color: var(--mustard-shadow);
   outline: 1px solid var(--dark-mode-light);
   border-radius: 3px;
-  }
+}
 
 :root {
   --dark-mode-light: rgb(90, 90, 90);
   --dark-mode-dark: rgb(44, 44, 44);
-  /* --mustard: #FFDB58;
-  --mustard-shadow: #d09821;
-  --global-border-color: rgb(125, 125, 125); */
 }
 
 .favorites_on_po {

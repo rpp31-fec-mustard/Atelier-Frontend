@@ -119,7 +119,7 @@ const Q_A = (props) => {
   } else {
     return (
       <Track>
-        <div className="questionDisplay dm">
+        <div className="questionDisplay">
           <div className="questionList">
             {displayQuestions.map((question, answer) =>
               <Question

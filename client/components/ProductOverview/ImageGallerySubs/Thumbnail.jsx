@@ -3,13 +3,6 @@ import ReactDOM from 'react-dom';
 
 const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) => {
 
-  const resizeUrl = (url, pixelWidth) => {
-    let resultUrl = '';
-    resultUrl = url.slice(0, (url.lastIndexOf('crop&w=') + 7)) + pixelWidth +
-      url.slice(url.lastIndexOf('q='));
-    return resultUrl;
-  };
-
   const resizeUrl2 = (url, pixelWidth) => {
     let resultUrl = '';
     resultUrl = url.slice(0, (url.lastIndexOf('auto=format'))) + pixelWidth;
@@ -25,7 +18,7 @@ const Thumbnail = ({photo, photoIndex, counter, handleThumbnailClick, altText}) 
         id={`${thumbSelected}`} key={`TS${counter}`}>
         <div className={'thumbnail_frame_po'} key={`TF${counter}`}>
           <img className='thumbnail_box_po'
-            src={photo}
+            alt={`Thumbnail of ${altText}`}
             src={resizeUrl2(photo, 'auto=format&w=200&h=200&fit=max&q=80')}
             onClick={ () => { handleThumbnailClick(counter); }}/>
         </div>
