@@ -1358,8 +1358,8 @@ border: none;
 }
 
 .reviewListButton:hover {
-  background: #fff;
-  color: #648880;
+  background: #d09821;
+  color: white;
 }
 
 .starScale {
@@ -1426,11 +1426,11 @@ progress {
 }
 
 progress::-webkit-progress-bar {
-  background-color: rgb(143, 143, 129);
+  background-color: lightgray
 }
 
 progress::-webkit-progress-value {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 
 .stars-outer {
@@ -1494,7 +1494,8 @@ progress::-webkit-progress-value {
 }
 
 .numStar:hover {
-  background-color: lightskyblue;
+  background-color: rgba(255, 219, 88, 0.75);
+  backdrop-filter: blur(2px);
 }
 
 .charRatingEntry {
@@ -1604,6 +1605,7 @@ text-align: right;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 10;
 }
 
 .modal_input {
