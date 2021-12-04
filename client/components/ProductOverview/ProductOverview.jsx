@@ -45,16 +45,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       });
   };
 
-
-
   const loaded = useRef(true); //testing
-  // const loaded = useRef(false); //for testing Ml
-
-  useEffect(() => {
-    if (localStorage.styles) {
-      setStyles(JSON.parse(localStorage.getItem('styles')));
-    }
-  }, []);
 
   useEffect(async () => {
     getProductStyles(product.id);
@@ -85,7 +76,7 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       <div className='module_container dm-' id='product_overview_main' >
         <div className='top01'>
           <ImageGallery currentStyle={styles.results[currentStyleIndex]}
-            productId={id}  //check which to keep
+            productId={id} //check which to keep
             // productId={product.id}  //check which to keep
             productName={product.name}
             darkMode={darkMode}
@@ -141,10 +132,6 @@ const ProductOverview = ({product, id, total, toggleProductToOutfitList, isProdu
       </div>
     </React.Fragment>
   );
-  // } else {
-  //   console.log('state undefined: props not correct. component load delayed');
-  //   return <div>props load delayed</div>;
-  // }
 };
 
 export default ProductOverview;

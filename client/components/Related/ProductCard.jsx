@@ -58,9 +58,8 @@ const ProductCard = (props) => {
 
         <div className="prod-card-wrapper">
           <button
-            // className={props.product.id}
-            className={darkModeClass1}  //switched for dark mode
-            id={props.product.id}  //added for dark mode
+            className={darkModeClass1} //switched for dark mode
+            id={props.product.id} //added for dark mode
             onClick={(event) => {
               props.renderRelated(event);
               trackEvent({
