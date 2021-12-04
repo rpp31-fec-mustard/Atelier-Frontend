@@ -900,7 +900,6 @@ td {
 .questionButtonContainer {
   display: flex;
   width: 50%;
-
 }
 
 .questionButton {
@@ -911,6 +910,11 @@ td {
   height: 50px;
   background-color: white;
   padding: 0px;
+  cursor: pointer;
+}
+
+.questionButton:hover {
+  background-color: var(--mustard);
 }
 
 .questionDisplay {
@@ -957,6 +961,7 @@ td {
   text-align: right;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .addAnswer {
@@ -968,6 +973,7 @@ td {
   text-align: left;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .answer-meta-helpful {
@@ -978,6 +984,7 @@ td {
   margin-top: 0px;
   padding: 0px;
   width: 113px;
+  cursor: pointer;
 }
 .answer-meta-report {
   font-family: 'Nanum Gothic', sans-serif;
@@ -987,6 +994,7 @@ td {
   margin-top: 0px;
   padding: 0px;
   width: 50px;
+  cursor: pointer;
 }
 
 .answer {
@@ -1029,6 +1037,7 @@ td {
   font-weight: bold;
   margin-left: 28px;
   padding-bottom: 20px;
+  cursor: pointer;
 }
 
 .modal {
@@ -1362,8 +1371,8 @@ border: none;
 }
 
 .reviewListButton:hover {
-  background: #fff;
-  color: #648880;
+  background: #d09821;
+  color: white;
 }
 
 .starScale {
@@ -1430,11 +1439,11 @@ progress {
 }
 
 progress::-webkit-progress-bar {
-  background-color: rgb(143, 143, 129);
+  background-color: lightgray
 }
 
 progress::-webkit-progress-value {
-  background-color: rgb(0, 0, 0);
+  background-color: black;
 }
 
 .stars-outer {
@@ -1498,7 +1507,8 @@ progress::-webkit-progress-value {
 }
 
 .numStar:hover {
-  background-color: lightskyblue;
+  background-color: rgba(255, 219, 88, 0.75);
+  backdrop-filter: blur(2px);
 }
 
 .charRatingEntry {
@@ -1608,6 +1618,7 @@ text-align: right;
   align-items: center;
   justify-content: center;
   border: none;
+  z-index: 10;
 }
 
 .modal_input {

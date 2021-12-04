@@ -66,6 +66,7 @@ class Reviews extends React.Component {
     };
 
     return axios.request(options).then((result) => {
+      this.adjustMeta(result.data.reviewsArr, result.data.meta);
       this.setState({
         allReviews: result.data.reviewsArr,
         displayedReviews: result.data.reviewsArr,
