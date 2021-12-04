@@ -896,7 +896,6 @@ td {
 .questionButtonContainer {
   display: flex;
   width: 50%;
-
 }
 
 .questionButton {
@@ -907,6 +906,11 @@ td {
   height: 50px;
   background-color: white;
   padding: 0px;
+  cursor: pointer;
+}
+
+.questionButton:hover {
+  background-color: var(--mustard);
 }
 
 .questionDisplay {
@@ -953,6 +957,7 @@ td {
   text-align: right;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .addAnswer {
@@ -964,6 +969,7 @@ td {
   text-align: left;
   margin-top: 0px;
   width: 150px;
+  cursor: pointer;
 }
 
 .answer-meta-helpful {
@@ -974,6 +980,7 @@ td {
   margin-top: 0px;
   padding: 0px;
   width: 113px;
+  cursor: pointer;
 }
 .answer-meta-report {
   font-family: 'Nanum Gothic', sans-serif;
@@ -983,6 +990,7 @@ td {
   margin-top: 0px;
   padding: 0px;
   width: 50px;
+  cursor: pointer;
 }
 
 .answer {
@@ -1025,6 +1033,7 @@ td {
   font-weight: bold;
   margin-left: 28px;
   padding-bottom: 20px;
+  cursor: pointer;
 }
 
 .modal {
