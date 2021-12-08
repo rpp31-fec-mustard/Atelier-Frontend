@@ -22,7 +22,8 @@ API_product_ref.txt
 config.js
 config.env
 
-
+## Scripts ##
+ec2LaunchScript
 
 # MLapid - 21.11.01 - Adding package-lock.json. It's only necessary once we deploy live to lock-in
 # module versions that are compatible with codebase. Till then, these versions will change as we

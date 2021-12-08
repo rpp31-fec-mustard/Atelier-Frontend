@@ -242,20 +242,21 @@ describe('Add to Cart', () => {
 
     test('renders Size Menu component', () => {
       render(<SelectSizeMenu skus={fixtures.styles.results[0].skus} size={'Select Size'}/>);
-      expect(screen.getByRole('option', {name: /Select Size/})).toBeInTheDocument();
+      expect(screen.getByText(/Select Size/)).toBeInTheDocument();
     });
-    xtest('renders size options', () => {
-      render(<SelectSizeMenu skus={fixtures.styles.results[0].skus}/>);
-      // screen.debug();
-      expect(screen.getByRole('option', {name: 'x-small'})).toBeInTheDocument();
-      expect(screen.getByRole('option', {name: 'small'})).toBeInTheDocument();
-      expect(screen.getByRole('option', {name: 'medium'})).toBeInTheDocument();
-      expect(screen.getByRole('option', {name: 'large'})).toBeInTheDocument();
-      expect(screen.getByRole('option', {name: 'x-large'})).toBeInTheDocument();
+    test('renders size options', async () => {
+      render(<SelectSizeMenu skus={fixtures.styles.results[0].skus} size={'Select Size'}/>);
+      await userEvent.click(screen.getByText(/Select Size/));
+      screen.debug();
+      expect(screen.getAllByText(/small/)).toHaveLength(2);
+      // expect(screen.getByText('small')).toBeInTheDocument();
+      expect(screen.getByText(/medium/)).toBeInTheDocument();
+      expect(screen.getAllByText(/large/)).toHaveLength(3);
+      // expect(screen.getByText('x-large')).toBeInTheDocument();
     });
     test('renders OUT OF STOCK', () => {
       render(<SelectSizeMenu skus={fixtures.styles.results[2].skus}/>);
-      expect(screen.getByRole('option', {name: 'OUT OF STOCK'})).toBeInTheDocument();
+      expect(screen.getByText(/OUT OF STOCK/)).toBeInTheDocument();
 
     });
     xtest('renders something', () => {
@@ -272,7 +273,7 @@ describe('Add to Cart', () => {
       // console.log('path test', path);
       render(<SelectQuantityMenu />);
       // screen.debug();
-      expect(screen.getByRole('option', {name: '---'})).toBeInTheDocument();
+      expect(screen.getByText(/---/)).toBeInTheDocument();
       //redo this one with alt text
     });
     test('renders correct quantity', () => {
